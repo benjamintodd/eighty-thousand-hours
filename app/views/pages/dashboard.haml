@@ -1,0 +1,85 @@
+.dashboard 
+  .row
+    .span7
+      .user-need-block
+        %h1 Get advice
+        .row.user-activity-block
+          .span3
+            %h2 Read articles
+          .span4.next-to-h2
+            :markdown
+              [Getting started](/getting-started)
+            
+              [High impact causes](/causes)
+            
+              [High impact activities](/types-of-career)
+            
+              See our [careers guide](/career-advice) or our [blog posts organised by category](/career-resources)
+        .row.user-activity-block
+          .span3
+            %h2 Get a mentor
+          .span4.next-to-h2
+            :markdown
+              [Robbie Shade](/members/robbie-shade), software developer at Google.
+            
+              [Seb Farquhar](/members/sebastian-farquhar), management consultant at McKinsey.
+            
+              [Find out more about mentorship](/non-existent-mentorship-page)
+        .row.user-activity-block
+          .span3
+            %h2 Get advice
+          .span4.next-to-h2
+            :markdown
+              Use our [forum](/discussion) to ask advice from our community of effective altruists.
+            
+              [View the forum](/discussion)
+      .user-need-block
+        %h1 Give advice
+        .row.user-activity-block
+          .span3
+            %h2 Become a mentor
+          .span4.next-to-h2
+            :markdown
+              If you have experience in a career, you can have a significant impact by helping someone else.
+            
+              [Find out more about becoming a mentor](/non-existent-mentoring-page)
+        .row.user-activity-block
+          .span3
+            %h2 Write articles
+          .span4.next-to-h2
+            %p Article 1
+            %p Article 2
+            %p Article 3
+      .user-need-block
+        %h1 Track your impact
+        .row.user-activity-block
+          .span3
+            %h2 Track donations
+          .span4.next-to-h2
+            :markdown
+              Track your donations [here](/donations)
+              ###Latest 80,000 Hours donations:
+              <br />
+            - Donation.confirmed.slice(0, 4).each do |donation|
+              %p
+                = render donation
+      .user-need-block
+        %h1 Get involved
+        .row.user-activity-block
+          .span3
+            %h2 Volunteer
+          .span4.next-to-h2
+            :markdown
+              Check out our volunteering opportunities in [communications](/volunteer#communications), [research](/volunteer#research), [web design and development](/volunteer#website), and [many other roles](/volunteer)
+    .span1
+      %p &nbsp;
+    .span4.dashboard.blog.box.sidebar.blog-sidebar
+      %br
+      = render :partial => "blog_posts/popular_posts"
+      %hr
+      = render :partial => "blog_posts/latest_discussion_posts"
+      %hr
+      = render :partial => "blog_posts/latest_comments"
+      %hr
+      
+      

@@ -46,6 +46,7 @@ ActiveAdmin.register EtkhProfile do
     column ("Real name"){ |profile| profile.user.real_name }
     column ("Email")    { |profile| profile.user.email }
     column ("Location") { |profile| profile.user.location }
+    column ("Created_at") { |profile| profile.user.created_at}
 
     # The remaining fields are in the EtkhProfile model
     column :background
