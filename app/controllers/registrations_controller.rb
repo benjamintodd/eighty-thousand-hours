@@ -4,6 +4,12 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def create
+    # Log this in Google Analytics
+    log_event("Members", "Created via email/password", params[:user][:name], params[:user][:email])
+    super
+  end
+
   def update
     # if user signed up through omniauth then they
     # don't need to provide a password when updating details
