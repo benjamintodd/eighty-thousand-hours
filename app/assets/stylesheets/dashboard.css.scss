@@ -30,7 +30,7 @@
 
 .user-activity-block {
   padding-top: 6px;
-  border-top: 2px dotted #888;
+  border-top: 1px solid #eee;
 	h2 {
 	  /* border-bottom: 3px solid #333333*/
 	}
@@ -38,4 +38,8 @@
 
 .new-here-message {
 	margin-bottom: 0;
+}
+
+.dashboard_icon {
+  width:50px;
 }

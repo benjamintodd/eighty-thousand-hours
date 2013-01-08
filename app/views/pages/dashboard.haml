@@ -6,71 +6,87 @@
         .row.user-activity-block
           .span3
             %h2 Read articles
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_304ee32c-ebe5-46b9-bafd-5ab2e9aa00e9.png', :class => 'dashboard_icon')
           .span4.next-to-h2
             :markdown
-              [Getting started](/getting-started)
+              <p><a href="/getting-started" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/getting-started']);">Getting started with career planning</a></p>
             
-              [High impact causes](/causes)
+              <p><a href="/causes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/causes']);">High impact causes</a></p>
             
-              [High impact activities](/types-of-career)
+              <p><a href="/types-of-career" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/types-of-career']);">Types of high-impact career</a></p>
+              
+              <p><a href="/career-strategy" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/career-strategy']);">Big questions that affect your choice of career</a></p>
+              
+              <p><a href="/how-to-choose" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/how-to-choose']);">A step-by-step process for choosing a career</a></p>
             
-              See our [careers guide](/career-advice) or our [blog posts organised by category](/career-resources)
+              <p>Also take a look at our <a href="/causes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/career-resources']);">most useful blog posts</a></p>
+
+        .row.user-activity-block
+          .span3
+            %h2 Get career advice
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_5e3a3134-428d-4232-9410-48d72a426737.png', :class => 'dashboard_icon')
+          .span4.next-to-h2
+            :markdown
+              Book a <a href="/request-a-career-advice-session" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/request-a-career-advice-session']);">career advice session</a> for one-on-one advice with one of our careers advisors. They can discuss your best options and guide you on how to choose a high impact career.
+            
+              Ask a question or introduce yourself on our <a href="/discussion" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/discussion']);">forum</a>
         .row.user-activity-block
           .span3
             %h2 Get a mentor
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_13536573-4975-466c-b4a8-fff6fa3821b6.png', :class => 'dashboard_icon')
           .span4.next-to-h2
             :markdown
-              [Robbie Shade](/members/robbie-shade), software developer at Google.
+              Ask our more experienced members for advice about specific careers:
             
-              [Seb Farquhar](/members/sebastian-farquhar), management consultant at McKinsey.
-            
-              [Find out more about mentorship](/non-existent-mentorship-page)
-        .row.user-activity-block
-          .span3
-            %h2 Get advice
-          .span4.next-to-h2
-            :markdown
-              Use our [forum](/discussion) to ask advice from our community of effective altruists.
-            
-              [View the forum](/discussion)
+              <p><a href="/members/robbie-shade" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/robbie-shade']);">Robbie Shade</a> software developer at Google.</p>
+
+              <p><a href="/members/sebastian-farquhar" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/sebastian-farquhar']);">Sebastian Farquhar</a> management consultant.</p>
+              
+              More coming soon ...
+
       .user-need-block
-        %h1 Give advice
+        %h1 Get involved
         .row.user-activity-block
           .span3
             %h2 Become a mentor
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_b423fcc4-0097-4ef8-956c-0db5242a6518.png', :class => 'dashboard_icon')
           .span4.next-to-h2
             :markdown
-              If you have experience in a career, you can have a significant impact by helping someone else.
+              If you have experience in a career, you can have an enormous impact by helping someone else.
             
-              [Find out more about becoming a mentor](/non-existent-mentoring-page)
+              Contact [Richard Batty](mailto:richard.batty@80000hours.org) about becoming a mentor.
         .row.user-activity-block
           .span3
             %h2 Write articles
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_b439ea97-9127-4f04-bf7d-638d85460729.png', :class => 'dashboard_icon')
           .span4.next-to-h2
-            %p Article 1
-            %p Article 2
-            %p Article 3
-      .user-need-block
+            :markdown
+              Contact [Ben Todd](mailto:ben@80000hours.org) if you'd like to write for the blog. Here's some topic ideas:
+              * An in-depth profile of a particular career
+              * An interview with someone who is particularly high-impact
+              * Evidence-based advice on choosing careers or advancing in your career
+        .row.user-activity-block
+          .span3
+            %h2 Volunteer
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_24516a2b-a862-4ff2-bafa-71a4b9efd352.png', :class => 'dashboard_icon')
+          .span4.next-to-h2
+            :markdown
+              Check out our volunteering opportunities in <a href="/volunteer#communications" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#communications']);">communications</a>, <a href="/volunteer#research" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#research']);">research</a>, <a href="/volunteer#website" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#website']);">web design and development</a>, and <a href="/volunteer" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer']);">many other roles</a>
+              
         %h1 Track your impact
         .row.user-activity-block
           .span3
             %h2 Track donations
+            =image_tag('http://thepngproject.s3.amazonaws.com/100_000000/noun_project_a7fabfb1-4b51-46b1-acfe-dfbf23bfbad1.png', :class => 'dashboard_icon')
           .span4.next-to-h2
             :markdown
-              Track your donations [here](/donations)
+              Track your donations <a href="/donations" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Donations tracking', '/donations']);">here</a> so that we know that our members are having impact and so we can get some friendly competition going between members.
               ###Latest 80,000 Hours donations:
               <br />
             - Donation.confirmed.slice(0, 4).each do |donation|
               %p
                 = render donation
-      .user-need-block
-        %h1 Get involved
-        .row.user-activity-block
-          .span3
-            %h2 Volunteer
-          .span4.next-to-h2
-            :markdown
-              Check out our volunteering opportunities in [communications](/volunteer#communications), [research](/volunteer#research), [web design and development](/volunteer#website), and [many other roles](/volunteer)
+
     .span1
       %p &nbsp;
     .span4.dashboard.blog.box.sidebar.blog-sidebar
