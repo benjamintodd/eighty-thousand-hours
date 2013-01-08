@@ -41,6 +41,9 @@ class AuthenticationsController < ApplicationController
       user.skip_confirmation!
       user.save
 
+      # Log this in Google Analytics
+      log_event("Members", "Created via Omniauth", user.name, user.id)
+
       UserMailer.welcome_email(user).deliver!
 
       flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>Your are signed in to 80,000 Hours with the name #{user.name}".html_safe

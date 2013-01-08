@@ -44,7 +44,7 @@ module PagesHelper
       if t.children.size > 0
         result += "<li class='dropdown #{ active ? "active" : "" } top-level' >"
         result += "
-        <a href='#' class='dropdown-toggle top-level' data-toggle='dropdown'>
+        <a class='dropdown-toggle top-level' data-toggle='dropdown'>
           #{t.title} <b class='caret'></b>
         </a>
         <ul class='dropdown-menu'>"
