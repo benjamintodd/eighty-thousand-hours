@@ -3,6 +3,8 @@ shared: &shared
   encoding: unicode
   pool: 5
   host: localhost
+  username: jeff
+  password: edinburgh
   
 development:
   <<: *shared
