@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.1'
+gem 'rails', '>= 3.2.11'
+
+# rake
+gem "rake", "~> 10.0.3"
 
 # user login
 gem 'devise'
@@ -78,12 +81,12 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
 end
 
-gem 'sass-rails', '3.1.4'
+gem 'sass-rails', '3.2.5'
 
 gem 'jquery-rails'
 
