@@ -23,5 +23,6 @@
  *= require fancybox 
  *= require datepicker
  *= require comments
+ *= require dashboard
  *= require_tree ./shared
 */

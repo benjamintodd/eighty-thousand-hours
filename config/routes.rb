@@ -72,6 +72,7 @@ EightyThousandHours::Application.routes.draw do
   # converted to pure Markdown
   match 'events'             => 'info#events'
   match 'events/past-events' => 'info#past_events'
+  match 'dashboard'          => 'pages#dashboard'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'

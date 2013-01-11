@@ -1,5 +1,5 @@
 %h3= link_to 'Latest blog comments', blog_posts_path
-- @latest_comments.each do |comment|
+- Comment.blog.order("created_at DESC").limit(4).each do |comment|
   = render partial: 'shared/sidebar_item',
            locals: { date: comment.created_at, 
                      content: link_to_comment_contents( comment, 80 ), 

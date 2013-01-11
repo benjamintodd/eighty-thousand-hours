@@ -1,0 +1,45 @@
+@import "shared/partials";
+
+.dashboard
+  h2 {
+    margin-top: 0;
+  }
+  .blog-sidebar {
+    margin-top: 0.3333em;
+  }
+
+.next-to-h1 {
+	margin-top: 2.25em;
+}
+
+.next-to-h2 {
+	margin-top: 0.25em;
+}
+
+.user-need-block {
+	margin-bottom: 2em;
+	h1 {
+	  /*border-bottom: 5px solid #333333;*/
+	  margin-top: 0;
+	  margin-bottom: 0em;
+	  padding-top: 0.3333em;
+	  padding-bottom: 0.3333em;
+	}
+	
+}
+
+.user-activity-block {
+  padding-top: 6px;
+  border-top: 1px solid #eee;
+	h2 {
+	  /* border-bottom: 3px solid #333333*/
+	}
+}
+
+.new-here-message {
+	margin-bottom: 0;
+}
+
+.dashboard_icon {
+  width:50px;
+}
