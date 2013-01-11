@@ -22,7 +22,8 @@ class EtkhProfilesController < ApplicationController
       @supporter.save
 
       # new profile should redirect here when done
-      session[:next_page] = '/surveys/members-survey'
+      #session[:next_page] = '/surveys/members-survey'
+      redirect_to members_survey_path
     else
       # user already has a profile but has visited /members/new
       render 'edit'
