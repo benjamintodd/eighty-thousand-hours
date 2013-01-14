@@ -1,9 +1,13 @@
 source 'http://rubygems.org'
 
+<<<<<<< HEAD
 gem 'rails', '>= 3.2.11'
 
 # rake
 gem "rake", "~> 10.0.3"
+=======
+gem 'rails', '>= 3.1.10'
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
 
 # user login
 gem 'devise'

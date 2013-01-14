@@ -1,19 +1,32 @@
 GEM
   remote: http://rubygems.org/
   specs:
+<<<<<<< HEAD
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
       mail (~> 2.4.4)
     actionpack (3.2.11)
       activemodel (= 3.2.11)
       activesupport (= 3.2.11)
+=======
+    actionmailer (3.1.10)
+      actionpack (= 3.1.10)
+      mail (~> 2.3.3)
+    actionpack (3.1.10)
+      activemodel (= 3.1.10)
+      activesupport (= 3.1.10)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
       rack (~> 1.4.0)
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
+<<<<<<< HEAD
       sprockets (~> 2.2.1)
+=======
+      sprockets (~> 2.0.4)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     activeadmin (0.5.1)
       arbre (>= 1.0.1)
       bourbon (>= 1.0.0)
@@ -26,6 +39,7 @@ GEM
       meta_search (>= 0.9.2)
       rails (>= 3.0.0)
       sass (>= 3.1.0)
+<<<<<<< HEAD
     activemodel (3.2.11)
       activesupport (= 3.2.11)
       builder (~> 3.0.0)
@@ -40,6 +54,22 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+=======
+    activemodel (3.1.10)
+      activesupport (= 3.1.10)
+      builder (~> 3.0.0)
+      i18n (~> 0.6)
+    activerecord (3.1.10)
+      activemodel (= 3.1.10)
+      activesupport (= 3.1.10)
+      arel (~> 2.2.3)
+      tzinfo (~> 0.3.29)
+    activeresource (3.1.10)
+      activemodel (= 3.1.10)
+      activesupport (= 3.1.10)
+    activesupport (3.1.10)
+      multi_json (>= 1.0, < 1.3)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     acts-as-taggable-on (2.2.2)
       rails (~> 3.0)
     addressable (2.3.2)
@@ -141,7 +171,11 @@ GEM
     haml (3.1.7)
     has_scope (0.5.1)
     hashie (1.2.0)
+<<<<<<< HEAD
     heroku (2.34.0)
+=======
+    heroku (2.33.5)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
       netrc (~> 0.7.7)
@@ -164,7 +198,10 @@ GEM
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
     jasmine-core (1.3.1)
+<<<<<<< HEAD
     journey (1.0.4)
+=======
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -184,7 +221,11 @@ GEM
       websocket
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+<<<<<<< HEAD
     listen (0.7.2)
+=======
+    listen (0.7.1)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     lumberjack (1.0.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -245,13 +286,18 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.3.1)
+<<<<<<< HEAD
     rack (1.4.3)
+=======
+    rack (1.3.8)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+<<<<<<< HEAD
     rails (3.2.11)
       actionmailer (= 3.2.11)
       actionpack (= 3.2.11)
@@ -269,6 +315,25 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
+=======
+    rails (3.1.10)
+      actionmailer (= 3.1.10)
+      actionpack (= 3.1.10)
+      activerecord (= 3.1.10)
+      activeresource (= 3.1.10)
+      activesupport (= 3.1.10)
+      bundler (~> 1.0)
+      railties (= 3.1.10)
+    rails-i18n (0.7.2)
+      i18n (~> 0.5)
+    railties (3.1.10)
+      actionpack (= 3.1.10)
+      activesupport (= 3.1.10)
+      rack-ssl (~> 1.3.2)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (~> 0.14.6)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     rake (10.0.3)
     rb-readline (0.4.2)
     rdoc (3.12)
@@ -305,10 +370,19 @@ GEM
     ruby_gntp (0.3.4)
     rubyzip (0.9.9)
     sass (3.2.5)
+<<<<<<< HEAD
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+=======
+    sass-rails (3.1.4)
+      actionpack (~> 3.1.0)
+      railties (~> 3.1.0)
+      sass (>= 3.1.4)
+      sprockets (~> 2.0.0)
+      tilt (~> 1.3.2)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
     selenium-webdriver (2.27.2)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
@@ -396,7 +470,11 @@ DEPENDENCIES
   paperclip (~> 2.4)
   pg
   pry
+<<<<<<< HEAD
   rails (>= 3.2.11)
+=======
+  rails (>= 3.1.10)
+>>>>>>> bf491e6b38d52dea9201675d7e1f92e3cebfb4d6
   rails-i18n
   rake (~> 10.0.3)
   rb-readline
