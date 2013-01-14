@@ -73,7 +73,7 @@ class EtkhProfilesController < ApplicationController
       flash[:"alert-success"] = "Your profile was successfully updated."
       
       #work out time since user profile was first created
-      timediff = current_user.confirmed_at - Time.now   #in seconds
+      timediff = Time.now - current_user.confirmed_at   #in seconds
       timediff = timediff / 60  #in minutes
 
       #if much time has elapsed since the profile was created
