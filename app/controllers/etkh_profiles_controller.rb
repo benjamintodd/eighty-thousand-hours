@@ -1,7 +1,7 @@
 class EtkhProfilesController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:edit,:update,:destroy]
 
-  def new
+  def new     #this is not triggered when a new member signs up
     if current_user.nil?
       raise CanCan::AccessDenied.new("You need to create an account first!", :create, EtkhProfile)
     end
@@ -78,7 +78,7 @@ class EtkhProfilesController < ApplicationController
         session[:next_page] = nil
         redirect_to( next_page )
       else
-        redirect_to( etkh_profile_path( current_user ) )
+        redirect_to(members_survey_path)
       end
     else
       render :action => "edit"
