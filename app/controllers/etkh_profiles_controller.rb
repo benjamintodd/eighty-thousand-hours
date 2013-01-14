@@ -21,8 +21,6 @@ class EtkhProfilesController < ApplicationController
       @supporter = Supporter.new(:name => current_user.name, :email => current_user.email)
       @supporter.save
 
-      # new profile should redirect here when done
-      #session[:next_page] = '/surveys/members-survey'
       redirect_to members_survey_path
     else
       # user already has a profile but has visited /members/new
@@ -73,12 +71,19 @@ class EtkhProfilesController < ApplicationController
   def update
     if current_user.update_attributes(params[:user])
       flash[:"alert-success"] = "Your profile was successfully updated."
-      if session[:next_page]
-        next_page = session[:next_page]
-        session[:next_page] = nil
-        redirect_to( next_page )
+      
+      #work out time since user profile was first created
+      timediff = current_user.confirmed_at - Time.now   #in seconds
+      timediff = timediff / 60  #in minutes
+
+      #if much time has elapsed since the profile was created
+      maxTime = 60 #minutes
+      if timediff > maxTime
+        #assume the user is editing their profile
+        redirect_to( etkh_profile_path( current_user ) )
       else
-        redirect_to(members_survey_path)
+        #assume the user is creating their profile for the first time
+        redirect_to( members_survey_path )
       end
     else
       render :action => "edit"
