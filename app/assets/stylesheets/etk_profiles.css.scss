@@ -10,8 +10,9 @@
   .location {
     font-weight: normal;
     color: lighten($text_color,50%);
+    margin-bottom: 0.3em;
   }
-
+  
   .sidebar {
     padding-top: 40px;
     font-size: 0.8em;
@@ -64,4 +65,5 @@
       color: lighten($text_color,50%);
     }
   }
+
 }

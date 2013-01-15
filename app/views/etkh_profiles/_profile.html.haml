@@ -60,11 +60,15 @@
       .main
         .page-header
           %h1= profile.name
+
           %h2.location
             - if profile.organisation?
               = profile.organisation + (', ' if user.location)
             - if user.location?
               = user.location
+
+          - if current_user and current_user.eighty_thousand_hours_member?
+            %h3= user.email
         
         - if profile.background?
           %h2 Background and interests
