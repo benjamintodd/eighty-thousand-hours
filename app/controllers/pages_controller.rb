@@ -17,8 +17,7 @@ class PagesController < ApplicationController
     @menu_current = @page.title
     @menu_root = @page.root.title
 
-
-    if root_path
+    if @page.title == "Home"
       if user_signed_in?
         redirect_to dashboard_path
       else
