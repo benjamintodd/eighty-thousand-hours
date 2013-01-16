@@ -16,10 +16,21 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if session[:user_return_to] == root_path
-      dashboard_path
+    #work out time since user profile was first created
+    timediff = Time.now - current_user.confirmed_at   #in seconds
+
+    #if NOT much time has elapsed since the profile was created
+    maxTime = 120 #seconds
+    if timediff < maxTime
+      #assume the user has just signed up so redirect to edit profile
+      redirect_to( etkh_profile_path( current_user ) )
     else
-      session[:user_return_to] || root_path
+      #assume user is simply logging in and treat as normal
+      if session[:user_return_to] == root_path
+        dashboard_path
+      else
+        session[:user_return_to] || root_path
+      end
     end
   end
 
