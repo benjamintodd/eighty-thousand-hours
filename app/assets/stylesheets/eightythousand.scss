@@ -468,7 +468,10 @@ input[type="email"] {
   }
   .email-address-input {
     float: left;
-    width: 170px;
+    width: 195px;
     margin-right: 1em
+  }
+  .submit {
+    float: right;
   }
 }
