@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_out_path_for(resource)
+    #redirect to previous path
+    request.referrer
+  end
+
   protected
   # For Google Analytics event tracking from within controllers
   # http://stackoverflow.com/questions/9283763/how-do-i-use-google-analytics-custom-events-inside-my-rails-controller
