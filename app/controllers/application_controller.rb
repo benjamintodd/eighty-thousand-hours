@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.sign_in_count <= 1
       #assume the user has just signed up so redirect to edit profile
-      redirect_to( etkh_profile_path( current_user ) )
+      edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
     else
       #assume user is simply logging in and treat as normal
       if session[:user_return_to] == root_path
