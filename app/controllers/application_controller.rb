@@ -16,12 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    #work out time since user profile was first created
-    timediff = Time.now - current_user.confirmed_at   #in seconds
-
-    #if NOT much time has elapsed since the profile was created
-    maxTime = 120 #seconds
-    if timediff < maxTime
+    if current_user.sign_in_count <= 1
       #assume the user has just signed up so redirect to edit profile
       redirect_to( etkh_profile_path( current_user ) )
     else
