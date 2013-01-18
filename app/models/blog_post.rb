@@ -166,11 +166,13 @@ class BlogPost < ActiveRecord::Base
 
   def self.get_facebook_likes(post)
     params = {
-      :query => 'SELECT like_count FROM link_stat WHERE url = "http://80000hours.org' + "/blog/#{post.id}-#{post.slug}"+ '"',
+      :query => 'SELECT like_count, share_count FROM link_stat WHERE url = "http://80000hours.org' + "/blog/#{post.id}-#{post.slug}"+ '"',
       :format => 'json'
     }
 
     http = http_get('api.facebook.com', '/method/fql.query', params)
-    result = JSON.parse(http)[0]["like_count"]
+    like_count = JSON.parse(http)[0]["like_count"]
+    share_count = JSON.parse(http)[0]["share_count"]
+    result = like_count + share_count
   end
 end
