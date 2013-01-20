@@ -82,7 +82,7 @@ EightyThousandHours::Application.routes.draw do
   match 'what-we-do'                    => 'info#what_we_do'
 
   # all other pages are stored as Markdown in the database
-  root :to => 'pages#home'
+  root :to => 'pages#show', id: "home"
   match 'search'        => 'pages#search'
   match 'mailing-list'  => 'pages#mailing_list'
   match 'sitemap'       => 'pages#sitemap'
