@@ -64,7 +64,7 @@
 <div class="span3">
 <div class="fp-splash">
 <h2 id="our_community"><a href="http://localhost:3000/our-community">Our community</a></h2>
-<p>Join our community of 335 members who all want to use their career to make the world a better place. <a href="http://80000hours.org/join">Become a member</a>, find out more about <a href="http://80000hours.org/our-community">our community</a>, or post a question on our <a href="http://80000hours.org/discussion">discussion forum</a>.</p></div>
+<p>Join our community of <%= EtkhProfile.all.size %> members who all want to use their career to make the world a better place. <a href="http://80000hours.org/join">Become a member</a>, find out more about <a href="http://80000hours.org/our-community">our community</a>, or post a question on our <a href="http://80000hours.org/discussion">discussion forum</a>.</p></div>
 </div>
 
 <div class="span1">
@@ -74,10 +74,13 @@
 <div class="span4">
 <div class="fp-splash">
 <h2 id="keep_in_touch"><a href="http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true">Keep in touch</a></h2>
+<p>Follow the latest research on our <a href='/blog'>blog</a>.</P>
 
-<p>Follow the latest research on our <a href="http://localhost:3000/blog">blog</a>. Receive updates and advice by email.</p>
+<div class="mail-list">
+	<%= render partial: "shared/mailing_list", locals: { text: "Get updates on our latest career advice" } %>
+	<br/>
+</div>
 
-<p><a href="http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true">Join our mailing list</a></p>
 <div id="mc_embed_signup"><a class="social-btn-facebook" href="http://www.facebook.com/80000Hours">Facebook</a><a class="social-btn-twitter" href="http://www.twitter.com/80000Hours">Twitter</a><a class="social-btn-reddit" href="http://reddit.com/r/EffectiveAltruism">Reddit</a><a class="social-btn-rss" href="http://localhost:3000/blog/feed.atom">RSS</a></div></div>
 </div>
 </div>
