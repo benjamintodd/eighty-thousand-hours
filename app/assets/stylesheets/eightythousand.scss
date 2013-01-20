@@ -186,19 +186,6 @@ a.fp-splash-find-out-more {
     }
   }
 
-  .ui-accordion-header {
-    h1,h2,h3,h4,h5,h6 {
-      a {
-        color: $text_color;
-      }
-      a:hover {
-        color: $link_color;
-      }
-    }
-  }
-  .ui-accordion-content {
-    a{ color: $link_color; }
-  }
 
   /* front page blog latest snippets */
   .sidebar {
@@ -469,9 +456,23 @@ input[type="email"] {
   .email-address-input {
     float: left;
     width: 195px;
-    margin-right: 1em
+    margin-right: 1em;
   }
   .submit {
     
   }
+}
+
+.ui-accordion-header {
+  h1,h2,h3,h4,h5,h6 {
+    a {
+      color: $text_color !important;
+    }
+    a:hover {
+      color: $link_color !important;
+    }
+  }
+}
+.ui-accordion-content {
+  a { color: $link_color !important; }
 }
