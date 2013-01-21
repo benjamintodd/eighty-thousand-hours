@@ -46,6 +46,10 @@ EightyThousandHours::Application.routes.draw do
   resources :career_advice_requests, :only => [:new,:create], :path => 'request-a-career-advice-session'
   match 'request-a-career-advice-session' => 'career_advice_requests#new'
 
+  #temporary page for particular event
+  resources :event_booking_requests, only: [:new,:create]
+  match 'healthcare-event-register' => 'event_booking_requests#new'
+
   resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
 
