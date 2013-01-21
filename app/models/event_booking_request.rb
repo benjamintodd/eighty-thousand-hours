@@ -9,7 +9,7 @@ class EventBookingRequest
 	#override save method
 	def save
 		if self.valid?
-			EventBookingRequestMailer.email_event_booking_request(name,email,current_role,desired_information,amf_donation,mailing_list)
+			EventBookingRequestMailer.event_booking_request_email(name,email,current_role,desired_information,amf_donation,mailing_list)
 			return true
 		else
 			return false
