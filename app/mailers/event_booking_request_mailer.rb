@@ -9,8 +9,7 @@ class EventBookingRequestMailer < ActionMailer::Base
 		@amf_donation = amf_donation
 		@mailing_list = mailing_list
 		
-		#mail(:to => "abigail.v.taylor@gmail.com",
-	    mail(:to => "jeff.c.pole@gmail.com",
+		mail(:to => "abigail.v.taylor@gmail.com",
 	         :subject => "[Healthcare event booking] #{name}",
 	         :reply_to => @email,
 	         :template_path => 'event_booking_requests',
