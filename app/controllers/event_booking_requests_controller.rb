@@ -7,7 +7,7 @@ class EventBookingRequestsController < ApplicationController
 	def create
 		@event_booking_request = EventBookingRequest.new(params[:event_booking_request])
 		if @event_booking_request.save
-			flash[:"alert-success"] = "Thanks! We've received your booking request and will be in touch soon"
+			flash[:"alert-success"] = "Thank you for booking a place on the High Impact Careers in Healthcare Symposium. We have received your booking request and will be in touch with further details before the event."
 			if user_signed_in?
 				redirect_to dashboard_path
 			else
