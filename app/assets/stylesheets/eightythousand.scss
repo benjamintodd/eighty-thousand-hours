@@ -476,6 +476,7 @@ input[type="email"] {
 .ui-accordion-content {
   a { color: $link_color !important; }
 }
+.ui-icon { display: none !important; }
 
 .event-booking-request {
   .complete { color: #FF0000 }
