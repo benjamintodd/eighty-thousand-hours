@@ -14,4 +14,14 @@ namespace :db do
       pg_restore --verbose --clean --no-acl --no-owner -d #{local_db} /tmp/hic-db.dump
     })
   end
+
+  desc 'Copies live site db to dev site db'
+  mainapp = "eighty-thousand-hours"
+  devapp = "eighty-thousand-hours-dev"
+  task :mirror_to_dev_site do
+    system(%Q{
+      heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ONYX_URL --app #{mainapp}
+      heroku pgbackups:restore DATABASE $(heroku pgbackups:url --app #{mainapp}) --app #{devapp}
+    })
+  end
 end
