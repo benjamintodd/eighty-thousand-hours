@@ -8,36 +8,53 @@
       = f.input :real_name, :hint => 'Never displayed publicly. Only required if not using your real name above.'
       = f.input :email,     :required => true
 
-      = field_set_tag "Authentications" do
-        - authentications = current_user.authentications
-        - unless authentications.empty?
-          %br
-          %p
-            %strong Your account is linked to the following services:
+      %br
 
-          .authentications
-            - authentications.each do |authentication|
-              .authentication
-                =image_tag "auth/#{authentication.provider}_64.png"
-                .provider
-                  = authentication.provider.titleize
-                .delete
-                  = link_to "&times;".html_safe, authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
+      .email-notifications
+        %h2 Email notifications
+        %hr
+        %input{ type: 'checkbox' } &nbsp; Receive notifications for comments on forum posts I create
+        %br
+        %br
+        %input{ type: 'checkbox' } &nbsp; Receive notifications for comments on posts I comment on
 
-          .clearfix
-          %p
-            %strong Add another service to sign in with:
-        - else
-          %br
-          %p
-            %strong Sign in through one of these services:
+      %br
 
-        .auth-providers
-          = link_to ((image_tag 'auth/facebook_64.png', alt: "Sign in with Facebook") + " Facebook"), '/auth/facebook',      id: 'fb-connect', class: 'auth-provider'
-          = link_to ((image_tag 'auth/google_oauth2_64.png', alt: "Sign in with Google") + "Google"),   '/auth/google_oauth2', id: 'google-connect', class: 'auth-provider'
+      .authentications
+        %h2 Authentications
+        %hr
+
+        = field_set_tag "" do
+          - authentications = current_user.authentications
+          - unless authentications.empty?
+            %p
+              %strong Your account is linked to the following services:
+
+            .authentications
+              - authentications.each do |authentication|
+                .authentication
+                  =image_tag "auth/#{authentication.provider}_64.png"
+                  .provider
+                    = authentication.provider.titleize
+                  .delete
+                    = link_to "&times;".html_safe, authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
+
+            .clearfix
+            %p
+              %strong Add another service to sign in with:
+          - else
+            %br
+            %p
+              %strong Sign in through one of these services:
+
+          .auth-providers
+            = link_to ((image_tag 'auth/facebook_64.png', alt: "Sign in with Facebook") + " Facebook"), '/auth/facebook',      id: 'fb-connect', class: 'auth-provider'
+            = link_to ((image_tag 'auth/google_oauth2_64.png', alt: "Sign in with Google") + "Google"),   '/auth/google_oauth2', id: 'google-connect', class: 'auth-provider'
 
       - if !(current_user.omniauth_signup)
-        = field_set_tag "Change password" do
+        %h2 Change password
+        %hr
+        = field_set_tag "" do
           = f.input :password,              :label => "New password", :placeholder => "optional"
           = f.input :password_confirmation, :label => "New password confirmation", :placeholder => "optional"
 
