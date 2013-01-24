@@ -76,7 +76,6 @@ EightyThousandHours::Application.routes.draw do
   # converted to pure Markdown
   match 'events'             => 'info#events'
   match 'events/past-events' => 'info#past_events'
-  match 'dashboard'          => 'pages#dashboard'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'
@@ -85,13 +84,17 @@ EightyThousandHours::Application.routes.draw do
   match 'what-you-can-do/my-donations'  => 'info#my_donations'
   match 'what-we-do'                    => 'info#what_we_do'
 
-  # all other pages are stored as Markdown in the database
+  #pages kept in views/pages
   root :to => 'pages#show', id: "home"
+  match 'dashboard'          => 'pages#dashboard'
   match 'search'        => 'pages#search'
-  match 'mailing-list'  => 'pages#mailing_list'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
   match 'members_survey'  =>  'pages#members_survey'
+
+  #redirects
+  match 'high-impact-careers', to: redirect('/types-of-career')
+  
   resources :pages
   resources :pages, :path => '/', :only => [:show]
 end
