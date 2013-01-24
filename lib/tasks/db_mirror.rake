@@ -17,7 +17,7 @@ namespace :db do
 
   desc 'Copies live site db to dev site db'
   mainapp = "eighty-thousand-hours"
-  devapp = "eighty-thousand-hours-dev"
+  devapp = "eighty-thousand-hours-new-dev"
   task :mirror_to_dev_site do
     system(%Q{
       heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ONYX_URL --app #{mainapp}
