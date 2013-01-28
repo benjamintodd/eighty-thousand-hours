@@ -10,7 +10,9 @@ class CommentsController < ApplicationController
         BlogPostMailer.new_comment(@comment).deliver!
         post = @comment.blog_post
       else
-        DiscussionPostMailer.new_comment(@comment).deliver!
+        if @comment.user.notifications_on_forum_posts
+          DiscussionPostMailer.new_comment(@comment).deliver!
+        end
         post = @comment.discussion_post
       end
 
@@ -25,7 +27,9 @@ class CommentsController < ApplicationController
           # #check user has not already been emailed
           if !users.include?(c.user)
             #mail user
-            CommentMailer.new_comment(c.user, @comment).deliver!
+            if c.user.notifications_on_comments
+              CommentMailer.new_comment(c.user, @comment).deliver!
+            end
             #add to list of users already mailed
             users << c.user
           end
