@@ -15,6 +15,8 @@ class CommentMailer < ActionMailer::Base
         	@comment_post_url = discussion_post_url(comment.discussion_post)
         end
 
+        @edit_account_path = '80000hours.org/accounts/edit'
+
         mail(:to => user.email,
              :subject => "[80,000 Hours] New comment on #{@comment_post_title}"
         )
