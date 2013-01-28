@@ -13,8 +13,15 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     # if user signed up through omniauth then they
     # don't need to provide a password when updating details
-    if current_user.omniauth_signup
-      @user = User.find(current_user.id)
+
+    #update email notification settings
+    @user = User.find(current_user.id)
+    @user.notifications_on_forum_posts = params[:new_notifications_on_forum_posts]
+    @user.notifications_on_comments = params[:new_notifications_on_comments]
+    @user.save
+
+    #update other details
+    if current_user.omniauth_signup      
       if @user.update_attributes(params[:user])
         @user.skip_confirmation!
         flash[:"alert-success"] = "Updated your account details"

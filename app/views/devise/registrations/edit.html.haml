@@ -13,10 +13,13 @@
       .email-notifications
         %h2 Email notifications
         %hr
-        %input{ type: 'checkbox' } &nbsp; Receive notifications for comments on forum posts I create
+
+        %input{ name: 'new_notifications_on_forum_posts', type: 'checkbox', checked: current_user.notifications_on_forum_posts ? true : nil } &nbsp; Receive notifications for comments on forum posts I create
+
         %br
         %br
-        %input{ type: 'checkbox' } &nbsp; Receive notifications for comments on posts I comment on
+
+        %input{ name: 'new_notifications_on_comments', type: 'checkbox', checked: current_user.notifications_on_comments ? true : nil } &nbsp; Receive notifications for comments on posts I comment on
 
       %br
 
