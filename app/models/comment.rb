@@ -48,7 +48,21 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def get_top_parent_comment
+    if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
+      self.commentable
+    else  #must be a nested comment
+      parent = Comment.find_by_id(self.commentable_id)
+      while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
+        parent = Comment.find_by_id(parent.commentable_id)
+      end
+      parent
+    end
+  end
+
+
   private
+
   def check_honeypot
     email_confirmation.blank?
   end

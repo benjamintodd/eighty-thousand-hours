@@ -4,11 +4,18 @@ module CommentsHelper
       return
     end
     
-    if comment.commentable_type == BlogPost
-      blog_post_path( comment.blog_post )
-    elsif comment.commentable_type == DiscussionPost
-      discussion_post_path( comment.discussion_post )
-    #else
+    if comment.commentable_type == "BlogPost"
+      blog_post_path( comment.commentable )
+    elsif comment.commentable_type == "DiscussionPost"
+      discussion_post_path( comment.commentable )
+    else
+      #nested comment
+      top_parent = comment.get_top_parent_comment
+      if top_parent.commentable_type == "BlogPost"
+        blog_post_path( top_parent.commentable )
+      elsif top_parent.commentable_type == "DiscussionPost"
+        discussion_post_path( top_parent.commentable )
+      end
     end
   end
 
