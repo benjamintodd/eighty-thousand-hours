@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :get_parent
 
   def create
-    @comment = @parent.comments.build(params[:comment])
+    parent = get_parent
+
+    @comment = parent.comments.build(params[:comment])
     @comment.user = current_user if current_user
     
     if @comment.save
-      post = @comment.commentable #@parent?
+      post = @comment.get_top_parent_comment.commentable
 
       # if @comment.commentable_type == "BlogPost"
       #   BlogPostMailer.new_comment(@comment).deliver!
@@ -24,12 +25,12 @@ class CommentsController < ApplicationController
       #this is then used in create.js.erb 
       @comment_hierarchy_ids = []
       if @comment.commentable_type == "Comment"
-        parent = @parent
-        @comment_hierarchy_ids << parent.id
+        parent_temp = parent
+        @comment_hierarchy_ids << parent_temp.id
 
-        while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
-          parent = Comment.find_by_id(parent.commentable_id)
-          @comment_hierarchy_ids << parent.id
+        while parent_temp.commentable_type != "BlogPost" && parent_temp.commentable_type != "DiscussionPost"
+          parent_temp = Comment.find_by_id(parent_temp.commentable_id)
+          @comment_hierarchy_ids << parent_temp.id
         end
       end
 
@@ -41,6 +42,15 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+
+    #get child comments
+    child_comments = Comment.where(:commentable_id => @comment.id)
+
+    #loop through child comments and destroy them
+    child_comments.each do |c|
+      c.destroy   #this performs recursion on next generation
+    end
+
     @comment.destroy
   end
 
@@ -73,13 +83,12 @@ class CommentsController < ApplicationController
   end
 
   def get_parent
-    #debugger
     if params[:comment][:commentable_type] == "BlogPost"
-      @parent = BlogPost.find_by_id(params[:comment][:commentable_id])
+      return BlogPost.find_by_id(params[:comment][:commentable_id])
     elsif params[:comment][:commentable_type] == "DiscussionPost"
-      @parent = DiscussionPost.find_by_id(params[:comment][:commentable_id])
+      return DiscussionPost.find_by_id(params[:comment][:commentable_id])
     elsif params[:comment][:commentable_type] == "Comment"
-      @parent = Comment.find_by_id(params[:comment][:commentable_id])
+      return Comment.find_by_id(params[:comment][:commentable_id])
     end
   end
 end
