@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
         parent = @parent
         @comment_hierarchy_ids << parent.id
 
-        while parent.commentable_type != "BlogPost"
+        while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
           parent = Comment.find_by_id(parent.commentable_id)
           @comment_hierarchy_ids << parent.id
         end

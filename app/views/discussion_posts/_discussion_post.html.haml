@@ -27,10 +27,10 @@
       .page-header
         %h4 Comments
       #display-comments
-        = render @post.comments.order("created_at ASC")
+        = render partial: "comments/comment", collection: @post.comments.order("created_at ASC")
 
       #new-comment
-        - @comment = Comment.new( discussion_post_id: @post.id )
+        - @comment = Comment.new( commentable_id: @post.id, commentable_type: "DiscussionPost" )
         - if !current_user
           .alert.alert-info
             .alert-heading

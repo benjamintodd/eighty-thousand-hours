@@ -8,7 +8,7 @@ var parent_type = "<%= escape_javascript @comment.commentable_type %>";
 var new_html = "<%= escape_javascript render @comment %>";
 
 
-if (parent_type == "BlogPost")
+if (parent_type == "BlogPost" || parent_type == "DiscussionPost")
 {
 	//clear text from new comment form
 	$('#comments').children('#new-comment').find('textarea').val('')

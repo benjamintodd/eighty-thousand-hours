@@ -46,7 +46,7 @@
         = render :partial => "comments/comment", :collection => blog_post.comments.order("created_at ASC")
 
       #new-comment
-        - @comment = Comment.new( commentable_id: blog_post.id, commentable_type: BlogPost )
+        - @comment = Comment.new( commentable_id: blog_post.id, commentable_type: "BlogPost" )
         - if !current_user
           .alert.alert-info
             .alert-heading

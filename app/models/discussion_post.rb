@@ -47,7 +47,7 @@ class DiscussionPost < ActiveRecord::Base
   end
 
   # comments on posts
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
 
   # a User wrote this post
   belongs_to :user
