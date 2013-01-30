@@ -61,7 +61,7 @@ class BlogPost < ActiveRecord::Base
   has_many :votes, :dependent => :destroy
 
   # comments on posts
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
 
   # a User wrote this post
   belongs_to :user

@@ -10,8 +10,8 @@ class Comment < ActiveRecord::Base
   before_validation :check_honeypot
 
   belongs_to :user
-  belongs_to :blog_post
-  belongs_to :discussion_post
+  belongs_to :commentable, :polymorphic => true
+  has_many :comments, :as => :commentable
 
   scope :blog, where(:blog_post_id != nil)
 
@@ -67,8 +67,8 @@ class Comment < ActiveRecord::Base
     end
 
 
-    # also check that it has either a discussion post id or a blog post id
-    if self.discussion_post_id.nil? and self.blog_post_id.nil?
+    # also check that it has an id of something of type commentable
+    if self.commentable_id.nil?
       result = false
     end
 

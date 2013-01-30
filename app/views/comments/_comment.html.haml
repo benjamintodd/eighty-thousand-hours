@@ -20,6 +20,23 @@
     .clearfix
     .body
       = markdown comment.body
-    .reply
-      = link_to 'reply', '#comment-form', class: "reply"
-      -#.replytext= "in reply to [#{comment.get_name}, #{format_date(comment.created_at)}](#comment-#{comment.id})";
+  .reply
+    -#= link_to 'reply', '#comment-form', class: "reply-link"
+    %p.reply-link reply
+    
+    #reply-form{ style: "display: none" }
+      - @comment = Comment.new( commentable_id: comment.id, commentable_type: "Comment" )
+      = render partial: "comments/form"
+
+      %script
+        $(document).ready( function() {
+        $("#comment-#{comment.id}").children(".reply").children(".reply-link").toggle( function() {
+        $("#comment-#{comment.id}").children(".reply").children("#reply-form").fadeIn();
+        }, function () {
+        $("#comment-#{comment.id}").children(".reply").children("#reply-form").fadeOut();
+        });
+        });
+
+  -# unless comment.comments.empty?
+  #display-comments
+    = render :partial => "comments/comment", :collection => comment.comments.order("created_at ASC")

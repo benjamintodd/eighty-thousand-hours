@@ -16,6 +16,7 @@ EightyThousandHours::Application.routes.draw do
 
   match '/blog/feed.atom' => 'blog_posts#feed', :as => :feed, :defaults => { :format => 'atom' }
   resources :blog_posts, :path => 'blog' do
+    resources :comments
     collection do
       get 'drafts'
       get :tag
@@ -30,7 +31,9 @@ EightyThousandHours::Application.routes.draw do
     end
   end
 
-  resources :comments
+  resources :comments do
+    resources :comments
+  end
 
   resources :causes, :only => [:new,:create,:show,:index], :path => 'donations/causes'
   resources :donations, :only => [:new,:create,:update,:show,:index,:edit]

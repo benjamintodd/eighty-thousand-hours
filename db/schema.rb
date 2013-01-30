@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124173137) do
+ActiveRecord::Schema.define(:version => 20130130124123) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -75,15 +75,17 @@ ActiveRecord::Schema.define(:version => 20130124173137) do
   add_index "causes", ["slug"], :name => "index_charities_on_slug", :unique => true
 
   create_table "comments", :force => true do |t|
-    t.integer  "blog_post_id"
     t.integer  "user_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "email"
-    t.integer  "discussion_post_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "discussion_posts", :force => true do |t|
     t.string   "title"
