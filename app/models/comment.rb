@@ -49,10 +49,12 @@ class Comment < ActiveRecord::Base
   end
 
   def get_top_parent_comment
+    #debugger
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
-      self.commentable
+      self
     else  #must be a nested comment
       parent = Comment.find_by_id(self.commentable_id)
+      #debugger
       while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
         parent = Comment.find_by_id(parent.commentable_id)
       end
