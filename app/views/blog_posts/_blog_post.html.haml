@@ -42,7 +42,6 @@
       .page-header
         %h4 Comments
       #display-comments
-        -#= render blog_post.comments.order("created_at ASC")
         = render :partial => "comments/comment", :collection => blog_post.comments.order("created_at ASC")
 
       #new-comment

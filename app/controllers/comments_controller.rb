@@ -45,15 +45,20 @@ class CommentsController < ApplicationController
 
     #get child comments
     child_comments = Comment.where(:commentable_id => @comment.id)
-
-    #loop through child comments and destroy them
-    child_comments.each do |c|
-      c.destroy   #this performs recursion on next generation
+    
+    #if child comments exist mark comment as deleted but don't destroy
+    if !child_comments[0].nil?
+      @comment.update_column :body, "This comment has been deleted"
+      @comment.update_column :user_id, nil
+      @comment.update_column :name, nil
+      @comment.update_column :email, nil
+    else
+      @comment.destroy
     end
-
-    @comment.destroy
+    
+    @comment_id = @comment.id
+    render 'comments/destroy'
   end
-
 
   protected
 
