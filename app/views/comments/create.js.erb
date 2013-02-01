@@ -14,7 +14,7 @@ if (parent_type == "BlogPost" || parent_type == "DiscussionPost")
 	$('#comments').children('#new-comment').find('textarea').val('')
 
 	//add new comment to html
-	var new_comment_pos = $("#comments").children("#display-comments");
+	var new_comment_pos = $("#comments").children("#body").children(".display-comments");
 	$(new_html).hide().appendTo(new_comment_pos).fadeIn();
 }
 else
@@ -38,21 +38,21 @@ else
 	}
 	
 	//loop through comment hierarchy to the new comment's parent
-	var comment_pos = $("#comments");
+	var comment_pos = $("#comments").children("#body");
 	for (var i=comment_hierarchy_ids.length-1; i >= 0; i--)
 	{
 		var comment_id = "#comment-" + comment_hierarchy_ids[i];
-		comment_pos = comment_pos.children("#display-comments").children(comment_id);
+		comment_pos = comment_pos.children(".display-comments").children(comment_id);
 	}
 
 	//hide reply form if a comment on comment
-	var reply_form_pos = comment_pos.children(".reply").children("#reply-form");
+	var reply_form_pos = comment_pos.children(".core").children(".reply").children(".reply-form");
 	$(reply_form_pos).css('display', 'none');
 	
 	//also clear text from reply form
 	$(reply_form_pos).find('textarea').val('');
 	
 	//add new comment
-	var new_comment_pos = comment_pos.children("#display-comments")
+	var new_comment_pos = comment_pos.children(".display-comments")
 	$(new_html).hide().appendTo(new_comment_pos).fadeIn();
 }

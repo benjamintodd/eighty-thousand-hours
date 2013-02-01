@@ -1,3 +1,14 @@
+- if !current_user
+  .alert.alert-info
+    .alert-heading
+      %h4 Hello!
+    .alert-body
+      %p
+        If you'd like to comment then please
+        #{link_to 'sign in', new_user_session_path}
+        if you are an 80,000 Hours member,
+        or fill in your name and email below.
+
 = simple_form_for([@parent, @comment], remote: true, html: { id: 'comment-form' } ) do |f|
   .errors.alert.alert-danger
   = f.input :body, placeholder: "Add a comment...", label: false, input_html: { style: 'height:100px;width:90%', id: 'comment-body' }
@@ -12,3 +23,4 @@
   = f.input :commentable_id, :as => :hidden
   = f.input :commentable_type, :as => :hidden
 .comment-form-message
+
