@@ -2,6 +2,8 @@
 %div{ id: "comment-#{comment.id}", class: depth > 0 ? "comment d#{depth}  nested-comment" : "comment d#{depth}" }
 
   .core
+    = render partial: 'shared/voting', locals: { :post => comment, :post_type => "Comment" }
+    
     .avatar
       - if comment.user
         = link_to (image_tag comment.user.avatar(:thumb)), user_path( comment.user )

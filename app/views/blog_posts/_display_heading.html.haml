@@ -1,6 +1,6 @@
 .entry
   .heading
-    = render :partial => 'blog_posts/voting', :locals => { :post => post }
+    = render :partial => 'shared/voting', :locals => { :post => post, :post_type => "BlogPost" }
 
     %h3
       %a{:href => blog_post_path(post)}

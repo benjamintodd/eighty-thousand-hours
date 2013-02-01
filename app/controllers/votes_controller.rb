@@ -1,29 +1,39 @@
 class VotesController < ApplicationController
   def new
     user = current_user
-    type = :blog
-    if params[:discussion_post]
+    if params[:post_type] == "BlogPost"
+      type = :blog
+    elsif params[:post_type] == "DiscussionPost"
       type = :discussion
+    elsif params[:post_type] == "Comment"
+      type = :comment
+    else
+      return  #error
     end
-
+    
     post = ''
     user_votes = ''
     if type == :blog
-      post = BlogPost.find(params[:blog_post])
-      user_votes = Vote.by_blog_post(post).by_user(user)
-    else
-      post = DiscussionPost.find(params[:discussion_post])
-      user_votes = Vote.by_discussion_post(post).by_user(user)
+      post = BlogPost.find(params[:post])
+      user_votes = Vote.by_post(post).by_user(user)
+    elsif type == :discussion
+      post = DiscussionPost.find(params[:post])
+      user_votes = Vote.by_post(post).by_user(user)
+    elsif type == :comment
+      post = Comment.find(params[:post])
+      user_votes = Vote.by_post(post).by_user(user)
     end
 
-    up   = (params[:up] == 'true')
+    up = (params[:up] == 'true')
 
     # check if user has already voted for this post
     if user_votes.empty?
       if type == :blog
-        post.votes << Vote.new( :user => user, :blog_post => post, :positive => up )
-      else
-        post.votes << Vote.new( :user => user, :discussion_post => post, :positive => up )
+        post.votes << Vote.new( :user => user, :post => post, :post_type => "BlogPost", :positive => up )
+      elsif type == :discussion
+        post.votes << Vote.new( :user => user, :post => post, :post_type => "DiscussionPost", :positive => up )
+      elsif type == :comment
+        post.votes << Vote.new( :user => user, :post => post, :post_type => "Comment", :positive => up )
       end
     else
       vote = user_votes.first
