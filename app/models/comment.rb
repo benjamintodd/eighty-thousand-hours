@@ -21,31 +21,19 @@ class Comment < ActiveRecord::Base
   end
 
   def post_author_email
-    if discussion_post
-      discussion_post.user.email
-    else
-      if blog_post.user
-        blog_post.user.email
+    if self.commentable_type == "DiscussionPost"
+      self.commentable.user.email
+    elsif self.commentable_type == "BlogPost"
+      if self.commentable.user
+        self.commentable.user.email
       else
         # blog post is by guest w. no email
         nil
       end
-    end
-  end
-
-  def title
-    if discussion_post
-      discussion_post.title
+    elsif self.commentable_type == "Comment"
+      self.email
     else
-      blog_post.title
-    end
-  end
-
-  def post
-    if discussion_post
-      discussion_post
-    else
-      blog_post
+      nil
     end
   end
 
@@ -55,6 +43,18 @@ class Comment < ActiveRecord::Base
 
 
   #methods related to nested comments
+
+  def get_post
+    if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
+      self.commentable
+    else  #must be a nested comment
+      parent = Comment.find_by_id(self.commentable_id)
+      while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
+        parent = Comment.find_by_id(parent.commentable_id)
+      end
+      parent.commentable
+    end
+  end
 
   def get_top_parent_comment
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"

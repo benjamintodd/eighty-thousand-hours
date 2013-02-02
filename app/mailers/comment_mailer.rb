@@ -5,14 +5,15 @@ class CommentMailer < ActionMailer::Base
 	def new_comment(user, comment)
     if user && user.email
         @commenter_name = (comment.user ? comment.user.first_name : comment.name)
+        
+        post = comment.get_post
+        @comment_post_title = post.title
 
         #get title and url of post the comment is on
-        if comment.blog_post
-        	@comment_post_title = comment.blog_post.title
-        	@comment_post_url = blog_post_url(comment.blog_post)
-        else
-        	@comment_post_title = comment.discussion_post.title
-        	@comment_post_url = discussion_post_url(comment.discussion_post)
+        if post.instance_of?(BlogPost)
+        	@comment_post_url = blog_post_url(post)
+        elsif post.instance_of?(DiscussionPost)
+        	@comment_post_url = discussion_post_url(post)
         end
 
         @edit_account_path = '80000hours.org/accounts/edit'

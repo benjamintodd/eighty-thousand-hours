@@ -3,18 +3,15 @@ class BlogPostMailer < ActionMailer::Base
           :return_path => 'admin@80000hours.org'
 
   def new_comment(comment)
-    @email = comment.post_author_email
+    @comment = comment
+    @commenter_name = (@comment.user ? comment.user.first_name : comment.name)
 
-    if @email
-      @comment = comment
-      @commenter_name = (@comment.user ? comment.user.first_name : comment.name)
+    post = comment.get_post
+    @comment_post_title = post.title
+    @comment_post_url = blog_post_url(comment.commentable)
 
-      @comment_post_title = comment.blog_post.title
-      @comment_post_url = blog_post_url(comment.blog_post)
-
-      mail(:to => comment.blog_post.user.email,
-           :subject => "[80,000 Hours - Blog] New comment on #{comment.blog_post.title}"
-      )
-    end
+    mail(:to => post.user.email,
+         :subject => "[80,000 Hours - Blog] New comment on #{@comment_post_title}"
+    )
   end
 end

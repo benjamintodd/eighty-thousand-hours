@@ -5,7 +5,7 @@ ActiveAdmin.register Comment, :as => "Blog/Discussion Comments" do
     column :email
     column :user
     column "Post Title", :commentable do |comment|
-        comment.get_top_parent_comment.commentable.title
+        comment.get_post.title
     end
     column :body
     column :created_at

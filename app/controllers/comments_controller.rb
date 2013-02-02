@@ -8,18 +8,17 @@ class CommentsController < ApplicationController
     @comment.user = current_user if current_user
     
     if @comment.save
-      post = @comment.get_top_parent_comment.commentable
-
-      # if @comment.commentable_type == "BlogPost"
-      #   BlogPostMailer.new_comment(@comment).deliver!
-      # elsif @comment.commentable_type == "DiscussionPost"
-      #   if post.user.notifications_on_forum_posts
-      #     DiscussionPostMailer.new_comment(@comment).deliver!
-      #   end
-      # end
+      post = @comment.get_post
+      if post.instance_of?(BlogPost)
+        BlogPostMailer.new_comment(@comment).deliver!
+      elsif post.instance_of?(DiscussionPost)
+        if post.user.notifications_on_forum_posts
+          DiscussionPostMailer.new_comment(@comment).deliver!
+        end
+      end
 
       #email anyone who already made a comment
-      #mail_previous_commenters(post)
+      mail_previous_commenters(@comment, post)
 
       #create array of comment ids in hierarchy
       #this is then used in create.js.erb 
@@ -60,30 +59,66 @@ class CommentsController < ApplicationController
     render 'comments/destroy'
   end
 
+
   protected
 
-  def mail_previous_commenters(post)
+  def mail_previous_commenters(comment, post)
     #create an array of users who have also made comments on this post
     #to ensure they are not mailed multiple times
-    users = []
+    mailed_users = []
 
     #user who made post has already been emailed
-    users << post.user
+    mailed_users << comment.get_post.user
 
-    post.comments.each do |c|
+    #mail all users who have commented on this post
+    mail_recurse(post, mailed_users)
+  end
+
+  def mail_recurse(commentable, mailed_users)
+    #work from top down
+    commentable.comments.each do |c|
       #check user is not current user
       if c.user != current_user
         #check user has not already been emailed
-        if !users.include?(c.user)             
-          #mail user
-          if c.user.notifications_on_comments
+        if !mailed_users.include?(c.user)             
+          #mail user is registered and their notification settings allow it
+          if c.user && c.user.notifications_on_comments
             CommentMailer.new_comment(c.user, @comment).deliver!
           end
 
           #add to list of users already mailed
-          users << c.user
+          mailed_users << c.user
         end
       end
+
+      #recurse
+      mail_recurse(c, mailed_users) if c
+    end
+  end
+
+  def mail_recurseOLD(commentable, mailed_users)
+    debugger
+    commentable.comments.each do |c|
+      #check user is not current user
+      if c.user != current_user
+        #check user has not already been emailed
+        if !mailed_users.include?(c.user)             
+          #mail user if their notification settings
+          if c.user && c.user.notifications_on_comments
+            CommentMailer.new_comment(c.user, @comment).deliver!
+          end
+
+          #add to list of users already mailed
+          mailed_users << c.user
+        end
+      end
+    end
+
+    #recurse if parent is also a comment
+    debugger
+    if commentable.commentable_type == "Comment"
+      parent = commentable.commentable
+      mail_recurse(parent, mailed_users)
     end
   end
 

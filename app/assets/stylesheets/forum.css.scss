@@ -1,0 +1,43 @@
+@import "shared/partials";
+
+$avatar_size: 60px;
+
+.blog .forum {
+  .avatar {
+    float: left;
+    @include rounded_borders(#ccc, 1px, 3px);
+    @include box_shadow(#ccc, 0px, 0px, 5px);
+    width:  $avatar_size;
+    height: $avatar_size;
+    img {
+      vertical-align: middle;
+      position: absolute;
+      clip:rect(0px,$avatar_size,$avatar_size,0px);
+      width:  $avatar_size;
+    }
+    position: relative;
+    top: 5px;
+  }
+
+  .content {
+    .header {
+      padding-left: 110px;
+      margin-top: 10px;
+      .author {
+        padding-top: 20px;
+      }
+    }
+    .body {
+      padding-top: 100px;
+    }
+  }
+
+  #comments {
+    margin-top: 10px;
+    
+    #body .comment .core .voting {
+      position: relative;
+      top: 2px;
+    }
+  }
+}

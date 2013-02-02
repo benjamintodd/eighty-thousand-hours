@@ -1,6 +1,5 @@
 .entry
   .box
-
     - if can? :manage, blog_post
       .controls
         .user
@@ -17,7 +16,7 @@
       %h4
         %span.date
           by
-        = link_to_blog_post_author( blog_post )
+          = link_to_blog_post_author( blog_post )
         %span.date
           on
           = format_date( blog_post.created_at )
