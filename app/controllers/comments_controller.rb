@@ -2,16 +2,21 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
 
   def create
+    # parent could be a blog post, discussion post or comment
     parent = get_parent
 
     @comment = parent.comments.build(params[:comment])
     @comment.user = current_user if current_user
     
     if @comment.save
+      # get the blog or discussion post the comment has been posted on
       post = @comment.get_post
+
+      # mail creator of post
       if post.instance_of?(BlogPost)
         BlogPostMailer.new_comment(@comment).deliver!
       elsif post.instance_of?(DiscussionPost)
+        # check user notification settings
         if post.user.notifications_on_forum_posts
           DiscussionPostMailer.new_comment(@comment).deliver!
         end
@@ -20,19 +25,25 @@ class CommentsController < ApplicationController
       #email anyone who already made a comment
       mail_previous_commenters(@comment, post)
 
-      #create array of comment ids in hierarchy
+      #create array of comment ids in hierarchy of nested comments
       #this is then used in create.js.erb 
       @comment_hierarchy_ids = []
+
+      # if parent is a comment
       if @comment.commentable_type == "Comment"
+        # add current parent id to array of ids
         parent_temp = parent
         @comment_hierarchy_ids << parent_temp.id
 
+        # loop through parents and add their id to array
+        # stop when the next parent is not a comment
         while parent_temp.commentable_type != "BlogPost" && parent_temp.commentable_type != "DiscussionPost"
           parent_temp = Comment.find_by_id(parent_temp.commentable_id)
           @comment_hierarchy_ids << parent_temp.id
         end
       end
 
+      # call javascript to add new comment to page
       render 'comments/create'
     else
       render 'comments/error'
@@ -55,6 +66,7 @@ class CommentsController < ApplicationController
       @comment.destroy
     end
     
+    # call javascript to remove comment from page
     @comment_id = @comment.id
     render 'comments/destroy'
   end
@@ -67,58 +79,32 @@ class CommentsController < ApplicationController
     #to ensure they are not mailed multiple times
     mailed_users = []
 
-    #user who made post has already been emailed
+    # user who made post has already been emailed
     mailed_users << comment.get_post.user
 
-    #mail all users who have commented on this post
+    # mail all users who have commented on this post
     mail_recurse(post, mailed_users)
   end
 
   def mail_recurse(commentable, mailed_users)
-    #work from top down
+    # work from top parent down hierarchy
     commentable.comments.each do |c|
-      #check user is not current user
+      # check user is not current user
       if c.user != current_user
-        #check user has not already been emailed
+        # check user has not already been emailed
         if !mailed_users.include?(c.user)             
-          #mail user is registered and their notification settings allow it
+          # mail user if registered and their notification settings allow it
           if c.user && c.user.notifications_on_comments
             CommentMailer.new_comment(c.user, @comment).deliver!
           end
 
-          #add to list of users already mailed
+          # add to list of users already mailed
           mailed_users << c.user
         end
       end
 
-      #recurse
+      # recurse
       mail_recurse(c, mailed_users) if c
-    end
-  end
-
-  def mail_recurseOLD(commentable, mailed_users)
-    debugger
-    commentable.comments.each do |c|
-      #check user is not current user
-      if c.user != current_user
-        #check user has not already been emailed
-        if !mailed_users.include?(c.user)             
-          #mail user if their notification settings
-          if c.user && c.user.notifications_on_comments
-            CommentMailer.new_comment(c.user, @comment).deliver!
-          end
-
-          #add to list of users already mailed
-          mailed_users << c.user
-        end
-      end
-    end
-
-    #recurse if parent is also a comment
-    debugger
-    if commentable.commentable_type == "Comment"
-      parent = commentable.commentable
-      mail_recurse(parent, mailed_users)
     end
   end
 

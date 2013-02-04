@@ -1,3 +1,6 @@
+# a comment can either belong to a blog post, a discussion post or 
+# another comment. These are each of type commentable.
+
 class Comment < ActiveRecord::Base
   validates_presence_of :body,    message: "can't be blank"
 
@@ -42,12 +45,14 @@ class Comment < ActiveRecord::Base
   end
 
 
-  #methods related to nested comments
+  ## methods related to nested comments
 
+  # finds the blog or discussion post under which the comment has been posted
   def get_post
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
       self.commentable
     else  #must be a nested comment
+      # loop through parents until post is reached
       parent = Comment.find_by_id(self.commentable_id)
       while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
         parent = Comment.find_by_id(parent.commentable_id)
@@ -56,10 +61,12 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  # finds the top comment in the hierarchy of nested comments
   def get_top_parent_comment
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
       self
     else  #must be a nested comment
+      # loop through parents until top comment is reached
       parent = Comment.find_by_id(self.commentable_id)
       while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
         parent = Comment.find_by_id(parent.commentable_id)
@@ -68,10 +75,13 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  # determines the nested level of this comment
+  # level 0 denotes a non-nested comment
   def get_depth
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
       return 0
-    else
+    else  # must be a nested comment
+      # loop through parents and count number of nested levels
       count = 1
       parent = Comment.find_by_id(self.commentable_id)
       while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
