@@ -24,4 +24,9 @@ namespace :db do
       heroku pgbackups:restore DATABASE $(heroku pgbackups:url --app #{mainapp}) --app #{devapp}
     })
   end
+
+  desc 'Print the current database migration version number'
+  task :version => :environment do
+    puts ActiveRecord::Migrator.current_version
+  end
 end
