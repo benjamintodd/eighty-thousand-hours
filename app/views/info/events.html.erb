@@ -47,7 +47,14 @@ endTimes = endTimes.reverse
       <p><strong>Where:</strong> <%= raw where[idx] %></p>
 
       <% if title == "High impact careers in healthcare symposium" %>
-        <%= link_to "Book your place at this event", 'healthcare-event-register', class: 'book-place' %>
+        <%= link_to "View poster", "/pdf/Healthcare careers symposium poster.pdf" %>
+
+        <%= link_to "View speakers", "/pdf/Healthcare careers symposium speakers.pdf" %>
+
+        <div>
+          <br/>
+          <%= link_to "Book your place at this event", 'healthcare-event-register' %>
+        </div>
       <% end %>
     </div>
   <% end %>

@@ -1,8 +1,11 @@
 .box
   .event-booking-request
     %h1 High Impact Careers in Healthcare
-    %p.complete 
-      Please complete the form below to reserve your place at the symposium
+
+    :markdown
+        <p>Thank you for your interest in the High Impact Careers in Healthcare Symposium! See the event <a href='/pdf/Healthcare careers symposium poster.pdf'>POSTER</a> and <a href="/pdf/Healthcare careers symposium speakers.pdf">SPEAKERS</a> for details.</p>
+
+        <p>If you would like to reserve a place at this event please complete the form below.</p>
     
     = simple_form_for @event_booking_request, url: { action: 'create' }, html: { multipart: true, class: 'form-horizontal' } do |f|
 
