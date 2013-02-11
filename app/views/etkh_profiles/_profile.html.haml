@@ -16,6 +16,10 @@
           %h5 Member since 
           = profile.created_at.strftime "%B %Y"
 
+        %p
+          %h5 Profile completeness
+          = profile.get_profile_completeness
+
         - upvotes = user.votes.upvotes.recent
         - if upvotes.size > 0
           %p
