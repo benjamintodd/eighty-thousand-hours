@@ -34,4 +34,65 @@ class EtkhProfile < ActiveRecord::Base
 
   has_and_belongs_to_many :profile_option_causes
   has_and_belongs_to_many :profile_option_activities
+
+
+  # public method for profile completeness score
+  def get_profile_completeness
+    calculate_completeness_score
+  end
+
+
+  private
+
+  ### Profile completeness ###
+  # define percentages for composition of profile score
+  PROFILE_PIC = 25
+  INFO_LOCATION = 5
+  INFO_ORGANISATION = 5
+  BACKGOUND = 15
+  EXPERIENCE = 5
+  DONATION_TRACKING = 5
+  SKILLS = 5
+  HIGH_IMPACT_ACTIVITIES = 10
+  CAUSES = 10
+  LINKEDIN_PROFILE = 15
+
+  # length of 'background and interests' section after which no more points 
+  BACKGROUND_MAX_LEN = 1000
+
+  def calculate_completeness_score
+    score = 0
+
+    # profile photo
+    score += PROFILE_PIC if self.user.avatar?
+
+    # basic information
+    score += INFO_LOCATION if self.location
+    score += INFO_ORGANISATION if self.organisation
+
+    # background and interests
+    # completeness score depends on how long the entry is
+    # the score varies linearly until a max cut-off is reached
+    if self.background
+      len = self.background.length
+      if len >= BACKGROUND_MAX_LEN
+        score += BACKGOUND
+      else
+        float = BACKGOUND.to_f / BACKGROUND_MAX_LEN.to_f * len.to_f
+        score += float.to_i
+      end
+    end
+
+    # high impact activities
+    score += HIGH_IMPACT_ACTIVITIES if self.profile_option_activities.any?
+
+    # causes
+    score += CAUSES if self.profile_option_causes.any?
+
+    # experience
+    # skills
+    # linkedin profile ?
+
+    return score
+  end
 end
