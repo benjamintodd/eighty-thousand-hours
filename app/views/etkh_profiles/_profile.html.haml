@@ -26,10 +26,10 @@
               =link_to post.title, post
               %br
             - upvotes.limit(3).each do |v|
-              - if !v.blog_post.nil?
+              - if !v.post.nil?
                 liked blog post:
                 %br
-                =link_to v.blog_post.title, blog_post_path(v.blog_post)
+                =link_to v.post.title, blog_post_path(v.post)
                 %br
 
         -if user.external_links?
