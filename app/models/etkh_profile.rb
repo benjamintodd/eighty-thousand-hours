@@ -41,6 +41,37 @@ class EtkhProfile < ActiveRecord::Base
     calculate_completeness_score
   end
 
+  # public method which returns a suggestion for what the user
+  # should do to improve their profile
+  def get_suggested_profile_addition
+    ## in order of precedence
+
+    # add location
+    if self.location.nil?
+      "Add your current location"
+    # add organisation
+    elsif self.organisation.nil?
+      "Add your current organisation"
+    # profile photo
+    elsif !self.user.avatar?
+      "Upload a photo to your profile so members "
+    # add background info if none already
+    elsif !self.background?
+      "Fill out your 'background and interests' and tell us why you are here"
+    # sync their account with linkedin ?
+
+    # add causes
+    elsif !self.profile_option_causes.any?
+      "Let us know what you care about and add causes to your profile"
+    # add high impact activities
+    elsif !self.profile_option_activities.any?
+      "What are you doing to make a difference? Add your high impact activities to your profile"
+    # improve background if not long
+    elsif self.background.length < BACKGROUND_MAX_LEN
+      "Tell us more about yourself by adding to your 'background and interests'"
+    # donation tracking ?
+    end
+  end
 
   private
 
@@ -89,6 +120,7 @@ class EtkhProfile < ActiveRecord::Base
     # causes
     score += CAUSES if self.profile_option_causes.any?
 
+    # donation tracking ?
     # experience
     # skills
     # linkedin profile ?
