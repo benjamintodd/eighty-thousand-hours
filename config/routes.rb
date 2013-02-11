@@ -81,6 +81,9 @@ EightyThousandHours::Application.routes.draw do
   match 'events'             => 'info#events'
   match 'events/past-events' => 'info#past_events'
   match 'dashboard'          => 'pages#dashboard'
+
+  #temp for testing karma scores out
+  match 'karma_test'  => 'users#karma_test'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'

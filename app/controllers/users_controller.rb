@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :only => [:edit,:update,:destroy]
 
+  def karma_test
+    @users = User.all
+  end
+
   def merge
     if session[:omniauth]
       # want the user to be redirected to account edit page on sign-in

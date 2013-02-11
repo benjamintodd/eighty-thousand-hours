@@ -117,6 +117,91 @@ class User < ActiveRecord::Base
   end
 
 
+  ### Karma score ###
+  # define variable weights
+  BLOG_POST_CREATED         = 15
+  DISCUSSION_POST_CREATED   = 10
+  BLOG_POST_COMMENT         = 5  # comments user has made
+  DISCUSSION_POST_COMMENT   = 5  # ditto
+  BLOG_POST_UPVOTE          = 3  # upvotes of user's blog posts
+  BLOG_POST_FBLIKE          = 2  # etc
+  DISCUSSSION_POST_UPVOTE   = 3
+  COMMENT_UPVOTE            = 3
+  BLOG_POST_DOWNVOTE        = BLOG_POST_UPVOTE
+  DISCUSSION_POST_DOWNVOTE  = DISCUSSSION_POST_UPVOTE
+  COMMENT_DOWNVOTE          = COMMENT_UPVOTE
+
+  # method to calculate user's karma score
+  def get_karma_score
+    # posts created
+    n_blog_posts = self.blog_posts.length
+    score = n_blog_posts * BLOG_POST_CREATED
+
+    n_discus_posts = self.discussion_posts.length
+    score += n_discus_posts * DISCUSSION_POST_CREATED
+
+    # comments
+    n_blog_comments = 0
+    n_discus_comments = 0
+    n_upvotes_comment = 0
+    n_downvotes_comment = 0
+    self.comments.each do |comment|
+      # comments posted
+      if comment.get_post.instance_of?(BlogPost) 
+        n_blog_comments += 1
+      elsif comment.get_post.instance_of?(DiscussionPost) 
+        n_discus_comments += 1
+      end
+
+      # comments up or down voted
+      comment.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_comment += 1
+        else
+          n_downvotes_comment += 1
+        end
+      end
+    end
+    score += n_blog_comments * BLOG_POST_COMMENT
+    score += n_discus_comments * DISCUSSION_POST_COMMENT
+    score += n_upvotes_comment * COMMENT_UPVOTE
+    score -= n_downvotes_comment * COMMENT_DOWNVOTE
+
+    # blog post votes
+    n_upvotes_blog = 0
+    n_downvotes_blog = 0
+    self.blog_posts.each do |post|
+      post.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_blog += 1
+        else
+          n_downvotes_blog += 1
+        end
+      end
+      score += post.facebook_likes * BLOG_POST_FBLIKE
+    end
+    score += n_upvotes_blog * BLOG_POST_UPVOTE
+    score -= n_downvotes_blog * BLOG_POST_DOWNVOTE
+    
+    # discussion post votes
+    n_upvotes_discus = 0
+    n_downvotes_discus = 0
+    self.discussion_posts.each do |post|
+      post.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_discus += 1
+        else
+          n_downvotes_discus += 1
+        end
+      end
+    end
+    score += n_upvotes_discus * DISCUSSSION_POST_UPVOTE
+    score -= n_downvotes_discus * DISCUSSION_POST_DOWNVOTE
+
+    return score
+  end
+
+
   private
   def build_default_profile
     # build default profile instance. Will use default params.
