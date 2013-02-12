@@ -76,14 +76,15 @@ EightyThousandHours::Application.routes.draw do
 
   resources :surveys, :only => [:show]
 
+  #temp for testing new functionality
+  match 'karma_test'  => 'users#karma_test'
+  match 'gen_test'    => 'users#generate_users_test'
+
   # pages which don't live in the database as they can't be
   # converted to pure Markdown
   match 'events'             => 'info#events'
   match 'events/past-events' => 'info#past_events'
   match 'dashboard'          => 'pages#dashboard'
-
-  #temp for testing karma scores out
-  match 'karma_test'  => 'users#karma_test'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'

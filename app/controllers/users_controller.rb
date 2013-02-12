@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def generate_users_test
+    @selection_list = User.generate_users_list(10)
+  end
+
   def merge
     if session[:omniauth]
       # want the user to be redirected to account edit page on sign-in
