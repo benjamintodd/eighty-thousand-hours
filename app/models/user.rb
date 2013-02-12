@@ -116,6 +116,14 @@ class User < ActiveRecord::Base
     donations.confirmed.sum(:amount)
   end
 
+  # static method that generates a list of users with good profiles
+  def self.generate_users_list(list_size)
+    # create new UsersSelection object
+    selection = UsersSelection.new(list_size)
+    # return object
+    return selection
+  end
+
 
   ### Karma score ###
   # define variable weights
