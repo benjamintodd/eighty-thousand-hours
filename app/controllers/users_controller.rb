@@ -80,9 +80,18 @@ class UsersController < ApplicationController
   end
 
   def initalise_contact_user
-    @user_id = params[:user_id]
+    if user_signed_in?
+      @user_id = params[:user_id]
 
-    # javascript to show popup
-    render 'users/initialise_contact_user'
+      # javascript to show popup
+      render 'users/initialise_contact_user'
+    else
+      if request.xhr?
+        render 'shared/sign_up_modal'
+      else
+        @error_type = "signup"
+        render 'shared/display_error'
+      end
+    end
   end
 end
