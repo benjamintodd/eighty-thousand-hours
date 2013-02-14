@@ -65,6 +65,9 @@ gem 'simple_form'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+# gem for linkedin api
+gem 'linkedin'
+
 # talk to the YouTube API
 gem 'youtube_it'
 
