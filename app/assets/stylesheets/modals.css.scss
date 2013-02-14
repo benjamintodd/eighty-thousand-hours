@@ -1,0 +1,28 @@
+.reveal-modal-bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  background: rgba(0,0,0,0.4);
+  z-index: 100;
+  display: none;
+  top: 0;
+  left: 0;
+}
+
+#contact-modal {
+  visibility: hidden;
+  position: absolute;
+  z-index: 101;
+  background: #FFFFFF;
+  border: 5px solid rgba(50,50,50,0.3);
+  -webkit-border-radius: 6px;
+}
+
+#error-modal {
+  visibility: hidden;
+  position: absolute;
+  z-index: 101;
+  background: #FFFFFF;
+  -webkit-border-radius: 6px;
+}

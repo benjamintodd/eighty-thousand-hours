@@ -68,59 +68,38 @@
 
 }
 
-
-#contact-modal {
-  visibility: hidden;
-  position: absolute;
-  z-index: 101;
-  background: #FFFFFF;
-  border: 5px solid rgba(50,50,50,0.3);
-}
-
 .contact-user-form {
-    width: 550px;
-    .header {
-      background-color: rgb(235,235,235);
-      h2 { 
-        position: relative;
-        left: 20px;
-        margin-top: 0px;
-        padding-top: 20px;
-      }
+  width: 550px;
+  .header {
+    background-color: rgb(235,235,235);
+    h2 { 
+      position: relative;
+      left: 20px;
+      margin-top: 0px;
+      padding-top: 20px;
     }
-    .form-inputs {
-      margin-left: 15px;
-      margin-right: 15px;
-      width: 500px;
-      
-      #message-subject {
-        width: 100%;
-      }
-      #message-body {
-        margin-top: 10px;
-        width: 100%;
-      }
+  }
+  .form-inputs {
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 500px;
+    
+    #message-subject {
+      width: 100%;
     }
-    .form-actions {
-      margin-bottom: 0px;
-      background-color: rgb(235,235,235);
-      #submit-btn {
-        margin-left: 20px;
-      }
-      #cancel-btn { margin-left: 30px; }
+    #message-body {
+      margin-top: 10px;
+      width: 100%;
     }
-
-    form { margin-bottom: 0px; }
+  }
+  .form-actions {
+    margin-bottom: 0px;
+    background-color: rgb(235,235,235);
+    #submit-btn {
+      margin-left: 20px;
+    }
+    #cancel-btn { margin-left: 30px; }
   }
 
-.reveal-modal-bg {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: #000;
-  background: rgba(0,0,0,0.4);
-  z-index: 100;
-  display: none;
-  top: 0;
-  left: 0;
+  form { margin-bottom: 0px; }
 }
