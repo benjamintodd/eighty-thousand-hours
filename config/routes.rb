@@ -71,8 +71,10 @@ EightyThousandHours::Application.routes.draw do
     collection do
       get 'all'
       get 'email_list'
+      put 'contact_user'
     end
   end
+  match '/users/initalise_contact_user' => 'users#initalise_contact_user'
 
   resources :surveys, :only => [:show]
 
