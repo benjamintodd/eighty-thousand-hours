@@ -73,6 +73,10 @@
 
           - if current_user and current_user.eighty_thousand_hours_member?
             %h3= user.email
+
+          = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-large", id: "contact-btn"
+
+          %div{id: "contact-modal"}
         
         - if profile.background?
           %h2 Background and interests
