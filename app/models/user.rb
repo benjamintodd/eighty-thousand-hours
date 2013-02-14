@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
 
   delegate :public_profile, :to => :etkh_profile
 
+  has_one :linkedin_info
+
   # omniauth authentication
   has_many :authentications, :dependent => :destroy
 
