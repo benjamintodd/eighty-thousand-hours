@@ -11,7 +11,7 @@ class AuthenticationsController < ApplicationController
     if auth
       flash[:"alert-success"] = "You are now signed in."
       remember_me auth.user # set the remember_me cookie
-      sign_in_and_redirect(:user, auth.user)  
+      sign_in_and_redirect(:user, auth.user) 
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:"alert-success"] = "Authentication successful! You can now login using your #{omniauth['provider'].to_s.titleize} account."
@@ -46,12 +46,52 @@ class AuthenticationsController < ApplicationController
 
       UserMailer.welcome_email(user).deliver!
 
-      flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>Your are signed in to 80,000 Hours with the name #{user.name}".html_safe
+      flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
       remember_me user # set the remember_me cookie
       sign_in_and_redirect(:user, user) # devise helper method
     else
-      redirect_to new_user_registration_path
+      # check if user has signuped with linkedin
+      if !session[:access_token].nil?
+        # connect to linkedin profile
+        config = { :site => 'https://api.linkedin.com', :authorize_path => '/uas/oauth/authenticate', :request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress', :access_token_path => '/uas/oauth/accessToken' }
+        client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+        client.authorize_from_access(session[:access_token], session[:access_secret])
+
+        # get name and email from linkedin basic profile
+        firstname = client.profile[:"first-name"]
+        lastname = client.profile[:"last-name"]
+        name = firstname + " " + lastname
+        email = client.profile[:email]
+
+        # create user
+        pwd = (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
+        user = User.new(:name => name, :email => email, :password => pwd, :password_confirmation => pwd)  
+        user.omniauth_signup = false
+        user.skip_confirmation!
+        user.save
+
+        # Log this in Google Analytics
+        log_event("Members", "Created via Omniauth", user.name, user.id)
+
+        # create linkedin info table
+        linkedinfo = LinkedinInfo.new
+        linkedinfo.user_id = user.id
+        linkedinfo.permissions = "r_basicprofile+r_emailaddress"
+        linkedinfo.access_token = session[:access_token]
+        linkedinfo.access_secret = session[:access_secret]
+        linkedinfo.save
+
+        # deliver welcome mail
+        #UserMailer.welcome_email(user).deliver!
+
+        flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
+
+        remember_me user # set the remember_me cookie
+        sign_in_and_redirect(:user, user) # devise helper method
+      else
+        redirect_to new_user_registration_path
+      end
     end
   end
 
@@ -66,5 +106,53 @@ class AuthenticationsController < ApplicationController
   def failure
     flash[:notice] = "Failed to authenticate! Message was: '#{params[:message]}'"
     redirect_to edit_user_registration_path
+  end
+
+
+  ### LinkedIn API
+
+  def linkedin_signup
+    # action is called when a user first tries to sign up via his linkedin account
+
+    # create linkedin client and set up callback action
+    config = { :site => 'https://api.linkedin.com', :authorize_path => '/uas/oauth/authenticate', :request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress', :access_token_path => '/uas/oauth/accessToken' }
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+    request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/auth/linkedin2/linkedin_signup_callback")
+
+    # reset session access tokens
+    session[:access_token] = nil
+    session[:access_secret] = nil
+
+    # get request tokens
+    session[:request_token] = request_token.token
+    session[:request_secret] = request_token.secret
+
+    # redirect to linkedin for permission
+    redirect_to client.request_token.authorize_url
+  end
+
+  def linkedin_signup_callback
+    # action is called after return from linkedin when 'linkedin_signup' has been called
+
+    # create linkedin client
+    config = { :site => 'https://api.linkedin.com', :authorize_path => '/uas/oauth/authenticate', :request_token_path =>'/uas/oauth/requestToken?scope=r_basicprofile+r_emailaddress', :access_token_path => '/uas/oauth/accessToken' }
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # action may have already been called recently
+    # in which case we already have access tokens
+    if session[:access_token].nil?
+      # get access tokens
+      pin = params[:oauth_verifier]
+      atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
+      session[:access_token] = atoken
+      session[:access_secret] = asecret
+
+      # access tokens are stored in database when user is created
+      redirect_to '/authentications/create_new_account'
+    else
+      # can simply authorize from access tokens already requested
+      client.authorize_from_access(session[:access_token], session[:access_secret])
+      redirect_to '/' # ?
+    end
   end
 end
