@@ -1,0 +1,11 @@
+// get contact_user partial html 
+var form_html = "<%= escape_javascript(render partial: 'users/contact_user', locals: { user_id: @user_id }) %>"
+
+//show popup
+$("#contact-modal").html(form_html).show();
+$("#contact-modal").reveal({
+	animation: 'fade',
+	animationspeed: 400,
+	closeonbackgroundclick: true,
+	dismissmodalclass: 'form-close'
+});
