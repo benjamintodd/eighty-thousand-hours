@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.easing
+//= require jquery.reveal
 //= require fancybox
 //= require highcharts
 //= require fancybox_video
