@@ -67,4 +67,23 @@ class UsersController < ApplicationController
 
     authorize! :read, User
   end
+
+  def contact_user
+    # deliver message to user
+    sender = current_user
+    recipient = User.find(params[:user_id])
+    subject = params[:subject]
+    body = params[:body]
+    UserMailer.contact_user(sender, recipient, subject, body).deliver!
+
+    # render javascript to close popup
+    render 'users/close_contact_user' 
+  end
+
+  def initalise_contact_user
+    @user_id = params[:user_id]
+
+    # javascript to show popup
+    render 'users/initialise_contact_user'
+  end
 end
