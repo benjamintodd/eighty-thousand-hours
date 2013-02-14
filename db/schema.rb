@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201143727) do
+ActiveRecord::Schema.define(:version => 20130214145905) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.text     "activities_comment"
     t.integer  "donation_percentage",        :default => 30
     t.boolean  "donation_percentage_optout", :default => true
+    t.integer  "profile_completeness"
   end
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
@@ -153,6 +154,14 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
   create_table "etkh_profiles_profile_option_causes", :id => false, :force => true do |t|
     t.integer "etkh_profile_id"
     t.integer "profile_option_cause_id"
+  end
+
+  create_table "linkedin_infos", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.string   "permissions"
+    t.string   "access_token"
+    t.string   "access_secret"
+    t.datetime "last_updated"
   end
 
   create_table "pages", :force => true do |t|
