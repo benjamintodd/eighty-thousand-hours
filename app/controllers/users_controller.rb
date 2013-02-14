@@ -69,15 +69,14 @@ class UsersController < ApplicationController
   end
 
   def contact_user
-    # deliver message to user
-    sender = current_user
-    recipient = User.find(params[:user_id])
-    subject = params[:subject]
-    body = params[:body]
-    UserMailer.contact_user(sender, recipient, subject, body).deliver!
-
-    # render javascript to close popup
-    render 'users/close_contact_user' 
+    if params[:commit] != "Cancel"
+      # deliver message to user
+      sender = current_user
+      recipient = User.find(params[:user_id])
+      subject = params[:subject]
+      body = params[:body]
+      UserMailer.contact_user(sender, recipient, subject, body).deliver!
+    end
   end
 
   def initalise_contact_user
