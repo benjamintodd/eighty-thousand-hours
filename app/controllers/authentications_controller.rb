@@ -70,7 +70,7 @@ class AuthenticationsController < ApplicationController
         user.save
 
         # Log this in Google Analytics
-        log_event("Members", "Created via Omniauth", user.name, user.id)
+        log_event("Members", "Created via LinkedIn", user.name, user.id)
 
         # create linkedin info table
         linkedinfo = LinkedinInfo.new
@@ -81,7 +81,7 @@ class AuthenticationsController < ApplicationController
         linkedinfo.save
 
         # deliver welcome mail
-        #UserMailer.welcome_email(user).deliver!
+        UserMailer.welcome_email(user).deliver!
 
         flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
