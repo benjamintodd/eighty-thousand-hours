@@ -67,26 +67,31 @@ class AuthenticationsController < ApplicationController
         user = User.new(:name => name, :email => email, :password => pwd, :password_confirmation => pwd)  
         user.omniauth_signup = false
         user.skip_confirmation!
-        user.save
 
-        # Log this in Google Analytics
-        log_event("Members", "Created via LinkedIn", user.name, user.id)
+        if user.save
 
-        # create linkedin info table
-        linkedinfo = LinkedinInfo.new
-        linkedinfo.user_id = user.id
-        linkedinfo.permissions = "r_basicprofile+r_emailaddress"
-        linkedinfo.access_token = session[:access_token]
-        linkedinfo.access_secret = session[:access_secret]
-        linkedinfo.save
+          # Log this in Google Analytics
+          log_event("Members", "Created via LinkedIn", user.name, user.id)
 
-        # deliver welcome mail
-        UserMailer.welcome_email(user).deliver!
+          # create linkedin info table
+          linkedinfo = LinkedinInfo.new
+          linkedinfo.user_id = user.id
+          linkedinfo.permissions = "r_basicprofile+r_emailaddress"
+          linkedinfo.access_token = session[:access_token]
+          linkedinfo.access_secret = session[:access_secret]
+          linkedinfo.save
 
-        flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
+          # deliver welcome mail
+          UserMailer.welcome_email(user).deliver!
 
-        remember_me user # set the remember_me cookie
-        sign_in_and_redirect(:user, user) # devise helper method
+          flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
+
+          remember_me user # set the remember_me cookie
+          sign_in_and_redirect(:user, user) # devise helper method
+        else
+          # error
+          flash[:"alert-error"] = "Sorry! There seems to have been a problem linking your account to LinkedIn"
+        end
       else
         redirect_to new_user_registration_path
       end
