@@ -58,11 +58,9 @@ class AuthenticationsController < ApplicationController
         client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
         client.authorize_from_access(session[:access_token], session[:access_secret])
 
-        # get name and email from linkedin basic profile
-        firstname = client.profile[:"first-name"]
-        lastname = client.profile[:"last-name"]
-        name = firstname + " " + lastname
-        email = client.profile[:email]
+        # get name and email
+        name = client.profile[:"first-name"] + " " + client.profile[:"last-name"]
+        email = client.get_email
 
         # create user
         pwd = (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
