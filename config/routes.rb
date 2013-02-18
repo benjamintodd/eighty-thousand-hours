@@ -3,12 +3,14 @@ EightyThousandHours::Application.routes.draw do
     collection do
       get 'create_new_account'
       get 'linkedin_signup'
+      get 'linkedin_signup_callback'
+      get 'linkedin_signin'
+      get 'linkedin_signin_callback'
     end
   end
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'authentications#failure'
-  match '/auth/linkedin2/linkedin_signup_callback' => 'authentications#linkedin_signup_callback'
 
   ActiveAdmin.routes(self)
 
