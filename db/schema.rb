@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214145905) do
+ActiveRecord::Schema.define(:version => 20130215165703) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -156,8 +156,16 @@ ActiveRecord::Schema.define(:version => 20130214145905) do
     t.integer "profile_option_cause_id"
   end
 
-  create_table "linkedin_infos", :id => false, :force => true do |t|
-    t.integer  "user_id"
+  create_table "linkedin_infos", :force => true do |t|
+    t.integer "user_id"
+    t.integer "basic_token_id"
+    t.integer "basic_email_token_id"
+    t.integer "full_token_id"
+    t.integer "invite_token_id"
+  end
+
+  create_table "linkedin_tokens", :force => true do |t|
+    t.integer  "linkedin_info_id"
     t.string   "permissions"
     t.string   "access_token"
     t.string   "access_secret"
