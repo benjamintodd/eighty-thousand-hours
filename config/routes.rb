@@ -84,7 +84,7 @@ EightyThousandHours::Application.routes.draw do
   match 'what-you-can-do/my-donations'  => 'info#my_donations'
   match 'what-we-do'                    => 'info#what_we_do'
 
-  #pages kept in views/pages
+  # pages kept in views/pages
   root :to => 'pages#show', id: "home"
   match 'dashboard'          => 'pages#dashboard'
   match 'search'        => 'pages#search'
@@ -92,8 +92,9 @@ EightyThousandHours::Application.routes.draw do
   match 'survey_test'   => 'pages#survey_test'
   match 'members_survey'  =>  'pages#members_survey'
 
-  #redirects
+  # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
+  match 'how-we-are-different', to: redirect('/our-features')
   
   resources :pages
   resources :pages, :path => '/', :only => [:show]
