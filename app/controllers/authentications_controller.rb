@@ -67,43 +67,16 @@ class AuthenticationsController < ApplicationController
         user = User.new(:name => name, :email => email, :password => pwd, :password_confirmation => pwd)  
         user.omniauth_signup = false
         user.skip_confirmation!
+        user.linkedin_connection = true
 
         if user.save
           # Log this in Google Analytics
           log_event("Members", "Created via LinkedIn", user.name, user.id)
 
           # create linkedin info table
-          linkedinfo = LinkedinInfo.new
-          linkedinfo.user_id = user.id
-
-          # create linkedin tokens
-
-          # create token for current level of access
-          basic_email_token = LinkedinToken.new
-          basic_email_token.permissions = "r_basicprofile+r_emailaddress"
-          basic_email_token.access_token = session[:access_token]
-          basic_email_token.access_secret = session[:access_secret]
-          basic_email_token.last_updated = Time.now
-          basic_email_token.save
-
-          # create tables for other access tokens
-          basic_token = LinkedinToken.new
-          basic_token.permissions = "r_basicprofile"
-          basic_token.save
-          full_token = LinkedinToken.new
-          full_token.permissions = "r_fullprofile"
-          full_token.save
-          invite_token = LinkedinToken.new
-          invite_token.permissions = "w_messages"
-          invite_token.save
-
-
-          # add token ids to linkedin info table so they can be accessed later
-          linkedinfo.basic_token_id = basic_token.id
-          linkedinfo.basic_email_token_id = basic_email_token.id
-          linkedinfo.full_token_id = full_token.id
-          linkedinfo.invite_token_id = invite_token.id
-          linkedinfo.save
+          linkedinfo = create_linkedin_info_table(user)
+          linkedinfo.basic_email_token.update_attributes( \
+            access_token: session[:access_token], access_secret: session[:access_secret], last_updated: Time.now)
 
           # deliver welcome mail
           UserMailer.welcome_email(user).deliver!
@@ -115,6 +88,7 @@ class AuthenticationsController < ApplicationController
         else
           # error
           flash[:"alert-error"] = "Sorry! There seems to have been a problem linking your account to LinkedIn"
+          redirect_to '/'
         end
       else
         redirect_to new_user_registration_path
@@ -124,9 +98,15 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     @authentication = current_user.authentications.find(params[:id])
-    flash[:notice] = "Your account is no longer linked to #{@authentication.provider.titleize}."
-
-    @authentication.destroy
+    if @authentication
+      @authentication.destroy
+      flash[:notice] = "Your account is no longer linked to #{@authentication.provider.titleize}."
+    elsif current_user.linkedin_connection
+      current_user.linkedin.destroy
+      current_user.update_attributes(linkedin_connection: false)
+      flash[:notice] = "Your account is no longer linked to LinkedIn."
+    end
+    
     redirect_to edit_user_registration_path
   end
 
@@ -227,10 +207,8 @@ class AuthenticationsController < ApplicationController
     if user = User.find_by_email(email)
       # store tokens whether they already exist or not
       # even if there are already existing ones these are more recent
-      if user.linkedin_info
-        user.linkedin_info.basic_email_token.update_attributes( \
-          access_token: atoken.to_s, access_secret: asecret.to_s, last_updated: Time.now)
-      end
+      user.linkedin_info.basic_email_token.update_attributes( \
+        access_token: atoken.to_s, access_secret: asecret.to_s, last_updated: Time.now)
 
       # redirect to dashboard
       flash[:"alert-success"] = "Signed in successfully."
@@ -240,5 +218,39 @@ class AuthenticationsController < ApplicationController
       flash[:"alert-error"] = "An 80,000 Hours account does not currently exist for this LinkedIn account"
       redirect_to '/'
     end
+  end
+
+
+  private
+
+  def create_linkedin_info_table(user)
+    # create linkedin info table
+    linkedinfo = LinkedinInfo.new
+    linkedinfo.user_id = user.id
+
+    # create linkedin tokens
+
+    # create tables for other access tokens
+    basic_token = LinkedinToken.new
+    basic_token.permissions = "r_basicprofile"
+    basic_token.save
+    basic_email_token = LinkedinToken.new
+    basic_email_token.permissions = "r_basicprofile+r_emailaddress"
+    basic_email_token.save
+    full_token = LinkedinToken.new
+    full_token.permissions = "r_fullprofile"
+    full_token.save
+    invite_token = LinkedinToken.new
+    invite_token.permissions = "w_messages"
+    invite_token.save
+
+    # add token ids to linkedin info table so they can be accessed later
+    linkedinfo.basic_token_id = basic_token.id
+    linkedinfo.basic_email_token_id = basic_email_token.id
+    linkedinfo.full_token_id = full_token.id
+    linkedinfo.invite_token_id = invite_token.id
+    linkedinfo.save
+
+    return linkedinfo
   end
 end
