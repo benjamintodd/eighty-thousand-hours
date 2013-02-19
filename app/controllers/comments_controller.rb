@@ -13,9 +13,9 @@ class CommentsController < ApplicationController
       post = @comment.get_post
 
       # mail creator of post
-      if post.instance_of?(BlogPost)
+      if post.instance_of?(BlogPost) && @comment.user != post.user
         BlogPostMailer.new_comment(@comment).deliver!
-      elsif post.instance_of?(DiscussionPost)
+      elsif post.instance_of?(DiscussionPost) && @comment.user != post.user
         # check user notification settings
         if post.user.notifications_on_forum_posts
           DiscussionPostMailer.new_comment(@comment).deliver!
