@@ -12,10 +12,11 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
   }
 
   #body {
-    background-color: $main_comments_background_colour;
+    //background-color: $main_comments_background_colour;
     padding-top: 7px;
 
     .comment {
+      background-color: $main_comments_background_colour;
       .core {
         padding: 5px;
         margin-top: 10px;
@@ -93,6 +94,8 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
           }
           .reply-form {
             display: none;
+            position: relative;
+            padding-left: 20px;
           }
         }
       }
