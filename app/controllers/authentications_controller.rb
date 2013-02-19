@@ -221,7 +221,83 @@ class AuthenticationsController < ApplicationController
   end
 
 
+  def linkedin_getprofile
+    # called when user chooses to pull linkedin profile data
+
+    # create linkedin client
+    config = LINKEDIN_CONFIG_FULL
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # check for existing access tokens for full profile
+    if current_user.linkedin_connection && current_user.linkedin_info.full_token
+      # check if still valid
+      time_elapsed = Time.now - current_user.linkedin_info.full_token.last_updated  #seconds
+      time_elapsed = time_elapsed / 60 / 60 / 24  #days
+      
+      if time_elapsed < 60
+        # authorise with existing access tokens
+        token = current_user.linkedin_info.full_token.access_token
+        secret = current_user.linkedin_info.full_token.access_secret
+        client.authorize_from_access(token, secret)
+
+        # pull profile data
+        add_linkedin_to_profile(client, current_user)
+
+        # return to edit member profile
+        redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+        return
+      end
+    end
+
+    # otherwise need to get tokens for full profile access
+
+    # set up callback action
+    request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/authentications/linkedin_getprofile_callback")
+
+    # reset session access tokens
+    session[:access_token] = nil
+    session[:access_secret] = nil
+
+    # get request tokens
+    session[:request_token] = request_token.token
+    session[:request_secret] = request_token.secret
+
+    # redirect to linkedin for permission
+    redirect_to client.request_token.authorize_url
+  end
+
+  def linkedin_getprofile_callback
+    # create linkedin client
+    config = LINKEDIN_CONFIG_FULL
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # authorise user using latest request tokens
+    pin = params[:oauth_verifier]
+    atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
+
+    # if user has not used linkedin before need to create table
+    if !current_user.linkedin_connection
+      current_user.update_attributes(linkedin_connection: true)
+      create_linkedin_info_table(current_user)
+    end
+
+    # store access tokens
+    current_user.linkedin_info.full_token.update_attributes( \
+      access_token: atoken, access_secret: asecret, last_updated: Time.now)
+
+    # pull profile data
+    add_linkedin_to_profile(client)
+
+    # return to edit member profile
+    redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+  end
+
+
   private
+
+  def add_linkedin_to_profile(client, user)
+
+  end
 
   def create_linkedin_info_table(user)
     # create linkedin info table
