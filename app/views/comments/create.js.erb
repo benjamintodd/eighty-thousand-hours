@@ -16,6 +16,9 @@ if (parent_type == "BlogPost" || parent_type == "DiscussionPost")
 	//add new comment to html
 	var new_comment_pos = $("#comments").children("#body").children(".display-comments");
 	$(new_html).hide().appendTo(new_comment_pos).fadeIn();
+
+	//clear form
+	$("#comments").children("#body").children("#new-comment").find('textarea').val('');
 }
 else
 {
