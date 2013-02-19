@@ -57,6 +57,7 @@ EightyThousandHours::Application.routes.draw do
   resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
 
+  match '/members/all'  => 'etkh_profiles#index'
   resources :etkh_profiles, :path => "members", :only => [:new,:create,:show,:index] do
     collection do
       post 'search'
