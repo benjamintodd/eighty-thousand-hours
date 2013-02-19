@@ -8,6 +8,8 @@
             ##You can now:
             ###[Ask a question on our discussion forum](/discussion)
             Get career advice or just find out more about 80,000 Hours. People are happy to help you out. [Ask a question here](/discussion)
+
+          = link_to "Pull linkedin profile data", {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, class: "btn btn-large", id: "linkedin-btn"
             
           %h2 Fill in your profile
           = render 'form'
