@@ -3,6 +3,10 @@
 $avatar_size: 60px;
 
 .blog .forum {
+  .header { margin-left: 10px; }
+  #btn-drafts { margin-left: 10px; }
+  .controls { padding-bottom: 10px; }
+
   .content {
     .heading {
       >.voting {
