@@ -98,4 +98,11 @@ class EtkhProfilesController < ApplicationController
     end
   end
 
+  def our_members
+    # displays list of members within community page
+    
+    @menu_root = "Our community"
+    @menu_current = "Our members"
+    @title = "Members"
+  end
 end
