@@ -100,9 +100,14 @@ class EtkhProfilesController < ApplicationController
 
   def our_members
     # displays list of members within community page
-    
+
+    # set up navbar
     @menu_root = "Our community"
     @menu_current = "Our members"
     @title = "Members"
+
+    # get list of users to be displayed
+    list_length = 10
+    @users_selection = UsersSelection.new(list_length)
   end
 end

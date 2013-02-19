@@ -1,2 +1,10 @@
-.box
-  
+.span10
+  .heading
+    %h1 Our members
+  %hr
+
+  #search-form
+
+  #members-list
+    - @users_selection.users.each do |user|
+      = render partial: 'profile_teaser', locals: { user: user }

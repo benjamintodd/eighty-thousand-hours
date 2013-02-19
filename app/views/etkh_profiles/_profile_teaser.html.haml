@@ -1,0 +1,27 @@
+.profile-teaser
+  .row-fluid
+    .span2
+      .avatar
+        = link_to (image_tag user.avatar(:thumb)), etkh_profile_path(user)
+    
+    .span10
+      .heading
+        .name
+          = link_to user.name, etkh_profile_path(user)
+        .location
+          %p= user.location
+        .organisation
+          %p= user.etkh_profile.organisation
+        %hr
+
+      .body
+        .row-fluid
+          .span2
+            .labels
+              .background-label
+                %p Background
+
+          .span10
+            .info
+              .background
+                = markdown (user.etkh_profile.background[0...200] + " ...")
