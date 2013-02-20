@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
     t.boolean  "notifications_on_forum_posts",                :default => true
     t.boolean  "notifications_on_comments",                   :default => true
     t.boolean  "linkedin_signup",                             :default => false
+    t.string   "linkedin_email"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
