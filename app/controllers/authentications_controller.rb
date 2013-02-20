@@ -67,16 +67,20 @@ class AuthenticationsController < ApplicationController
         user = User.new(:name => name, :email => email, :password => pwd, :password_confirmation => pwd)  
         user.omniauth_signup = false
         user.skip_confirmation!
-        user.linkedin_connection = true
+        user.linkedin_signup = true
 
         if user.save
           # Log this in Google Analytics
           log_event("Members", "Created via LinkedIn", user.name, user.id)
 
           # create linkedin info table
-          linkedinfo = create_linkedin_info_table(user)
-          linkedinfo.basic_email_token.update_attributes( \
-            access_token: session[:access_token], access_secret: session[:access_secret], last_updated: Time.now)
+          linkedinfo = LinkedinInfo.new
+          linkedinfo.user_id = user.id
+          linkedinfo.permissions = "r_basicprofile+r_emailaddress"
+          linkedinfo.access_token = session[:access_token]
+          linkedinfo.access_secret = session[:access_secret]
+          linkedinfo.last_updated = Time.now
+          linkedinfo.save
 
           # deliver welcome mail
           UserMailer.welcome_email(user).deliver!
@@ -101,7 +105,7 @@ class AuthenticationsController < ApplicationController
     if @authentication
       @authentication.destroy
       flash[:notice] = "Your account is no longer linked to #{@authentication.provider.titleize}."
-    elsif current_user.linkedin_connection
+    elsif current_user.linkedin_signup
       current_user.linkedin.destroy
       current_user.update_attributes(linkedin_connection: false)
       flash[:notice] = "Your account is no longer linked to LinkedIn."
@@ -228,34 +232,6 @@ class AuthenticationsController < ApplicationController
     config = LINKEDIN_CONFIG_FULL
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
 
-    # check for existing access tokens for full profile
-    puts "linkedin_connection: #{current_user.linkedin_connection}"
-    puts "token: #{current_user.linkedin_info.full_token.access_token}"
-    if current_user.linkedin_connection && current_user.linkedin_info.full_token.access_token
-      puts "user has linkedin info and previous full token"
-      # check if still valid
-      time_elapsed = Time.now - current_user.linkedin_info.full_token.last_updated  #seconds
-      time_elapsed = time_elapsed / 60 / 60 / 24  #days
-      
-      if time_elapsed < 60
-        puts "full profile tokens are still valid"
-        # authorise with existing access tokens
-        token = current_user.linkedin_info.full_token.access_token
-        secret = current_user.linkedin_info.full_token.access_secret
-        response = client.authorize_from_access(token, secret)
-        puts "response: #{response}"
-
-        # pull profile data
-        add_linkedin_to_profile(client, current_user)
-
-        # return to edit member profile
-        redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
-        return
-      end
-    end
-
-    # otherwise need to get tokens for full profile access
-
     # set up callback action
     request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/authentications/linkedin_getprofile_callback")
 
@@ -280,17 +256,6 @@ class AuthenticationsController < ApplicationController
     pin = params[:oauth_verifier]
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
-    # if user has not used linkedin before need to create table
-    if current_user.linkedin_connection != true
-      puts "creating user linkedin info"
-      current_user.update_attributes(linkedin_connection: true)
-      create_linkedin_info_table(current_user)
-    end
-
-    # store access tokens
-    current_user.linkedin_info.full_token.update_attributes( \
-      access_token: atoken, access_secret: asecret, last_updated: Time.now)
-
     # pull profile data
     add_linkedin_to_profile(client, current_user)
     puts "location: #{current_user.etkh_profile.location}"
@@ -308,34 +273,5 @@ class AuthenticationsController < ApplicationController
     puts user.etkh_profile.background
     user.etkh_profile.location = "new location"
     puts user.etkh_profile.location
-  end
-
-  def create_linkedin_info_table(user)
-    # create linkedin info table
-    linkedinfo = LinkedinInfo.new
-    linkedinfo.user_id = user.id
-
-    # create linkedin tokens
-    basic_token = LinkedinToken.new
-    basic_token.permissions = "r_basicprofile"
-    basic_token.save
-    basic_email_token = LinkedinToken.new
-    basic_email_token.permissions = "r_basicprofile+r_emailaddress"
-    basic_email_token.save
-    full_token = LinkedinToken.new
-    full_token.permissions = "r_fullprofile"
-    full_token.save
-    invite_token = LinkedinToken.new
-    invite_token.permissions = "w_messages"
-    invite_token.save
-
-    # add token ids to linkedin info table so they can be accessed later
-    linkedinfo.basic_token_id = basic_token.id
-    linkedinfo.basic_email_token_id = basic_email_token.id
-    linkedinfo.full_token_id = full_token.id
-    linkedinfo.invite_token_id = invite_token.id
-    linkedinfo.save
-
-    return linkedinfo
   end
 end
