@@ -1,9 +1,9 @@
 @import "shared/partials";
 
-$main_comments_background_colour: #EBFFEB;
-$even_level_nested_comments_border_colour: #DEFFDE;
-$odd_level_nested_comments_background_colour: #E9F8FF;
-$odd_level_nested_comments_border_colour: #DFF4FF;
+$main_comments_background_colour: #FFFFFF;
+$even_level_nested_comments_border_colour: #EBEBEB;
+$odd_level_nested_comments_background_colour: #F5F5F5;
+$odd_level_nested_comments_border_colour: #F0F0F0;
 
 
 #comments {
@@ -17,6 +17,8 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
 
     .comment {
       background-color: $main_comments_background_colour;
+      //padding-bottom: 10px;
+      margin-bottom: 5px;
       .core {
         padding: 5px;
         margin-top: 10px;
@@ -123,7 +125,10 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
       }
 
       //only indent margin for first three levels
-      .d1, .d2, .d3 { margin-left: 30px; }
+      .d1, .d2, .d3 {
+        margin-left: 30px;
+        margin-right: 2px;
+      }
     }
 
     //set font-size of all nested comments
