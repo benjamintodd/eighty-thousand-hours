@@ -1,4 +1,4 @@
-%h3= link_to 'Latest discussion posts', discussion_posts_path
+%h3= link_to 'Latest forum posts', discussion_posts_path
 - DiscussionPost.published.recent(4).each do |post|
   = render partial: 'shared/sidebar_item',
            locals: { date: post.created_at, 
