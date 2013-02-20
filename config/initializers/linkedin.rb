@@ -9,4 +9,29 @@ LinkedIn::Client.class_eval do
     response = get(path)
     response
   end
+
+  def send_invitation(options)
+    path = "/people/~/mailbox"
+    message = {
+      "recipients" => {
+        "values" => [
+          {
+            "person" => {
+              "_path" => "/people/email=#{options[:email]}",
+              "first-name" => options[:first_name],
+              "last-name" => options[:last_name]
+            }
+          }]
+      },
+      "subject" => "Invitation to connect.",
+      "body" => options[:body],
+      "item-content" => {
+        "invitation-request" => {
+          "connect-type" => "friend"
+        }
+      }
+    }
+    response = post(path, message.to_json, "Content-Type" => "application/json")
+    response
+  end
 end

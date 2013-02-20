@@ -265,6 +265,96 @@ class AuthenticationsController < ApplicationController
   end
 
 
+  def linkedin_invite_connection
+    # called when user tries to invite another member as a connection on linkedin
+
+    user = current_user
+
+    # user must be signed in
+    unless user_signed_in?
+      # if AJAX request simply display modal
+      if request.xhr?
+        render 'shared/sign_up_modal'
+      else
+        # display error page
+        @error_type = "signup"
+        render 'shared/display_error'
+      end
+    end
+
+    # create linkedin client
+    config = LINKEDIN_CONFIG_INVITE
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # check for existing access tokens for messaging
+    linkedinfo = user.linkedin_info
+    if linkedinfo && linkedinfo.permissions.include?("w_messages")
+      puts "existing token"
+      # check if still valid
+      time_elapsed = Time.now - linkedinfo.last_updated #seconds
+      time_elapsed = time_elapsed / 60 / 60 / 24 #days
+      if time_elapsed < 60
+        puts "token still valid"
+        # authorise with existing tokens
+        client.authorize_from_access(linkedinfo.access_token, linkedinfo.access_secret)
+
+        # send invitation
+        reponse = client.send_invitation(email: params[:email])
+        puts response.inspect
+        #if response...
+          # confirm and return
+          return
+      end
+    end
+
+    # otherwise need to request tokens
+
+    # set up callback action
+    request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/authentications/linkedin_invite_connection_callback")
+
+    # reset session access tokens
+    session[:access_token] = nil
+    session[:access_secret] = nil
+
+    # get request tokens
+    session[:request_token] = request_token.token
+    session[:request_secret] = request_token.secret
+
+    # redirect to linkedin for permission
+    redirect_to client.request_token.authorize_url
+  end
+
+  def linkedin_invite_connection_callback
+    # create linkedin client
+    config = LINKEDIN_CONFIG_INVITE
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # authorise from request tokens
+    pin = params[:oauth_verifier]
+    atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
+
+    # store access tokens
+    if current_user.linkedin_info
+      linkedinfo = current_user.linkedin_info
+    else
+      linkedinfo = LinkedinInfo.new
+      linkedinfo.user_id = current_user.id
+    end
+    linkedinfo.permissions = "w_messages"
+    linkedinfo.access_token = atoken
+    linkedinfo.access_secret = asecret
+    linkedinfo.last_updated = Time.now
+    linkedinfo.save
+
+    # send invitation
+    client.send_invitation(email: params[:email])
+
+    # confirm
+
+    # return
+  end
+
+
   private
 
   def add_linkedin_to_profile(client, user)

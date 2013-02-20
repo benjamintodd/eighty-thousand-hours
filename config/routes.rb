@@ -8,6 +8,8 @@ EightyThousandHours::Application.routes.draw do
       get 'linkedin_signin_callback'
       get 'linkedin_getprofile'
       get 'linkedin_getprofile_callback'
+      get 'linkedin_invite_connection'
+      get 'linkedin_invite_connection_callback'
     end
   end
 
