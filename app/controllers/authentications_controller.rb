@@ -229,16 +229,21 @@ class AuthenticationsController < ApplicationController
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
 
     # check for existing access tokens for full profile
-    if current_user.linkedin_connection && current_user.linkedin_info.full_token
+    puts "linkedin_connection: #{current_user.linkedin_connection}"
+    puts "token: #{current_user.linkedin_info.full_token.access_token}"
+    if current_user.linkedin_connection && current_user.linkedin_info.full_token.access_token
+      puts "user has linkedin info and previous full token"
       # check if still valid
       time_elapsed = Time.now - current_user.linkedin_info.full_token.last_updated  #seconds
       time_elapsed = time_elapsed / 60 / 60 / 24  #days
       
       if time_elapsed < 60
+        puts "full profile tokens are still valid"
         # authorise with existing access tokens
         token = current_user.linkedin_info.full_token.access_token
         secret = current_user.linkedin_info.full_token.access_secret
-        client.authorize_from_access(token, secret)
+        response = client.authorize_from_access(token, secret)
+        puts "response: #{response}"
 
         # pull profile data
         add_linkedin_to_profile(client, current_user)
@@ -276,7 +281,8 @@ class AuthenticationsController < ApplicationController
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
     # if user has not used linkedin before need to create table
-    if !current_user.linkedin_connection
+    if current_user.linkedin_connection != true
+      puts "creating user linkedin info"
       current_user.update_attributes(linkedin_connection: true)
       create_linkedin_info_table(current_user)
     end
@@ -286,7 +292,8 @@ class AuthenticationsController < ApplicationController
       access_token: atoken, access_secret: asecret, last_updated: Time.now)
 
     # pull profile data
-    add_linkedin_to_profile(client)
+    add_linkedin_to_profile(client, current_user)
+    puts "location: #{current_user.etkh_profile.location}"
 
     # return to edit member profile
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
@@ -296,7 +303,11 @@ class AuthenticationsController < ApplicationController
   private
 
   def add_linkedin_to_profile(client, user)
-
+    # test
+    user.etkh_profile.background = client.profile(fields: %w(educations)).to_s
+    puts user.etkh_profile.background
+    user.etkh_profile.location = "new location"
+    puts user.etkh_profile.location
   end
 
   def create_linkedin_info_table(user)
@@ -305,8 +316,6 @@ class AuthenticationsController < ApplicationController
     linkedinfo.user_id = user.id
 
     # create linkedin tokens
-
-    # create tables for other access tokens
     basic_token = LinkedinToken.new
     basic_token.permissions = "r_basicprofile"
     basic_token.save
