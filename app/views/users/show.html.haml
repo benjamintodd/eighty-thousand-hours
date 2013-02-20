@@ -30,8 +30,10 @@
     .page-header
       %h2 Comments
     
-    #comments
-      - @user.comments.each do |comment|
-        .comment
-          %h4 Posted a comment in #{link_to comment.post.title, comment.post}:
-          = render comment
+    .blog
+      #comments
+        #body
+          .display-comments
+            - @user.comments.each do |comment|
+              %h4 Posted a comment in #{link_to comment.get_post.title, comment.get_post}:
+              = render comment
