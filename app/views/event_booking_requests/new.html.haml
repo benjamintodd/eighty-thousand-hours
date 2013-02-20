@@ -5,25 +5,4 @@
     :markdown
         <p>Thank you for your interest in the High Impact Careers in Healthcare Symposium! See the event <a href='/pdf/Healthcare careers symposium poster.pdf'>POSTER</a> and <a href="/pdf/Healthcare careers symposium speakers.pdf">SPEAKERS</a> for details.</p>
 
-        <p>If you would like to reserve a place at this event please complete the form below.</p>
-    
-    = simple_form_for @event_booking_request, url: { action: 'create' }, html: { multipart: true, class: 'form-horizontal' } do |f|
-
-      = f.error_notification
-
-      = field_set_tag "Your contact details" do
-        = f.input :name
-        = f.input :email
-        = f.input :current_role, label: "Current Role/Job Description"
-
-        = f.input :desired_information, as: :text, label: "What information or research on the impact of healthcare professionals would you like to see more of?"
-        
-        :markdown
-          In order to confirm your attendance at the symposium, we’d like you to make a small donation of a minimum one malaria net (£2.50) to the Against Malaria Foundation.  
-          Please follow the instructions at <a href="https://www.againstmalaria.com/donate" target="_blank">www.againstmalaria.com/donate</a> and enter your donor reference below (the five digit number which you will be given when you have completed the donation).
-        = f.input :amf_donation, label: "AMF Donation Reference"
-        
-        = f.input :mailing_list, as: :boolean, input_html: { checked: true }, label: "Would you like to receive our emails summarising our latest advice content?"
-
-      .form-actions
-        = f.button :submit, "Register for event"
+        <p>Sorry this event is now fully-booked.  However, please get in touch with us if you would like any healthcare career-related advice!</p>
