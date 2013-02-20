@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
     t.text     "activities_comment"
     t.integer  "donation_percentage",        :default => 30
     t.boolean  "donation_percentage_optout", :default => true
-    t.integer  "profile_completeness"
   end
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
@@ -157,15 +156,7 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
   end
 
   create_table "linkedin_infos", :force => true do |t|
-    t.integer "user_id"
-    t.integer "basic_token_id"
-    t.integer "basic_email_token_id"
-    t.integer "full_token_id"
-    t.integer "invite_token_id"
-  end
-
-  create_table "linkedin_tokens", :force => true do |t|
-    t.integer  "linkedin_info_id"
+    t.integer  "user_id"
     t.string   "permissions"
     t.string   "access_token"
     t.string   "access_secret"
@@ -284,7 +275,7 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
     t.boolean  "omniauth_signup",                             :default => false
     t.boolean  "notifications_on_forum_posts",                :default => true
     t.boolean  "notifications_on_comments",                   :default => true
-    t.boolean  "linkedin_connection",                         :default => false
+    t.boolean  "linkedin_signup",                             :default => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
