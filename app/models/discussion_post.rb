@@ -13,7 +13,7 @@ class DiscussionPost < ActiveRecord::Base
   acts_as_taggable
 
   # a DiscussionPost can have votes from many different users
-  has_many :votes, :dependent => :destroy
+  has_many :votes, :as => :post, :dependent => :destroy
 
   scope :draft,     where(:draft => true).order("created_at DESC")
   scope :published, where(:draft => false).order("created_at DESC")
@@ -47,7 +47,7 @@ class DiscussionPost < ActiveRecord::Base
   end
 
   # comments on posts
-  has_many :comments, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
 
   # a User wrote this post
   belongs_to :user

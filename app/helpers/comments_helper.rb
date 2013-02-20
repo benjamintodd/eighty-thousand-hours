@@ -1,13 +1,21 @@
 module CommentsHelper
   def comment_post_path(comment)
-    if comment.blog_post_id.nil? and comment.discussion_post_id.nil?
+    if comment.commentable_id.nil?
       return
     end
-
-    if comment.blog_post_id.nil?
-      discussion_post_path( comment.discussion_post )
+    
+    if comment.commentable_type == "BlogPost"
+      blog_post_path( comment.commentable )
+    elsif comment.commentable_type == "DiscussionPost"
+      discussion_post_path( comment.commentable )
     else
-      blog_post_path( comment.blog_post )
+      #nested comment
+      top_parent = comment.get_top_parent_comment
+      if top_parent.commentable_type == "BlogPost"
+        blog_post_path( top_parent.commentable )
+      elsif top_parent.commentable_type == "DiscussionPost"
+        discussion_post_path( top_parent.commentable )
+      end
     end
   end
 

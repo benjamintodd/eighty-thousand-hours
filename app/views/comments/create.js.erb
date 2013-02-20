@@ -1,5 +1,61 @@
-$('#comments').children('#new-comment').find('.errors').hide()
-$('#comments').children('#new-comment').find('textarea').val('')
-var html = "<%= escape_javascript render @comment %>";
-var where = $('#comments').children('#display-comments');
-$(html).hide().appendTo(where).fadeIn();
+//hide errors
+$('#comments').children('#new-comment').find('.errors').hide();
+
+//get parent type
+var parent_type = "<%= escape_javascript @comment.commentable_type %>";
+
+//html for new comment
+var new_html = "<%= escape_javascript render @comment %>";
+
+
+if (parent_type == "BlogPost" || parent_type == "DiscussionPost")
+{
+	//clear text from new comment form
+	$('#comments').children('#new-comment').find('textarea').val('')
+
+	//add new comment to html
+	var new_comment_pos = $("#comments").children("#body").children(".display-comments");
+	$(new_html).hide().appendTo(new_comment_pos).fadeIn();
+
+	//clear form
+	$("#comments").children("#body").children("#new-comment").find('textarea').val('');
+}
+else
+{
+	//get array of comment ids
+
+	//get length of array
+	var length = "<%= escape_javascript @comment_hierarchy_ids.length.to_s %>";
+
+	if (length == 1)
+	{
+		//if array is only one element strong javascript won't correctly
+		//convert the variable from ruby so alternate method:
+		var value = "<%= escape_javascript @comment_hierarchy_ids.to_s %>";
+		var comment_hierarchy_ids = new Array();
+		comment_hierarchy_ids[0] = value.substring(1,value.length-1);
+	}
+	else
+	{
+		var comment_hierarchy_ids = new Array(<%= @comment_hierarchy_ids.map(&:inspect).join(", ") %>);
+	}
+	
+	//loop through comment hierarchy to the new comment's parent
+	var comment_pos = $("#comments").children("#body");
+	for (var i=comment_hierarchy_ids.length-1; i >= 0; i--)
+	{
+		var comment_id = "#comment-" + comment_hierarchy_ids[i];
+		comment_pos = comment_pos.children(".display-comments").children(comment_id);
+	}
+
+	//hide reply form if a comment on comment
+	var reply_form_pos = comment_pos.children(".core").children(".reply").children(".reply-form");
+	$(reply_form_pos).css('display', 'none');
+	
+	//also clear text from reply form
+	$(reply_form_pos).find('textarea').val('');
+	
+	//add new comment
+	var new_comment_pos = comment_pos.children(".display-comments")
+	$(new_html).hide().appendTo(new_comment_pos).fadeIn();
+}

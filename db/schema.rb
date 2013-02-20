@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110221804) do
+ActiveRecord::Schema.define(:version => 20130201143727) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -75,15 +75,17 @@ ActiveRecord::Schema.define(:version => 20121110221804) do
   add_index "causes", ["slug"], :name => "index_charities_on_slug", :unique => true
 
   create_table "comments", :force => true do |t|
-    t.integer  "blog_post_id"
     t.integer  "user_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "email"
-    t.integer  "discussion_post_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "discussion_posts", :force => true do |t|
     t.string   "title"
@@ -234,11 +236,11 @@ ActiveRecord::Schema.define(:version => 20121110221804) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "encrypted_password",           :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                               :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -246,7 +248,7 @@ ActiveRecord::Schema.define(:version => 20121110221804) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -262,9 +264,12 @@ ActiveRecord::Schema.define(:version => 20121110221804) do
     t.string   "external_linkedin"
     t.string   "real_name"
     t.string   "external_website"
-    t.boolean  "omniauth_signup",        :default => false
+    t.boolean  "omniauth_signup",                             :default => false
+    t.boolean  "notifications_on_forum_posts",                :default => true
+    t.boolean  "notifications_on_comments",                   :default => true
   end
 
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
@@ -283,11 +288,13 @@ ActiveRecord::Schema.define(:version => 20121110221804) do
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "blog_post_id"
     t.boolean  "positive"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "discussion_post_id"
+    t.integer  "post_id"
+    t.string   "post_type"
   end
+
+  add_index "votes", ["post_id", "post_type"], :name => "index_votes_on_post_id_and_post_type"
 
 end

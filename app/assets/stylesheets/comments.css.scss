@@ -1,57 +1,148 @@
 @import "shared/partials";
 
-#comments{
-  .comment {
-    .avatar {
-      float: left;
-      @include rounded_borders(#ccc, 1px, 3px);
-      @include box_shadow(#ccc, 0px, 0px, 5px);
-      width:  48px;
-      height: 48px;
-      img {
-        vertical-align: middle;
-        position: absolute;
-        clip:rect(0px,48px,48px,0px);
-        width:  48px;
+$main_comments_background_colour: #FFFFFF;
+$even_level_nested_comments_border_colour: #EBEBEB;
+$odd_level_nested_comments_background_colour: #F5F5F5;
+$odd_level_nested_comments_border_colour: #F0F0F0;
+
+
+#comments {
+  .page-header {
+    margin-bottom: 15px;
+  }
+
+  #body {
+    //background-color: $main_comments_background_colour;
+    padding-top: 7px;
+
+    .comment {
+      background-color: $main_comments_background_colour;
+      //padding-bottom: 10px;
+      margin-bottom: 5px;
+      .core {
+        padding: 5px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+
+        .voting {
+          margin-right: 7px;
+          margin-left: 0px;
+          position: relative;
+          top: -4px;
+
+          .arrow {
+            height: 20px;
+          }
+          .votes {
+            position: relative;
+            top: -3px;
+            font-size: 0.75em;
+          }
+          .down-arrow {
+            position: relative;
+            top: -11px;
+          }
+          .notvoted {
+            background: transparent;
+          }
+          .voted { 
+            @include rounded_borders($magenta_3, 1px, 5px);
+          }
+        }
+
+        .avatar {
+          float: left;
+          @include rounded_borders(#ccc, 1px, 3px);
+          @include box_shadow(#ccc, 0px, 0px, 5px);
+          width:  48px;
+          height: 48px;
+          img {
+            vertical-align: middle;
+            position: absolute;
+            clip:rect(0px,48px,48px,0px);
+            width:  48px;
+          }
+        }
+
+        .content {
+          .header {
+            overflow: hidden;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #efefef;
+            .name {
+              font-weight: bold;
+            }
+            .date {
+              color: #999;
+            }
+            .actions {
+              font-size: 0.9em;
+              font-style: italic;
+              float:right;
+            }
+          }
+
+          .body {
+            padding-top: 5px;
+            margin-left: 25px;
+          }
+        }
+
+        .reply {
+          .reply-link {
+            margin-left: 25px;
+          }
+          .reply-form {
+            display: none;
+            position: relative;
+            padding-left: 20px;
+          }
+        }
+      }
+
+      .nested-comment {
+        //nested comments with an even depth value(eg 2,4) have same colour scheme as main comments
+
+        background-color: $main_comments_background_colour;
+        @include rounded_borders($even_level_nested_comments_border_colour, 4px, 10px);
+
+        //padding for all nested comments
+        .core { 
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+
+      //nested comments with an odd value(eg 1,3) have an alternate colour scheme
+      //This overrides colour rules set in nested-comment class above
+      .display-comments .d1,
+      .d1 .d3,
+      .d1 .d3 .d5 {
+        background-color: $odd_level_nested_comments_background_colour;
+        @include rounded_borders($odd_level_nested_comments_border_colour, 4px, 10px);
+      }
+
+      //only indent margin for first three levels
+      .d1, .d2, .d3 {
+        margin-left: 30px;
+        margin-right: 2px;
       }
     }
 
-    .content {
-      margin-left: 60px;
-      .header {
-        padding-bottom: 10px;
-        border-bottom: 1px solid #efefef;
-        .name {
-          font-weight: bold;
-        }
-        .date {
-          color: #999;
-        }
-        .actions {
-          font-size: 0.9em;
-          font-style: italic;
-          float:right;
-        }
-      }
+    //set font-size of all nested comments
+    .d0 > .display-comments { font-size: 0.92em; }
 
-      .body {
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
+    //extra padding for top level comments
+    .d0 > .core {
+      padding: 10px;
+      padding-top: 15px;
     }
 
-    /*@include rounded_borders(#ccc, 1px, 3px);*/
-    padding: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+    .errors { display: none; }
+
+    .email_confirmation { display: none; }
   }
-
-  .errors { display: none; }
-
-  .email_confirmation {
-    display: none;
-  }
-
-  .replytext { display: none; }
 }

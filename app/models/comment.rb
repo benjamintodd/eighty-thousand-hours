@@ -1,3 +1,6 @@
+# a comment can either belong to a blog post, a discussion post or 
+# another comment. These are each of type commentable.
+
 class Comment < ActiveRecord::Base
   validates_presence_of :body,    message: "can't be blank"
 
@@ -10,8 +13,9 @@ class Comment < ActiveRecord::Base
   before_validation :check_honeypot
 
   belongs_to :user
-  belongs_to :blog_post
-  belongs_to :discussion_post
+  belongs_to :commentable, :polymorphic => true
+  has_many :comments, :as => :commentable
+  has_many :votes, :as => :post, :dependent => :destroy
 
   scope :blog, where(:blog_post_id != nil)
 
@@ -20,35 +24,77 @@ class Comment < ActiveRecord::Base
   end
 
   def post_author_email
-    if discussion_post
-      discussion_post.user.email
-    else
-      if blog_post.user
-        blog_post.user.email
+    if self.commentable_type == "DiscussionPost"
+      self.commentable.user.email
+    elsif self.commentable_type == "BlogPost"
+      if self.commentable.user
+        self.commentable.user.email
       else
         # blog post is by guest w. no email
         nil
       end
+    elsif self.commentable_type == "Comment"
+      self.email
+    else
+      nil
     end
   end
 
-  def title
-    if discussion_post
-      discussion_post.title
-    else
-      blog_post.title
+  def net_votes
+    self.votes.upvotes.size - self.votes.downvotes.size
+  end
+
+
+  ## methods related to nested comments
+
+  # finds the blog or discussion post under which the comment has been posted
+  def get_post
+    if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
+      self.commentable
+    else  #must be a nested comment
+      # loop through parents until post is reached
+      parent = Comment.find_by_id(self.commentable_id)
+      while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
+        parent = Comment.find_by_id(parent.commentable_id)
+      end
+      parent.commentable
     end
   end
 
-  def post
-    if discussion_post
-      discussion_post
-    else
-      blog_post
+  # finds the top comment in the hierarchy of nested comments
+  def get_top_parent_comment
+    if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
+      self
+    else  #must be a nested comment
+      # loop through parents until top comment is reached
+      parent = Comment.find_by_id(self.commentable_id)
+      while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
+        parent = Comment.find_by_id(parent.commentable_id)
+      end
+      parent
     end
   end
+
+  # determines the nested level of this comment
+  # level 0 denotes a non-nested comment
+  def get_depth
+    if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
+      return 0
+    else  # must be a nested comment
+      # loop through parents and count number of nested levels
+      count = 1
+      parent = Comment.find_by_id(self.commentable_id)
+      while parent.commentable_type != "BlogPost" && parent.commentable_type != "DiscussionPost"
+        parent = Comment.find_by_id(parent.commentable_id)
+        count+=1
+      end
+      return count
+    end
+  end
+
 
   private
+
   def check_honeypot
     email_confirmation.blank?
   end
@@ -66,9 +112,8 @@ class Comment < ActiveRecord::Base
       end
     end
 
-
-    # also check that it has either a discussion post id or a blog post id
-    if self.discussion_post_id.nil? and self.blog_post_id.nil?
+    # also check that it has an id of something of type commentable
+    if self.commentable_id.nil?
       result = false
     end
 

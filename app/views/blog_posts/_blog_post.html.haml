@@ -1,6 +1,5 @@
 .entry
   .box
-
     - if can? :manage, blog_post
       .controls
         .user
@@ -9,7 +8,7 @@
           = link_to 'Delete post', blog_post_path, :confirm => "Are you sure you want to delete the post '#{blog_post.title}'?", :method => :delete, :class => 'btn btn-mini btn-danger'
 
     .heading
-      = render :partial => 'voting', :locals => { :post => blog_post }
+      = render :partial => 'shared/voting', :locals => { :post => blog_post, :post_type => "BlogPost" }
       %h1
         = blog_post.title
         - if blog_post.draft
@@ -17,7 +16,7 @@
       %h4
         %span.date
           by
-        = link_to_blog_post_author( blog_post )
+          = link_to_blog_post_author( blog_post )
         %span.date
           on
           = format_date( blog_post.created_at )
@@ -41,26 +40,16 @@
     #comments
       .page-header
         %h4 Comments
-      #display-comments
-        = render blog_post.comments.order("created_at ASC")
+      #body
+        .display-comments
+          = render :partial => "comments/comment", :collection => blog_post.comments.order("created_at ASC")
 
-      #new-comment
-        - @comment = Comment.new( blog_post_id: blog_post.id )
-        - if !current_user
-          .alert.alert-info
-            .alert-heading
-              %h4 Hello!
-            .alert-body
-              %p
-                If you'd like to comment then please
-                #{link_to 'sign in', new_user_session_path}
-                if you are an 80,000 Hours member,
-                or fill in your name and email below.
-
-        = render 'comments/form'
-    %hr
-    .center
-      %p
-        = link_to '<i class="icon-list"></i> Take me back to the blog'.html_safe, blog_posts_path
-      %p
-        = link_to '<i class="icon-home"></i> Take me to the homepage'.html_safe, '/'
+        #new-comment
+          - @comment = Comment.new( commentable_id: blog_post.id, commentable_type: "BlogPost" )
+          = render 'comments/form'
+      %hr
+      .center
+        %p
+          = link_to '<i class="icon-list"></i> Take me back to the blog'.html_safe, blog_posts_path
+        %p
+          = link_to '<i class="icon-home"></i> Take me to the homepage'.html_safe, '/'
