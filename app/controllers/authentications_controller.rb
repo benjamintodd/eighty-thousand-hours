@@ -60,7 +60,7 @@ class AuthenticationsController < ApplicationController
 
         # get name and email
         name = client.profile[:"first-name"] + " " + client.profile[:"last-name"]
-        email = client.get_email
+        email = client.get_email[1..-2]
 
         # create user
         pwd = (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
@@ -68,6 +68,8 @@ class AuthenticationsController < ApplicationController
         user.omniauth_signup = false
         user.skip_confirmation!
         user.linkedin_signup = true
+        user.linkedin_email = email
+        user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
         if user.save
           # Log this in Google Analytics
@@ -124,7 +126,7 @@ class AuthenticationsController < ApplicationController
 
   def linkedin_signup
     # action is called when a user first tries to sign up via his linkedin account
-
+    
     # create linkedin client and set up callback action
     config = LINKEDIN_CONFIG_BASIC_EMAIL
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
@@ -138,13 +140,19 @@ class AuthenticationsController < ApplicationController
     session[:request_token] = request_token.token
     session[:request_secret] = request_token.secret
 
+    # if this is a 'link my account to linkedin' request for
+    # an existing account, notify callback action that this is the case
+    if params[:linking] == "true" && user_signed_in?
+      session[:linking] = "true"
+    end
+
     # redirect to linkedin for permission
     redirect_to client.request_token.authorize_url
   end
 
   def linkedin_signup_callback
     # action is called after return from linkedin when 'linkedin_signup' has been called
-
+    
     # create linkedin client
     config = LINKEDIN_CONFIG_BASIC_EMAIL
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
@@ -158,8 +166,33 @@ class AuthenticationsController < ApplicationController
       session[:access_token] = atoken
       session[:access_secret] = asecret
 
-      # access tokens are stored in database when user is created
-      redirect_to '/authentications/create_new_account'
+      # if initial request was made by an existing user to link their account to linkedin
+      if user_signed_in? && session[:linking] == "true"
+        session[:linking] = nil
+
+        # create linkedin info table
+        linkedinfo = LinkedinInfo.new
+        linkedinfo.user_id = current_user.id
+        linkedinfo.permissions = "r_basicprofile+r_emailaddress"
+        linkedinfo.access_token = session[:access_token]
+        linkedinfo.access_secret = session[:access_secret]
+        linkedinfo.last_updated = Time.now
+        linkedinfo.save
+
+        # store email and LinkedIn profile url
+        current_user.linkedin_email = client.get_email[1..-2]
+        current_user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+        current_user.save
+
+        # redirect if not an AJAX request
+        unless request.xhr?
+          redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+        end
+      else
+        # new user
+        # access tokens are stored in database when user is created
+        redirect_to '/authentications/create_new_account'
+      end
     else
       # can simply authorize from access tokens already requested
       client.authorize_from_access(session[:access_token], session[:access_secret])
@@ -172,7 +205,7 @@ class AuthenticationsController < ApplicationController
     # action is called when user tries to sign-in via linkedin
 
     # need to perform basic authorisation with linkedin
-    # in order to get user name, by which the user can be identified
+    # in order to get email address, by which the user can be identified
 
     # create linkedin client
     config = LINKEDIN_CONFIG_BASIC_EMAIL
@@ -205,19 +238,18 @@ class AuthenticationsController < ApplicationController
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
     
     # get user email
-    email = client.get_email
+    email = client.get_email[1..-2]
 
     # check if user account exists
     if user = User.find_by_email(email)
-      # store tokens whether they already exist or not
-      # even if there are already existing ones these are more recent
-      user.linkedin_info.basic_email_token.update_attributes( \
-        access_token: atoken.to_s, access_secret: asecret.to_s, last_updated: Time.now)
-
+      # always store latest access tokens
+      user.linkedin_info.update_attributes( \
+        permissions: "r_basicprofile+r_emailaddress", access_token: atoken, access_secret: asecret, last_updated: Time.now)
+      
       # redirect to dashboard
       flash[:"alert-success"] = "Signed in successfully."
-      sign_in(:user, user)
-      redirect_to '/dashboard'
+      sign_in_and_redirect(:user, user)
+      #redirect_to '/dashboard'
     else
       flash[:"alert-error"] = "An 80,000 Hours account does not currently exist for this LinkedIn account"
       redirect_to '/'
@@ -256,9 +288,14 @@ class AuthenticationsController < ApplicationController
     pin = params[:oauth_verifier]
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
+    # always store latest access tokens
+    if current_user.linkedin_info
+      current_user.linkedin_info.update_attributes( \
+        permissions: "r_fullprofile", access_token: atoken, access_secret: asecret, last_updated: Time.now)
+    end
+
     # pull profile data
     add_linkedin_to_profile(client, current_user)
-    puts "location: #{current_user.etkh_profile.location}"
 
     # return to edit member profile
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
@@ -267,9 +304,11 @@ class AuthenticationsController < ApplicationController
 
   def linkedin_invite_connection
     # called when user tries to invite another member as a connection on linkedin
-
+    
     user = current_user
-
+    session[:email] = params[:email]
+    session[:user_id] = params[:user_id]
+    
     # user must be signed in
     unless user_signed_in?
       # if AJAX request simply display modal
@@ -280,6 +319,7 @@ class AuthenticationsController < ApplicationController
         @error_type = "signup"
         render 'shared/display_error'
       end
+      return
     end
 
     # create linkedin client
@@ -289,20 +329,24 @@ class AuthenticationsController < ApplicationController
     # check for existing access tokens for messaging
     linkedinfo = user.linkedin_info
     if linkedinfo && linkedinfo.permissions.include?("w_messages")
-      puts "existing token"
       # check if still valid
       time_elapsed = Time.now - linkedinfo.last_updated #seconds
       time_elapsed = time_elapsed / 60 / 60 / 24 #days
+      
       if time_elapsed < 60
-        puts "token still valid"
         # authorise with existing tokens
         client.authorize_from_access(linkedinfo.access_token, linkedinfo.access_secret)
 
         # send invitation
-        reponse = client.send_invitation(email: params[:email])
-        puts response.inspect
+        puts "sending invitation from existing access tokens: #{session[:email]}"
+        response = client.send_invitation({email: session[:email]})
+        puts response.to_s
+        
         #if response...
           # confirm and return
+          flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+          path = "/members/#{session[:user_id]}"
+          redirect_to path
           return
       end
     end
@@ -333,6 +377,11 @@ class AuthenticationsController < ApplicationController
     pin = params[:oauth_verifier]
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
+    # send invitation
+    puts "about to send invitation: #{session[:email]}"
+    response = client.send_invitation({email: session[:email]})
+    puts response.to_s
+
     # store access tokens
     if current_user.linkedin_info
       linkedinfo = current_user.linkedin_info
@@ -346,22 +395,22 @@ class AuthenticationsController < ApplicationController
     linkedinfo.last_updated = Time.now
     linkedinfo.save
 
-    # send invitation
-    client.send_invitation(email: params[:email])
-
-    # confirm
-
-    # return
+    # confirm and return
+    flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+    path = "/members/#{session[:user_id]}"
+    redirect_to path
   end
 
 
   private
 
   def add_linkedin_to_profile(client, user)
-    # test
-    user.etkh_profile.background = client.profile(fields: %w(educations)).to_s
-    puts user.etkh_profile.background
-    user.etkh_profile.location = "new location"
-    puts user.etkh_profile.location
+    user.location = client.profile(fields: %w(location)).location.name
+    p user.location
+    p client.profile(fields: %w(picture-url))
+    #user.avatar
+
+    user.etkh_profile.save
+    user.save
   end
 end
