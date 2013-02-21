@@ -16,12 +16,19 @@
 
       .body
         .row-fluid
-          .span2
+          .span3
             .labels
               .background-label
                 %p Background
+              - if user.etkh_profile.profile_option_causes.any?
+                .causes-label
+                  %p Causes
 
-          .span10
+          .span9
             .info
               .background
-                = markdown (user.etkh_profile.background[0...200] + " ...")
+                = markdown (user.etkh_profile.get_background_snippet(150) + "... [read more](#{etkh_profile_path(user)})")
+              - if user.etkh_profile.profile_option_causes.any?
+                .causes
+                  - user.etkh_profile.profile_option_causes.limit(3).each do |cause|
+                    -#= cause.title + ", "

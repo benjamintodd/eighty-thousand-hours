@@ -73,6 +73,12 @@ class EtkhProfile < ActiveRecord::Base
     end
   end
 
+  def get_background_snippet(maxLength)
+    # returns a maximum of a whole paragraph or maxLength in characters
+    snippet_max = self.background[0..maxLength]
+    snippet_max
+  end
+
   private
 
   ### Profile completeness ###
