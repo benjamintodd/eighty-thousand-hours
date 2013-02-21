@@ -90,4 +90,4 @@
   %hr
   .center
     = f.button :submit, "Save profile", class: 'btn btn-success btn-large'
-    = link_to "Cancel", user_path(current_user), class: 'btn btn-large'
+    = link_to "Cancel", etkh_profile_path(current_user, current_user.etkh_profile), class: 'btn btn-large'
