@@ -9,7 +9,10 @@
             ###[Ask a question on our discussion forum](/discussion)
             Get career advice or just find out more about 80,000 Hours. People are happy to help you out. [Ask a question here](/discussion)
 
-          = link_to "Pull linkedin profile data", {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, class: "btn btn-large", id: "linkedin-btn"
+          = link_to "Pull linkedin profile data", {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, class: "btn btn-large", id: "linkedin-profile-btn"
+
+          - if current_user.linkedin_email.nil?
+            = link_to "Link your account with linkedin", {controller: 'authentications', action: 'linkedin_signup', linking: true}, remote: false, class: "btn btn-large", id: "linkedin-btn"
             
           %h2 Fill in your profile
           = render 'form'
