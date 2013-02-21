@@ -77,6 +77,9 @@
           = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-large", id: "contact-btn"
 
           %div{id: "contact-modal"}
+
+          - if user.linkedin_email != nil
+            = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-large", id: "linkedin-invite-btn"
         
         - if profile.background?
           %h2 Background and interests
