@@ -345,8 +345,8 @@ class AuthenticationsController < ApplicationController
         #if response...
           # confirm and return
           flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
-          path = "/members/#{session[:user_id]}"
-          redirect_to path
+          user = User.find_by_id(session[:user_id])
+          redirect_to etkh_profile_path(user, user.etkh_profile)
           return
       end
     end
@@ -397,20 +397,30 @@ class AuthenticationsController < ApplicationController
 
     # confirm and return
     flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
-    path = "/members/#{session[:user_id]}"
-    redirect_to path
+    user = User.find_by_id(session[:user_id])
+    redirect_to etkh_profile_path(user, user.etkh_profile)
   end
 
+  def linkedin_test
+    add_linkedin_to_profile(nil,current_user)
+    render nothing: true
+  end
 
   private
 
   def add_linkedin_to_profile(client, user)
     user.location = client.profile(fields: %w(location)).location.name
-    p user.location
-    p client.profile(fields: %w(picture-url))
-    #user.avatar
+    
+    #picture_path = client.profile(fields: %w(picture-url)).picture_url.to_s
+    # picture_path = "http://m3.licdn.com/mpr/mprx/0_B1FpRCKTxLS10vd3z95iR3ADxkUYj9J3vl1_Rh3j8b7mGtaTRzcrv8v1l2RTYA4DnrLGqbxdnEFe"
+    # p "picture path: #{picture_path}"
+    # #p user.avatar = picture_path
+    # user.avatar = URI.parse(picture_path)
+    # p "avatar: #{user.avatar}"
 
     user.etkh_profile.save
     user.save
+
+    #also save profile url
   end
 end
