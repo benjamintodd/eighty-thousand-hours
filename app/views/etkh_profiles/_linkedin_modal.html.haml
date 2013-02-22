@@ -34,8 +34,6 @@
 :javascript
   $(document).ready( function() {
     $("#btn-linkedin-linking-yes").click( function() {
-      $("#linking").hide();//fadeOut();
-
       var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-large btn-info btn-confirm form-close' id='btn-linkedin-profile-yes'>Yes</a>";
 
       var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn btn-large btn-success btn-reject form-close' id='btn-linkedin-profile-no'>No</a>";
@@ -43,10 +41,13 @@
       $("#btn-linkedin-profile-yes").replaceWith(new_yes_html);
       $("#btn-linkedin-profile-no").replaceWith(new_no_html);
 
-      $("#profile").fadeIn('slow');
+      $("#linking").fadeOut('slow', function() {
+        $("#profile").fadeIn('slow');
+      });
     });
     $("#btn-linkedin-linking-no").click( function() {
-      $("#linking").hide();
-      $("#profile").show();
+      $("#linking").fadeOut('slow', function() {
+        $("#profile").fadeIn('slow');
+      });
     });
   });
