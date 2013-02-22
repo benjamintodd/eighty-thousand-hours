@@ -140,7 +140,7 @@ class AuthenticationsController < ApplicationController
     session[:request_token] = request_token.token
     session[:request_secret] = request_token.secret
 
-    # if this is a 'link my account to linkedin' request for
+    # if this is a 'link account to linkedin' request for
     # an existing account, notify callback action that this is the case
     if params[:linking] == "true" && user_signed_in?
       session[:linking] = "true"
@@ -174,8 +174,8 @@ class AuthenticationsController < ApplicationController
         linkedinfo = LinkedinInfo.new
         linkedinfo.user_id = current_user.id
         linkedinfo.permissions = "r_basicprofile+r_emailaddress"
-        linkedinfo.access_token = session[:access_token]
-        linkedinfo.access_secret = session[:access_secret]
+        linkedinfo.access_token = atoken
+        linkedinfo.access_secret = asecret
         linkedinfo.last_updated = Time.now
         linkedinfo.save
 
@@ -293,6 +293,59 @@ class AuthenticationsController < ApplicationController
       current_user.linkedin_info.update_attributes( \
         permissions: "r_fullprofile", access_token: atoken, access_secret: asecret, last_updated: Time.now)
     end
+
+    # pull profile data
+    add_linkedin_to_profile(client, current_user)
+
+    # return to edit member profile
+    redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+  end
+
+
+  def linkedin_getprofile_and_link_account
+    # called when new user wants to pull profile data and link their account
+
+    # create linkedin client
+    config = LINKEDIN_CONFIG_FULL_EMAIL
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # set up callback action
+    request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/authentications/linkedin_getprofile_and_link_account_callback")
+
+    # reset session access tokens
+    session[:access_token] = nil
+    session[:access_secret] = nil
+
+    # get request tokens
+    session[:request_token] = request_token.token
+    session[:request_secret] = request_token.secret
+
+    # redirect to linkedin for permission
+    redirect_to client.request_token.authorize_url
+  end
+
+  def linkedin_getprofile_and_link_account_callback
+    # create linkedin client
+    config = LINKEDIN_CONFIG_FULL_EMAIL
+    client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
+
+    # authorise user using latest request tokens
+    pin = params[:oauth_verifier]
+    atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
+
+    # create linkedin info table
+    linkedinfo = LinkedinInfo.new
+    linkedinfo.user_id = current_user.id
+    linkedinfo.permissions = "r_fullprofile+r_emailaddress"
+    linkedinfo.access_token = atoken
+    linkedinfo.access_secret = asecret
+    linkedinfo.last_updated = Time.now
+    linkedinfo.save
+
+    # store email and LinkedIn profile url
+    current_user.linkedin_email = client.get_email[1..-2]
+    current_user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+    current_user.save
 
     # pull profile data
     add_linkedin_to_profile(client, current_user)
