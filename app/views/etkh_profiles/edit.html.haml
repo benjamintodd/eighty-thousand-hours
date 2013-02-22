@@ -13,9 +13,14 @@
 
           - if current_user.linkedin_email.nil?
             = link_to "Link your account with linkedin", {controller: 'authentications', action: 'linkedin_signup', linking: true}, remote: false, class: "btn btn-large", id: "linkedin-btn"
+
+          - if @new_profile == true
+            #linkedin-modal
+              = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
             
           %h2 Fill in your profile
           = render 'form'
+
       .span1
         &nbsp;
           
@@ -35,4 +40,16 @@
           %p [a link](http://80000hours.org/) == <a href="http://80000hours.org">a link</a>
 
 
-
+<script>
+$(document).ready( function() {
+// display modal after timedelay
+setTimeout( function() {
+$("#linkedin-modal").delay(0).reveal({
+animation: 'fade',
+animationspeed: 600,
+closeonbackgroundclick: true,
+dismissmodalclass: 'form-close'
+});
+}, 500);
+});
+</script>

@@ -1,0 +1,45 @@
+.linkedin-form
+  .header
+    %h2
+      LinkedIn
+  .form
+    -# if not linked with linkedin, offer link option
+    - if @linkedin_signup == false
+      #linking
+        %p
+          Link your account with LinkedIn to allow other members to view your LinkedIn profile?
+
+        .btn.btn-success#btn-linkedin-linking-yes
+          Yes
+        .btn#btn-linkedin-linking-no
+          No
+
+    -# always offer pull data option
+    #profile{ style: @linkedin_signup ? " " : "display: none" }
+      %p
+        Pull profile data from LinkedIn profile?
+
+      = link_to "Yes", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-success form-close", id: "btn-linkedin-profile-yes"
+      .btn.form-close#btn-linkedin-profile-no
+        No
+
+
+:javascript
+  $(document).ready( function() {
+    $("#btn-linkedin-linking-yes").click( function() {
+      $("#linking").hide();
+
+      var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-success form-close' id='btn-linkedin-profile-yes'>Yes</a>";
+
+      var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn form-close' id='btn-linkedin-profile-no'>No</a>";
+
+      $("#btn-linkedin-profile-yes").replaceWith(new_yes_html);
+      $("#btn-linkedin-profile-no").replaceWith(new_no_html);
+
+      $("#profile").show();
+    });
+    $("#btn-linkedin-linking-no").click( function() {
+      $("#linking").hide();
+      $("#profile").show();
+    });
+  });

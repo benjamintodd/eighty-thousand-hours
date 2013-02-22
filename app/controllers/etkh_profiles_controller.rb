@@ -66,6 +66,13 @@ class EtkhProfilesController < ApplicationController
 
   def edit
     @etkh_profile = current_user.etkh_profile
+
+    # indicate whether profile is being created for first time or not
+    @new_profile = session[:new_profile] == "true" ? true : false
+    session[:new_profile] = nil
+
+    # indicate whether user has signedup with linkedin or not
+    @linkedin_signup = current_user.linkedin_email ? true : false
   end
 
   def update

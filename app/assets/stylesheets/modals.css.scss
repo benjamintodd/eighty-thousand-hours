@@ -19,6 +19,15 @@
   -webkit-border-radius: 6px;
 }
 
+#linkedin-modal {
+  visibility: hidden;
+  position: absolute;
+  z-index: 101;
+  background: #FFFFFF;
+  border: 5px solid rgba(50,50,50,0.3);
+  -webkit-border-radius: 6px;
+}
+
 #error-modal {
   visibility: hidden;
   position: absolute;
