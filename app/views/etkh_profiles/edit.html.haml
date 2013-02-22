@@ -40,16 +40,18 @@
           %p [a link](http://80000hours.org/) == <a href="http://80000hours.org">a link</a>
 
 
-<script>
-$(document).ready( function() {
-// display modal after timedelay
-setTimeout( function() {
-$("#linkedin-modal").delay(0).reveal({
-animation: 'fade',
-animationspeed: 600,
-closeonbackgroundclick: true,
-dismissmodalclass: 'form-close'
-});
-}, 500);
-});
-</script>
+:javascript
+  $(document).ready( function() {
+    // display modal after flash notice is dismissed
+    $(".flash-modal").children(".modal-footer").children(".btn").click( function() {
+      // insert time delay
+      setTimeout( function() {
+        $("#linkedin-modal").reveal({
+          animation: 'fade',
+          animationspeed: 600,
+          closeonbackgroundclick: true,
+          dismissmodalclass: 'form-close'
+        });
+      }, 350);
+    });
+  });
