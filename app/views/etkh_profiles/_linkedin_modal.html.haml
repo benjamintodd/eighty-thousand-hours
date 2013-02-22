@@ -2,41 +2,48 @@
   .header
     %h2
       LinkedIn
+    %hr
   .form
     -# if not linked with linkedin, offer link option
     - if @linkedin_signup == false
       #linking
-        %p
-          Link your account with LinkedIn to allow other members to view your LinkedIn profile?
+        .body
+          %p
+            Link your account with LinkedIn to allow other members to view your LinkedIn profile?
+        %hr
 
-        .btn.btn-success#btn-linkedin-linking-yes
-          Yes
-        .btn#btn-linkedin-linking-no
-          No
+        .form-actions
+          .btn.btn-large.btn-info.btn-confirm#btn-linkedin-linking-yes
+            Yes
+          .btn.btn-large.btn-success.btn-reject#btn-linkedin-linking-no
+            No
 
     -# always offer pull data option
     #profile{ style: @linkedin_signup ? " " : "display: none" }
-      %p
-        Pull profile data from LinkedIn profile?
+      .body
+        %p
+          Pull profile data from your LinkedIn profile?
+      %hr
 
-      = link_to "Yes", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-success form-close", id: "btn-linkedin-profile-yes"
-      .btn.form-close#btn-linkedin-profile-no
-        No
+      .form-actions
+        = link_to "Yes", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-large btn-success btn-confirm form-close", id: "btn-linkedin-profile-yes"
+        .btn.btn-large.btn-reject.form-close#btn-linkedin-profile-no
+          No
 
 
 :javascript
   $(document).ready( function() {
     $("#btn-linkedin-linking-yes").click( function() {
-      $("#linking").hide();
+      $("#linking").hide();//fadeOut();
 
-      var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-success form-close' id='btn-linkedin-profile-yes'>Yes</a>";
+      var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-large btn-info btn-confirm form-close' id='btn-linkedin-profile-yes'>Yes</a>";
 
-      var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn form-close' id='btn-linkedin-profile-no'>No</a>";
+      var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn btn-large btn-success btn-reject form-close' id='btn-linkedin-profile-no'>No</a>";
 
       $("#btn-linkedin-profile-yes").replaceWith(new_yes_html);
       $("#btn-linkedin-profile-no").replaceWith(new_no_html);
 
-      $("#profile").show();
+      $("#profile").fadeIn('slow');
     });
     $("#btn-linkedin-linking-no").click( function() {
       $("#linking").hide();

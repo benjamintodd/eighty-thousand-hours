@@ -103,3 +103,42 @@
 
   form { margin-bottom: 0px; }
 }
+
+.linkedin-form {
+  position: relative;
+  //left: 0px;
+  top: -20px;
+  height: 100%;
+  width: 400px;
+
+  .header {
+    background-color: rgb(235,235,235);
+    //padding-bottom: 10px;
+    h2 {
+      position: relative;
+      left: 20px;
+      padding-top: 25px;
+    }
+  }
+
+  .form {
+    margin: 25px;
+
+    .body {
+      width: 350px;
+      height: 48px;
+    }
+
+    .form-actions {
+      margin: 0px;
+      background-color: rgb(235,235,235);
+
+      .btn-confirm {
+       margin-left: 25px;
+      }
+      .btn-reject {
+       margin-left: 35px
+      }
+    }
+  }
+}
