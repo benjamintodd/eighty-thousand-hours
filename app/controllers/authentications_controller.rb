@@ -393,13 +393,17 @@ class AuthenticationsController < ApplicationController
         # send invitation
         puts "sending invitation from existing access tokens: #{session[:email]}"
         response = client.send_invitation({email: session[:email]})
-        puts response.to_s
+        puts response.body
         
         #if response...
           # confirm and return
           flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
           user = User.find_by_id(session[:user_id])
-          redirect_to etkh_profile_path(user, user.etkh_profile)
+          if user
+            redirect_to etkh_profile_path(user, user.etkh_profile)
+          else
+            redirect_to '/'
+          end
           return
       end
     end
@@ -433,7 +437,7 @@ class AuthenticationsController < ApplicationController
     # send invitation
     puts "about to send invitation: #{session[:email]}"
     response = client.send_invitation({email: session[:email]})
-    puts response.to_s
+    puts response.body
 
     # store access tokens
     if current_user.linkedin_info
@@ -451,13 +455,13 @@ class AuthenticationsController < ApplicationController
     # confirm and return
     flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
     user = User.find_by_id(session[:user_id])
-    redirect_to etkh_profile_path(user, user.etkh_profile)
+    if user
+      redirect_to etkh_profile_path(user, user.etkh_profile)
+    else
+      redirect_to '/'
+    end
   end
 
-  def linkedin_test
-    add_linkedin_to_profile(nil,current_user)
-    render nothing: true
-  end
 
   private
 
@@ -471,9 +475,43 @@ class AuthenticationsController < ApplicationController
     # user.avatar = URI.parse(picture_path)
     # p "avatar: #{user.avatar}"
 
+    career_sector = client.profile(fields: %w(industry)).industry
+    p career_sector
+
+    positions = client.profile(fields: %w(positions))
+
+
+    positions = positions.positions.all
+    positions.each do |position|
+      #create new position table
+      p position
+
+      title = position.title
+      organisation = position.company.name
+      start_date = DateTime.new(position.start_date.year, position.start_date.month)
+      
+      if position.is_current != true
+        end_date = DateTime.new(position.end_date.year, position.end_date.month)
+      else
+        current_organisation = organisation
+      end
+      # save table
+    end
+
+    educations = client.profile(fields: %w(educations))
+    educations.educations.all do |education|
+      p education
+      qualification = education.degree
+      name = education.school_name
+      course = education.field_of_study
+      start_date = DateTime.new(education.start_date.year)
+      end_date = DateTime.new(education.end_date.year)
+      # save table
+    end
+
+    user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+
     user.etkh_profile.save
     user.save
-
-    #also save profile url
   end
 end
