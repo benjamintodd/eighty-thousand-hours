@@ -38,6 +38,7 @@ class UsersSelection
   PROBABILITY_MIN_PROFILE = 0.50
 
   # algorithm for generating users
+  # returns an array of users
   def gen_users(list_length)
     new_selection = []
 

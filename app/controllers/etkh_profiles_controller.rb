@@ -108,6 +108,15 @@ class EtkhProfilesController < ApplicationController
 
     # get list of users to be displayed
     list_length = 10
-    @users_selection = UsersSelection.new(list_length)
+    if @users_selection
+      @next_selection = @users_selection.generate_more_users(list_length)
+    else
+      @users_selection = UsersSelection.new(list_length)
+      @next_selection = @users_selection.users
+    end
+
+    if request.xhr?
+      render partial: 'profiles_selection'
+    end
   end
 end
