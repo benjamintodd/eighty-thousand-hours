@@ -92,6 +92,11 @@ class EtkhProfile < ActiveRecord::Base
     snippet
   end
 
+  def self.generate_users(list_length, current_users = nil)
+    return self.gen_users(list_length, current_users)
+  end
+
+
   private
 
   ### Profile completeness ###
@@ -145,5 +150,33 @@ class EtkhProfile < ActiveRecord::Base
     # linkedin profile ?
 
     return score
+  end
+
+
+  ### Generate list of users
+
+  # define minimum requirements
+  MIN_PROFILE_COMPLETENESS = 50
+  MIN_BACKGROUND_LENGTH = 500
+  PROBABILITY_MIN_PROFILE = 0.50
+
+  # threshold is defined by the probability that a profile with min profile completeness
+  # will be selected
+  THRESHOLD = (1 - PROBABILITY_MIN_PROFILE) * MIN_PROFILE_COMPLETENESS * 10
+  RANDOM_GENERATOR = Random.new
+
+  # algorithm for generating users
+  def self.gen_users(list_length, current_users = nil)
+    subset = current_users.nil? ? User.all : (User.all - current_users)
+    
+    subset.select do |user|
+      profile = user.etkh_profile and
+      !profile.background.nil? and
+      profile.background.length >= MIN_BACKGROUND_LENGTH and
+      (completeness = profile.get_profile_completeness) >= MIN_PROFILE_COMPLETENESS and
+      RANDOM_GENERATOR.rand(1..10) * completeness >= THRESHOLD
+    end
+    .select(&:avatar?)
+    .sample(list_length)
   end
 end

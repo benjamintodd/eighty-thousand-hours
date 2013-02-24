@@ -37,9 +37,14 @@ class UsersSelection
   MIN_BACKGROUND_LENGTH = 500
   PROBABILITY_MIN_PROFILE = 0.50
 
+  # threshold is defined by the probability that a profile with min profile completeness
+  # will be selected
+  THRESHOLD = (1 - PROBABILITY_MIN_PROFILE) * MIN_PROFILE_COMPLETENESS * 10
+  RANDOM_GENERATOR = Random.new
+
   # algorithm for generating users
   # returns an array of users
-  def gen_users(list_length)
+  def gen_users_OLD(list_length)
     new_selection = []
 
     # get all users
@@ -61,17 +66,10 @@ class UsersSelection
             && user.etkh_profile.background.length >= MIN_BACKGROUND_LENGTH
 
             # insert randomness and bias towards profiles with high completeness
-            r = Random.new
-            rand = r.rand(1..10)  # random integer between 1 and 10
+            rand = RANDOM_GENERATOR.rand(1..10)  # random integer between 1 and 10
             product = rand * profile_completeness
-            
-            # threshold is defined by the probability that a profile with min profile completeness
-            # will be selected
-            
-            max_product = MIN_PROFILE_COMPLETENESS * 10
-            threshold = (1 - PROBABILITY_MIN_PROFILE) * max_product
 
-            if product >= threshold
+            if product >= THRESHOLD
                 # add to total list
                 @users << user
 
@@ -87,6 +85,39 @@ class UsersSelection
     end
     
     # return this selection
+    return new_selection
+  end
+
+  def gen_users(list_length)
+    old_selection = @users.dup
+    p @users.map{|user| user.name}
+    debugger
+    new_selection = []
+
+    (User.all - @users)
+    .select do |user|
+      profile = user.etkh_profile and
+      !profile.background.nil? and
+      profile.background.length >= MIN_BACKGROUND_LENGTH and
+      (completeness = profile.get_profile_completeness) >= MIN_PROFILE_COMPLETENESS and
+      RANDOM_GENERATOR.rand(1..10) * completeness >= THRESHOLD
+    end
+    .select(&:avatar?)
+    .sample(list_length)
+    .tap do |a|
+      @users.concat(a)
+      new_selection << a
+    end
+
+    p old_selection.map{|user| user.name}
+    p @users.map{|user| user.name}
+    # p new_selection.map{|user|
+    #   p user.name if user.name
+    # }
+    # new_selection.each do |user|
+    #   p user.name
+    # end
+    debugger
     return new_selection
   end
 end

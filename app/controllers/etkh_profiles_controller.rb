@@ -108,11 +108,23 @@ class EtkhProfilesController < ApplicationController
 
     # get list of users to be displayed
     list_length = 10
-    if @users_selection
-      @next_selection = @users_selection.generate_more_users(list_length)
+    # if @users_selection
+    #   @next_selection = @users_selection.generate_more_users(list_length)
+    # else
+    #   @users_selection = UsersSelection.new(list_length)
+    #   @next_selection = @users_selection.users
+    #   p @users_selection.users.map{|user| user.name}
+    #   debugger
+    # end
+
+    p @selected_users
+    debugger
+    if @selected_users
+      @next_selection = EtkhProfile.generate_users(list_length, @selected_users)
+      @selected_users << @next_selection
     else
-      @users_selection = UsersSelection.new(list_length)
-      @next_selection = @users_selection.users
+      @selected_users = EtkhProfile.generate_users(list_length)
+      @next_selection = @selected_users
     end
 
     if request.xhr?
