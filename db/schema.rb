@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219100832) do
+ActiveRecord::Schema.define(:version => 20130225115012) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -119,6 +119,15 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
   add_index "donations", ["cause_id"], :name => "index_donations_on_charity_id"
   add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
+  create_table "educations", :id => false, :force => true do |t|
+    t.integer  "etkh_profile_id"
+    t.string   "university"
+    t.string   "course"
+    t.string   "qualification"
+    t.datetime "start_date"
+    t.datetime "end_date"
+  end
+
   create_table "endorsements", :force => true do |t|
     t.string   "author"
     t.string   "position"
@@ -143,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
     t.text     "activities_comment"
     t.integer  "donation_percentage",        :default => 30
     t.boolean  "donation_percentage_optout", :default => true
+    t.string   "career_sector"
   end
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
@@ -181,6 +191,14 @@ ActiveRecord::Schema.define(:version => 20130219100832) do
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
+
+  create_table "positions", :id => false, :force => true do |t|
+    t.integer  "etkh_profile_id"
+    t.string   "position"
+    t.string   "organisation"
+    t.datetime "start_date"
+    t.datetime "end_date"
+  end
 
   create_table "profile_option_activities", :force => true do |t|
     t.string "title"
