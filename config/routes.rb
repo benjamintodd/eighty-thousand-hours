@@ -71,6 +71,8 @@ EightyThousandHours::Application.routes.draw do
 
   resources :etkh_profiles, :path => "members", :only => [:new,:create,:show,:index] do
     collection do
+      get 'new_position'
+      get 'create_position'
       post 'search'
     end
   end
