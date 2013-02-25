@@ -5,14 +5,24 @@
     = f.input :position, label: "Position title"
     = f.input :organisation, label: "Organisation"
 
+    - months = ["January","February","March","April","May","June","July","August","September","October","Novemeber","December"]
+
+    = f.input :start_date_month, collection: months, prompt: "Month", label: "Start date"
+    = f.input :start_date_year, placeholder: "Year"
+
+    = f.input :end_date_month, collection: months, prompt: "Month", label: "End date"
+    = f.input :end_date_year, placeholder: "Year"
+
     %button{id: "btn-add-position-submit"} Add position
     %button{id: "btn-add-position-cancel"} Cancel
+
 
 :javascript
   $("#btn-add-position-submit").click( function() {
     var valuesToSubmit = $("#new_position").serialize();
     $.ajax({
-      url: '/positions/create_position',
+      type: 'POST',
+      url: '/positions',
       data: valuesToSubmit
     });
     return false;

@@ -6,5 +6,16 @@
     %p
       = position.organisation
   .dates
+    - str = ""
+    - if position.start_date_month && position.start_date_year
+      - str = position.start_date_month + " " + position.start_date_year.to_s
+    - elsif position.start_date_year
+      - str = position.start_date_year.to_s
+    - str += " - "
+    - if position.end_date_month && position.end_date_year
+      - str += position.end_date_month + " " + position.end_date_year.to_s
+    - elsif position.end_date_year
+      - str += position.end_date_year.to_s
+
     %p
-      -#= position.start_date + " - " + position.end_date
+      = str

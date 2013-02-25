@@ -8,6 +8,18 @@ class PositionsController < ApplicationController
     @new_position = Position.new(params[:position])
     @new_position.etkh_profile_id = params[:position][:etkh_profile_id]
     @new_position.save
-    rener 'etkh_profiles/positions/create'
+    render 'etkh_profiles/positions/create'
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
   end
 end
