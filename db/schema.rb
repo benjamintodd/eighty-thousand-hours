@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
   add_index "donations", ["cause_id"], :name => "index_donations_on_charity_id"
   add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
-  create_table "educations", :id => false, :force => true do |t|
+  create_table "educations", :force => true do |t|
     t.integer "etkh_profile_id"
     t.string  "university"
     t.string  "course"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
 
-  create_table "positions", :id => false, :force => true do |t|
+  create_table "positions", :force => true do |t|
     t.integer "etkh_profile_id"
     t.string  "position"
     t.string  "organisation"
