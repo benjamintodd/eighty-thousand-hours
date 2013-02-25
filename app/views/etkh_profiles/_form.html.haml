@@ -82,10 +82,10 @@
     #positions
       - if current_user.etkh_profile.positions.any?
         - current_user.etkh_profile.positions.each do |position|
-          = render partial: 'position', locals: { position: position }
+          = render partial: 'etkh_profiles/positions/position', locals: { position: position }
     #new-position
       -# blank div for new position form
-    = link_to "Add a position", "/members/new_position", remote: true, id: "add-position"
+    = link_to "Add a position", "/positions/new", remote: true, id: "add-position"
 
   %h2 External websites
 

@@ -106,17 +106,4 @@ class EtkhProfilesController < ApplicationController
       redirect_to :action => :index
     end
   end
-
-  def new_position
-    # initiates new position entry under experience
-    @position = Position.new
-    render 'new_position'
-  end
-
-  def create_position
-    # called after new_position action. Submits newly created position
-    @new_position = Position.new(params[:position])
-    @new_position.etkh_profile_id = params[:position][:etkh_profile_id]
-    @new_position.save
-  end
 end

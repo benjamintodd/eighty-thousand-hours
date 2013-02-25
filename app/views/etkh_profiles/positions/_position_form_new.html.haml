@@ -12,7 +12,7 @@
   $("#btn-add-position-submit").click( function() {
     var valuesToSubmit = $("#new_position").serialize();
     $.ajax({
-      url: '/members/create_position',
+      url: '/positions/create_position',
       data: valuesToSubmit
     });
     return false;
