@@ -6,8 +6,10 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
       t.integer :etkh_profile_id 
       t.string :position
       t.string :organisation
-      t.datetime :start_date
-      t.datetime :end_date
+      t.string :start_date_month
+      t.integer :start_date_year
+      t.string :end_date_month
+      t.integer :end_date_year
   	end
 
     create_table :educations, id: false do |t|
@@ -15,8 +17,10 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
       t.string :university
       t.string :course
       t.string :qualification
-      t.datetime :start_date
-      t.datetime :end_date
+      t.string :start_date_month
+      t.integer :start_date_year
+      t.string :end_date_month
+      t.integer :end_date_year
     end
   end
 end

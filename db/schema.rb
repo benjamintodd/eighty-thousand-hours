@@ -120,12 +120,14 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
   add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "educations", :id => false, :force => true do |t|
-    t.integer  "etkh_profile_id"
-    t.string   "university"
-    t.string   "course"
-    t.string   "qualification"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer "etkh_profile_id"
+    t.string  "university"
+    t.string  "course"
+    t.string  "qualification"
+    t.string  "start_date_month"
+    t.integer "start_date_year"
+    t.string  "end_date_month"
+    t.integer "end_date_year"
   end
 
   create_table "endorsements", :force => true do |t|
@@ -193,11 +195,13 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
 
   create_table "positions", :id => false, :force => true do |t|
-    t.integer  "etkh_profile_id"
-    t.string   "position"
-    t.string   "organisation"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer "etkh_profile_id"
+    t.string  "position"
+    t.string  "organisation"
+    t.string  "start_date_month"
+    t.integer "start_date_year"
+    t.string  "end_date_month"
+    t.integer "end_date_year"
   end
 
   create_table "profile_option_activities", :force => true do |t|
