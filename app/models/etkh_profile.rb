@@ -23,9 +23,7 @@ class EtkhProfile < ActiveRecord::Base
                   :activities_comment,
                   :profile_option_activity_ids,
                   :donation_percentage,
-                  :donation_percentage_optout,
-                  :positions,
-                  :educations
+                  :donation_percentage_optout
 
   # now we can access @etkh_profile.name etc.
   delegate :name, :name=, 
@@ -36,6 +34,9 @@ class EtkhProfile < ActiveRecord::Base
 
   has_and_belongs_to_many :profile_option_causes
   has_and_belongs_to_many :profile_option_activities
+
+  has_many :positions, :dependent => :destroy
+  has_many :educations, :dependent => :destroy
 
 
   # public method for profile completeness score
