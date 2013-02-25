@@ -20,6 +20,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv }
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @title = @user.name

@@ -64,6 +64,7 @@ EightyThousandHours::Application.routes.draw do
     end
   end
 
+  match 'users' => 'users#index'
   resources :users, :path => 'accounts', :only => [:show,:edit,:update,:destroy] do
     resources :etkh_profiles 
     member do
