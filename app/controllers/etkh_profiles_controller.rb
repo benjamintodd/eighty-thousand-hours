@@ -106,29 +106,38 @@ class EtkhProfilesController < ApplicationController
     @menu_current = "Our members"
     @title = "Members"
 
-    # get list of users to be displayed
+    ## get list of users to be displayed
     list_length = 10
-    # if @users_selection
-    #   @next_selection = @users_selection.generate_more_users(list_length)
-    # else
-    #   @users_selection = UsersSelection.new(list_length)
-    #   @next_selection = @users_selection.users
-    #   p @users_selection.users.map{|user| user.name}
-    #   debugger
-    # end
 
-    p @selected_users
-    debugger
-    if @selected_users
-      @next_selection = EtkhProfile.generate_users(list_length, @selected_users)
-      @selected_users << @next_selection
-    else
-      @selected_users = EtkhProfile.generate_users(list_length)
-      @next_selection = @selected_users
+    # get already selected users from session data
+    # note this means that if the user leaves the page and returns to it
+    # the previously selected users will still be selected
+    if session[:selected_users]
+      @selected_users = []
+      session[:selected_users].each do |user_id|
+        @selected_users << User.find_by_id(user_id)
+      end
     end
 
+    # generate users using algorithm
+    if @selected_users
+      # remove currently selected users from searching set
+      @next_selection = EtkhProfile.generate_users(list_length, @selected_users)
+      @selected_users.concat(@next_selection)
+    else
+      @next_selection = EtkhProfile.generate_users(list_length)
+      @selected_users = @next_selection
+    end
+
+    # store newly selected users in session variable
+    session[:selected_users] = [] if !session[:selected_users]
+    @next_selection.each do |user|
+      session[:selected_users] << user.id
+    end
+
+    # if an AJAX request render newly selected users only
     if request.xhr?
-      render partial: 'profiles_selection'
+      render partial: 'profiles_selection', locals: { users: @next_selection }
     end
   end
 end

@@ -6,7 +6,7 @@
   #search-form
 
   #members-list
-    = render partial: 'profiles_selection'
+    = render partial: 'profiles_selection', locals: { users: @selected_users }
 
 
 :javascript
