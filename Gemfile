@@ -97,7 +97,7 @@ gem 'jquery-rails'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'ruby_gntp'
