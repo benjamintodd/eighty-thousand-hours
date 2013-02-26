@@ -1,4 +1,4 @@
-.position
+.position{ id: "position-#{position.id}"}
   .title
     %h3
       = position.position
@@ -19,3 +19,5 @@
 
     %p
       = str
+
+    = link_to "Edit", "/positions/" + position.id.to_s + "/edit", remote: true, class: "edit-position"
