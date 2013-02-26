@@ -21,3 +21,4 @@
       = str
 
     = link_to "Edit", "/positions/" + position.id.to_s + "/edit", remote: true, class: "edit-position"
+    = link_to "Delete", "/positions/" + position.id.to_s, method: "DELETE", remote: true, class: "delete-position"

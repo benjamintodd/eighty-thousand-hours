@@ -27,6 +27,9 @@ class PositionsController < ApplicationController
   end
 
   def destroy
-
+    @position = Position.find_by_id(params[:id])
+    @position.destroy
+    @ordered_positions = current_user.etkh_profile.positions.order("end_date_year DESC")
+    render 'etkh_profiles/positions/redraw_positions'
   end
 end
