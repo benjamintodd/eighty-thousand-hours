@@ -1,6 +1,0 @@
-// remove add position form
-$("#position-form").html("");
-
-// add new position to list of positions
-var new_html = "<%= j(render partial: 'etkh_profiles/positions/position', locals: { position: @new_position }) %>";
-$("#positions").append(new_html);

@@ -1,4 +1,7 @@
 - edit = @position.id.nil? ? false : true
+%p= @position.position
+%p= edit
+
 = simple_form_for(@position, url: "") do |f|
   = f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id }
 
@@ -17,11 +20,11 @@
   %button{id: "btn-add-position-cancel"} Cancel
 
 
-:javascript  
+:javascript
   $("#btn-add-position-submit").click( function() {
-    var valuesToSubmit = $("#new_position").serialize();
     if (#{edit} == false)
     {
+      var valuesToSubmit = $("#new_position").serialize();
       $.ajax({
         type: 'POST',
         url: '/positions',
@@ -31,6 +34,7 @@
     else
     {
       var id = #{@position.id};
+      var valuesToSubmit = $("#edit_position_" + id).serialize();
       $.ajax({
         type: 'PUT',
         url: '/positions/' + id,
@@ -41,6 +45,6 @@
   });
 
   $("#btn-add-position-cancel").click( function() {
-    $("#new-position").html("");
+    $("#position-form").html("");
     return false;
   });
