@@ -68,11 +68,9 @@ EightyThousandHours::Application.routes.draw do
 
   resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
-
-  resources :positions, :only => [:new,:create,:edit,:update,:destroy]
   
   resources :etkh_profiles, :path => "members", :only => [:new,:create,:show,:index] do
-    resources :positions
+    resources :positions, :only => [:new,:create,:edit,:update,:destroy]
     collection do
       post 'search'
     end

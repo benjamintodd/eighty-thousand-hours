@@ -21,7 +21,7 @@ class PositionsController < ApplicationController
   def update
     @position = Position.find_by_id(params[:id])
     @position.update_attributes(params[:position])
-    sleep(1)
+    
     @ordered_positions = current_user.etkh_profile.positions.order("end_date_year DESC")
     render 'etkh_profiles/positions/redraw_positions'
   end

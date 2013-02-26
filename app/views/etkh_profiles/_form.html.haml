@@ -84,7 +84,7 @@
         = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }
     #position-form
       -# blank div for new position form
-    = link_to "Add a position", "/positions/new", remote: true, id: "add-position"
+    = link_to "Add a position", "/members/#{current_user.etkh_profile.id}/positions/new", remote: true, id: "add-position"
 
   %h2 External websites
 
