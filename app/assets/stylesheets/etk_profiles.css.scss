@@ -68,6 +68,7 @@
 
 }
 
+
 .contact-user-form {
   width: 550px;
   .header {
@@ -103,6 +104,55 @@
 
   form { margin-bottom: 0px; }
 }
+
+
+//********** Edit profile ***********
+
+
+#experience {
+  #position-form {
+    .form {
+      width: 385px;
+      height: 270px;
+
+      #position_start_date_month, #position_end_date_month { width: 120px; }
+      #position_start_date_year, #position_end_date_year {
+        visibility: visible;
+        float: right;
+        width: 70px;
+      }
+
+      // Move start date year up to be inline with start date month
+      .control-group:nth-child(6) { 
+        visibility: hidden;
+        position: relative;
+        top: -50px;
+      }
+
+      // Also move up controls below start date to fill blank space
+      .control-group:nth-child(7) { 
+        position: relative;
+        top: -50px;
+      }
+
+      // Move end date year to be inline with end date month
+      .control-group:nth-child(8) { 
+        visibility: hidden;
+        position: relative;
+        top: -100px;
+      }
+
+      .buttons {
+        position: relative;
+        top: -100px;
+        margin-top: 25px;
+        margin-left: 160px;
+        #btn-add-position-cancel { margin-left: 25px; }
+      }
+    }
+  }
+}
+
 
 .linkedin-form {
   width: 500px;
