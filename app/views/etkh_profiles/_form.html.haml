@@ -80,10 +80,7 @@
 
     #experience
       %h2 Experience
-      #positions
-        - if current_user.etkh_profile.positions.any?
-          = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }
-        = link_to "Add a position", "/members/#{current_user.etkh_profile.id}/positions/new", remote: true, id: "add-position"
+      = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }
       #position-form
         -# blank div for new position form
     %hr

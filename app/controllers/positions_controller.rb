@@ -8,8 +8,6 @@ class PositionsController < ApplicationController
     @new_position = Position.new(params[:position])
     @new_position.etkh_profile_id = params[:position][:etkh_profile_id]
     @new_position.save
-
-    @ordered_positions = current_user.etkh_profile.positions.order("end_date_year DESC")
     render 'etkh_profiles/positions/redraw_positions'
   end
 
@@ -21,15 +19,12 @@ class PositionsController < ApplicationController
   def update
     @position = Position.find_by_id(params[:id])
     @position.update_attributes(params[:position])
-    
-    @ordered_positions = current_user.etkh_profile.positions.order("end_date_year DESC")
     render 'etkh_profiles/positions/redraw_positions'
   end
 
   def destroy
     @position = Position.find_by_id(params[:id])
     @position.destroy
-    @ordered_positions = current_user.etkh_profile.positions.order("end_date_year DESC")
     render 'etkh_profiles/positions/redraw_positions'
   end
 end
