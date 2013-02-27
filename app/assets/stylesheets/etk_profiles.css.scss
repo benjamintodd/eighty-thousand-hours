@@ -116,7 +116,7 @@
     .position {
       margin-bottom: 20px;
       p { margin-bottom: 0px; }
-      
+
       .title { display: inline-block; }
       .actions {
         display: inline-block;
@@ -156,6 +156,11 @@
       // Move end date year to be inline with end date month
       .control-group:nth-child(8) { 
         visibility: hidden;
+        position: relative;
+        top: -100px;
+      }
+
+      .control-group:nth-child(9) { 
         position: relative;
         top: -100px;
       }

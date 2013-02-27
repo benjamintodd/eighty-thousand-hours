@@ -16,7 +16,9 @@
     - elsif position.start_date_year
       - str = position.start_date_year.to_s
     - str += " - "
-    - if position.end_date_month && position.end_date_year
+    - if position.current_position == true
+      - str += "Present"
+    - elsif position.end_date_month && position.end_date_year
       - str += position.end_date_month + " " + position.end_date_year.to_s
     - elsif position.end_date_year
       - str += position.end_date_year.to_s
