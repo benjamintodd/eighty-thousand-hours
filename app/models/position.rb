@@ -8,45 +8,23 @@ class Position < ActiveRecord::Base
   				  :end_date_month,
   				  :end_date_year
 
-  def self.populate
-    pos = Position.new(end_date_month: "July", end_date_year: 2011)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new(end_date_month: "February", end_date_year: 2012)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new(end_date_month: "January", end_date_year: 2012)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new(end_date_month: "October", end_date_year: 2012)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new(end_date_month: "February", end_date_year: 2011)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new(end_date_year: 2012)
-    pos.etkh_profile_id = 355
-    pos.save
-    pos = Position.new()
-    pos.etkh_profile_id = 355
-    pos.save
-  end
-
   def self.custom_order(positions)
-    # orders positions by year and then by month, with 
+    # orders positions by year and then by month, with nil entries placed at top of list
 
     # create array of positions ordered by year
     ordered = []
     positions.order("end_date_year DESC").each do |pos|
       ordered << pos
     end
+
+    ## sorting algorithm loops through all elements in array, collects elements with
+    # the same end year in a separate array, removes these elements from the original
+    # array, orders them within the separate array, and reinserts them back in the original array
     
     same_year_array = []
 
     # loop through all elements
     for i in 0..ordered.length-1
-      p ordered[i]
-      #debugger
       next if !ordered[i].end_date_year
 
       # assign starting point if not already done
@@ -68,7 +46,7 @@ class Position < ActiveRecord::Base
           ordered.insert(year_index, *same_year_array)
         end
 
-        # start of new year so store element index and add to array of same year elements
+        # start of new year so reset
         current_year = ordered[i].end_date_year
         year_index = i
         same_year_array = []
@@ -93,6 +71,7 @@ class Position < ActiveRecord::Base
     return ordered
   end
 
+  # gives a score for the month. Used in comparison of months in sorting algorithm
   def order_month
     return 0 if !self.end_date_month || self.end_date_month == ""
     return 1 if self.end_date_month == "January"
