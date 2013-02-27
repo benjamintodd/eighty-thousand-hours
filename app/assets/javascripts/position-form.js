@@ -29,4 +29,18 @@ $(document).ready( function() {
     $("#position-form").html("");
     return false;
   });
+
+  $("#position_current_position").click( function() {
+    // disable end date month and year
+    var $month = $("#position_end_date_month");
+    $month.attr('disabled', !$month.attr('disabled'));
+    var $year = $("#position_end_date_year");
+    $year.attr('disabled', !$year.attr('disabled'));
+
+    // set month and year to nil options
+    $month.children("option").filter( function() {
+      return $(this).text() == "Month";
+    }).attr('selected', true);
+    $year.attr('value', null);
+  });
 });
