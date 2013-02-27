@@ -110,6 +110,24 @@
 
 
 #experience {
+  #positions {
+    margin-left: 7px;
+
+    .position {
+      margin-bottom: 20px;
+      p { margin-bottom: 0px; }
+      
+      .title { display: inline-block; }
+      .actions {
+        display: inline-block;
+        margin-left: 20px;
+      }
+      .dates {
+        font-size: 0.9em;
+      }
+    }
+  }
+
   #position-form {
     .form {
       width: 385px;
@@ -148,6 +166,7 @@
         margin-top: 25px;
         margin-left: 160px;
         #btn-add-position-cancel { margin-left: 25px; }
+        #btn-edit-position-cancel { margin-left: 52px; }
       }
     }
   }
