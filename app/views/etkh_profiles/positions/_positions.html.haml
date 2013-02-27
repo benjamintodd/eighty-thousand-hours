@@ -1,2 +1,2 @@
-- positions.order("end_date_year DESC").each do |position|
+- Position.custom_order(positions).each do |position|
   = render partial: 'etkh_profiles/positions/position', locals: { position: position }
