@@ -7,5 +7,6 @@ class Education < ActiveRecord::Base
   				  :start_date_month,
   				  :start_date_year,
   				  :end_date_month,
-  				  :end_date_year
+  				  :end_date_year,
+  				  :current_education
 end

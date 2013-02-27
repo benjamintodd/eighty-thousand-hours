@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
     t.integer "start_date_year"
     t.string  "end_date_month"
     t.integer "end_date_year"
+    t.boolean "current_education"
   end
 
   create_table "endorsements", :force => true do |t|
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
     t.integer "start_date_year"
     t.string  "end_date_month"
     t.integer "end_date_year"
+    t.boolean "current_position"
   end
 
   create_table "profile_option_activities", :force => true do |t|

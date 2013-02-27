@@ -6,10 +6,13 @@ class Position < ActiveRecord::Base
   				  :start_date_month,
   				  :start_date_year,
   				  :end_date_month,
-  				  :end_date_year
+  				  :end_date_year,
+            :current_position
 
   def self.custom_order(positions)
     # orders positions by year and then by month, with nil entries placed at top of list
+
+    return positions if positions.length <= 1
 
     # create array of positions ordered by year
     ordered = []

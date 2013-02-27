@@ -10,6 +10,7 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
       t.integer :start_date_year
       t.string :end_date_month
       t.integer :end_date_year
+      t.boolean :current_position
   	end
 
     create_table :educations do |t|
@@ -21,6 +22,7 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
       t.integer :start_date_year
       t.string :end_date_month
       t.integer :end_date_year
+      t.boolean :current_education
     end
   end
 end
