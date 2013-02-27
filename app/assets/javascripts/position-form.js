@@ -25,7 +25,7 @@ $(document).ready( function() {
     return false;
   });
 
-  $("#btn-add-position-cancel").click( function() {
+  $(".btn.cancel").click( function() {
     $("#position-form").html("");
     return false;
   });
