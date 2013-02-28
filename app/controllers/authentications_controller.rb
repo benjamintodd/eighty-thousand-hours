@@ -393,18 +393,23 @@ class AuthenticationsController < ApplicationController
         # send invitation
         puts "sending invitation from existing access tokens: #{session[:email]}"
         response = client.send_invitation({email: session[:email]})
-        puts response.code
         
-        #if response...
-          # confirm and return
+        # confirm
+        if response.code == "201" || response.code == "200"
           flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
-          user = User.find_by_id(session[:user_id])
-          if user
-            redirect_to etkh_profile_path(user, user.etkh_profile)
-          else
-            redirect_to '/'
-          end
-          return
+        else
+          flash[:"alert-error"] = "Sorry! There seems to have been a problem sending an invitation to connect."
+        end
+        
+        # return
+        flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+        user = User.find_by_id(session[:user_id])
+        if user
+          redirect_to etkh_profile_path(user, user.etkh_profile)
+        else
+          redirect_to '/'
+        end
+        return
       end
     end
 
@@ -437,7 +442,6 @@ class AuthenticationsController < ApplicationController
     # send invitation
     puts "about to send invitation: #{session[:email]}"
     response = client.send_invitation({email: session[:email]})
-    puts response.code
 
     # store access tokens
     if current_user.linkedin_info
@@ -452,8 +456,14 @@ class AuthenticationsController < ApplicationController
     linkedinfo.last_updated = Time.now
     linkedinfo.save
 
-    # confirm and return
-    flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+    # confirm
+    if response.code == "201" || response.code == "200"
+      flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+    else
+      flash[:"alert-error"] = "Sorry! There seems to have been a problem sending an invitation to connect."
+    end
+
+    # return
     user = User.find_by_id(session[:user_id])
     if user
       redirect_to etkh_profile_path(user, user.etkh_profile)
