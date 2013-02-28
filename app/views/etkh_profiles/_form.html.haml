@@ -1,14 +1,16 @@
 = javascript_include_tag "application-form.js"
+
 = simple_form_for(current_user, url: user_etkh_profile_url(current_user, current_user.etkh_profile),
                                 html: { class: 'form-horizontal' },
                                 defaults: { input_html: { class: 'span4' } }  ) do |f|
 
-  = f.label "Add a photo to your profile"
-  - if current_user.avatar?
-    = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url
-  - else
-    = image_tag("profiles/avatar_default_96x96.png", :class=>"shadow")
-  = f.input :avatar, :label => "Change photo"
+  .profile-photo
+    = f.label "Add a photo to your profile"
+    - if current_user.avatar?
+      = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url
+    - else
+      = image_tag("profiles/avatar_default_96x96.png", :class=>"shadow")
+    = f.input :avatar, :label => "Change photo"
   %hr
 
   = f.fields_for :etkh_profile, defaults: { input_html: { class: 'span4' } } do |ep|
