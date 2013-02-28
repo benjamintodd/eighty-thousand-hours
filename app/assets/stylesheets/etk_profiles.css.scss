@@ -1,18 +1,36 @@
 @import "shared/partials";
 
 .eighty-thousand-hours-profile {
-  .name {
-    font-size: 1.3em;
-    font-weight: bold;
-    text-shadow: 0 1px 1px rgba(0.3,0.3,0.3,.3);
-    padding-bottom: 5px;
-  }
-  .location {
-    font-weight: normal;
-    color: lighten($text_color,50%);
-    margin-bottom: 0.3em;
+  .heading {
+    padding-top: 40px;
+
+    .avatar {
+      img {
+        @include box_shadow(#555, 0px, 0px, 6px);
+      }
+    }
+    .name {
+      margin: 0px;
+    }
+    .location {
+      font-weight: normal;
+      color: lighten($text_color,50%);
+      margin: 0px;
+    }
+    .organisation {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .buttons {
+      margin-top: 10px;
+       > * { display: inline-block; }
+    }
   }
   
+  .content {
+    padding-top: 30px;
+  }
+
   .sidebar {
     padding-top: 40px;
     font-size: 0.8em;
@@ -20,14 +38,6 @@
     .joined {
       text-align: center;
     }
-    .avatar {
-      img {
-        @include box_shadow(#555, 0px, 0px, 6px);
-      }
-    }
-  }
-  .main {
-    padding-top: 30px;
   }
 }
 
