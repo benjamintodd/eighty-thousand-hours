@@ -59,7 +59,8 @@ class Position < ActiveRecord::Base
       same_year_array << ordered[i]
     end
 
-    if same_year_array
+    # need to order and reinsert the last set of same year elements
+    if same_year_array && !same_year_array.empty?
       # order array of same year elements
       same_year_array = same_year_array.sort {|a,b| a.order_month <=> b.order_month}
 
@@ -71,6 +72,7 @@ class Position < ActiveRecord::Base
       # insert into original array
       ordered.insert(year_index, *same_year_array)
     end
+
     return ordered
   end
 
