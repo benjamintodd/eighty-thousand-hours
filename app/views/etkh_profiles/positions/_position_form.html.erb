@@ -1,0 +1,38 @@
+<div class="form">
+  <%= javascript_include_tag "position-form.js" %>
+  <% edit = @position.id.nil? ? false : true %>
+
+  <%# set up content tags for data to be accessed from javascript %>
+  <%= content_tag "div", id: "data", data: {edit: edit, profile_id: current_user.etkh_profile.id} do %>
+    <% if !@position.id.nil? %>
+      <%= content_tag "div", id: "id", data: {id: @position.id} do %><% end %>
+    <% end %>
+  <% end %>
+
+
+  <%= simple_form_for(@position, url: "") do |f| %>
+    <%= f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id } %>
+
+    <%= f.input :position, label: "Position title" %>
+    <%= f.input :organisation, label: "Organisation" %>
+
+    <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
+
+    <%= f.input :start_date_month, collection: months, prompt: "Month", label: "Start date" %>
+    <%= f.input :start_date_year, placeholder: "Year" %>
+
+    <%= f.input :end_date_month, collection: months, prompt: "Month", label: "End date" %>
+    <%= f.input :end_date_year, placeholder: "Year" %>
+    <%= f.input :current_position %>
+
+    <div class="buttons">
+      <% if edit %>
+        <button class="btn btn-success" id="btn-add-position-submit">Confirm</button>
+        <button class="btn cancel" id="btn-edit-position-cancel">Cancel</button>
+      <% else %>
+        <button class="btn btn-success" id="btn-add-position-submit">Add position</button>
+        <button class="btn cancel" id="btn-add-position-cancel">Cancel</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

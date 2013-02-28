@@ -35,6 +35,9 @@ class EtkhProfile < ActiveRecord::Base
   has_and_belongs_to_many :profile_option_causes
   has_and_belongs_to_many :profile_option_activities
 
+  has_many :positions, :dependent => :destroy
+  has_many :educations, :dependent => :destroy
+
 
   # public method for profile completeness score
   def get_profile_completeness
