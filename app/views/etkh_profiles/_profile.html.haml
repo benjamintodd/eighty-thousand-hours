@@ -40,17 +40,23 @@
 
         - if profile.profile_option_causes.any?
           %h2 Causes I support
-          %ul
+          %ul{ class: "shortened-list", id: "causes-list" }
             - profile.profile_option_causes.each do |cause|
               %li= cause.title
+          - if profile.profile_option_causes.length > 4
+            %a{ class: "see-more", id: "see-more-causes" }See more
+
           - if profile.causes_comment
             = markdown profile.causes_comment
 
         - if profile.profile_option_activities.any?
           %h2 My high impact activities
-          %ul
+          %ul{ class: "shortened-list", id: "activities-list" }
             - profile.profile_option_activities.each do |activity|
               %li= activity.title
+          - if profile.profile_option_activities.length > 4
+            %a{ class: "see-more", id: "see-more-activities"}See more 
+
           - if profile.activities_comment
             = markdown profile.activities_comment
 
@@ -121,7 +127,7 @@
               =link_to post.title, post
               %br
             - upvotes.limit(3).each do |v|
-              - if !v.post.nil?
+              - if v.post.instance_of?(BlogPost)
                 liked blog post:
                 %br
                 =link_to v.post.title, blog_post_path(v.post)
@@ -149,4 +155,3 @@
         %p
           %h5 Navigation
           = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
-    
