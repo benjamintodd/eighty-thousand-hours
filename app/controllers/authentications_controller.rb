@@ -393,7 +393,7 @@ class AuthenticationsController < ApplicationController
         # send invitation
         puts "sending invitation from existing access tokens: #{session[:email]}"
         response = client.send_invitation({email: session[:email]})
-        puts response.body
+        puts response.code
         
         #if response...
           # confirm and return
@@ -437,7 +437,7 @@ class AuthenticationsController < ApplicationController
     # send invitation
     puts "about to send invitation: #{session[:email]}"
     response = client.send_invitation({email: session[:email]})
-    puts response.body
+    puts response.code
 
     # store access tokens
     if current_user.linkedin_info
