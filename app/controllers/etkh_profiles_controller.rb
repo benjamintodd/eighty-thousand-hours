@@ -71,13 +71,12 @@ class EtkhProfilesController < ApplicationController
     @new_profile = session[:new_profile] == "true" ? true : false
     session[:new_profile] = nil
 
-    @new_profile = true
-
     # indicate whether user has signedup with linkedin or not
     @linkedin_signup = current_user.linkedin_email ? true : false
-    #@linkedin_signup = true
 
-    flash[:"alert-success"] = "Account successfully created."
+    if @new_profile == true 
+      flash[:"alert-success"] = "Account successfully created."
+    end
   end
 
   def update
