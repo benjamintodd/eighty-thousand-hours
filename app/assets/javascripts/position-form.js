@@ -1,4 +1,5 @@
 $(document).ready( function() {
+  // submit button for both add and edit position forms
   $("#btn-add-position-submit").click( function() {
     var edit = $("#data").data('edit');
     var profile_id = $("#data").data('profile-id');
@@ -25,11 +26,13 @@ $(document).ready( function() {
     return false;
   });
 
-  $(".btn.cancel").click( function() {
+  // cancel button on new position form
+  $("#btn-add-position-cancel").click( function() {
     $("#position-form").html("");
     return false;
   });
 
+  // cancel button for edit position form
   $("#btn-edit-position-cancel").click( function() {
     var profile_id = $("#data").data('profile-id');
     var id = $("#id").data('id');
@@ -42,6 +45,7 @@ $(document).ready( function() {
     return false;
   });
 
+  // if 'current position' checkbox is ticked on new position form
   $("#position_current_position").click( function() {
     // disable end date month and year
     var $month = $("#position_end_date_month");

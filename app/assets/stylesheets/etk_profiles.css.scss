@@ -189,9 +189,10 @@
       }
     }
 
+
     .edit-form {
       height: 130px;
-      
+
       .control-group.hidden { display: none; }
       .controls {
         margin-left: 0px;
@@ -219,9 +220,7 @@
         font-size: 12px;
       }
 
-      #position_start_date_month {
-        
-      }
+      // shift elements to right
       #position_start_date_year {
         position: relative;
         left: 82px;
@@ -235,6 +234,7 @@
         left: 230px;
       }
 
+      // shift elements up
       .control-group:nth-child(6) {
         position: relative;
         top: -28px;
