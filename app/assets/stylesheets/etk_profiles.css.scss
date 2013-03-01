@@ -144,50 +144,112 @@
       }
     }
 
-    #position-form {
-      .new-form {
-        width: 385px;
-        height: 300px;
+    .new-form {
+      width: 385px;
+      height: 300px;
 
-        #position_start_date_month, #position_end_date_month { width: 120px; }
-        #position_start_date_year, #position_end_date_year {
-          visibility: visible;
-          float: right;
-          width: 70px;
-        }
+      #position_start_date_month, #position_end_date_month { width: 120px; }
+      #position_start_date_year, #position_end_date_year {
+        visibility: visible;
+        float: right;
+        width: 70px;
+      }
 
-        // Move start date year up to be inline with start date month
-        .control-group:nth-child(6) { 
-          visibility: hidden;
-          position: relative;
-          top: -50px;
-        }
+      // Move start date year up to be inline with start date month
+      .control-group:nth-child(6) { 
+        visibility: hidden;
+        position: relative;
+        top: -50px;
+      }
 
-        // Also move up controls below start date to fill blank space
-        .control-group:nth-child(7) { 
-          position: relative;
-          top: -50px;
-        }
+      // Also move up controls below start date to fill blank space
+      .control-group:nth-child(7) { 
+        position: relative;
+        top: -50px;
+      }
 
-        // Move end date year to be inline with end date month
-        .control-group:nth-child(8) { 
-          visibility: hidden;
-          position: relative;
-          top: -100px;
-        }
+      // Move end date year to be inline with end date month
+      .control-group:nth-child(8) { 
+        visibility: hidden;
+        position: relative;
+        top: -100px;
+      }
 
-        .control-group:nth-child(9) { 
-          position: relative;
-          top: -100px;
-        }
+      .control-group:nth-child(9) { 
+        position: relative;
+        top: -100px;
+      }
 
-        .buttons {
-          position: relative;
-          top: -110px;
-          margin-left: 160px;
-          #btn-add-position-cancel { margin-left: 25px; }
-          #btn-edit-position-cancel { margin-left: 52px; }
+      .buttons {
+        position: relative;
+        top: -110px;
+        margin-left: 160px;
+        #btn-add-position-cancel { margin-left: 25px; }
+        #btn-edit-position-cancel { margin-left: 52px; }
+      }
+    }
+
+    .edit-form {
+      height: 130px;
+      
+      .control-group.hidden { display: none; }
+      .controls {
+        margin-left: 0px;
+      }
+      .optional {
+        width: 170px;
+        margin: 0px;
+      }
+      .control-group {
+        margin-bottom: 3px;
+        .optional {
+          padding-bottom: 2px;
+          padding-top: 3px;
         }
+      }
+      .select {
+        width: 80px;
+        padding: 0px;
+        height: 24px;
+        font-size: 10px;
+      }
+      .numeric {
+        width: 50px;
+        padding: 0px;
+        font-size: 12px;
+      }
+
+      #position_start_date_month {
+        
+      }
+      #position_start_date_year {
+        position: relative;
+        left: 82px;
+      }
+      #position_end_date_month {
+        position: relative;
+        left: 150px;
+      }
+      #position_end_date_year {
+        position: relative;
+        left: 230px;
+      }
+
+      .control-group:nth-child(6) {
+        position: relative;
+        top: -28px;
+      }
+      .control-group:nth-child(7) {
+        position: relative;
+        top: -58px;
+      }
+      .control-group:nth-child(8) {
+        position: relative;
+        top: -86px;
+      }
+      .buttons {
+        position: relative;
+        top: -80px;
       }
     }
   }

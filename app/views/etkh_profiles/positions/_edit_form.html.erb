@@ -13,17 +13,17 @@
   <%= simple_form_for(@position, url: "") do |f| %>
     <%= f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id } %>
 
-    <%= f.input :position, label: "Position title" %>
-    <%= f.input :organisation, label: "Organisation" %>
+    <%= f.input :position, label: false %>
+    <%= f.input :organisation, label: false %>
 
     <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
 
-    <%= f.input :start_date_month, collection: months, prompt: "Month", label: "Start date" %>
-    <%= f.input :start_date_year, placeholder: "Year" %>
+    <%= f.input :start_date_month, collection: months, prompt: "Month", label: false %>
+    <%= f.input :start_date_year, placeholder: "Year", label: false %>
 
-    <%= f.input :end_date_month, collection: months, prompt: "Month", label: "End date" %>
-    <%= f.input :end_date_year, placeholder: "Year" %>
-    <%= f.input :current_position %>
+    <%= f.input :end_date_month, collection: months, prompt: "Month", label: false %>
+    <%= f.input :end_date_year, placeholder: "Year", label: false %>
+    <%#= f.input :current_position %>
 
     <div class="buttons">
       <% if edit %>

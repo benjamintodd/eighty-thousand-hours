@@ -16,7 +16,6 @@ $(document).ready( function() {
     {
       var id = $("#id").data('id');
       var valuesToSubmit = $("#edit_position_" + id).serialize();
-      alert(valuesToSubmit);
       $.ajax({
         type: 'PUT',
         url: '/members/' + profile_id + '/positions/' + id,
