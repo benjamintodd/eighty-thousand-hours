@@ -13,12 +13,15 @@ class PositionsController < ApplicationController
 
   def edit
     @position = Position.find_by_id(params[:id])
-    render 'etkh_profiles/positions/show_form'
+    #render 'etkh_profiles/positions/show_form'
+    render 'etkh_profiles/positions/edit'
   end
 
   def update
-    @position = Position.find_by_id(params[:id])
-    @position.update_attributes(params[:position])
+    if params[:cancel] != "true"
+      @position = Position.find_by_id(params[:id])
+      @position.update_attributes(params[:position])
+    end
     render 'etkh_profiles/positions/redraw_positions'
   end
 
