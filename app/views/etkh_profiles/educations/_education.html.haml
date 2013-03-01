@@ -1,0 +1,29 @@
+.education{ id: "education-#{education.id}"}
+  .title
+    %h3
+      = education.university
+  .actions
+    = link_to "Edit", "/members/#{current_user.etkh_profile.id}/educations/#{education.id.to_s}/edit", remote: true, class: "edit-education"
+    = " | "
+    = link_to "Delete", "/members/#{current_user.etkh_profile.id}/educations/#{education.id.to_s}", method: "DELETE", remote: true, class: "delete-education"
+  .course
+    %p
+      = education.course
+  .qualification
+    %p
+      = education.qualification
+  .dates
+    - str = ""
+    - if education.start_date_month && education.start_date_year
+      - str = education.start_date_month + " " + education.start_date_year.to_s
+    - elsif education.start_date_year
+      - str = education.start_date_year.to_s
+    - str += " - "
+    - if education.current_education == true
+      - str += "Present"
+    - elsif education.end_date_month && education.end_date_year
+      - str += education.end_date_month + " " + education.end_date_year.to_s
+    - elsif education.end_date_year
+      - str += education.end_date_year.to_s
+    %p
+      = str

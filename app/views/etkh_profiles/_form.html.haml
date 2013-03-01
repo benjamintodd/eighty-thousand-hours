@@ -90,6 +90,13 @@
         -# blank div for new position form
     %hr
 
+    #education
+      %h2 Education
+      = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations }
+      #education-form
+        -# blank div for new education form
+    %hr
+
   %h2 External websites
 
   = f.input :external_website,   label: "Personal website", placeholder: "e.g. http://www.joebloggs.com/"
