@@ -2,7 +2,7 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
   def change
   	add_column :etkh_profiles, :career_sector, :string
 
-  	create_table :positions do |t|
+  	create_table :positions, force: true do |t|
       t.integer :etkh_profile_id 
       t.string :position
       t.string :organisation
@@ -13,7 +13,7 @@ class ChangeEtkhProfiles < ActiveRecord::Migration
       t.boolean :current_position
   	end
 
-    create_table :educations do |t|
+    create_table :educations, force: true do |t|
       t.integer :etkh_profile_id
       t.string :university
       t.string :course

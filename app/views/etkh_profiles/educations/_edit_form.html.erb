@@ -1,0 +1,39 @@
+<div class="edit-form">
+  <%= javascript_include_tag "education-form.js" %>
+  <% edit = @education.id.nil? ? false : true %>
+
+  <%# set up content tags for data to be accessed from javascript %>
+  <%= content_tag "div", id: "data", data: {edit: edit, profile_id: current_user.etkh_profile.id} do %>
+    <% if !@education.id.nil? %>
+      <%= content_tag "div", id: "id", data: {id: @education.id} do %><% end %>
+    <% end %>
+  <% end %>
+
+
+  <%= simple_form_for(@education, url: "") do |f| %>
+    <%= f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id } %>
+
+    <%= f.input :university, label: false %>
+    <%= f.input :course, label: false %>
+    <%= f.input :qualification, label: false %>
+
+    <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
+
+    <%= f.input :start_date_month, collection: months, prompt: "Month", label: false %>
+    <%= f.input :start_date_year, placeholder: "Year", label: false %>
+
+    <%= f.input :end_date_month, collection: months, prompt: "Month", label: false %>
+    <%= f.input :end_date_year, placeholder: "Year", label: false %>
+    <%#= f.input :current_education %>
+
+    <div class="buttons">
+      <% if edit %>
+        <button class="btn btn-success" id="btn-add-education-submit">Confirm</button>
+        <button class="btn cancel" id="btn-edit-education-cancel">Cancel</button>
+      <% else %>
+        <button class="btn btn-success" id="btn-add-education-submit">Add education</button>
+        <button class="btn cancel" id="btn-add-education-cancel">Cancel</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

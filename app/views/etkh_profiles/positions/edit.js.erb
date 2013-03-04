@@ -1,0 +1,8 @@
+// get id of position
+var id = "<%= j @position.id.to_s %>";
+
+// get form html
+var form_html = "<%= j(render partial: 'etkh_profiles/positions/edit_form') %>";
+
+// replace position with edit form
+$("#position-" + id).html(form_html);

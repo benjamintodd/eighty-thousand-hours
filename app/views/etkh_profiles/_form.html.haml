@@ -1,14 +1,16 @@
 = javascript_include_tag "application-form.js"
+
 = simple_form_for(current_user, url: user_etkh_profile_url(current_user, current_user.etkh_profile),
                                 html: { class: 'form-horizontal' },
                                 defaults: { input_html: { class: 'span4' } }  ) do |f|
 
-  = f.label "Add a photo to your profile"
-  - if current_user.avatar?
-    = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url
-  - else
-    = image_tag("profiles/avatar_default_96x96.png", :class=>"shadow")
-  = f.input :avatar, :label => "Change photo"
+  .profile-photo
+    = f.label "Add a photo to your profile"
+    - if current_user.avatar?
+      = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url
+    - else
+      = image_tag("profiles/avatar_default_96x96.png", :class=>"shadow")
+    = f.input :avatar, :label => "Change photo"
   %hr
 
   = f.fields_for :etkh_profile, defaults: { input_html: { class: 'span4' } } do |ep|
@@ -63,19 +65,22 @@
                placeholder: "this will only be visible to 80,000 Hours members",
                input_html: { rows: '10' } 
     %hr
-               
-    %h2 Declare your intention to give 
-    %p
-    Many of our members make a declaration of their intent to give a certain
-    percentage of their pre-tax income to cost-effective causes over their
-    lifetime. They find this helps them to stay true to their aims to give money
-    and encourages others to do the same.
+    
+    #declaration           
+      %h2 Declare your intention to give 
+      %p
+      Many of our members make a declaration of their intent to give a certain
+      percentage of their pre-tax income to cost-effective causes over their
+      lifetime. They find this helps them to stay true to their aims to give money
+      and encourages others to do the same.
 
-    = f.fields_for :etkh_profile, defaults: { input_html: { class: 'span4' } } do |ep|
-      I intend to donate around <span class="slider_value emphasise"><span id="user_etkh_profile_attributes_donation_percentage_display"></span>%</span> of my pre-tax income each year.
-      .slider#user_etkh_profile_attributes_donation_percentage_slider
-    = ep.input :donation_percentage, :as => :hidden
-    = ep.input :donation_percentage_optout, label: "I don't want to make a declaration"
+      #donation
+        = f.fields_for :etkh_profile, defaults: { input_html: { class: 'span4' } } do |ep|
+          I intend to donate around <span class="slider_value emphasise"><span id="user_etkh_profile_attributes_donation_percentage_display"></span>%</span> of my pre-tax income each year.
+          .slider#user_etkh_profile_attributes_donation_percentage_slider
+          
+        = ep.input :donation_percentage, :as => :hidden
+        = ep.input :donation_percentage_optout, label: "I don't want to make a declaration"
     %hr
 
     #experience
@@ -83,6 +88,13 @@
       = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }
       #position-form
         -# blank div for new position form
+    %hr
+
+    #education
+      %h2 Education
+      = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations }
+      #education-form
+        -# blank div for new education form
     %hr
 
   %h2 External websites
