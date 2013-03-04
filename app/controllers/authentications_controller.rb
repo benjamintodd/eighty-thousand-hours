@@ -482,35 +482,48 @@ class AuthenticationsController < ApplicationController
     user.etkh_profile.career_sector = client.profile(fields: %w(industry)).industry
     user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
-    positions = client.profile(fields: %w(positions)).positions.all
-    positions.each do |position|
-      #create new position table
-      t = Position.new
-      t.position = position.title
-      t.organisation = position.company.name
-      t.start_date_month = convert_month(position.start_date.month)
-      t.start_date_year = position.start_date.year
+    # get list of positions
+    # positions = client.profile(fields: %w(positions)).positions.all
+    # positions.each do |position|
+    #   #create new position table
+    #   t = Position.new
+    #   t.position = position.title
+    #   t.organisation = position.company.name
+    #   t.start_date_month = convert_month(position.start_date.month)
+    #   t.start_date_year = position.start_date.year
       
-      if position.is_current != true
-        t.end_date_month = convert_month(position.end_date.month)
-        t.end_date_year = position.end_date.year
+    #   if position.is_current != true
+    #     t.end_date_month = convert_month(position.end_date.month)
+    #     t.end_date_year = position.end_date.year
+    #   else
+    #     t.current_position = true
+    #   end
+    #   t.etkh_profile_id = user.etkh_profile.id
+    #   t.save
+    # end
+
+    # get list of educations
+    educations = client.profile(fields: %w(educations)).educations
+    educations.all do |education|
+      p education
+      # create new education table
+      t = Education.new
+      t.course = education.field_of_study
+      t.qualification = education.degree
+      t.university = education.school_name
+      
+      #t.start_date_month = convert_month(education.start_date.month)
+      t.start_date_year = education.start_date.year
+
+      if education.is_current != true
+        #t.end_date_month = convert_month(education.end_date.month)
+        t.end_date_year = education.end_date.year
       else
-        t.current_position = true
+        t.current_education = true
       end
       t.etkh_profile_id = user.etkh_profile.id
       t.save
     end
-
-    # educations = client.profile(fields: %w(educations))
-    # educations.educations.all do |education|
-    #   p education
-    #   qualification = education.degree
-    #   name = education.school_name
-    #   course = education.field_of_study
-    #   start_date = DateTime.new(education.start_date.year)
-    #   end_date = DateTime.new(education.end_date.year)
-    #   # save table
-    # end
 
     #user.etkh_profile.save
     user.save
