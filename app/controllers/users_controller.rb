@@ -86,6 +86,7 @@ class UsersController < ApplicationController
       body = params[:body]
       UserMailer.contact_user(sender, recipient, subject, body).deliver!
     end
+    render nothing: true
   end
 
   def initalise_contact_user
