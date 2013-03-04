@@ -50,6 +50,16 @@ class EtkhProfilesController < ApplicationController
     @donations = @user.donations.confirmed
     @profile = @user.etkh_profile
 
+    if !@profile.public_profile && !current_user
+      @error_type = "signup"
+      @error_message = "This member's profile is private."
+      if request.xhr?
+        render 'shared/sign_up_modal'
+      else
+        render 'shared/display_error'
+      end
+    end
+
     @menu_root = "Our community"
     @menu_current = "Our members"
   end
