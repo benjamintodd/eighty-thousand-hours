@@ -3,41 +3,55 @@
 $avatar_size: 60px;
 
 .blog .forum {
-  .avatar {
-    float: left;
-    @include rounded_borders(#ccc, 1px, 3px);
-    @include box_shadow(#ccc, 0px, 0px, 5px);
-    width:  $avatar_size;
-    height: $avatar_size;
-    img {
-      vertical-align: middle;
-      position: absolute;
-      clip:rect(0px,$avatar_size,$avatar_size,0px);
-      width:  $avatar_size;
-    }
-    position: relative;
-    top: 5px;
-  }
+  .header { margin-left: 10px; }
+  #btn-drafts { margin-left: 10px; }
+  .controls { padding-bottom: 10px; }
 
   .content {
-    .header {
-      padding-left: 110px;
-      margin-top: 10px;
-      .author {
-        padding-top: 20px;
+    .heading {
+      >.voting {
+        .up-arrow{
+          position: relative;
+          top: 2px;
+        }
+        .down-arrow{
+          position: relative;
+          top: -2px;
+        }
+      }
+
+      .avatar {
+        float: left;
+        @include rounded_borders(#ccc, 1px, 3px);
+        @include box_shadow(#ccc, 0px, 0px, 5px);
+        width:  $avatar_size;
+        height: $avatar_size;
+        img {
+          vertical-align: middle;
+          position: absolute;
+          clip:rect(0px,$avatar_size,$avatar_size,0px);
+          width:  $avatar_size;
+        }
+        position: relative;
+        top: 5px;
+      }
+
+      .header {
+        padding-left: 110px;
+        margin-top: 10px;
+        .author {
+          padding-top: 20px;
+        }
       }
     }
+
     .body {
-      padding-top: 100px;
+      padding-top: 135px;
+      padding-left: 3px;
     }
   }
 
   #comments {
-    margin-top: 10px;
-    
-    #body .comment .core .voting {
-      position: relative;
-      top: 2px;
-    }
+    margin-top: 40px;
   }
 }

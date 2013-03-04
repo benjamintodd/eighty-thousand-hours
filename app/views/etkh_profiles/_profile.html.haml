@@ -30,7 +30,7 @@
               =link_to post.title, post
               %br
             - upvotes.limit(3).each do |v|
-              - if !v.post.nil?
+              - if v.post.instance_of?(BlogPost)
                 liked blog post:
                 %br
                 =link_to v.post.title, blog_post_path(v.post)

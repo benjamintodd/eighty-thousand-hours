@@ -1,9 +1,9 @@
 @import "shared/partials";
 
-$main_comments_background_colour: #EBFFEB;
-$even_level_nested_comments_border_colour: #E6FFE6;
-$odd_level_nested_comments_background_colour: #E9F8FF;
-$odd_level_nested_comments_border_colour: #DFF4FF;
+$main_comments_background_colour: #FFFFFF;
+$even_level_nested_comments_border_colour: #EBEBEB;
+$odd_level_nested_comments_background_colour: #F5F5F5;
+$odd_level_nested_comments_border_colour: #F0F0F0;
 
 
 #comments {
@@ -12,10 +12,13 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
   }
 
   #body {
-    background-color: $main_comments_background_colour;
+    //background-color: $main_comments_background_colour;
     padding-top: 7px;
 
     .comment {
+      background-color: $main_comments_background_colour;
+      //padding-bottom: 10px;
+      margin-bottom: 5px;
       .core {
         padding: 5px;
         margin-top: 10px;
@@ -93,6 +96,8 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
           }
           .reply-form {
             display: none;
+            position: relative;
+            padding-left: 20px;
           }
         }
       }
@@ -101,7 +106,7 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
         //nested comments with an even depth value(eg 2,4) have same colour scheme as main comments
 
         background-color: $main_comments_background_colour;
-        @include rounded_borders($even_level_nested_comments_border_colour, 4px, 3px);
+        @include rounded_borders($even_level_nested_comments_border_colour, 4px, 10px);
 
         //padding for all nested comments
         .core { 
@@ -116,15 +121,24 @@ $odd_level_nested_comments_border_colour: #DFF4FF;
       .d1 .d3,
       .d1 .d3 .d5 {
         background-color: $odd_level_nested_comments_background_colour;
-        @include rounded_borders($odd_level_nested_comments_border_colour, 4px, 3px);
+        @include rounded_borders($odd_level_nested_comments_border_colour, 4px, 10px);
       }
 
       //only indent margin for first three levels
-      .d1, .d2, .d3 { margin-left: 30px; }
+      .d1, .d2, .d3 {
+        margin-left: 30px;
+        margin-right: 2px;
+      }
     }
 
     //set font-size of all nested comments
     .d0 > .display-comments { font-size: 0.92em; }
+
+    //extra padding for top level comments
+    .d0 > .core {
+      padding: 10px;
+      padding-top: 15px;
+    }
 
 
     .errors { display: none; }

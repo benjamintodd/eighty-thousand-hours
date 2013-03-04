@@ -1,35 +1,41 @@
-%h1 Discussion
-
-- if not can? :create, DiscussionPost
-  %p
-    To post on the forum:
-  %p
-    #{link_to 'Sign in', new_user_session_path} if you've got an account.
-    If you haven't got an account, #{link_to 'create one', new_user_registration_path}.
-
-%hr
-
-- if can? :create, DiscussionPost
-  .controls
-    .user
-      = link_to "New Post".html_safe, new_discussion_post_path, :class => 'btn btn-success'
-      = link_to "My Drafts", drafts_discussion_posts_path, :class => 'btn'
- 
-  %hr
-
 .row
-  .span6.blog
-    .page-header
-      %h2 Discussion posts
-    - @posts.each do |post|
-      = render partial: 'discussion_header', locals: { post: post }
-    - if (@sort.nil?) && (will_paginate @posts)
-      .box.tight
-        .center
-          = page_navigation_links @posts
-  .span6.blog
-    .page-header
-      %h2 Blog posts
-    - @blog_posts.each do |post|
-      = render partial: 'blog_posts/display_heading', locals: { post: post }
-    =link_to 'more blog posts...', '/blog/'
+  .blog
+    .forum
+      .span7
+        .header
+          %h1 Discussion forum
+
+        - if not can? :create, DiscussionPost
+          %p
+            To post on the forum:
+          %p
+            #{link_to 'Sign in', new_user_session_path} if you've got an account.
+            If you haven't got an account, #{link_to 'create one', new_user_registration_path}.
+
+        - if can? :create, DiscussionPost
+          .controls
+            .user
+              = link_to "New Post".html_safe, new_discussion_post_path, :class => 'btn btn-large btn-success', id: "btn-post"
+              = link_to "My Drafts", drafts_discussion_posts_path, :class => 'btn btn-large', id: "btn-drafts"
+          %br
+          %br
+        %hr
+        #posts-list
+          - @posts.each do |post|
+            = render partial: 'discussion_header', locals: { post: post }
+          - if (@sort.nil?) && (will_paginate @posts)
+            .box.tight
+              .center
+                = page_navigation_links @posts
+      .span1
+        &nbsp;
+      .span4
+        .box.sidebar.blog-sidebar
+          = render :partial => "blog_posts/subscribe"
+          %hr
+          = render :partial => "blog_posts/popular_posts"        
+          %hr
+          = render :partial => "blog_posts/latest_discussion_posts"
+          %hr
+          = render :partial => "blog_posts/latest_comments"
+          %hr

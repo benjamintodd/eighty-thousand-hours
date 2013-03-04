@@ -90,6 +90,10 @@ class EtkhProfilesController < ApplicationController
   end
 
   def update
+    if params[:user][:external_website][0..6] != "http://"
+      params[:user][:external_website] = "http://" + params[:user][:external_website]
+    end
+
     if current_user.update_attributes(params[:user])
       flash[:"alert-success"] = "Your profile was successfully updated."
       
