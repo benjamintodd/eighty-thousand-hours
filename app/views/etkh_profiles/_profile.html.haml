@@ -67,7 +67,7 @@
             - if user.location?
               = user.location
 
-          - if current_user and current_user.eighty_thousand_hours_member?
+          - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
             %h3= user.email
         
         - if profile.background?
