@@ -2,6 +2,10 @@
   <div class="modal-heading">
     <h4>Sorry!</h4>
   </div>
+  <% if @error_message %>
+    <%= @error_message %>
+    <br/>
+	<% end %>
   You have to <a href="/accounts/sign_up">sign up</a> or <a href="/accounts/sign_in">sign in</a> to perform this action!
 </div>
 <div class="modal-footer">
