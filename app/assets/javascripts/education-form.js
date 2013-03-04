@@ -47,16 +47,11 @@ $(document).ready( function() {
 
   // if 'current education' checkbox is ticked on new education form
   $("#education_current_education").click( function() {
-    // disable end date month and year
-    var $month = $("#education_end_date_month");
-    $month.attr('disabled', !$month.attr('disabled'));
+    // disable end year
     var $year = $("#education_end_date_year");
     $year.attr('disabled', !$year.attr('disabled'));
 
-    // set month and year to nil options
-    $month.children("option").filter( function() {
-      return $(this).text() == "Month";
-    }).attr('selected', true);
+    // set year to nil options
     $year.attr('value', null);
   });
 });

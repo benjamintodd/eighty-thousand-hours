@@ -17,12 +17,7 @@
     <%= f.input :course, label: "Course" %>
     <%= f.input :qualification, label: "Qualification", placeholder: "e.g. BA" %>
 
-    <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
-
-    <%= f.input :start_date_month, collection: months, prompt: "Month", label: "Start date" %>
     <%= f.input :start_date_year, placeholder: "Year" %>
-
-    <%= f.input :end_date_month, collection: months, prompt: "Month", label: "End date" %>
     <%= f.input :end_date_year, placeholder: "Year" %>
     <%= f.input :current_education %>
 

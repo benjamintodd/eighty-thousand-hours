@@ -278,41 +278,11 @@
     width: 385px;
     height: 350px;
 
-    #education_start_date_month, #education_end_date_month { width: 120px; }
     #education_start_date_year, #education_end_date_year {
-      visibility: visible;
-      float: right;
-      width: 70px;
-    }
-
-    // Move start date year up to be inline with start date month
-    .control-group:nth-child(7) { 
-      visibility: hidden;
-      position: relative;
-      top: -50px;
-    }
-
-    // Also move up controls below start date to fill blank space
-    .control-group:nth-child(8) { 
-      position: relative;
-      top: -50px;
-    }
-
-    // Move end date year to be inline with end date month
-    .control-group:nth-child(9) { 
-      visibility: hidden;
-      position: relative;
-      top: -100px;
-    }
-
-    .control-group:nth-child(10) { 
-      position: relative;
-      top: -100px;
+      width: 100px;
     }
 
     .buttons {
-      position: relative;
-      top: -110px;
       margin-left: 160px;
       #btn-add-education-cancel { margin-left: 15px; }
       #btn-edit-education-cancel { margin-left: 52px; }
@@ -338,48 +308,34 @@
         padding-top: 3px;
       }
     }
-    .select {
-      width: 80px;
-      padding: 0px;
-      height: 24px;
-      font-size: 10px;
-    }
     .numeric {
       width: 50px;
       padding: 0px;
       font-size: 12px;
     }
 
-    // shift elements to right
-    #education_start_date_year {
-      position: relative;
-      left: 82px;
-    }
-    #education_end_date_month {
-      position: relative;
-      left: 150px;
-    }
+    // shift end year to right
     #education_end_date_year {
       position: relative;
-      left: 230px;
+      left: 85px;
     }
 
-    // shift elements up
-    .control-group:nth-child(7) {
+    // position paragraph
+    #dates-to {
       position: relative;
+      left: 65px;
       top: -28px;
     }
+
+    // shift end year up
     .control-group:nth-child(8) {
       position: relative;
-      top: -58px;
+      top: -55px;
     }
-    .control-group:nth-child(9) {
-      position: relative;
-      top: -86px;
-    }
+
     .buttons {
       position: relative;
-      top: -80px;
+      top: -45px;
     }
   }
 }

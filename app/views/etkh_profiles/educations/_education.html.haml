@@ -14,15 +14,11 @@
       = education.qualification
   .dates
     - str = ""
-    - if education.start_date_month && education.start_date_year
-      - str = education.start_date_month + " " + education.start_date_year.to_s
-    - elsif education.start_date_year
+    - if education.start_date_year
       - str = education.start_date_year.to_s
     - str += " - "
     - if education.current_education == true
       - str += "Present"
-    - elsif education.end_date_month && education.end_date_year
-      - str += education.end_date_month + " " + education.end_date_year.to_s
     - elsif education.end_date_year
       - str += education.end_date_year.to_s
     %p

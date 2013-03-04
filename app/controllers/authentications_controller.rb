@@ -512,11 +512,9 @@ class AuthenticationsController < ApplicationController
       t.qualification = education.degree
       t.university = education.school_name
       
-      #t.start_date_month = convert_month(education.start_date.month)
       t.start_date_year = education.start_date.year
 
       if education.is_current != true
-        #t.end_date_month = convert_month(education.end_date.month)
         t.end_date_year = education.end_date.year
       else
         t.current_education = true

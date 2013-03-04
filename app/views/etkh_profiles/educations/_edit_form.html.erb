@@ -17,12 +17,8 @@
     <%= f.input :course, label: false %>
     <%= f.input :qualification, label: false %>
 
-    <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
-
-    <%= f.input :start_date_month, collection: months, prompt: "Month", label: false %>
     <%= f.input :start_date_year, placeholder: "Year", label: false %>
-
-    <%= f.input :end_date_month, collection: months, prompt: "Month", label: false %>
+    <p id="dates-to">-</p>
     <%= f.input :end_date_year, placeholder: "Year", label: false %>
     <%#= f.input :current_education %>
 
