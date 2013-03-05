@@ -482,57 +482,85 @@ class AuthenticationsController < ApplicationController
     user.etkh_profile.career_sector = client.profile(fields: %w(industry)).industry
     user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
-    # get list of positions
-    # positions = client.profile(fields: %w(positions)).positions.all
-    # positions.each do |position|
-    #   #create new position table
-    #   t = Position.new
-    #   t.position = position.title
-    #   t.organisation = position.company.name
-    #   t.start_date_month = convert_month(position.start_date.month)
-    #   t.start_date_year = position.start_date.year
+    ## get list of positions
+    positions = client.profile(fields: %w(positions)).positions.all
+    positions.each do |position|
+      # check for existing position
+      t = nil
+      if user.etkh_profile.positions
+        user.etkh_profile.positions.each do |p| 
+          if p.position == position.title && p.organisation == position.company.name
+            t = Position.find_by_id(p.id)
+            break
+          end
+        end
+      end
       
-    #   if position.is_current != true
-    #     t.end_date_month = convert_month(position.end_date.month)
-    #     t.end_date_year = position.end_date.year
-    #   else
-    #     t.current_position = true
-    #   end
-    #   t.etkh_profile_id = user.etkh_profile.id
-    #   t.save
-    # end
+      t = Position.new unless t
 
-    # get list of educations
-    educations = client.profile(fields: %w(educations)).educations
-    educations.all do |education|
-      p education
-      # create new education table
-      t = Education.new
-      t.course = education.field_of_study
-      t.qualification = education.degree
-      t.university = education.school_name
+      t.position = position.title
+      t.organisation = position.company.name
+      t.start_date_month = convert_month(position.start_date.month)
+      t.start_date_year = position.start_date.year
       
-      t.start_date_year = education.start_date.year
-
-      if education.is_current != true
-        t.end_date_year = education.end_date.year
+      if position.is_current != true
+        t.end_date_month = convert_month(position.end_date.month)
+        t.end_date_year = position.end_date.year
       else
-        t.current_education = true
+        t.current_position = true
       end
       t.etkh_profile_id = user.etkh_profile.id
       t.save
     end
 
-    #user.etkh_profile.save
+    ## get list of educations
+    # for some strange and unknown reason the mash returned for educations from the profile
+    # returns an error when queried for items within it(eg 'degree') so I have had to parse the
+    # Mash myself using regex
+    educations = client.profile(fields: %w(educations)).educations
+    educations.all do |education|
+      # get data
+      string = education.to_s
+      string_array = string.split
+
+      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2]
+      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2]
+      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2]
+
+      start_date_year = nil
+      end_date_year = nil
+      string_array.each_with_index do |str, index|
+        if str.include?("start_date")
+          start_date_year = string_array[index+1][/\d+/]
+        elsif str.include?("end_date")
+          end_date_year = string_array[index+1][/\d+/]
+        end
+      end
+
+      # check for existing education
+      t = nil
+      if user.etkh_profile.educations
+        user.etkh_profile.educations.each do |e|
+          if e.university == university && e.course == course
+            t = Education.find_by_id(e.id)
+            break
+          end
+        end
+      end
+
+      # otherwise create new education table
+      t = Education.new unless t
+
+      t.university = university if university
+      t.course = course if course
+      t.qualification = qualification if qualification
+      t.start_date_year = start_date_year if start_date_year
+      t.end_date_year = end_date_year if end_date_year
+      t.etkh_profile_id = user.etkh_profile.id
+      t.save
+    end
+
     user.save
-
-
-    #picture_path = client.profile(fields: %w(picture-url)).picture_url.to_s
-    # picture_path = "http://m3.licdn.com/mpr/mprx/0_B1FpRCKTxLS10vd3z95iR3ADxkUYj9J3vl1_Rh3j8b7mGtaTRzcrv8v1l2RTYA4DnrLGqbxdnEFe"
-    # p "picture path: #{picture_path}"
-    # #p user.avatar = picture_path
-    # user.avatar = URI.parse(picture_path)
-    # p "avatar: #{user.avatar}"
   end
 
   def convert_month(num)
