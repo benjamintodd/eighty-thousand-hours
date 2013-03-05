@@ -1,5 +1,5 @@
 #educations
   - if !educations.nil? && !educations.empty?
-    - Position.custom_order(educations).each do |education|
+    - educations.order("end_date_year DESC").each do |education|
       = render partial: 'etkh_profiles/educations/education', locals: { education: education }
   = link_to "Add an institution", "/members/#{current_user.etkh_profile.id}/educations/new", remote: true, id: "add-education"
