@@ -8,6 +8,8 @@ class EtkhProfile < ActiveRecord::Base
                   :interesting_fact,
                   :occupation,
                   :organisation,
+                  :current_position,
+                  :career_sector,
                   :organisation_role,
                   :doing_good_inspiring,
                   :doing_good_research,
