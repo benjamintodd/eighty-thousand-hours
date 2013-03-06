@@ -75,11 +75,11 @@
             .body
               - if profile.positions.any?
                 %h2 Experience
-                = render partial: 'etkh_profiles/positions/positions', locals: { positions: profile.positions }
+                = render partial: 'etkh_profiles/positions/positions', locals: { positions: profile.positions, edit_profile: false }
 
               - if profile.educations.any?
                 %h2 Education
-                = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations }
+                = render partial: 'etkh_profiles/educations/educations', locals: { educations: profile.educations, edit_profile: false }
 
 
         - if !profile.donation_percentage_optout || user.donations.any?
@@ -125,10 +125,7 @@
                   %h2 Skills and knowledge I would like to learn from other members
                   %p= profile.skills_knowledge_learn
 
-    .span1
-      &nbsp;
-
-    .span3
+    .span4
       .sidebar
         .section.need-right-filler
           .body
