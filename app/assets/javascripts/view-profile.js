@@ -1,10 +1,19 @@
 $(document).ready( function() {
-  
+
   // set background colour to a light grey
   $("body").css('background-color','rgb(233,233,233)');
 
-  var full_height = $(".container").children("#content").children(".row").children(".span12").css('height');
-  $(".filler").css('height',full_height);
+  // 
+  setTimeout( function() {
+    $(".content").find(".section").append( function() {
+      var height = (parseInt($(this).css('height')) + 15).toString() + "px";
+
+      var top = parseInt($(this).offset().top);
+      top = (top - 30).toString() + "px";
+      
+      return "<div class='filler' style='height: " + height + "; top: " + top + ";'></div>";
+    });
+  }, 100); 
 
   $("#causes-list").children("li:gt(3)").hide();
   $("#see-more-causes").click( function(){
