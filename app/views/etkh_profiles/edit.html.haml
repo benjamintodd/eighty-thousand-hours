@@ -45,6 +45,15 @@
   $(document).ready( function() {
     // display modal after flash notice is dismissed
     $(".flash-modal").children(".modal-footer").children(".btn").click( function() {
+      showLinkedinModal();
+    });
+    $(".modal-backdrop").click( function() {
+      showLinkedinModal();
+    });
+
+
+    function showLinkedinModal()
+    {
       // insert time delay
       setTimeout( function() {
         $("#linkedin-modal").reveal({
@@ -54,7 +63,7 @@
           dismissmodalclass: 'form-close'
         });
       }, 350);
-    });
+    }
 
     // display modal if linkedin button clicked
     $("#btn-update-profile").click( function() {
