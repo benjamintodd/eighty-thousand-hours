@@ -20,7 +20,7 @@
     #profile{ style: @linkedin_signup ? " " : "display: none" }
       .body
         %p
-          Would you like to pull profile data from your LinkedIn profile?
+          Would you like to fill in your profile with data from your LinkedIn profile?
 
       .form-actions
         = link_to "Pull profile", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-large btn-info btn-confirm form-close", id: "btn-linkedin-profile-yes"
