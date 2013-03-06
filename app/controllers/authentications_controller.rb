@@ -298,6 +298,7 @@ class AuthenticationsController < ApplicationController
     add_linkedin_to_profile(client, current_user)
 
     # return to edit member profile
+    flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
   end
 
@@ -351,6 +352,7 @@ class AuthenticationsController < ApplicationController
     add_linkedin_to_profile(client, current_user)
 
     # return to edit member profile
+    flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
   end
 
