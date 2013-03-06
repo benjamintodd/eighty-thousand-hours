@@ -103,6 +103,7 @@
   }
 
   .sidebar {
+    margin-left: -3px;
     margin-right: 2px;
     margin-top: 14px;
     font-size: 0.9em;
@@ -112,13 +113,24 @@
     }
 
     .section {
-      padding-left: 20px;
+      padding-left: 15px;
       padding-bottom: 15px;
     }
 
     #recent-activity {
-      h3 {
-        padding-top: 7px;
+      > h3 {
+        padding-top: 10px;
+        font-size: 16px;
+        color: rgb(38,38,38);
+      }
+      > hr {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        padding-right: 15px;
+      }
+      .body h3 {
+        padding-top: 10px;
         padding-bottom: 5px;
       }
       .activity-link {
@@ -127,7 +139,7 @@
         padding-left: 7px;
       }
     }
-    #temp { margin-top: -10px; }
+    #temp { margin-top: -8px; }
   }
 }
 

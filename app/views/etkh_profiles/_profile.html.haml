@@ -132,8 +132,9 @@
     .span4
       .sidebar
         .section.need-right-filler#recent-activity
-          .title
+          %h3
             Recent activity
+          %hr
           .body
             - activity_count = 0
             - if user.blog_posts.any?
