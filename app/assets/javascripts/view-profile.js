@@ -78,5 +78,12 @@ $(document).ready( function() {
       $("#educations").children(".education:gt(2)").show();
       $("#see-more-educations").hide();
     });
+
+    // truncate donations
+    $(".donations").children("ul").children("li:gt(4)").hide();
+    $("#see-more-donations").click( function() {
+      $(".donations").children("ul").children("li:gt(4)").show();
+      $("#see-more-donations").hide();
+    });
   }
 });

@@ -115,6 +115,8 @@
                           - if donation.public
                             %li
                               = render donation
+                    - if donations.length > 5
+                      %a{ class: "see-more", id: "see-more-donations"}See more
 
           // only show skills to other members
           - if current_user and current_user.eighty_thousand_hours_member?
