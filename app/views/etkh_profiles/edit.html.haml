@@ -5,21 +5,6 @@
         .box
           %h1= current_user.name
           %hr
-
-          #linkedin
-            #connect-account
-              - if current_user.linkedin_email.nil?
-                %p Connect your account with your LinkedIn account so other members can view your LinkedIn profile
-                = link_to image_tag('/assets/linkedin/linkedin_connect_button.gif', size: '160x31'), {controller: 'authentications', action: 'linkedin_signup', linking: true}, remote: false, id: "linkedin-connect-btn"
-
-            #pull-profile
-              %p Update your profile with data from your LinkedIn profile
-              = link_to image_tag('/assets/linkedin/linkedin_button.gif'), {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, id: "linkedin-profile-btn"          
-
-            - if @new_profile == true
-              #linkedin-modal
-                = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
-          %hr
           
           .form
             %h2 Fill in your profile
@@ -30,6 +15,18 @@
           
       .span4
         .box.sidebar
+          #linkedin
+            #pull-profile
+              %p Fill in your profile with data from your LinkedIn profile
+              - if @linkedin_signup
+                = link_to image_tag('/assets/linkedin/linkedin_button.gif'), {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, id: "linkedin-profile-btn"
+              - else
+                = link_to image_tag('/assets/linkedin/linkedin_button.gif', id: "btn-update-profile"), remote: true
+            - if !@linkedin_signup || @new_profile
+              #linkedin-modal
+                = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
+          %hr
+
           %h2 Public profile
           %p
             By creating a public profile, you can help inspire new people to join 80,000 Hours.
@@ -57,5 +54,15 @@
           dismissmodalclass: 'form-close'
         });
       }, 350);
+    });
+
+    // display modal if linkedin button clicked
+    $("#btn-update-profile").click( function() {
+      $("#linkedin-modal").reveal({
+        animation: 'fade',
+        animationspeed: 600,
+        closeonbackgroundclick: true,
+        dismissmodalclass: 'form-close'
+      });
     });
   });
