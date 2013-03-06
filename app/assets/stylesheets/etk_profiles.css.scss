@@ -42,9 +42,13 @@
 .eighty-thousand-hours-profile {
   .heading {
     background-color: #FFFFFF;
+    @include box_shadow(#555, 0px, 0px, 5px);
+    margin-left: 2px;
+    margin-right: 2px;
     margin-top: 20px;
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    padding-left: 15px;
 
     .avatar {
       img {
@@ -72,10 +76,12 @@
   // common to both content and sidebar sections
   .section {
     background-color: #FFFFFF;
+    @include box_shadow(#555, 0px, 0px, 5px);
   }
 
   .content {
     margin-bottom: 15px;
+    margin-left: 2px;
     .shortened-list { margin-bottom: 0px; }
     .see-more { margin-left: 25px; }
 
@@ -84,8 +90,9 @@
       margin-bottom: 15px;
     }
     .section {
-      margin-top: 10px;
+      margin-top: 14px;
       padding-top: 15px;
+      padding-left: 10px;
       padding-right: 15px;
       padding-bottom: 10px;
 
@@ -96,7 +103,8 @@
   }
 
   .sidebar {
-    margin-top: 10px;
+    margin-right: 2px;
+    margin-top: 14px;
     font-size: 0.9em;
     color: #555;
     .joined {
