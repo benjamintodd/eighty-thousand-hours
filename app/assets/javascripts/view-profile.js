@@ -1,7 +1,8 @@
 var fireCount = 0;
 
 $(document).ready( function() {
-  // for some reason ready event is being fired twice
+
+  // for some reason the ready event is being fired twice
   fireCount++;
   if (fireCount > 1)
   {
@@ -19,8 +20,6 @@ $(document).ready( function() {
         height = (height + paddingTop + paddingBottom).toString() + "px";
 
         var top = parseInt($(this).offset().top);
-        //var marginTop = parseInt($(this).css('marginTop'));
-        //var marginBottom = parseInt($(this).css('marginBottom'));
         
         top = (top).toString() + "px";
         
@@ -36,15 +35,15 @@ $(document).ready( function() {
         height = (height + paddingTop + paddingBottom).toString() + "px";
 
         var top = parseInt($(this).offset().top);
-        //var marginTop = parseInt($(this).css('marginTop'));
-        //var marginBottom = parseInt($(this).css('marginBottom'));
         
         top = (top).toString() + "px";
 
         var left = parseInt($(this).offset().left);
         var width = parseInt($(this).width());
+        var paddingLeft = parseInt($(this).css('paddingLeft'));
+        var paddingRight = parseInt($(this).css('paddingRight'));
 
-        left = (left + width + 14).toString() + "px";
+        left = (left + width + paddingLeft + paddingRight).toString() + "px";
         
         return "<div class='right-filler' style='height: " + height + "; top: " + top + "; left: " + left + ";'></div>";
       });
@@ -53,7 +52,7 @@ $(document).ready( function() {
 
     // Truncate lists
     var fadeInTime = 800;
-    
+
     // truncate causes
     $("#causes-list").children("li:gt(3)").hide();
     $("#see-more-causes").click( function(){
