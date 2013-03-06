@@ -39,8 +39,8 @@
                      :as => :check_boxes,
                      :label => "Which high impact activities do you intend to get involved in?"
     = ep.input :activities_comment, 
-               label: "Comments about high impact activities",
-               input_html: {rows: '2', class: 'span4'}
+               label: "What's your plan for making an impact?",
+               input_html: {rows: '5', class: 'span4'}
     %hr
 
     %h2 Causes
@@ -50,7 +50,7 @@
                      :label => "Given what you know now, which causes do you think you are most likely to promote, give money to and work within in order to help others?"
     = ep.input :causes_comment,
                label: "Comments about causes",
-               input_html: {rows: '2', class: 'span4'}
+               input_html: {rows: '3', class: 'span4'}
     %hr
 
     %h2 Knowledge sharing
