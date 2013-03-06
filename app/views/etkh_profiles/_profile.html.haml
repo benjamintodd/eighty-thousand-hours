@@ -51,7 +51,7 @@
                 %ul{ class: "shortened-list", id: "causes-list" }
                   - profile.profile_option_causes.each do |cause|
                     %li= cause.title
-                - if profile.profile_option_causes.length > 4
+                - if profile.profile_option_causes.length > 8
                   %a{ class: "see-more", id: "see-more-causes" }See more
 
                 - if profile.causes_comment
@@ -62,7 +62,7 @@
                 %ul{ class: "shortened-list", id: "activities-list" }
                   - profile.profile_option_activities.each do |activity|
                     %li= activity.title
-                - if profile.profile_option_activities.length > 4
+                - if profile.profile_option_activities.length > 8
                   %a{ class: "see-more", id: "see-more-activities"}See more 
 
                 - if profile.activities_comment
@@ -115,7 +115,7 @@
                           - if donation.public
                             %li
                               = render donation
-                    - if donations.length > 5
+                    - if donations.length > 8
                       %a{ class: "see-more", id: "see-more-donations"}See more
 
           // only show skills to other members

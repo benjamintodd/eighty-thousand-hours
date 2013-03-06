@@ -54,16 +54,16 @@ $(document).ready( function() {
     var fadeInTime = 800;
 
     // truncate causes
-    $("#causes-list").children("li:gt(3)").hide();
+    $("#causes-list").children("li:gt(7)").hide();
     $("#see-more-causes").click( function(){
-      $("#causes-list").children("li:gt(3)").fadeIn(fadeInTime);
+      $("#causes-list").children("li:gt(7)").fadeIn(fadeInTime);
       $("#see-more-causes").hide();
     });
 
     // truncate activities
-    $("#activities-list").children("li:gt(3)").hide();
+    $("#activities-list").children("li:gt(7)").hide();
     $("#see-more-activities").click( function(){
-      $("#activities-list").children("li:gt(3)").fadeIn(fadeInTime);
+      $("#activities-list").children("li:gt(7)").fadeIn(fadeInTime);
       $("#see-more-activities").hide();
     });
 
@@ -82,9 +82,9 @@ $(document).ready( function() {
     });
 
     // truncate donations
-    $(".donations").children("ul").children("li:gt(4)").hide();
+    $(".donations").children("ul").children("li:gt(7)").hide();
     $("#see-more-donations").click( function() {
-      $(".donations").children("ul").children("li:gt(4)").fadeIn(fadeInTime);
+      $(".donations").children("ul").children("li:gt(7)").fadeIn(fadeInTime);
       $("#see-more-donations").hide();
     });
   }
