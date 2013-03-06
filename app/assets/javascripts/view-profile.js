@@ -9,46 +9,6 @@ $(document).ready( function() {
     // set background colour to a light grey
     $("body").css('background-color','rgb(233,233,233)');
 
-    // add white filler objects on left and right side of page
-    setTimeout( function() {
-      // left side
-      $(".need-left-filler").append( function() {
-        var height = parseInt($(this).height());
-        var paddingTop = parseInt($(this).css('paddingTop'));
-        var paddingBottom = parseInt($(this).css('paddingBottom'));
-
-        height = (height + paddingTop + paddingBottom).toString() + "px";
-
-        var top = parseInt($(this).offset().top);
-        
-        top = (top).toString() + "px";
-        
-        return "<div class='left-filler' style='height: " + height + "; top: " + top + ";'></div>";
-      });
-
-      // right side
-      $(".need-right-filler").append( function() {
-        var height = parseInt($(this).height());
-        var paddingTop = parseInt($(this).css('paddingTop'));
-        var paddingBottom = parseInt($(this).css('paddingBottom'));
-
-        height = (height + paddingTop + paddingBottom).toString() + "px";
-
-        var top = parseInt($(this).offset().top);
-        
-        top = (top).toString() + "px";
-
-        var left = parseInt($(this).offset().left);
-        var width = parseInt($(this).width());
-        var paddingLeft = parseInt($(this).css('paddingLeft'));
-        var paddingRight = parseInt($(this).css('paddingRight'));
-
-        left = (left + width + paddingLeft + paddingRight).toString() + "px";
-        
-        return "<div class='right-filler' style='height: " + height + "; top: " + top + "; left: " + left + ";'></div>";
-      });
-    }, 200); 
-
 
     // Truncate lists
     var fadeInTime = 800;
