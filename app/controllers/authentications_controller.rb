@@ -508,6 +508,8 @@ class AuthenticationsController < ApplicationController
         t.end_date_year = position.end_date.year
       else
         t.current_position = true
+        user.etkh_profile.organisation = t.organisation
+        user.etkh_profile.current_position = t.position
       end
       t.etkh_profile_id = user.etkh_profile.id
       t.save
