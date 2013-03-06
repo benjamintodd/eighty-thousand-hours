@@ -1,6 +1,18 @@
 @import "shared/partials";
 
 .eighty-thousand-hours-profile {
+  .left-filler {
+    position: absolute;
+    left: 0px;
+    width: 14px;
+    background-color: #FFFFFF
+  }
+  .right-filler {
+    position: absolute;
+    width: 14px;
+    background-color: #FFFFFF
+  }
+
   .heading {
     background-color: #FFFFFF;
     padding-top: 40px;
@@ -32,15 +44,7 @@
   .section {
     background-color: #FFFFFF;
   }
-  
-  .filler {
-    position: absolute;
-    left: 0px;
-    //top: 0px;
-    width: 14px;
-    height: 100%;
-    background-color: #FFFFFF
-  }
+
   .content {
     padding-top: 30px;
 

@@ -1,7 +1,7 @@
 - user = profile.user
 
 .eighty-thousand-hours-profile
-  .heading
+  .heading.need-left-filler.need-right-filler
     .row
       .span3
         .avatar
@@ -33,17 +33,16 @@
         -#%hr
   .row
     .span8
-      -#.filler
       .content
         - if profile.background?
-          .section
+          .section.need-left-filler
             .title
             .body
               %h2 Background and interests
               = markdown profile.background
 
         - if profile.profile_option_causes.any? || profile.profile_option_activities.any?
-          .section
+          .section.need-left-filler
             .title
               Causes and activities
             .body
@@ -70,7 +69,7 @@
                   = markdown profile.activities_comment
 
         - if profile.positions.any? || profile.educations.any?
-          .section
+          .section.need-left-filler
             .title
               More information
             .body
@@ -84,7 +83,7 @@
 
 
         - if !profile.donation_percentage_optout || user.donations.any?
-          .section
+          .section.need-left-filler
             .title
               Donations
             .body
@@ -115,7 +114,7 @@
           // only show skills to other members
           - if current_user and current_user.eighty_thousand_hours_member?
             - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
-              .section
+              .section.need-left-filler
                 .title
                   Skills and Knowledge
                 .body
@@ -131,55 +130,57 @@
 
     .span3
       .sidebar
-        .section
-          - if user.location?
-            %p
-              %h5 Location
-              = user.location
+        .section.need-right-filler
+          .body
+            - if user.location?
+              %p
+                %h5 Location
+                = user.location
 
-          %p
-            %h5 Member since 
-            = profile.created_at.strftime "%B %Y"
-
-          %p
-            %h5 Profile completeness
-            = profile.get_profile_completeness
-        .section
-          - upvotes = user.votes.upvotes.recent
-          - if upvotes.size > 0
             %p
-              %h5 Recent activity
-              - user.blog_posts.published.limit(3).each do |post|
-                wrote blog post:
-                %br
-                =link_to post.title, post
-                %br
-              - upvotes.limit(3).each do |v|
-                - if v.post.instance_of?(BlogPost)
-                  liked blog post:
+              %h5 Member since 
+              = profile.created_at.strftime "%B %Y"
+
+            %p
+              %h5 Profile completeness
+              = profile.get_profile_completeness
+        .section.need-right-filler
+          .body
+            - upvotes = user.votes.upvotes.recent
+            - if upvotes.size > 0
+              %p
+                %h5 Recent activity
+                - user.blog_posts.published.limit(3).each do |post|
+                  wrote blog post:
                   %br
-                  =link_to v.post.title, blog_post_path(v.post)
+                  =link_to post.title, post
+                  %br
+                - upvotes.limit(3).each do |v|
+                  - if v.post.instance_of?(BlogPost)
+                    liked blog post:
+                    %br
+                    =link_to v.post.title, blog_post_path(v.post)
+                    %br
+
+            -if user.external_links?
+              %p
+                %h5 External links
+                - if user.external_website?
+                  = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
                   %br
 
-          -if user.external_links?
+                - if user.external_twitter?
+                  = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                  %br
+                
+                - if user.external_facebook?
+                  = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
+                  %br
+                
+                - if user.external_linkedin?
+                  = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
+                  %br
+
             %p
-              %h5 External links
-              - if user.external_website?
-                = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-                %br
-
-              - if user.external_twitter?
-                = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-                %br
-              
-              - if user.external_facebook?
-                = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-                %br
-              
-              - if user.external_linkedin?
-                = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
-                %br
-
-          %p
-            %h5 Navigation
-            = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
+              %h5 Navigation
+              = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
