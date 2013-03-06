@@ -19,22 +19,25 @@
   }
 }
 #educations {
-    margin-left: 7px;
+  margin-left: 7px;
 
-    .education {
-      margin-bottom: 20px;
-      p { margin-bottom: 0px; }
+  .education {
+    margin-bottom: 20px;
+    p { margin-bottom: 0px; }
 
-      .title { display: inline-block; }
-      .actions {
-        display: inline-block;
-        margin-left: 20px;
-      }
-      .dates {
-        font-size: 0.8em;
-      }
+    .title { display: inline-block; }
+    .actions {
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .dates {
+      font-size: 0.8em;
     }
   }
+}
+
+
+//******** View profile **********
 
 .eighty-thousand-hours-profile {
   .left-filler {
@@ -103,14 +106,28 @@
   }
 
   .sidebar {
-    font-size: 0.8em;
+    margin-top: 20px;
+    font-size: 0.9em;
     color: #555;
     .joined {
       text-align: center;
     }
 
     .section {
-      padding-left: 15px;
+      padding-left: 20px;
+      padding-bottom: 15px;
+    }
+
+    #recent-activity {
+      h3 {
+        padding-top: 7px;
+        padding-bottom: 5px;
+      }
+      .activity-link {
+        display: block;
+        padding-top: 3px;
+        padding-left: 7px;
+      }
     }
   }
 }

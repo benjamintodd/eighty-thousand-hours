@@ -134,20 +134,41 @@
 
     .span4
       .sidebar
-        .section.need-right-filler
+        .section.need-right-filler#recent-activity
+          .title
+            Recent activity
           .body
-            - if user.location?
-              %p
-                %h5 Location
-                = user.location
-
-            %p
-              %h5 Member since 
-              = profile.created_at.strftime "%B %Y"
-
-            %p
-              %h5 Profile completeness
-              = profile.get_profile_completeness
+            - activity_count = 0
+            - if user.blog_posts.any?
+              - activity_count += 1
+              .blog-posts
+                %h3 Blog posts published
+                - user.blog_posts.published.limit(3).each do |post|
+                  = link_to post.title, post, class: "activity-link"
+            
+            - if user.discussion_posts.any?
+              - activity_count += 1
+              .discussion-posts
+                %h3 Discussion posts created
+                - user.discussion_posts.published.limit(3).each do |post|
+                  = link_to post.title, post, class: "activity-link"
+            
+            - if activity_count < 2
+              - if user.comments.any?
+                - activity_count += 1
+                .comments
+                  %h3 Comments made on posts
+                  - user.comments.order("created_at DESC").limit(3).each do |comment|
+                    = link_to comment.get_post.title, comment.get_post, class: "activity-link"
+            
+            - if activity_count < 3
+              - if user.votes.upvotes.any?
+                .upvotes
+                  %h3 Blog posts liked
+                  - user.votes.upvotes.belongs_to_blog_post.recent.each do |vote|
+                    -#%p Liked blog post
+                    = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
+        
         .section.need-right-filler
           .body
             - upvotes = user.votes.upvotes.recent
