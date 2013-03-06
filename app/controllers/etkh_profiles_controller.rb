@@ -89,13 +89,22 @@ class EtkhProfilesController < ApplicationController
   end
 
   def search
-    @user = User.find_by_name(params[:name])
-    if @user
-      redirect_to etkh_profile_path(@user)
-    else
-      flash[:"alert-error"] = "Couldn't find #{params[:name]}!"
-      redirect_to :action => :index
+    # perform searching in model
+    results = User.search(params[:search])
+
+    # store results in session data as user ids
+    session[:search_results] = []
+    results.each do |user|
+      session[:search_results] << user.id
     end
+
+    # display first entries
+    list_length = 10
+    selection = results.first(list_length)
+    render partial: 'profiles_selection', locals: { users: selection }
+
+    # create pointer to indicate which results are already displayed
+    session[:search_results][:pointer] = list_length
   end
 
   def our_members
