@@ -48,7 +48,7 @@ $(document).ready( function() {
         
         return "<div class='right-filler' style='height: " + height + "; top: " + top + "; left: " + left + ";'></div>";
       });
-    }, 100); 
+    }, 200); 
 
 
     $("#causes-list").children("li:gt(3)").hide();
