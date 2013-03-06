@@ -77,7 +77,7 @@
     }
     .buttons {
       margin-top: 10px;
-       > * { display: inline-block; }
+      > * { display: inline-block; }
     }
   }
 
@@ -87,18 +87,20 @@
   }
 
   .content {
+    margin-bottom: 15px;
     .shortened-list { margin-bottom: 0px; }
     .see-more { margin-left: 25px; }
 
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
     .section {
-      margin-top: 20px;
-      //margin-right: 30px;
+      margin-top: 10px;
       padding-top: 15px;
       padding-right: 15px;
+      padding-bottom: 10px;
 
-      .title {
-
-      }
       .body {
 
       }
@@ -106,7 +108,7 @@
   }
 
   .sidebar {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 0.9em;
     color: #555;
     .joined {
@@ -129,6 +131,7 @@
         padding-left: 7px;
       }
     }
+    #temp { margin-top: -10px; }
   }
 }
 

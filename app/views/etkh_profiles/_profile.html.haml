@@ -44,7 +44,6 @@
         - if profile.profile_option_causes.any? || profile.profile_option_activities.any?
           .section.need-left-filler
             .title
-              Causes and activities
             .body
               - if profile.profile_option_causes.any?
                 %h2 Causes I support
@@ -71,7 +70,6 @@
         - if profile.positions.any? || profile.educations.any?
           .section.need-left-filler
             .title
-              More information
             .body
               - if profile.positions.any?
                 %h2 Experience
@@ -90,7 +88,6 @@
         - if !profile.donation_percentage_optout || user.donations.any?
           .section.need-left-filler
             .title
-              Donations
             .body
               - if !profile.donation_percentage_optout
                 %h2 Donation pledge
@@ -169,7 +166,7 @@
                     -#%p Liked blog post
                     = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
-        .section.need-right-filler
+        .section.need-right-filler#temp
           .body
             - upvotes = user.votes.upvotes.recent
             - if upvotes.size > 0
