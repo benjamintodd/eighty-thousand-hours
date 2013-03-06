@@ -97,6 +97,7 @@ EightyThousandHours::Application.routes.draw do
   #temp for testing new functionality
   match 'karma_test'  => 'users#karma_test'
   match 'gen_test'    => 'users#generate_users_test'
+  match 'button_test' => 'pages#button_test'
 
   # pages which don't live in the database as they can't be
   # converted to pure Markdown

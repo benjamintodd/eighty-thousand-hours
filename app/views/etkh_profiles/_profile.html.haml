@@ -1,12 +1,109 @@
 - user = profile.user
 
-.row
-  .eighty-thousand-hours-profile
+.eighty-thousand-hours-profile
+  .heading
+    .row
+      .span3
+        .avatar
+          = link_to image_tag('/assets/profiles/avatar_default_200x200.png'), user.avatar.url
+      .span8
+        .header
+          %h1.name
+            = profile.name
+          %h2.location 
+            = user.location
+          %h2.organisation
+            = profile.organisation
+          .email
+            - if current_user && current_user.eighty_thousand_hours_member?
+              %h3= user.email
+          .buttons
+            #contact
+              = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-danger", id: "contact-btn"
+
+            - if user.external_linkedin
+              #linkedin-view
+                = link_to image_tag('/assets/linkedin/linkedin_button_reg.gif', size: '160'), user.external_linkedin
+
+            -# if user.linkedin_email != nil
+            #linkedin-add
+              = link_to image_tag('/assets/linkedin/linkedin_button_reg.gif'), {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, id: "linkedin-invite-btn"
+
+          #contact-modal
+        -#%hr
+  .row
+    .span8
+      .content
+        - if profile.background?
+          %h2 Background and interests
+          = markdown profile.background
+
+        - if profile.profile_option_causes.any?
+          %h2 Causes I support
+          %ul{ class: "shortened-list", id: "causes-list" }
+            - profile.profile_option_causes.each do |cause|
+              %li= cause.title
+          - if profile.profile_option_causes.length > 4
+            %a{ class: "see-more", id: "see-more-causes" }See more
+
+          - if profile.causes_comment
+            = markdown profile.causes_comment
+
+        - if profile.profile_option_activities.any?
+          %h2 My high impact activities
+          %ul{ class: "shortened-list", id: "activities-list" }
+            - profile.profile_option_activities.each do |activity|
+              %li= activity.title
+          - if profile.profile_option_activities.length > 4
+            %a{ class: "see-more", id: "see-more-activities"}See more 
+
+          - if profile.activities_comment
+            = markdown profile.activities_comment
+
+        - if !profile.donation_percentage_optout
+          %h2 Donation pledge
+          .donations-thermometer.well
+            .text
+              %p 
+                I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
+            .bar-container
+              .progress.progress-striped.progress-danger
+                .bar{:"data-percentage" => profile.donation_percentage}
+
+          // only show skills to other members
+          - if current_user and current_user.eighty_thousand_hours_member?
+            - if profile.skills_knowledge_share?
+              %h2 Skills and knowledge I can share with other members
+              %p= profile.skills_knowledge_share
+            - if profile.skills_knowledge_learn?
+              %h2 Skills and knowledge I would like to learn from other members
+              %p= profile.skills_knowledge_learn
+          
+          // only show donations to members
+          - if current_user and current_user.eighty_thousand_hours_member?
+            - donations = user.donations.order("date DESC")
+            - if donations.confirmed.is_public.size > 0
+              .donations{:id => "#{user.slug}-donations"}
+                %h2
+                  Donations
+                %p
+                  %ul
+                    - donations.each do |donation|
+                      - if donation.public
+                        %li
+                          = render donation
+
+          - if user.blog_posts.published.size > 0
+            .blog
+              %h2 Recent blog posts
+              - user.blog_posts.published.limit(3).each do |post|
+                =render :partial => 'blog_posts/display_heading', :locals => {:post => post}
+
+    .span1
+      &nbsp;
+
     .span3
       .sidebar
-        .avatar
-          = link_to image_tag(user.avatar.url(:medium)), user.avatar.url
-
         - if user.location?
           %p
             %h5 Location
@@ -58,84 +155,3 @@
         %p
           %h5 Navigation
           = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
-    .span1
-      &nbsp;
-    .span8
-      .main
-        .page-header
-          %h1= profile.name
-
-          %h2.location
-            - if profile.organisation?
-              = profile.organisation + (', ' if user.location)
-            - if user.location?
-              = user.location
-
-          - if current_user and current_user.eighty_thousand_hours_member?
-            %h3= user.email
-
-          = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-large", id: "contact-btn"
-
-          %div{id: "contact-modal"}
-
-          - if user.linkedin_email != nil
-            = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-large", id: "linkedin-invite-btn"
-        
-        - if profile.background?
-          %h2 Background and interests
-          = markdown profile.background
-
-        - if profile.profile_option_causes.any?
-          %h2 Causes I support
-          %ul
-            - profile.profile_option_causes.each do |cause|
-              %li= cause.title
-          - if profile.causes_comment
-            = markdown profile.causes_comment
-
-        - if profile.profile_option_activities.any?
-          %h2 My high impact activities
-          %ul
-            - profile.profile_option_activities.each do |activity|
-              %li= activity.title
-          - if profile.activities_comment
-            = markdown profile.activities_comment
-
-        - if !profile.donation_percentage_optout
-          %h2 Donation pledge
-          .donations-thermometer.well
-            .text
-              %p 
-                I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
-            .bar-container
-              .progress.progress-striped.progress-danger
-                .bar{:"data-percentage" => profile.donation_percentage}
-
-        // only show skills to other members
-        - if current_user and current_user.eighty_thousand_hours_member?
-          - if profile.skills_knowledge_share?
-            %h2 Skills and knowledge I can share with other members
-            %p= profile.skills_knowledge_share
-          - if profile.skills_knowledge_learn?
-            %h2 Skills and knowledge I would like to learn from other members
-            %p= profile.skills_knowledge_learn
-        
-        // only show donations to members
-        - if current_user and current_user.eighty_thousand_hours_member?
-          - donations = user.donations.order("date DESC")
-          - if donations.confirmed.is_public.size > 0
-            .donations{:id => "#{user.slug}-donations"}
-              %h2
-                Donations
-              %p
-                %ul
-                  - donations.each do |donation|
-                    - if donation.public
-                      %li
-                        = render donation
-
-        - if user.blog_posts.published.size > 0
-          .blog
-            %h2 Recent blog posts
-            - user.blog_posts.published.limit(3).each do |post|
-              =render :partial => 'blog_posts/display_heading', :locals => {:post => post}
