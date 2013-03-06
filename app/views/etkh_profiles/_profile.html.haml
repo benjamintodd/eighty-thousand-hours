@@ -1,6 +1,7 @@
 - user = profile.user
 
 .eighty-thousand-hours-profile
+  .filler
   .heading
     .row
       .span3
@@ -33,125 +34,153 @@
         -#%hr
   .row
     .span8
+      -#.filler
       .content
         - if profile.background?
-          %h2 Background and interests
-          = markdown profile.background
+          .section
+            .title
+            .body
+              %h2 Background and interests
+              = markdown profile.background
 
-        - if profile.profile_option_causes.any?
-          %h2 Causes I support
-          %ul{ class: "shortened-list", id: "causes-list" }
-            - profile.profile_option_causes.each do |cause|
-              %li= cause.title
-          - if profile.profile_option_causes.length > 4
-            %a{ class: "see-more", id: "see-more-causes" }See more
+        - if profile.profile_option_causes.any? || profile.profile_option_activities.any?
+          .section
+            .title
+              Causes and activities
+            .body
+              - if profile.profile_option_causes.any?
+                %h2 Causes I support
+                %ul{ class: "shortened-list", id: "causes-list" }
+                  - profile.profile_option_causes.each do |cause|
+                    %li= cause.title
+                - if profile.profile_option_causes.length > 4
+                  %a{ class: "see-more", id: "see-more-causes" }See more
 
-          - if profile.causes_comment
-            = markdown profile.causes_comment
+                - if profile.causes_comment
+                  = markdown profile.causes_comment
 
-        - if profile.profile_option_activities.any?
-          %h2 My high impact activities
-          %ul{ class: "shortened-list", id: "activities-list" }
-            - profile.profile_option_activities.each do |activity|
-              %li= activity.title
-          - if profile.profile_option_activities.length > 4
-            %a{ class: "see-more", id: "see-more-activities"}See more 
+              - if profile.profile_option_activities.any?
+                %h2 My high impact activities
+                %ul{ class: "shortened-list", id: "activities-list" }
+                  - profile.profile_option_activities.each do |activity|
+                    %li= activity.title
+                - if profile.profile_option_activities.length > 4
+                  %a{ class: "see-more", id: "see-more-activities"}See more 
 
-          - if profile.activities_comment
-            = markdown profile.activities_comment
+                - if profile.activities_comment
+                  = markdown profile.activities_comment
 
-        - if !profile.donation_percentage_optout
-          %h2 Donation pledge
-          .donations-thermometer.well
-            .text
-              %p 
-                I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
-            .bar-container
-              .progress.progress-striped.progress-danger
-                .bar{:"data-percentage" => profile.donation_percentage}
+        - if profile.positions.any? || profile.educations.any?
+          .section
+            .title
+              More information
+            .body
+              - if profile.positions.any?
+                %h2 Experience
+                = render partial: 'etkh_profiles/positions/positions', locals: { positions: profile.positions }
+
+              - if profile.educations.any?
+                %h2 Education
+                = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations }
+
+
+        - if !profile.donation_percentage_optout || user.donations.any?
+          .section
+            .title
+              Donations
+            .body
+              - if !profile.donation_percentage_optout
+                %h2 Donation pledge
+                .donations-thermometer.well
+                  .text
+                    %p 
+                      I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
+                  .bar-container
+                    .progress.progress-striped.progress-danger
+                      .bar{:"data-percentage" => profile.donation_percentage}
+
+              // only show donations to members
+              - if current_user and current_user.eighty_thousand_hours_member?
+                - donations = user.donations.order("date DESC")
+                - if donations.confirmed.is_public.size > 0
+                  .donations{:id => "#{user.slug}-donations"}
+                    %h2
+                      Donations
+                    %p
+                      %ul
+                        - donations.each do |donation|
+                          - if donation.public
+                            %li
+                              = render donation
 
           // only show skills to other members
           - if current_user and current_user.eighty_thousand_hours_member?
-            - if profile.skills_knowledge_share?
-              %h2 Skills and knowledge I can share with other members
-              %p= profile.skills_knowledge_share
-            - if profile.skills_knowledge_learn?
-              %h2 Skills and knowledge I would like to learn from other members
-              %p= profile.skills_knowledge_learn
-          
-          // only show donations to members
-          - if current_user and current_user.eighty_thousand_hours_member?
-            - donations = user.donations.order("date DESC")
-            - if donations.confirmed.is_public.size > 0
-              .donations{:id => "#{user.slug}-donations"}
-                %h2
-                  Donations
-                %p
-                  %ul
-                    - donations.each do |donation|
-                      - if donation.public
-                        %li
-                          = render donation
-
-          - if user.blog_posts.published.size > 0
-            .blog
-              %h2 Recent blog posts
-              - user.blog_posts.published.limit(3).each do |post|
-                =render :partial => 'blog_posts/display_heading', :locals => {:post => post}
+            - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
+              .section
+                .title
+                  Skills and Knowledge
+                .body
+                - if profile.skills_knowledge_share?
+                  %h2 Skills and knowledge I can share with other members
+                  %p= profile.skills_knowledge_share
+                - if profile.skills_knowledge_learn?
+                  %h2 Skills and knowledge I would like to learn from other members
+                  %p= profile.skills_knowledge_learn
 
     .span1
       &nbsp;
 
     .span3
       .sidebar
-        - if user.location?
+        .section
+          - if user.location?
+            %p
+              %h5 Location
+              = user.location
+
           %p
-            %h5 Location
-            = user.location
+            %h5 Member since 
+            = profile.created_at.strftime "%B %Y"
 
-        %p
-          %h5 Member since 
-          = profile.created_at.strftime "%B %Y"
-
-        %p
-          %h5 Profile completeness
-          = profile.get_profile_completeness
-
-        - upvotes = user.votes.upvotes.recent
-        - if upvotes.size > 0
           %p
-            %h5 Recent activity
-            - user.blog_posts.published.limit(3).each do |post|
-              wrote blog post:
-              %br
-              =link_to post.title, post
-              %br
-            - upvotes.limit(3).each do |v|
-              - if v.post.instance_of?(BlogPost)
-                liked blog post:
+            %h5 Profile completeness
+            = profile.get_profile_completeness
+        .section
+          - upvotes = user.votes.upvotes.recent
+          - if upvotes.size > 0
+            %p
+              %h5 Recent activity
+              - user.blog_posts.published.limit(3).each do |post|
+                wrote blog post:
                 %br
-                =link_to v.post.title, blog_post_path(v.post)
+                =link_to post.title, post
+                %br
+              - upvotes.limit(3).each do |v|
+                - if v.post.instance_of?(BlogPost)
+                  liked blog post:
+                  %br
+                  =link_to v.post.title, blog_post_path(v.post)
+                  %br
+
+          -if user.external_links?
+            %p
+              %h5 External links
+              - if user.external_website?
+                = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
                 %br
 
-        -if user.external_links?
+              - if user.external_twitter?
+                = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                %br
+              
+              - if user.external_facebook?
+                = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
+                %br
+              
+              - if user.external_linkedin?
+                = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
+                %br
+
           %p
-            %h5 External links
-            - if user.external_website?
-              = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-              %br
-
-            - if user.external_twitter?
-              = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-              %br
-            
-            - if user.external_facebook?
-              = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-              %br
-            
-            - if user.external_linkedin?
-              = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
-              %br
-
-        %p
-          %h5 Navigation
-          = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
+            %h5 Navigation
+            = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path

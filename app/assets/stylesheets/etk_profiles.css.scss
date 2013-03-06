@@ -2,6 +2,7 @@
 
 .eighty-thousand-hours-profile {
   .heading {
+    background-color: #FFFFFF;
     padding-top: 40px;
 
     .avatar {
@@ -26,12 +27,36 @@
        > * { display: inline-block; }
     }
   }
+
+  // common to both content and sidebar sections
+  .section {
+    background-color: #FFFFFF;
+  }
   
+  .filler {
+    position: absolute;
+    left: 0px;
+    //top: 0px;
+    width: 14px;
+    height: 100%;
+    background-color: #FFFFFF
+  }
   .content {
     padding-top: 30px;
 
     .shortened-list { margin-bottom: 0px; }
     .see-more { margin-left: 25px; }
+
+    .section {
+      padding-top: 15px;
+      padding-right: 50px;
+      .title {
+
+      }
+      .body {
+
+      }
+    }
   }
 
   .sidebar {
@@ -40,6 +65,10 @@
     color: #555;
     .joined {
       text-align: center;
+    }
+
+    .section {
+      padding-left: 15px;
     }
   }
 }
