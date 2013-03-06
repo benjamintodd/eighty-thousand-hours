@@ -1,6 +1,6 @@
 // removes current positions from DOM and adds them in order of date
 
-var positions_html = "<%= j(render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }) %>";
+var positions_html = "<%= j(render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions, edit_profile: true }) %>";
 $("#positions").replaceWith(positions_html);
 
 // hide form

@@ -2,10 +2,11 @@
   .title
     %h3
       = position.position
-  .actions
-    = link_to "Edit", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}/edit", remote: true, class: "edit-position"
-    = " | "
-    = link_to "Delete", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}", method: "DELETE", remote: true, class: "delete-position"
+  - if edit_profile
+    .actions
+      = link_to "Edit", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}/edit", remote: true, class: "edit-position"
+      = " | "
+      = link_to "Delete", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}", method: "DELETE", remote: true, class: "delete-position"
   .organisation
     %p
       = position.organisation

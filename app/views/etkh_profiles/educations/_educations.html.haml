@@ -1,5 +1,6 @@
 #educations
   - if !educations.nil? && !educations.empty?
     - educations.order("end_date_year DESC").each do |education|
-      = render partial: 'etkh_profiles/educations/education', locals: { education: education }
-  = link_to "Add an institution", "/members/#{current_user.etkh_profile.id}/educations/new", remote: true, id: "add-education"
+      = render partial: 'etkh_profiles/educations/education', locals: { education: education, edit_profile: edit_profile }
+  - if edit_profile
+    = link_to "Add an institution", "/members/#{current_user.etkh_profile.id}/educations/new", remote: true, id: "add-education"

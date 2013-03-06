@@ -89,14 +89,14 @@
 
     #experience
       %h2 Experience
-      = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions }
+      = render partial: 'etkh_profiles/positions/positions', locals: { positions: current_user.etkh_profile.positions, edit_profile: true }
       #position-form
         -# blank div for new position form
     %hr
 
     #education
       %h2 Education
-      = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations }
+      = render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations, edit_profile: true }
       #education-form
         -# blank div for new education form
     %hr
