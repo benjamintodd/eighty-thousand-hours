@@ -51,16 +51,32 @@ $(document).ready( function() {
     }, 200); 
 
 
+    // truncate causes
     $("#causes-list").children("li:gt(3)").hide();
     $("#see-more-causes").click( function(){
       $("#causes-list").children("li:gt(3)").show();
       $("#see-more-causes").hide();
     });
 
+    // truncate activities
     $("#activities-list").children("li:gt(3)").hide();
     $("#see-more-activities").click( function(){
       $("#activities-list").children("li:gt(3)").show();
       $("#see-more-activities").hide();
+    });
+
+    // Truncate positions
+    $("#positions").children(".position:gt(2)").hide();
+    $("#see-more-positions").click( function() {
+      $("#positions").children(".position:gt(2)").show();
+      $("#see-more-positions").hide();
+    });
+
+    // Truncate educations
+    $("#educations").children(".education:gt(2)").hide();
+    $("#see-more-educations").click( function() {
+      $("#educations").children(".education:gt(2)").show();
+      $("#see-more-educations").hide();
     });
   }
 });

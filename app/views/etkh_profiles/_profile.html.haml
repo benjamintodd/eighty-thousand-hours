@@ -76,10 +76,15 @@
               - if profile.positions.any?
                 %h2 Experience
                 = render partial: 'etkh_profiles/positions/positions', locals: { positions: profile.positions, edit_profile: false }
+                - if profile.positions.length > 3
+                  %a{ class: "see-more", id: "see-more-positions"}See more
+                %hr
 
               - if profile.educations.any?
                 %h2 Education
                 = render partial: 'etkh_profiles/educations/educations', locals: { educations: profile.educations, edit_profile: false }
+                - if profile.educations.length > 3
+                  %a{ class: "see-more", id: "see-more-educations"}See more
 
 
         - if !profile.donation_percentage_optout || user.donations.any?
