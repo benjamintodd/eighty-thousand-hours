@@ -51,38 +51,41 @@ $(document).ready( function() {
     }, 200); 
 
 
+    // Truncate lists
+    var fadeInTime = 800;
+    
     // truncate causes
     $("#causes-list").children("li:gt(3)").hide();
     $("#see-more-causes").click( function(){
-      $("#causes-list").children("li:gt(3)").show();
+      $("#causes-list").children("li:gt(3)").fadeIn(fadeInTime);
       $("#see-more-causes").hide();
     });
 
     // truncate activities
     $("#activities-list").children("li:gt(3)").hide();
     $("#see-more-activities").click( function(){
-      $("#activities-list").children("li:gt(3)").show();
+      $("#activities-list").children("li:gt(3)").fadeIn(fadeInTime);
       $("#see-more-activities").hide();
     });
 
     // Truncate positions
     $("#positions").children(".position:gt(2)").hide();
     $("#see-more-positions").click( function() {
-      $("#positions").children(".position:gt(2)").show();
+      $("#positions").children(".position:gt(2)").fadeIn(fadeInTime);
       $("#see-more-positions").hide();
     });
 
     // Truncate educations
     $("#educations").children(".education:gt(2)").hide();
     $("#see-more-educations").click( function() {
-      $("#educations").children(".education:gt(2)").show();
+      $("#educations").children(".education:gt(2)").fadeIn(fadeInTime);
       $("#see-more-educations").hide();
     });
 
     // truncate donations
     $(".donations").children("ul").children("li:gt(4)").hide();
     $("#see-more-donations").click( function() {
-      $(".donations").children("ul").children("li:gt(4)").show();
+      $(".donations").children("ul").children("li:gt(4)").fadeIn(fadeInTime);
       $("#see-more-donations").hide();
     });
   }
