@@ -45,9 +45,9 @@
     @include box_shadow(#555, 0px, 0px, 5px);
     margin-left: 2px;
     margin-right: 2px;
-    margin-top: 20px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     padding-left: 15px;
 
     .avatar {
@@ -55,21 +55,49 @@
         @include box_shadow(#555, 0px, 0px, 6px);
       }
     }
-    .name {
-      margin: 0px;
+
+    .info {
+      p {
+        margin: 0px;
+        line-height: 16px;
+      }
+      .name {
+        margin: 0px;
+        font-size: 30px;
+      }
+      .location {
+        position: relative;
+        top: -5px;
+        font-weight: normal;
+        font-size: 18px;
+        //color: lighten($text_color,50%);
+        margin: 0px;
+      }
+      .position {
+        //font-size: 13px;
+      }
+      .organisation {
+        //font-size: 13px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .industry {
+        //font-size: 13px;
+      }
+      .karma-score {
+        margin: 0px;
+      }
+      .email {
+        margin: 0px;
+      }
     }
-    .location {
-      font-weight: normal;
-      color: lighten($text_color,50%);
-      margin: 0px;
-    }
-    .organisation {
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
+
     .buttons {
-      margin-top: 10px;
+      //margin-top: 10px;
       > * { display: inline-block; }
+    }
+    .external-links {
+      margin-top: 10px;
     }
   }
 
@@ -91,7 +119,7 @@
     }
     .section {
       margin-top: 14px;
-      padding-top: 15px;
+      padding-top: 5px;
       padding-left: 10px;
       padding-right: 15px;
       padding-bottom: 10px;
