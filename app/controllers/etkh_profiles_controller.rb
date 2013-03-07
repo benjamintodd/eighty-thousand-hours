@@ -33,8 +33,6 @@ class EtkhProfilesController < ApplicationController
   def index
     get_grouped_profiles
 
-    @menu_root = "Our community"
-    @menu_current = "Our members"
     @title = "Members"
   end
 
@@ -116,12 +114,64 @@ class EtkhProfilesController < ApplicationController
   end
 
   def search
-    @user = User.find_by_name(params[:name])
-    if @user
-      redirect_to etkh_profile_path(@user)
+    # perform searching in model
+    results = User.search(params[:search])
+
+    # store results in session data as user ids
+    session[:search_results] = []
+    results.each do |user|
+      session[:search_results] << user.id
+    end
+
+    # display first entries
+    list_length = 10
+    selection = results.first(list_length)
+    render partial: 'profiles_selection', locals: { users: selection }
+
+    # create pointer to indicate which results are already displayed
+    session[:search_results][:pointer] = list_length
+  end
+
+  def our_members
+    # displays list of members within community page
+
+    # set up navbar
+    @menu_root = "Our community"
+    @menu_current = "Our members"
+    @title = "Members"
+
+    ## get list of users to be displayed
+    list_length = 10
+
+    # get already selected users from session data
+    # note this means that if the user leaves the page and returns to it
+    # the previously selected users will still be selected
+    if session[:selected_users]
+      @selected_users = []
+      session[:selected_users].each do |user_id|
+        @selected_users << User.find_by_id(user_id)
+      end
+    end
+
+    # generate users using algorithm
+    if @selected_users
+      # remove currently selected users from searching set
+      @next_selection = EtkhProfile.generate_users(list_length, @selected_users)
+      @selected_users.concat(@next_selection)
     else
-      flash[:"alert-error"] = "Couldn't find #{params[:name]}!"
-      redirect_to :action => :index
+      @next_selection = EtkhProfile.generate_users(list_length)
+      @selected_users = @next_selection
+    end
+
+    # store newly selected users in session variable
+    session[:selected_users] = [] if !session[:selected_users]
+    @next_selection.each do |user|
+      session[:selected_users] << user.id
+    end
+
+    # if an AJAX request render newly selected users only
+    if request.xhr?
+      render partial: 'profiles_selection', locals: { users: @next_selection }
     end
   end
 end

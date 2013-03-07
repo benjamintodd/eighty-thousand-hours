@@ -1,0 +1,21 @@
+.span10
+  .heading
+    %h1 Our members
+  %hr
+
+  #search-form
+    = render partial: 'search_form'
+
+  #members-list
+    = render partial: 'profiles_selection', locals: { users: @selected_users }
+
+
+:javascript
+  $("#members-list").pageless({
+    totalPages: 10,
+    url: '/members',
+    //msgStyles: {'color': '#000000', 'font-size': '1em'},
+    //loaderMsg: 'Loading more results',   
+    loaderImg: '/images/load.gif',
+    distance: '2500'
+  });

@@ -512,3 +512,49 @@
     }
   }
 }
+
+
+//*******Condensed profiles*********
+
+.profile-teaser {
+  @include rounded_borders(#dfdfdf, 1px, 5px);
+  padding: 10px;
+  margin-bottom: 7px;
+
+  .avatar {
+
+  }
+
+  .heading {
+    p { 
+      margin: 0px;
+      line-height: 18px;
+    }
+    hr {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border-width: 2px;
+      color: #dfdfdf;
+    }
+
+    .name {
+      font-size: 1.2em;
+    }
+    .location { 
+      font-size: 0.8em;
+      //padding-bottom: 8px;
+    }
+    .organisation { font-size: 0.8em; }
+  }
+
+  .body {
+
+    .labels {
+      //font-size: 0.85em;
+    }
+    .info {
+      font-size: 0.925em;
+      line-height: 20px;
+    }
+  }
+}
