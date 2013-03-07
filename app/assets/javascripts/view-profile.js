@@ -50,14 +50,15 @@ $(document).ready( function() {
 
 
     // display popup box when mouse hovers over member
-    var timeout;
-    $(".profile-link").hover( function() {
-      // must hover for some time
-      timeout = setTimeOut(showPopup($(this)), 2000);
-    }, hidePopup());
-    function showPopup(element)
+    var config = {
+      over: showPopup,
+      timeout: 500,
+      out: function(){}
+    };
+    $(".profile-link").hoverIntent(config);
+    function showPopup()
     {
-      var id = parseInt(element.closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
+      var id = parseInt($(this).closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
       var params = "id=" + id
       $.ajax({
         type: 'GET',

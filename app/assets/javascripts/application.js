@@ -4,6 +4,7 @@
 //= require jquery.easing
 //= require jquery.reveal
 //= require jquery.pageless
+//= require jquery.hoverIntent.minified
 //= require fancybox
 //= require highcharts
 //= require fancybox_video
