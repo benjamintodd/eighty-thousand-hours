@@ -177,5 +177,7 @@ class EtkhProfilesController < ApplicationController
 
   def display_profile_hover_info
     @user = User.find_by_id(params[:id])
+    @pos_left = params[:left_pos]
+    @pos_top = params[:top_pos]
   end
 end

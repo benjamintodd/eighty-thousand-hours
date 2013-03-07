@@ -52,14 +52,19 @@ $(document).ready( function() {
     // display popup box when mouse hovers over member
     var config = {
       over: showPopup,
-      timeout: 500,
-      out: function(){}
+      timeout: 250,   // time until out function is called after cursor moves away
+      interval: 300,  // time until over function is called after cursor hovers
+      out: hidePopup
     };
     $(".profile-link").hoverIntent(config);
     function showPopup()
     {
+      // display popup
       var id = parseInt($(this).closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
-      var params = "id=" + id
+      var left_pos = $(this).offset().left;
+      var top_pos = $(this).offset().top;
+      var params = "id=" + id + "&left_pos=" + left_pos + "&top_pos=" + top_pos;
+      
       $.ajax({
         type: 'GET',
         url: '/members/display_profile_hover_info',
@@ -68,7 +73,6 @@ $(document).ready( function() {
     }
     function hidePopup()
     {
-      clearTimeout(timeout);
       $("#profile-hover").hide();
     }
   }

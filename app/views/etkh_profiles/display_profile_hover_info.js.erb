@@ -1,3 +1,13 @@
 var html = "<%= j(render partial: 'profile_hover_popup', locals: { user: @user }) %>";
 
-$("#profile-popup").html(html);
+$popup = $("#profile-popup");
+$popup.html(html);
+
+var left = parseInt("<%= j @pos_left %>");
+var top2 = parseInt("<%= j @pos_top %>");
+var width = parseInt($popup.width());
+var height = parseInt($popup.height());
+left = left - width - 5;
+top2 = top2 - (height/2);
+
+$popup.offset({left: left, top: top2});
