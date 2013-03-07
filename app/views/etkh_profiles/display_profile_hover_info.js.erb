@@ -1,7 +1,7 @@
 var html = "<%= j(render partial: 'profile_hover_popup', locals: { user: @user }) %>";
 
 $popup = $("#profile-popup");
-$popup.html(html);
+$popup.html(html).show();
 
 var left = parseInt("<%= j @pos_left %>");
 var top2 = parseInt("<%= j @pos_top %>");

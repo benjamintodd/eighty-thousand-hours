@@ -50,6 +50,7 @@ $(document).ready( function() {
 
 
     // display popup box when mouse hovers over member
+    var popup_hover = false;
     var config = {
       over: showPopup,
       timeout: 250,   // time until out function is called after cursor moves away
@@ -73,7 +74,21 @@ $(document).ready( function() {
     }
     function hidePopup()
     {
-      $("#profile-hover").hide();
+      // check whether mouse has moved to hover over popup
+      if (popup_hover == false)
+      {
+        $("#profile-hover").hide();
+      }
     }
+
+    // don't hide popup if mouse is hovering over it
+    $("#profile-popup").hover( function() {
+      popup_hover = true
+    }, function() {
+      popup_hover = false;
+      setTimeout( function() {
+        $("#profile-popup").hide();
+      }, 300);
+    });
   }
 });
