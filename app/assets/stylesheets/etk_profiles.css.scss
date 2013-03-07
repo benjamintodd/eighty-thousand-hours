@@ -74,31 +74,26 @@
         margin: 0px;
       }
 
-      #labels {
-        margin-top: 10px;
+      #labels-section {
+        margin-top: 5px;
         margin-bottom: 10px;
 
-        .heading-label {
-          font-size: 13px;
-          color: lighten($text_color,50%);
+        .labels {
+          display: inline-block;
+          p {
+            display: block;
+            line-height: 22px;
+            font-size: 13px;
+            color: lighten($text_color,50%);
+          }
         }
-        .entry {
-          //font-size: 16px;
+        .entries {
           margin-left: 30px;
-        }
-        > div > p { display: inline-block; }
-
-        .position {
-          
-        }
-        .organisation {
-          
-        }
-        .industry {
-          
-        }
-        .karma-score {
-         
+          display: inline-block;
+          p {
+            display: block;
+            line-height: 22px;
+          }
         }
       }
 
@@ -109,6 +104,9 @@
 
     .buttons {
       //margin-top: 10px;
+      @include scale(0.9,0.9);
+      position: relative;
+      left: -35px;
       > * { display: inline-block; }
     }
     .external-links {
