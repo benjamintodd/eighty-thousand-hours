@@ -1,7 +1,7 @@
 - user = profile.user
 
 .eighty-thousand-hours-profile
-  .heading.need-left-filler.need-right-filler
+  .heading
     .row
       .span3
         .avatar
@@ -58,14 +58,14 @@
     .span8
       .content
         - if profile.background?
-          .section.need-left-filler
+          .section
             .title
             .body
               %h2 Background and interests
               = markdown profile.background
 
         - if profile.profile_option_causes.any? || profile.profile_option_activities.any?
-          .section.need-left-filler
+          .section
             .title
             .body
               - if profile.profile_option_causes.any?
@@ -91,7 +91,7 @@
                   = markdown profile.activities_comment
 
         - if profile.positions.any? || profile.educations.any?
-          .section.need-left-filler
+          .section
             .title
             .body
               - if profile.positions.any?
@@ -109,7 +109,7 @@
 
 
         - if !profile.donation_percentage_optout || user.donations.any?
-          .section.need-left-filler
+          .section
             .title
             .body
               - if !profile.donation_percentage_optout
@@ -141,7 +141,7 @@
           // only show skills to other members
           - if current_user and current_user.eighty_thousand_hours_member?
             - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
-              .section.need-left-filler
+              .section
                 .title
                   Skills and Knowledge
                 .body
@@ -154,7 +154,7 @@
 
     .span4
       .sidebar
-        .section.need-right-filler#recent-activity
+        .section#recent-activity
           %h3
             Recent activity
           %hr
@@ -190,7 +190,7 @@
                     -#%p Liked blog post
                     = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
-        .section.need-right-filler#temp
+        .section#temp
           .body
             - upvotes = user.votes.upvotes.recent
             - if upvotes.size > 0
