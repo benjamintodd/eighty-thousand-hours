@@ -155,7 +155,7 @@
     .span4
       .sidebar
         .section#recent-activity
-          %h3
+          %h3.title
             Recent activity
           %hr
           .body
@@ -191,6 +191,9 @@
                     = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
         .section#other-members
+          %h3.title
+            Other members
+          %hr
           .body
             - members = EtkhProfile.generate_users(10)
             - members.each do |user|

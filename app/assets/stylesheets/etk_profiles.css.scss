@@ -158,10 +158,8 @@
       margin-top: 14px;
       padding-left: 15px;
       padding-bottom: 15px;
-    }
 
-    #recent-activity {
-      > h3 {
+      .title {
         padding-top: 10px;
         font-size: 16px;
         color: rgb(38,38,38);
@@ -172,6 +170,9 @@
         padding-bottom: 0px;
         padding-right: 15px;
       }
+    }
+
+    #recent-activity {
       .body h3 {
         padding-top: 10px;
         padding-bottom: 5px;
@@ -183,7 +184,7 @@
       }
     }
     #other-members {
-      padding-top: 15px;
+      > .body { padding-top: 15px; }
     }
   }
 }
@@ -521,7 +522,8 @@
 
 .eighty-thousand-hours-profile-condensed-2 {
   display: block;
-  height: 70px;
+  height: 60px;
+  margin-right: 5px;
 
   .avatar {
     display: inline-block;
@@ -533,13 +535,22 @@
 
   .body {
     display: inline-block;
+    margin-left: 10px;
+    width: 200px;
+    height: 55px;
     
-    font-size: 0.9em;
     .name {
-      //font-weight: bold;
+      margin-top: 2px;
+      font-weight: bold;
     }
-    p {
-      font-size: 14px;
+    .content {
+      position: relative;
+      top: -5px;
+      margin: 0px;
+      p {
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
   }
 }

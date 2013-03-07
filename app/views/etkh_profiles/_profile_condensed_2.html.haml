@@ -6,13 +6,14 @@
   .body
     .name
       = link_to user.name, "/members/#{user.slug}"
-    - if profile.current_position
-      .position
-        = truncate(profile.current_position, length: 30)
-    - if profile.organisation
+    .content
       - if profile.current_position
-        .organisation
-          = " at " + truncate(profile.organisation, length: 30)
-      - else
-        .organisation
-          = truncate(profile.organisation, length: 30)
+        .position
+          %p= truncate(profile.current_position, length: 30)
+      - if profile.organisation
+        - if profile.current_position
+          .organisation
+            %p= " at " + truncate(profile.organisation, length: 30)
+        - else
+          .organisation
+            %p= truncate(profile.organisation, length: 40)
