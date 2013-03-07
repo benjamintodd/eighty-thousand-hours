@@ -606,11 +606,10 @@
   }
 }
 
-#profile-popup {
-  position: absolute;
+#profile-popup { position: absolute; }
 
-  #profile-hover {
-    width: 300px;
+#profile-hover {
+    width: 325px;
     height: 150px;
     padding: 10px;
     background-color: #FFFFFF;
@@ -618,22 +617,25 @@
 
     .avatar {    
       img {
+        padding: 2px;
         height: 100px;
         width: 100px;
         @include box_shadow(#555, 0px, 0px, 6px);
       }
     }
     .body {
+      margin-left: 5px;
       .name {
-
+        font-size: 16px;
+        font-weight: bold;
       }
       .content {
         p {
           font-size: 14px;
           line-height: 16px;
           margin: 0px;
+          margin-bottom: 3px;
         }
       }
     }
   }
-}

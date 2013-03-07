@@ -2,10 +2,10 @@
 - profile = user.etkh_profile
 #profile-hover
   .row-fluid
-    .span5
+    .span4
       .avatar
         = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}"
-    .span7
+    .span8
       .body
         .name
           = link_to user.name, "/members/#{user.slug}"
