@@ -2,12 +2,12 @@
 
 .eighty-thousand-hours-profile
   .heading
-    .row
+    .row-fluid
       .span3
         .avatar
           = link_to image_tag('/assets/profiles/avatar_default_200x200.png'), user.avatar.url
-      .span8
-        .header
+      .span9
+        .header-main
           .info
             %h1.name
               = profile.name
@@ -38,22 +38,26 @@
             -# if user.linkedin_email != nil
             #linkedin-add
               = link_to image_tag('/assets/linkedin/linkedin_button_reg.gif'), {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, id: "linkedin-invite-btn"
-          - if user.external_links?
-            .external-links
-              - if user.external_website?
+          #contact-modal
+
+        - if user.external_links?
+          .external-links
+            - if user.external_website?
+              .link
                 = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
 
-              - if user.external_twitter?
+            - if user.external_twitter?
+              .link
                 = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-              
-              - if user.external_facebook?
+            
+            - if user.external_facebook?
+              .link
                 = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-              
-              - if user.external_linkedin?
+            
+            - if user.external_linkedin?
+              .link
                 = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
 
-          #contact-modal
-        -#%hr
   .row
     .span8
       .content
@@ -195,6 +199,5 @@
             Other members
           %hr
           .body
-            - members = EtkhProfile.generate_users(10)
-            - members.each do |user|
+            - EtkhProfile.generate_users(15).each do |user|
               = render partial: 'profile_condensed_2', locals: { profile: user.etkh_profile }

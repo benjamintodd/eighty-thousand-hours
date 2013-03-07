@@ -56,62 +56,72 @@
       }
     }
 
-    .info {
-      p {
-        margin: 0px;
-        line-height: 16px;
+    .header-main {
+      display: inline-block;
+      .info {
+        p {
+          margin: 0px;
+          line-height: 16px;
+        }
+        .name {
+          margin: 0px;
+          font-size: 30px;
+        }
+        .location {
+          position: relative;
+          top: -5px;
+          font-weight: normal;
+          font-size: 18px;
+          //color: lighten($text_color,50%);
+          margin: 0px;
+        }
+
+        #labels-section {
+          margin-top: 5px;
+          margin-bottom: 10px;
+
+          .labels {
+            display: inline-block;
+            p {
+              display: block;
+              line-height: 22px;
+              font-size: 13px;
+              color: lighten($text_color,50%);
+            }
+          }
+          .entries {
+            margin-left: 30px;
+            display: inline-block;
+            p {
+              display: block;
+              line-height: 22px;
+              height: 22px;
+            }
+          }
+        }
+
+        .email {
+          margin: 0px;
+        }
       }
-      .name {
-        margin: 0px;
-        font-size: 30px;
-      }
-      .location {
+
+      .buttons {
+        //margin-top: 10px;
+        @include scale(0.9,0.9);
         position: relative;
-        top: -5px;
-        font-weight: normal;
-        font-size: 18px;
-        //color: lighten($text_color,50%);
-        margin: 0px;
+        left: -35px;
+        > * { display: inline-block; }
       }
-
-      #labels-section {
-        margin-top: 5px;
-        margin-bottom: 10px;
-
-        .labels {
-          display: inline-block;
-          p {
-            display: block;
-            line-height: 22px;
-            font-size: 13px;
-            color: lighten($text_color,50%);
-          }
-        }
-        .entries {
-          margin-left: 30px;
-          display: inline-block;
-          p {
-            display: block;
-            line-height: 22px;
-            height: 22px;
-          }
-        }
-      }
-
-      .email {
-        margin: 0px;
-      }
-    }
-
-    .buttons {
-      //margin-top: 10px;
-      @include scale(0.9,0.9);
-      position: relative;
-      left: -35px;
-      > * { display: inline-block; }
     }
     .external-links {
-      margin-top: 10px;
+      display: inline-block;
+      float: right;
+      margin-top: 15px;
+      margin-right: 25px;
+      .link {
+        margin-bottom: 5px;
+        display: block;
+      }
     }
   }
 
