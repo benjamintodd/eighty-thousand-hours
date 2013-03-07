@@ -190,43 +190,8 @@
                     -#%p Liked blog post
                     = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
-        .section#temp
+        .section#other-members
           .body
-            - upvotes = user.votes.upvotes.recent
-            - if upvotes.size > 0
-              %p
-                %h5 Recent activity
-                - user.blog_posts.published.limit(3).each do |post|
-                  wrote blog post:
-                  %br
-                  =link_to post.title, post
-                  %br
-                - upvotes.limit(3).each do |v|
-                  - if v.post.instance_of?(BlogPost)
-                    liked blog post:
-                    %br
-                    =link_to v.post.title, blog_post_path(v.post)
-                    %br
-
-            -if user.external_links?
-              %p
-                %h5 External links
-                - if user.external_website?
-                  = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-                  %br
-
-                - if user.external_twitter?
-                  = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-                  %br
-                
-                - if user.external_facebook?
-                  = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-                  %br
-                
-                - if user.external_linkedin?
-                  = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
-                  %br
-
-            %p
-              %h5 Navigation
-              = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
+            - members = EtkhProfile.generate_users(10)
+            - members.each do |user|
+              = render partial: 'profile_condensed_2', locals: { profile: user.etkh_profile }
