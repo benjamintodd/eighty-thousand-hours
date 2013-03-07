@@ -13,14 +13,27 @@
               = profile.name
             %p.location 
               = user.location
-            %p.position
-              = user.etkh_profile.current_position
-            %p.organisation
-              = profile.organisation
-            %p.industry
-              = profile.career_sector
-            %p.karma-score
-              = user.get_karma_score
+            #labels
+              .position
+                %p.heading-label
+                  Position
+                %p.entry
+                  = user.etkh_profile.current_position
+              .organisation
+                %p.heading-label
+                  Organisation
+                %p.entry
+                  = profile.organisation
+              .industry
+                %p.heading-label
+                  Industry
+                %p.entry
+                  = profile.career_sector
+              .karma-score
+                %p.heading-label
+                  Karma score
+                %p.entry
+                  = user.get_karma_score
             .email
               - if current_user && current_user.eighty_thousand_hours_member?
                 %p= user.email

@@ -73,20 +73,35 @@
         //color: lighten($text_color,50%);
         margin: 0px;
       }
-      .position {
-        //font-size: 13px;
+
+      #labels {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        .heading-label {
+          font-size: 13px;
+          color: lighten($text_color,50%);
+        }
+        .entry {
+          //font-size: 16px;
+          margin-left: 30px;
+        }
+        > div > p { display: inline-block; }
+
+        .position {
+          
+        }
+        .organisation {
+          
+        }
+        .industry {
+          
+        }
+        .karma-score {
+         
+        }
       }
-      .organisation {
-        //font-size: 13px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-      .industry {
-        //font-size: 13px;
-      }
-      .karma-score {
-        margin: 0px;
-      }
+
       .email {
         margin: 0px;
       }
