@@ -154,6 +154,7 @@
     }
 
     .section {
+      margin-top: 14px;
       padding-left: 15px;
       padding-bottom: 15px;
     }
@@ -180,45 +181,10 @@
         padding-left: 7px;
       }
     }
-    #temp { margin-top: -8px; }
-  }
-}
-
-.eighty-thousand-hours-profile-condensed {
-  height: 64px;
-  padding: 0px;
-  margin: 0px;
-
-  .avatar {
-    float: left;
-    @include box_shadow(#555, 0px, 0px, 2px);
-
-    height: 32px;
-    width: 32px;
-
-    margin: 3px;
-    margin-right: 10px;
-    position: relative;
-
-    img {
-      // in case non-square photos
-      position:absolute;
-      clip:rect(0px,32px,32px,0px);
+    #other-members {
+      padding-top: 15px;
     }
   }
-
-  .text {
-    padding:0px;
-    margin: 0px;
-    font-size: 0.9em;
-    .name {
-      font-weight: bold;
-    }
-    .location {
-      color: lighten($text_color,50%);
-    }
-  }
-
 }
 
 
@@ -515,6 +481,67 @@
 
 
 //*******Condensed profiles*********
+
+.eighty-thousand-hours-profile-condensed {
+  height: 64px;
+  padding: 0px;
+  margin: 0px;
+
+  .avatar {
+    float: left;
+    @include box_shadow(#555, 0px, 0px, 2px);
+
+    height: 32px;
+    width: 32px;
+
+    margin: 3px;
+    margin-right: 10px;
+    position: relative;
+
+    img {
+      // in case non-square photos
+      position:absolute;
+      clip:rect(0px,32px,32px,0px);
+    }
+  }
+
+  .text {
+    padding:0px;
+    margin: 0px;
+    font-size: 0.9em;
+    .name {
+      font-weight: bold;
+    }
+    .location {
+      color: lighten($text_color,50%);
+    }
+  }
+}
+
+.eighty-thousand-hours-profile-condensed-2 {
+  display: block;
+  height: 70px;
+
+  .avatar {
+    display: inline-block;
+    float: left;
+    @include box_shadow(#555, 0px, 0px, 2px);
+    height: 60px;
+    width: 60px;
+  }
+
+  .body {
+    display: inline-block;
+    
+    font-size: 0.9em;
+    .name {
+      //font-weight: bold;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
 
 .profile-teaser {
   @include rounded_borders(#dfdfdf, 1px, 5px);

@@ -1,14 +1,18 @@
 -# profile is passed as a local var
 - user = profile.user
-.avatar
-  = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}"
-.body
-  %span.name
-    = link_to user.name, "/members/#{user.slug}"
-  - if profile.current_position
-    %span.position
-      = truncate(profile.current_position, length: 30)
+.eighty-thousand-hours-profile-condensed-2
+  .avatar
+    = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}"
+  .body
+    .name
+      = link_to user.name, "/members/#{user.slug}"
+    - if profile.current_position
+      .position
+        = truncate(profile.current_position, length: 30)
     - if profile.organisation
-      %span.organisation
-        = " at "
-        = truncate(profile.organisation, length: 30)
+      - if profile.current_position
+        .organisation
+          = " at " + truncate(profile.organisation, length: 30)
+      - else
+        .organisation
+          = truncate(profile.organisation, length: 30)
