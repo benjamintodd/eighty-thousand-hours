@@ -47,5 +47,28 @@ $(document).ready( function() {
       $(".donations").children("ul").children("li:gt(7)").fadeIn(fadeInTime);
       $("#see-more-donations").hide();
     });
+
+
+    // display popup box when mouse hovers over member
+    var timeout;
+    $(".profile-link").hover( function() {
+      // must hover for some time
+      timeout = setTimeOut(showPopup($(this)), 2000);
+    }, hidePopup());
+    function showPopup(element)
+    {
+      var id = parseInt(element.closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
+      var params = "id=" + id
+      $.ajax({
+        type: 'GET',
+        url: '/members/display_profile_hover_info',
+        data: params
+      });
+    }
+    function hidePopup()
+    {
+      clearTimeout(timeout);
+      $("#profile-hover").hide();
+    }
   }
 });

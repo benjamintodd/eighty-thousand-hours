@@ -51,9 +51,7 @@
     padding-left: 15px;
 
     .avatar {
-      img {
-        @include box_shadow(#555, 0px, 0px, 6px);
-      }
+      img { @include box_shadow(#555, 0px, 0px, 6px); }
     }
 
     .header-main {
@@ -604,6 +602,33 @@
     .info {
       font-size: 0.925em;
       line-height: 20px;
+    }
+  }
+}
+
+#profile-hover {
+  position: absolute;
+  padding: 10px;
+  background-color: #FFFFFF;
+  @include rounded_borders(#A1A1A1, 3px, 5px);
+
+  .avatar {    
+    img {
+      height: 100px;
+      width: 100px;
+      @include box_shadow(#555, 0px, 0px, 6px);
+    }
+  }
+  .body {
+    .name {
+
+    }
+    .content {
+      p {
+        font-size: 14px;
+        line-height: 16px;
+        margin: 0px;
+      }
     }
   }
 }

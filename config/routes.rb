@@ -76,6 +76,7 @@ EightyThousandHours::Application.routes.draw do
     resources :positions, :only => [:new,:create,:edit,:update,:destroy]
     resources :educations, :only => [:new,:create,:edit,:update,:destroy]
     collection do
+      get 'display_profile_hover_info'
       post 'search'
     end
   end

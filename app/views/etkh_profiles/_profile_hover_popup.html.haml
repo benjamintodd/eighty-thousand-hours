@@ -1,0 +1,20 @@
+-# user passed in as local var
+- profile = user.etkh_profile
+#profile-hover
+  .row-fluid
+    .span5
+      .avatar
+        = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}"
+    .span7
+      .body
+        .name
+          = link_to user.name, "/members/#{user.slug}"
+        .content
+          %p.location 
+            = user.location
+          %p.position
+            = profile.current_position
+          %p.organisation
+            = profile.organisation
+          %p.industry
+            = profile.career_sector

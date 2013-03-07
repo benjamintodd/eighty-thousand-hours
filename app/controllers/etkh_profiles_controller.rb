@@ -174,4 +174,8 @@ class EtkhProfilesController < ApplicationController
       render partial: 'profiles_selection', locals: { users: @next_selection }
     end
   end
+
+  def display_profile_hover_info
+    @user = User.find_by_id(params[:id])
+  end
 end

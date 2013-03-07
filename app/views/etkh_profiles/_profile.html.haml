@@ -201,3 +201,5 @@
           .body
             - EtkhProfile.generate_users(15).each do |user|
               = render partial: 'profile_condensed_2', locals: { profile: user.etkh_profile }
+        
+        #profile-popup
