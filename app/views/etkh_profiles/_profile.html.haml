@@ -5,7 +5,7 @@
     .row-fluid
       .span3
         .avatar
-          = link_to image_tag('/assets/profiles/avatar_default_200x200.png'), user.avatar.url
+          = link_to image_tag(user.avatar(:medium)), user.avatar.url
       .span9
         .header-main
           .info
@@ -18,12 +18,13 @@
                 %p Position
                 %p Organisation
                 %p Industry
-                %p Karma score
+                %p.karma{ title: "test tooltip"}Karma score
               .entries
                 %p= profile.current_position
                 %p= profile.organisation
                 %p= profile.career_sector
-                %p= user.get_karma_score
+                %p.karma{ title: "test tooltip"}
+                  = user.get_karma_score
             .email
               - if current_user && current_user.eighty_thousand_hours_member?
                 %p= user.email

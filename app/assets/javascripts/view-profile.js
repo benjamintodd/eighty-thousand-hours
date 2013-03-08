@@ -9,6 +9,13 @@ $(document).ready( function() {
     // set background colour to a light grey
     $("body").css('background-color','rgb(233,233,233)');
 
+    // Add tooltip to karma score
+    $(".karma").tooltip({
+      position: {
+        my: "center bottom",
+        at: "right top"
+      }
+    });
 
     // Truncate lists
     var fadeInTime = 800;
