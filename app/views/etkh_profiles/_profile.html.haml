@@ -200,7 +200,7 @@
             Other members
           %hr
           .body
-            - EtkhProfile.generate_users(15).each do |user|
+            - EtkhProfile.generate_users(15, [current_user, user]).each do |user|
               = render partial: 'profile_condensed_2', locals: { profile: user.etkh_profile }
         
         #profile-popup

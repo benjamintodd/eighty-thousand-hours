@@ -156,10 +156,10 @@ class EtkhProfilesController < ApplicationController
     # generate users using algorithm
     if @selected_users
       # remove currently selected users from searching set
-      @next_selection = EtkhProfile.generate_users(list_length, @selected_users)
+      @next_selection = EtkhProfile.generate_users(list_length, [@selected_users,current_user].flatten)
       @selected_users.concat(@next_selection)
     else
-      @next_selection = EtkhProfile.generate_users(list_length)
+      @next_selection = EtkhProfile.generate_users(list_length,[current_user])
       @selected_users = @next_selection
     end
 
