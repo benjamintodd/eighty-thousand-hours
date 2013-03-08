@@ -9,11 +9,11 @@
     .content
       - if profile.current_position
         .position
-          %p= truncate(profile.current_position, length: 30)
+          %p= truncate(profile.current_position, length: 25)
       - if profile.organisation
         - if profile.current_position
           .organisation
-            %p= " at " + truncate(profile.organisation, length: 30)
+            %p= " at " + truncate(profile.organisation, length: 25)
         - else
           .organisation
-            %p= truncate(profile.organisation, length: 40)
+            %p= truncate(profile.organisation, length: 50)
