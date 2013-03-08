@@ -1,4 +1,3 @@
--#.box
 .contact-user-form
   .header
     %h2
@@ -9,7 +8,7 @@
       .form-inputs
         = text_field_tag :subject, nil, id: "message-subject", placeholder: "subject"
         %br
-        = text_area_tag :body, nil, size: "50x13", id: "message-body", placeholder: "message"
+        = text_area_tag :body, nil, size: "50x8", id: "message-body", placeholder: "message"
 
       .form-actions
         = submit_tag "Submit", class: "btn btn-large btn-success form-close", id: "submit-btn"

@@ -2,8 +2,14 @@
 var form_html = "<%= escape_javascript(render partial: 'users/contact_user', locals: { user_id: @user_id }) %>"
 
 //show popup
-$("#contact-modal").html(form_html).show();
-$("#contact-modal").reveal({
+$popup = $("#contact-modal");
+
+$popup.html(form_html).show();
+
+var left = $(window).width() / 2 - ($popup.width() / 2);
+$popup.offset({left: left});
+
+$popup.reveal({
 	animation: 'fade',
 	animationspeed: 400,
 	closeonbackgroundclick: true,
