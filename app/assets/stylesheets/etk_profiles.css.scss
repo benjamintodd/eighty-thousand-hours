@@ -52,21 +52,23 @@
 
     .avatar {
       @include box_shadow(#555, 0px, 0px, 6px);
-      width: 200px;
-      height: 200px;
+      width: 205px;
+      height: 205px;
       img {
-        width: 200px;
-        height: 200px;
+        width: 205px;
+        height: 205px;
         position: absolute;
-        clip:rect(0px,200px,200px,0px);
+        clip:rect(0px,205px,205px,0px);
       }
     }
 
-    .span9 { margin-left: 0px; }
+    .span9 { margin-left: 5px; }
 
     .header-main {
+      position: relative;
       display: inline-block;
       width: 500px;
+      height: 205px;
       .info {
         p {
           margin: 0px;
@@ -86,7 +88,7 @@
         }
 
         #labels-section {
-          margin-top: 5px;
+          margin-top: 0px;
           margin-bottom: 10px;
 
           .labels {
@@ -108,18 +110,18 @@
             }
           }
         }
-
-        .email {
-          margin: 0px;
-        }
       }
 
       .buttons {
-        //margin-top: 10px;
-        @include scale(0.9,0.9);
-        position: relative;
-        left: -35px;
-        > * { display: inline-block; }
+        position: absolute;
+        bottom: 0;
+        > * {
+          display: inline-block;
+          margin-right: 5px;
+        }
+        .btn.btn-info {
+          @include background-linear-gradient(top,#DD5D8C,#d4346f);
+        }
       }
     }
     .external-links {
@@ -217,20 +219,20 @@
 
 
 .contact-user-form {
-  width: 550px;
+  width: 450px;
   .header {
     background-color: rgb(235,235,235);
     h2 { 
       position: relative;
       left: 20px;
       margin-top: 0px;
-      padding-top: 20px;
+      padding-top: 30px;
     }
   }
   .form-inputs {
     margin-left: 15px;
     margin-right: 15px;
-    width: 500px;
+    width: 400px;
     
     #message-subject {
       width: 100%;
@@ -243,10 +245,8 @@
   .form-actions {
     margin-bottom: 0px;
     background-color: rgb(235,235,235);
-    #submit-btn {
-      margin-left: 20px;
-    }
-    #cancel-btn { margin-left: 30px; }
+    #submit-btn { margin-left: 40px; }
+    #cancel-btn { margin-left: 40px; }
   }
 
   form { margin-bottom: 0px; }

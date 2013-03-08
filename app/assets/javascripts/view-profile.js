@@ -60,8 +60,8 @@ $(document).ready( function() {
     var popup_hover = false;
     var config = {
       over: showPopup,
-      timeout: 250,   // time until out function is called after cursor moves away
-      interval: 150,  // time until over function is called after cursor hovers
+      timeout: 50,   // time until out function is called after cursor moves away
+      interval: 0,  // time until over function is called after cursor hovers
       out: hidePopup
     };
     $(".profile-link").hoverIntent(config);

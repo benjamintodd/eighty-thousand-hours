@@ -28,20 +28,19 @@
                 %p.karma{ title: "test tooltip"}
                   = user.get_karma_score
                 - if current_user && current_user.eighty_thousand_hours_member?
-                  %p= user.email
+                  %p= truncate(user.email, length: 45)
           .buttons
             #contact
-              = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-danger", id: "contact-btn"
+              = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info", id: "contact-btn"
 
             - if !user.external_linkedin.nil? && !user.external_linkedin.empty?
               #linkedin-view
-                = link_to image_tag('/assets/linkedin/linkedin_button_reg.gif', size: '160'), user.external_linkedin
+                = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-info"
 
             - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
               #linkedin-add
-                = link_to image_tag('/assets/linkedin/linkedin_button_reg.gif'), {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, id: "linkedin-invite-btn"
-          #contact-modal
-
+                = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-info"
+          
         - if user.external_links?
           .external-links
             %p External links
@@ -49,19 +48,16 @@
             - if user.external_website?
               .link
                 = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-
             - if user.external_twitter?
               .link
                 = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-            
             - if user.external_facebook?
               .link
                 = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-            
             - if user.external_linkedin?
               .link
                 = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
-
+  #contact-modal
   .row
     .span8
       .content
