@@ -43,6 +43,8 @@
 
         - if user.external_links?
           .external-links
+            %p External links
+            %hr
             - if user.external_website?
               .link
                 = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
@@ -127,7 +129,7 @@
                     .progress.progress-striped.progress-danger
                       .bar{:"data-percentage" => profile.donation_percentage}
 
-              // only show donations to members
+              -# only show donations to members
               - if current_user and current_user.eighty_thousand_hours_member?
                 - donations = user.donations.order("date DESC")
                 - if donations.confirmed.is_public.size > 0
@@ -143,7 +145,7 @@
                     - if donations.length > 8
                       %a{ class: "see-more", id: "see-more-donations"}See more
 
-          // only show skills to other members
+          -# only show skills to other members
           - if current_user and current_user.eighty_thousand_hours_member?
             - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
               .section
