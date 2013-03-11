@@ -54,9 +54,6 @@
             - if user.external_facebook?
               .link
                 = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-            - if user.external_linkedin?
-              .link
-                = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
   #contact-modal
   .row
     .span8
