@@ -1,6 +1,7 @@
 class ChangeEtkhProfiles < ActiveRecord::Migration
   def change
   	add_column :etkh_profiles, :career_sector, :string
+    add_column :etkh_profiles, :current_position, :string
 
   	create_table :positions, force: true do |t|
       t.integer :etkh_profile_id 
