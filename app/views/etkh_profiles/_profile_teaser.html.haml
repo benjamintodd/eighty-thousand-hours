@@ -1,3 +1,4 @@
+- profile = user.etkh_profile
 .profile-teaser
   .row-fluid
     .span2
@@ -11,24 +12,40 @@
         .location
           %p= user.location
         .organisation
-          %p= user.etkh_profile.organisation
+          %p= profile.organisation
         %hr
 
       .body
         .row-fluid
           .span3
             .labels
-              .background-label
+              - if !profile.current_position.nil? && !profile.current_position.empty?
+                .position
+                  %p Current position
+              .background
                 %p Background
-              - if user.etkh_profile.profile_option_causes.any?
-                .causes-label
-                  %p Causes
+              - if profile.profile_option_activities.any?
+                .activities
+                  %p Activities
+              -# if profile.profile_option_causes.any?
+                -#.causes-label
+                  -#%p Causes
 
           .span9
             .info
+              - if !profile.current_position.nil? && !profile.current_position.empty?
+                .position
+                  %p= profile.current_position
               .background
-                = markdown (user.etkh_profile.get_background_snippet(100, 150) + "... [read more](#{etkh_profile_path(user)})")
-              - if user.etkh_profile.profile_option_causes.any?
-                .causes
-                  - user.etkh_profile.profile_option_causes.limit(3).each do |cause|
+                %p= markdown (profile.get_background_snippet(100, 150) + "... [read more](#{etkh_profile_path(user)})")
+              - if profile.profile_option_activities.any?
+                .activities
+                  - profile.profile_option_activities.limit(4).each_with_index do |activity, index|
+                    - if index < 3
+                      = activity.title + ", "
+                    - else
+                      = activity.title
+              -# if profile.profile_option_causes.any?
+                -# .causes
+                  -# profile.profile_option_causes.limit(3).each do |cause|
                     -#= cause.title + ", "

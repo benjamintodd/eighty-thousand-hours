@@ -593,6 +593,7 @@
 .profile-teaser {
   @include rounded_borders(#dfdfdf, 1px, 5px);
   padding: 10px;
+  padding-bottom: 5px;
   margin-bottom: 7px;
 
   .avatar {
@@ -629,13 +630,19 @@
   }
 
   .body {
-
     .labels {
-      //font-size: 0.85em;
+      .position p { margin-bottom: 0px; }
+      .activities {
+        position: relative;
+        top: 15px;
+      }
     }
     .info {
       font-size: 0.925em;
       line-height: 20px;
+
+      .position p { margin-bottom: 5px; }
+      .background p { margin-bottom: 5px; }
     }
   }
 }
