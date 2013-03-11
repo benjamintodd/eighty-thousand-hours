@@ -143,9 +143,21 @@ class EtkhProfilesController < ApplicationController
     ## get list of users to be displayed
     list_length = 10
 
+    # generate users using algorithm
+    @selected_users = EtkhProfile.generate_users(list_length,[current_user])
+
+    # store newly selected users in session variable
+    session[:selected_users] = []
+    @selected_users.each do |user|
+      session[:selected_users] << user.id
+    end
+  end
+
+  def get_more_members
+    ## get list of users to be displayed
+    list_length = 10
+
     # get already selected users from session data
-    # note this means that if the user leaves the page and returns to it
-    # the previously selected users will still be selected
     if session[:selected_users]
       @selected_users = []
       session[:selected_users].each do |user_id|
@@ -169,10 +181,8 @@ class EtkhProfilesController < ApplicationController
       session[:selected_users] << user.id
     end
 
-    # if an AJAX request render newly selected users only
-    if request.xhr?
-      render partial: 'profiles_selection', locals: { users: @next_selection }
-    end
+    # should be AJAX request so render newly selected users only
+    render partial: 'profiles_selection', locals: { users: @next_selection }
   end
 
   def display_profile_hover_info
