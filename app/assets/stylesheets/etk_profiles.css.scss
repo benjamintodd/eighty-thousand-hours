@@ -54,11 +54,11 @@
       @include box_shadow(#555, 0px, 0px, 6px);
       width: 205px;
       height: 205px;
+      position: relative;
+      overflow: hidden;
       img {
-        width: 205px;
-        height: 205px;
         position: absolute;
-        clip:rect(0px,205px,205px,0px);
+        // width and height set via javascript
       }
     }
 
@@ -555,13 +555,13 @@
     display: inline-block;
     float: left;
     @include box_shadow(#555, 0px, 0px, 2px);
+    position: relative;
     height: 60px;
     width: 60px;
+    overflow: hidden;
     img {
-      height: 60px;
-      width: 60px;
       position: absolute;
-      clip:rect(0px,60px,60px,0px);
+      // image dimensions set via javascript
     }
   }
 
@@ -593,14 +593,13 @@
   margin-bottom: 7px;
 
   .avatar {
+    position: relative;
     width: 110px;
     height: 110px;
+    overflow: hidden;
     @include box_shadow(#555, 0px, 0px, 5px);
     img {
-      width: 110px;
-      height: 110px;
       position: absolute;
-      clip:rect(0px,110px,110px,0px);
     }
   }
 
@@ -647,12 +646,14 @@
     background-color: #FFFFFF;
     @include rounded_borders(#A1A1A1, 3px, 5px);
 
-    .avatar {    
+    .avatar {
+      position: relative;
+      height: 100px;
+      width: 100px;
+      @include box_shadow(#555, 0px, 0px, 6px);
+      overflow: hidden;
       img {
-        padding: 2px;
-        height: 100px;
-        width: 100px;
-        @include box_shadow(#555, 0px, 0px, 6px);
+        position: absolute;        
       }
     }
     .body {
