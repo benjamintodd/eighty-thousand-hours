@@ -191,12 +191,15 @@
                     -#%p Liked blog post
                     = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
-        .section#other-members
+        .section#other-members{ style: "display: none;" }
           %h3.title
             Other members
           %hr
           .body
-            - EtkhProfile.generate_users(15, [current_user, user]).each do |user|
-              = render partial: 'profile_condensed_2', locals: { profile: user.etkh_profile }
+            - members = EtkhProfile.generate_users(15, [current_user, user])
+            - members.each_slice(5).with_index do |batch,i|
+              %div{ id: "batch-#{i+1}", style: "display: none" }
+                - batch.each do |member|
+                  = render partial: 'profile_condensed_2', locals: { profile: member.etkh_profile }
         
         #profile-popup

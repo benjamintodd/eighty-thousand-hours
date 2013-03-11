@@ -111,5 +111,23 @@ $(document).ready( function() {
         $("#profile-popup").hide();
       }, 300);
     });
+
+    // only display other members if page is long enough
+    // height of one batch is 320px
+    var sidebar_space = $(document).height() - $("#recent-activity").height();
+    if (sidebar_space > 1000)
+    {
+      $("#other-members").show();
+      $("#batch-1").show();
+    }
+    if (sidebar_space > 1700)
+    {
+      $("#batch-2").show();
+    }
+    if (sidebar_space > 2000)
+    {
+      $("#batch-3").show();
+    }
+
   }
 });
