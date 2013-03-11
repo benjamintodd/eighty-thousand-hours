@@ -10,12 +10,7 @@ $(document).ready( function() {
     $("body").css('background-color','rgb(233,233,233)');
 
     // Add tooltip to karma score
-    $(".karma").tooltip({
-      position: {
-        my: "center bottom",
-        at: "right top"
-      }
-    });
+    $(".karma").tooltip();
 
     // set image dimensions dynamically to avoid stretching
     // short delay to allow images to load

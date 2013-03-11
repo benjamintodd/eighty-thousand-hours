@@ -18,14 +18,14 @@
                 %p Position
                 %p Organisation
                 %p Industry
-                %p.karma{ title: "test tooltip"}Karma score
+                %p.karma{ title: "Explanation for karma score..."}Karma score
                 - if current_user && current_user.eighty_thousand_hours_member?
                   %p Email
               .entries
                 %p= truncate(profile.current_position, length: 45)
                 %p= truncate(profile.organisation, length: 45)
                 %p= truncate(profile.career_sector, length: 45)
-                %p.karma{ title: "test tooltip"}
+                %p.karma{ title: "Explanation for karma score..."}
                   = user.get_karma_score
                 - if current_user && current_user.eighty_thousand_hours_member?
                   %p= truncate(user.email, length: 45)
