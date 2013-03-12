@@ -81,6 +81,8 @@ class EtkhProfile < ActiveRecord::Base
   def get_background_snippet(minLength, maxLength)
     # returns a maximum of a whole paragraph or maxLength in characters
 
+    return nil if self.background.nil? || self.background.empty?
+    
     # strip leading white spaces
     stripped = self.background.lstrip
 
