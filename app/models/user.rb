@@ -141,6 +141,33 @@ class User < ActiveRecord::Base
     return selection
   end
 
+  def self.search(options)
+    # define search conditions
+    # search terms are case-insensitive
+    conditions_array = []
+    conditions_array << [ 'lower(name) = ?', options[:name].downcase ] if !options[:name].empty?
+    conditions_array << [ 'lower(location) = ?', options[:location].downcase ] if !options[:location].empty?
+
+    # concatenate conditions into search string
+    conditions = []
+    arguments = ""
+    i = 0
+    conditions_array.each do |key, val|
+      # combine search terms together
+      arguments += key
+      arguments += " AND " if i < conditions_array.length - 1
+
+      # build list of search values
+      conditions << val
+
+      i += 1
+    end
+    # prepend conditions array with argument string
+    conditions.unshift(arguments)
+
+    results = User.find(:all, conditions: conditions)
+    return User.first(42)
+  end
 
   ### Karma score ###
   # define variable weights
