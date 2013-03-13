@@ -1,11 +1,15 @@
 = javascript_include_tag "members-page.js"
-.span10
-  .heading
-    %h1 Our members
-  %hr
+.members-page
+  .span10
+    .heading
+      %h1 Our members
+    %hr
 
-  #search-form
-    = render partial: 'search_form'
+    .search-form
+      #simple-search
+        = render partial: 'basic_search_form'
+      #advanced-search
+        = render partial: 'search_form'
 
-  #members-list
-    = render partial: 'profiles_selection', locals: { users: @selected_users }
+    #members-list
+      = render partial: 'profiles_selection', locals: { users: @selected_users }

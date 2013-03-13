@@ -682,3 +682,55 @@
       }
     }
   }
+
+
+//********Members page**********
+
+.members-page {
+  .search-form {
+    margin-bottom: 40px;
+
+    .form {
+      margin-top: 10px;
+      padding: 10px;
+
+      .labels {
+        display: inline-block;
+        width: 81px;
+        margin-left: 15px;
+        > * {
+          margin-bottom: 23px;
+        }
+      }
+      .inputs {
+        display: inline-block;
+        margin-left: 30px;
+        > * {
+          display: block;
+          margin-bottom: 15px;
+        }
+      }
+      .button {
+        margin-top: 15px;
+        margin-left: 10px;
+      }
+    }
+
+    #simple-search {
+      .link {
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+
+    #advanced-search {
+      display: none;
+      @include rounded_borders(#CCC, 2px, 11px);
+      background-color: rgb(104,155,233);
+      position: relative;
+      top: -145px;
+
+      
+    }
+  }
+}
