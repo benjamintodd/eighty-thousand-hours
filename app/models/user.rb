@@ -168,6 +168,28 @@ class User < ActiveRecord::Base
     return user_results & user_profile_results
   end
 
+  def self.sort_by_profile_completeness(users)
+    sorted = users.sort do |a,b|
+      if a.etkh_profile
+        if !b.etkh_profile
+          -1
+        else
+          if a.etkh_profile.get_profile_completeness > b.etkh_profile.get_profile_completeness
+            -1
+          else
+            1
+          end
+        end
+      else
+        if b.etkh_profile
+          1
+        else
+          0
+        end
+      end
+    end
+  end
+
   ### Karma score ###
   # define variable weights
   BLOG_POST_CREATED         = 15

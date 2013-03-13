@@ -1,3 +1,4 @@
+LIST_LENGTH = 10
 class EtkhProfilesController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:edit,:update,:destroy]
 
@@ -118,6 +119,9 @@ class EtkhProfilesController < ApplicationController
     search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
     results = User.search(search_params)
 
+    # order results by profile completeness
+    results = User.sort_by_profile_completeness(results)
+
     # store results in session data as user ids
     session[:search_results] = []
     results.each do |user|
@@ -125,11 +129,10 @@ class EtkhProfilesController < ApplicationController
     end
 
     # display first entries
-    list_length = 10
-    @selection = results.first(list_length)
+    @selection = results.first(LIST_LENGTH)
 
     # create pointer to indicate which results are already displayed
-    session[:search_results_pointer] = list_length
+    session[:search_results_pointer] = LIST_LENGTH
 
     session[:search] = true
     render 'etkh_profiles/search'
@@ -144,10 +147,9 @@ class EtkhProfilesController < ApplicationController
     @title = "Members"
 
     ## get list of users to be displayed
-    list_length = 10
 
     # generate users using algorithm
-    @selected_users = EtkhProfile.generate_users(list_length,[current_user])
+    @selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
 
     # store newly selected users in session variable
     session[:selected_users] = []
@@ -161,7 +163,6 @@ class EtkhProfilesController < ApplicationController
 
   def get_more_members
     ## get list of users to be displayed
-    list_length = 10
 
     # different courses of action whether displaying search results or random users
     if session[:search] == true
@@ -171,10 +172,10 @@ class EtkhProfilesController < ApplicationController
         @next_selection = []
 
         # get next batch of length list_length of results unless end is within next batch
-        if session[:search_results_pointer]+list_length >= session[:search_results].length
+        if session[:search_results_pointer]+LIST_LENGTH >= session[:search_results].length
           endpoint = session[:search_results].length
         else
-          endpoint = session[:search_results_pointer]+list_length 
+          endpoint = session[:search_results_pointer]+LIST_LENGTH 
         end
 
         for i in session[:search_results_pointer]..(endpoint - 1)
@@ -182,7 +183,7 @@ class EtkhProfilesController < ApplicationController
         end
 
         # update position of pointer
-        session[:search_results_pointer] += list_length
+        session[:search_results_pointer] += LIST_LENGTH
       end
     else
 
@@ -197,10 +198,10 @@ class EtkhProfilesController < ApplicationController
       # generate more users using algorithm
       if @selected_users
         # remove currently selected users from searching set
-        @next_selection = EtkhProfile.generate_users(list_length, [@selected_users,current_user].flatten)
+        @next_selection = EtkhProfile.generate_users(LIST_LENGTH, [@selected_users,current_user].flatten)
         @selected_users.concat(@next_selection)
       else
-        @next_selection = EtkhProfile.generate_users(list_length,[current_user])
+        @next_selection = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
         @selected_users = @next_selection
       end
 
