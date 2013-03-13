@@ -1,11 +1,23 @@
 = form_tag('members/search', remote: true) do
+  = label_tag :name
   = text_field_tag :name
+
+  = label_tag :location
   = text_field_tag :location
+
+  = label_tag :organisation
+  = text_field_tag :organisation
+
+  = label_tag :industry
+  = text_field_tag :industry
+
+  = label_tag :position
+  = text_field_tag :position
 
   = submit_tag "Search", name: nil, id: "search-btn"
 
 
 :javascript
   $("#search-btn").click( function() {
-    $("#members-list").fadeOut(800);
+    $("#members-list").fadeOut(400);
   });

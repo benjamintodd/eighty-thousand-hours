@@ -115,7 +115,7 @@ class EtkhProfilesController < ApplicationController
 
   def search
     # perform searching in model
-    search_params = {name: params[:name], location: params[:location]}
+    search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
     results = User.search(search_params)
 
     # store results in session data as user ids

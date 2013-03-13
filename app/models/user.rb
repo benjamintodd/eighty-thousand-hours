@@ -144,29 +144,28 @@ class User < ActiveRecord::Base
   def self.search(options)
     # define search conditions
     # search terms are case-insensitive
-    conditions_array = []
-    conditions_array << [ 'lower(name) = ?', options[:name].downcase ] if !options[:name].empty?
-    conditions_array << [ 'lower(location) = ?', options[:location].downcase ] if !options[:location].empty?
+    user_conditions_array = []
+    user_conditions_array << [ 'lower(name) LIKE ?', "%#{options[:name].downcase}%" ] if !options[:name].empty?
+    user_conditions_array << [ 'lower(location) LIKE ?', "%#{options[:location].downcase}%" ] if !options[:location].empty?    
 
     # concatenate conditions into search string
-    conditions = []
-    arguments = ""
-    i = 0
-    conditions_array.each do |key, val|
-      # combine search terms together
-      arguments += key
-      arguments += " AND " if i < conditions_array.length - 1
+    user_conditions = build_search_conditions(user_conditions_array)
+    user_results = User.where(user_conditions).all
 
-      # build list of search values
-      conditions << val
+    # now search etkh_profiles 
+    profiles_conditions_array = []
+    profiles_conditions_array << [ 'lower(organisation) LIKE ?', "%#{options[:organisation].downcase}%" ] if !options[:organisation].empty?
+    profiles_conditions_array << [ 'lower(career_sector) LIKE ?', "%#{options[:industry].downcase}%" ] if !options[:industry].empty?
+    profiles_conditions_array << [ 'lower(current_position) LIKE ?', "%#{options[:position].downcase}%" ] if !options[:position].empty?
 
-      i += 1
-    end
-    # prepend conditions array with argument string
-    conditions.unshift(arguments)
+    profile_conditions = build_search_conditions(profiles_conditions_array)
+    profile_results = EtkhProfile.where(profile_conditions).all
+    
+    # convert array of profiles into array of users
+    user_profile_results = profile_results.map{|p|p.user}
 
-    results = User.find(:all, conditions: conditions)
-    return User.first(42)
+    # find common elements in both results arrays
+    return user_results & user_profile_results
   end
 
   ### Karma score ###
@@ -267,5 +266,24 @@ class User < ActiveRecord::Base
          # if doing this. View code should check the errors of the child.
          # Or add the child's errors to the User model's error array of the :base
          # error item
+  end
+
+  def self.build_search_conditions(conditions_array)
+    conditions = []
+    arguments = ""
+    i = 0
+    conditions_array.each do |key, val|
+      # combine search terms together
+      arguments += key
+      arguments += " AND " if i < conditions_array.length - 1
+
+      # build list of search values
+      conditions << val
+
+      i += 1
+    end
+    # prepend conditions array with argument string
+    conditions.unshift(arguments)
+    return conditions
   end
 end
