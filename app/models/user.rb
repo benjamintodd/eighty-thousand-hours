@@ -174,7 +174,7 @@ class User < ActiveRecord::Base
         if !b.etkh_profile
           -1
         else
-          if a.etkh_profile.get_profile_completeness > b.etkh_profile.get_profile_completeness
+          if a.etkh_profile.completeness_score > b.etkh_profile.completeness_score
             -1
           else
             1
