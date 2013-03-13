@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20130313135255) do
     t.boolean  "donation_percentage_optout", :default => true
     t.string   "career_sector"
     t.string   "current_position"
-    t.integer  "completeness_score"
+    t.integer  "completeness_score",         :default => 0
   end
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
