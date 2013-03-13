@@ -5,11 +5,9 @@
       %h1 Our members
     %hr
 
-    .search-form
-      #simple-search
-        = render partial: 'basic_search_form'
-      #advanced-search
-        = render partial: 'search_form'
+    #search-form
+      = render partial: 'search_form'
+    %hr
 
     #members-list
       = render partial: 'profiles_selection', locals: { users: @selected_users }
