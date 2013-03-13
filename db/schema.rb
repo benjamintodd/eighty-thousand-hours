@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225115012) do
+ActiveRecord::Schema.define(:version => 20130313135255) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20130225115012) do
     t.boolean  "donation_percentage_optout", :default => true
     t.string   "career_sector"
     t.string   "current_position"
+    t.integer  "completeness_score"
   end
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
