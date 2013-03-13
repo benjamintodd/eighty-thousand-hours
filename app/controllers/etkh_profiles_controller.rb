@@ -95,6 +95,11 @@ class EtkhProfilesController < ApplicationController
 
     if current_user.update_attributes(params[:user])
       flash[:"alert-success"] = "Your profile was successfully updated."
+
+      # also update profile completeness score
+      if current_user.etkh_profile
+        current_user.etkh_profile.get_profile_completeness
+      end
       
       #work out time since user profile was first created
       timediff = Time.now - current_user.confirmed_at   #in seconds
