@@ -3,6 +3,8 @@
     .row
       .span7
         .box
+          = render partial: 'profile_completeness_bar', locals: { value: 60 }
+
           %h1= current_user.name
           %hr
           
