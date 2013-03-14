@@ -8,7 +8,7 @@ $(document).ready( function() {
       url: '/members/get_more_members',
       //msgStyles: {'color': '#000000', 'font-size': '1em'},
       //loaderMsg: 'Loading more results',   
-      loaderImg: '/images/load.gif',
+      loaderImg: '/assets/images/load.gif',
       distance: '2500'
     });
 
@@ -41,6 +41,13 @@ $(document).ready( function() {
         $(".button").css('top', '-5px');
         $(".button").fadeIn(500);
       }, 500);
+    });
+
+    // search button
+    $("#search-btn").click( function() {
+      var loading_html = "<div id='loading-icon'><img src='/assets/images/load.gif'></img></div>";
+      $(loading_html).insertBefore("#members-list");
+      $("#members-list").hide();
     });
   }
 });

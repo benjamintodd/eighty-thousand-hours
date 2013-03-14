@@ -1,3 +1,4 @@
 // clears previous selection and displays new search results
 var results_html = "<%= j(render partial: 'profiles_selection', locals: { users: @selection }) %>";
+$("#loading-icon").remove();
 $("#members-list").html(results_html).fadeIn(800);
