@@ -79,28 +79,6 @@ $(document).ready( function() {
       out: hidePopup
     };
     $(".profile-link").hoverIntent(config);
-    function showPopup()
-    {
-      // display popup
-      var id = parseInt($(this).closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
-      var left_pos = $(this).offset().left;
-      var top_pos = $(this).offset().top;
-      var params = "id=" + id + "&left_pos=" + left_pos + "&top_pos=" + top_pos;
-      
-      $.ajax({
-        type: 'GET',
-        url: '/members/display_profile_hover_info',
-        data: params
-      });
-    }
-    function hidePopup()
-    {
-      // check whether mouse has moved to hover over popup
-      if (popup_hover == false)
-      {
-        $("#profile-hover").hide();
-      }
-    }
 
     // don't hide popup if mouse is hovering over it
     $("#profile-popup").hover( function() {
@@ -131,3 +109,26 @@ $(document).ready( function() {
 
   }
 });
+
+function showPopup()
+{
+  // display popup
+  var id = parseInt($(this).closest(".eighty-thousand-hours-profile-condensed-2").attr('id'));
+  var left_pos = $(this).offset().left;
+  var top_pos = $(this).offset().top;
+  var params = "id=" + id + "&left_pos=" + left_pos + "&top_pos=" + top_pos + "&page=view_profile";
+  
+  $.ajax({
+    type: 'GET',
+    url: '/members/display_profile_hover_info',
+    data: params
+  });
+}
+function hidePopup()
+{
+  // check whether mouse has moved to hover over popup
+  if (popup_hover == false)
+  {
+    $("#profile-hover").hide();
+  }
+}
