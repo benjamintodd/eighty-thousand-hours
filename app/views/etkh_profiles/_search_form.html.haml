@@ -1,4 +1,5 @@
-.form
+.search-form
+  = javascript_include_tag "search-form.js"
   = form_tag('members/search', remote: true) do
     .labels
       = label_tag :name
