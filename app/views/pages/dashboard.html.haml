@@ -91,6 +91,9 @@
       %p &nbsp;
     .span4.dashboard.blog.box.sidebar.blog-sidebar
       %br
+      - if current_user.etkh_profile
+        = render partial: 'etkh_profiles/profile_completeness', locals: { value: current_user.etkh_profile.completeness_score, textType: "link" }
+      %hr
       = render partial: "./shared/mailing_list", locals: { text: "Get updates on the best of the blog" }
       %hr
       = render :partial => "blog_posts/popular_posts"
