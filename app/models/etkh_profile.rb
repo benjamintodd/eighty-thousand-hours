@@ -43,7 +43,10 @@ class EtkhProfile < ActiveRecord::Base
 
   # public method for profile completeness score
   def get_profile_completeness
-    calculate_completeness_score
+    score = calculate_completeness_score
+    self.completeness_score = score
+    self.save
+    return score
   end
 
   # public method which returns a suggestion for what the user
@@ -87,6 +90,8 @@ class EtkhProfile < ActiveRecord::Base
   def get_background_snippet(minLength, maxLength)
     # returns a maximum of a whole paragraph or maxLength in characters
 
+    return nil if self.background.nil? || self.background.empty?
+    
     # strip leading white spaces
     stripped = self.background.lstrip
 
@@ -184,7 +189,7 @@ class EtkhProfile < ActiveRecord::Base
       profile = user.etkh_profile and
       !profile.background.nil? and
       profile.background.length >= MIN_BACKGROUND_LENGTH and
-      (completeness = profile.get_profile_completeness) >= MIN_PROFILE_COMPLETENESS and
+      (completeness = profile.completeness_score) >= MIN_PROFILE_COMPLETENESS and
       RANDOM_GENERATOR.rand(1..10) * completeness >= THRESHOLD
     end
     .select(&:avatar?)

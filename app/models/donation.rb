@@ -50,11 +50,16 @@ class Donation < ActiveRecord::Base
   end
 
   def self.target
-    "&pound;80,000".html_safe
+    "&pound;150,000".html_safe
+  end
+
+  def self.target_num
+    # target in pounds
+    150000
   end
 
   def self.target_percentage
-    (100 * Donation.total(:GBP,false).to_f / 80000.0).to_i
+    (100 * Donation.total(:GBP,false).to_f / self.target_num.to_f).to_i
   end
 
   def confirm!

@@ -72,6 +72,7 @@ EightyThousandHours::Application.routes.draw do
 
   match '/members/all'  => 'etkh_profiles#index'
   match '/members'      => 'etkh_profiles#our_members'
+  match '/members/get_more_members' =>'etkh_profiles#get_more_members'
   resources :etkh_profiles, :path => "members", :only => [:new,:create,:show,:index] do
     resources :positions, :only => [:new,:create,:edit,:update,:destroy]
     resources :educations, :only => [:new,:create,:edit,:update,:destroy]

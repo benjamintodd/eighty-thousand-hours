@@ -1,3 +1,4 @@
+LIST_LENGTH = 10
 class EtkhProfilesController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:edit,:update,:destroy]
 
@@ -94,6 +95,11 @@ class EtkhProfilesController < ApplicationController
 
     if current_user.update_attributes(params[:user])
       flash[:"alert-success"] = "Your profile was successfully updated."
+
+      # also update profile completeness score
+      if current_user.etkh_profile
+        current_user.etkh_profile.get_profile_completeness
+      end
       
       #work out time since user profile was first created
       timediff = Time.now - current_user.confirmed_at   #in seconds
@@ -115,7 +121,11 @@ class EtkhProfilesController < ApplicationController
 
   def search
     # perform searching in model
-    results = User.search(params[:search])
+    search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
+    results = User.search(search_params)
+
+    # order results by profile completeness
+    results = User.sort_by_profile_completeness(results)
 
     # store results in session data as user ids
     session[:search_results] = []
@@ -124,12 +134,13 @@ class EtkhProfilesController < ApplicationController
     end
 
     # display first entries
-    list_length = 10
-    selection = results.first(list_length)
-    render partial: 'profiles_selection', locals: { users: selection }
+    @selection = results.first(LIST_LENGTH)
 
     # create pointer to indicate which results are already displayed
-    session[:search_results][:pointer] = list_length
+    session[:search_results_pointer] = LIST_LENGTH
+
+    session[:search] = true
+    render 'etkh_profiles/search'
   end
 
   def our_members
@@ -141,37 +152,82 @@ class EtkhProfilesController < ApplicationController
     @title = "Members"
 
     ## get list of users to be displayed
-    list_length = 10
-
-    # get already selected users from session data
-    # note this means that if the user leaves the page and returns to it
-    # the previously selected users will still be selected
-    if session[:selected_users]
-      @selected_users = []
-      session[:selected_users].each do |user_id|
-        @selected_users << User.find_by_id(user_id)
-      end
-    end
 
     # generate users using algorithm
-    if @selected_users
-      # remove currently selected users from searching set
-      @next_selection = EtkhProfile.generate_users(list_length, [@selected_users,current_user].flatten)
-      @selected_users.concat(@next_selection)
-    else
-      @next_selection = EtkhProfile.generate_users(list_length,[current_user])
-      @selected_users = @next_selection
-    end
+    @selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
 
     # store newly selected users in session variable
-    session[:selected_users] = [] if !session[:selected_users]
-    @next_selection.each do |user|
+    session[:selected_users] = []
+    @selected_users.each do |user|
       session[:selected_users] << user.id
     end
 
-    # if an AJAX request render newly selected users only
-    if request.xhr?
-      render partial: 'profiles_selection', locals: { users: @next_selection }
+    # indicate that this is not displaying search results
+    session[:search] = false
+  end
+
+  def get_more_members
+    ## get list of users to be displayed
+
+    # different courses of action whether displaying search results or random users
+    if session[:search] == true
+      # check if come to end of results
+      if session[:search_results_pointer] < session[:search_results].length
+        ## get next set of results
+        @next_selection = []
+
+        # get next batch of length list_length of results unless end is within next batch
+        if session[:search_results_pointer]+LIST_LENGTH >= session[:search_results].length
+          endpoint = session[:search_results].length
+        else
+          endpoint = session[:search_results_pointer]+LIST_LENGTH 
+        end
+
+        for i in session[:search_results_pointer]..(endpoint - 1)
+          @next_selection << User.find_by_id(session[:search_results][i])
+        end
+
+        # update position of pointer
+        session[:search_results_pointer] += LIST_LENGTH
+      end
+    else
+
+      # get already selected users from session data
+      if session[:selected_users]
+        @selected_users = []
+        session[:selected_users].each do |user_id|
+          @selected_users << User.find_by_id(user_id)
+        end
+      end
+
+      # generate more users using algorithm
+      if @selected_users
+        # remove currently selected users from searching set
+        @next_selection = EtkhProfile.generate_users(LIST_LENGTH, [@selected_users,current_user].flatten)
+        @selected_users.concat(@next_selection)
+      else
+        @next_selection = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
+        @selected_users = @next_selection
+      end
+
+      # store newly selected users in session variable
+      session[:selected_users] = [] if !session[:selected_users]
+      @next_selection.each do |user|
+        session[:selected_users] << user.id
+      end
+    end
+
+    # should be AJAX request so render newly selected users only
+    if !@next_selection
+      render nothing: true
+    else
+      if session[:search] == false
+        render partial: 'profiles_selection', locals: { users: @next_selection }
+      else
+        # for some strange reason there is a bug which prevents the first
+        # render method work for search results, so a JS view is called instead
+        render 'etkh_profiles/display_more_search_results'
+      end
     end
   end
 

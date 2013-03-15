@@ -21,7 +21,7 @@
                     %p Organisation
                     %p Industry
                     %p.karma{ title: "Explanation for karma score..."}Karma score
-                    - if current_user && current_user.eighty_thousand_hours_member?
+                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
                       %p Email
                   .entries
                     %p= truncate(profile.current_position, length: 45)
@@ -29,16 +29,14 @@
                     %p= truncate(profile.career_sector, length: 45)
                     %p.karma{ title: "Explanation for karma score..."}
                       = user.get_karma_score
-                    - if current_user && current_user.eighty_thousand_hours_member?
+                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
                       %p= truncate(user.email, length: 45)
               .buttons
                 #contact
                   = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info", id: "contact-btn"
-
                 - if !user.external_linkedin.nil? && !user.external_linkedin.empty?
                   #linkedin-view
                     = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-info"
-
                 - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
                   #linkedin-add
                     = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-info"
@@ -83,7 +81,6 @@
                     %li= cause.title
                 - if profile.profile_option_causes.length > 8
                   %a{ class: "see-more", id: "see-more-causes" }See more
-
                 - if profile.causes_comment
                   = markdown profile.causes_comment
 

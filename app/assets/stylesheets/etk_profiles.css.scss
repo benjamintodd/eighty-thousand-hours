@@ -694,7 +694,7 @@
   }
 }
 
-
+/*********Profile completeness********/
 .profile-completeness {
   width: 190px;
 
@@ -787,5 +787,63 @@
      background-position: 44px 0;
     }
   }
-  
+}
+
+
+/********Members page**********/
+
+.members-page {
+  #search-form {
+    @include rounded_borders(rgb(200,200,200),3px,12px);
+    width: 550px;
+    height: 100px;
+    margin: 0px;
+    margin-bottom: 25px;
+    
+    .form {
+      margin-top: 10px;
+      padding: 10px;
+      padding-top: 20px;
+
+      .labels {
+        display: inline-block;
+        margin-left: 15px;
+        label { margin-bottom: 25px; }
+      }
+      .inputs {
+        display: inline-block;
+        margin-left: 30px;
+        position: relative;
+        input {
+          display: block;
+          margin-bottom: 15px;
+          width: 170px;
+        }
+      }
+      #hidden-labels, #hidden-inputs { display: none }
+      .link {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      .button {
+        display: inline-block;
+        position: relative;
+        margin-left: 10px;
+        .btn.btn-info {
+          @include background-linear-gradient(top,#DD5D8C,#d4346f);
+        }
+      }
+    }
+  }  
+
+  #members-list {
+    position: relative;
+  }
+
+  #loading-icon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
 }
