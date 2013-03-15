@@ -124,7 +124,7 @@
       }
     }
     .right-block {
-      .profile-completeness {
+      .completeness {
         float: right;
       }
       .external-links {
@@ -686,8 +686,15 @@
 }
 
 
-.profile-completeness-bar {
-  width: 150px;
+.profile-completeness {
+
+  .title {
+    font-size: 14px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
 
   /* bar container */
   .ui-progress-bar {

@@ -45,9 +45,9 @@
 
           .span4
             .right-block
-              - if user == current_user
-                .profile-completeness
-                  = render partial: 'profile_completeness_bar', locals: { value: user.etkh_profile.completeness_score }
+              - if user == current_user && current_user.etkh_profile
+                .completeness
+                  = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
               - if user.external_links?
                 .external-links
                   %p External links
