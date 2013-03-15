@@ -1,13 +1,33 @@
 var html = "<%= j(render partial: 'profile_hover_popup', locals: { user: @user }) %>";
 
+// show popup
 $popup = $("#profile-popup");
 $popup.html(html).show();
 
-var left = parseInt("<%= j @pos_left %>");
-var top2 = parseInt("<%= j @pos_top %>");
+// find out which page it is being displayed on
+var page = "<%= j @page.to_s %>";
+
+// position the popup
+var source_left = parseInt("<%= j @pos_left %>");
+var source_top = parseInt("<%= j @pos_top %>");
 var width = parseInt($popup.width());
 var height = parseInt($popup.height());
-left = left - width - 5;
-top2 = top2 - (height/2);
+var top2 = source_top - (height/2);
+if (page == "view_profile")
+{
+	// display to left of condensed profile
+	var left = source_left - width - 5;
+	
+}
+else if (page == "all_members")
+{
+	// display to right of condensed profile unless popup goes off screen
+	var left = source_left + 75;
+	var right_edge = left + width;
+	if (right_edge > $(window).width())
+	{
+		left = source_left - width - 5;
+	}
+}
 
 $popup.offset({left: left, top: top2});

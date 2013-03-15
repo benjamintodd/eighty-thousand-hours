@@ -235,5 +235,6 @@ class EtkhProfilesController < ApplicationController
     @user = User.find_by_id(params[:id])
     @pos_left = params[:left_pos]
     @pos_top = params[:top_pos]
+    @page = params[:page]
   end
 end
