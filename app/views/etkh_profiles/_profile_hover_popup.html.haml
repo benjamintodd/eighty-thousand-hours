@@ -12,12 +12,13 @@
         .content
           %p.location 
             = user.location
-          %p.position
-            = profile.current_position
-          %p.organisation
-            = profile.organisation
-          %p.industry
-            = profile.career_sector
+          - if profile
+            %p.position
+              = profile.current_position
+            %p.organisation
+              = profile.organisation
+            %p.industry
+              = profile.career_sector
 
 :javascript
   $(document).ready( function() {
