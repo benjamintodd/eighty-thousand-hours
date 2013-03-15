@@ -66,8 +66,6 @@
 
     .header-main {
       position: relative;
-      display: inline-block;
-      width: 500px;
       height: 205px;
       .info {
         p {
@@ -125,20 +123,24 @@
         }
       }
     }
-    .external-links {
-      display: inline-block;
-      float: right;
-      margin-top: 25px;
-      margin-right: 25px;
-      p {
-        margin: 0px;
-        //margin-left: 15px;
-        color: lighten($text_color,35%);
+    .right-block {
+      .profile-completeness {
+        float: right;
       }
-      hr { margin: 0px; margin-bottom: 5px; }
-      .link {
-        margin-bottom: 5px;
-        display: block;
+      .external-links {
+        float: right;
+        margin-top: 25px;
+        margin-right: 25px;
+        p {
+          margin: 0px;
+          //margin-left: 15px;
+          color: lighten($text_color,35%);
+        }
+        hr { margin: 0px; margin-bottom: 5px; }
+        .link {
+          margin-bottom: 5px;
+          display: block;
+        }
       }
     }
   }
@@ -685,56 +687,41 @@
 
 
 .profile-completeness-bar {
-  .ui-progress-bar {
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
-  .ui-progress span.ui-label {
-    font-size: 1.2em;
-    position: absolute;
-    right: 0;
-    line-height: 33px;
-    padding-right: 12px;
-    color: rgba(0,0,0,0.6);
-    text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;
-    white-space: nowrap;
-  }
+  width: 150px;
 
-  @-webkit-keyframes animate-stripes {
-    from {
-      background-position: 0 0;
-    }
-
-    to {
-     background-position: 44px 0;
-    }
-  }
-  
+  /* bar container */
   .ui-progress-bar {
+    //margin-top: 3em;
+    //margin-bottom: 3em;
     position: relative;
-    height: 35px;
+    height: 20px;
     padding-right: 2px;
     background-color: #abb2bc;
-    border-radius: 35px;
-    -moz-border-radius: 35px;
-    -webkit-border-radius: 35px;
+
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #b6bcc6), color-stop(1, #9da5b0));
     background: -moz-linear-gradient(#9da5b0 0%, #b6bcc6 100%);
+
     -webkit-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
     -moz-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
     box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
   }
-    
+
+  /* progress bar itelf */
   .ui-progress {
     position: relative;
     display: block;
     overflow: hidden;
-    height: 33px;
-    -moz-border-radius: 35px;
-    -webkit-border-radius: 35px;
-    border-radius: 35px;
+    height: 18px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
     -webkit-background-size: 44px 44px;
     background-color: #74d04c;
+
     background: -webkit-gradient(linear, 0 0, 44 44,
       color-stop(0.00, rgba(255,255,255,0.17)),
       color-stop(0.25, rgba(255,255,255,0.17)),
@@ -751,10 +738,34 @@
       rgba(255,255,255,0) 15px,
       rgba(255,255,255,0) 30px
     ), -moz-linear-gradient(#9bdd62 0%, #74d04c 100%);
+
     -webkit-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
     -moz-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
     box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
     border: 1px solid #4c8932;
     -webkit-animation: animate-stripes 2s linear infinite;
   }
+
+  /* label inside progress bar */
+  .ui-progress span.ui-label {
+    font-size: 1em;
+    position: absolute;
+    right: 0;
+    line-height: 25px;
+    padding-right: 12px;
+    color: rgba(0,0,0,0.6);
+    text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;
+    white-space: nowrap;
+  }
+
+  /* for animation */
+  @-webkit-keyframes animate-stripes {
+    from {
+      background-position: 0 0;
+    }
+    to {
+     background-position: 44px 0;
+    }
+  }
+  
 }

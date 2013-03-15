@@ -7,53 +7,60 @@
         .avatar
           = link_to image_tag(user.avatar(:medium)), user.avatar.url
       .span9
-        .header-main
-          .info
-            %h1.name
-              = profile.name
-            %p.location 
-              = user.location
-            #labels-section
-              .labels
-                %p Position
-                %p Organisation
-                %p Industry
-                %p.karma{ title: "Explanation for karma score..."}Karma score
-                - if current_user && current_user.eighty_thousand_hours_member?
-                  %p Email
-              .entries
-                %p= truncate(profile.current_position, length: 45)
-                %p= truncate(profile.organisation, length: 45)
-                %p= truncate(profile.career_sector, length: 45)
-                %p.karma{ title: "Explanation for karma score..."}
-                  = user.get_karma_score
-                - if current_user && current_user.eighty_thousand_hours_member?
-                  %p= truncate(user.email, length: 45)
-          .buttons
-            #contact
-              = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info", id: "contact-btn"
+        .row-fluid
+          .span8
+            .header-main
+              .info
+                %h1.name
+                  = profile.name
+                %p.location 
+                  = user.location
+                #labels-section
+                  .labels
+                    %p Position
+                    %p Organisation
+                    %p Industry
+                    %p.karma{ title: "Explanation for karma score..."}Karma score
+                    - if current_user && current_user.eighty_thousand_hours_member?
+                      %p Email
+                  .entries
+                    %p= truncate(profile.current_position, length: 45)
+                    %p= truncate(profile.organisation, length: 45)
+                    %p= truncate(profile.career_sector, length: 45)
+                    %p.karma{ title: "Explanation for karma score..."}
+                      = user.get_karma_score
+                    - if current_user && current_user.eighty_thousand_hours_member?
+                      %p= truncate(user.email, length: 45)
+              .buttons
+                #contact
+                  = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info", id: "contact-btn"
 
-            - if !user.external_linkedin.nil? && !user.external_linkedin.empty?
-              #linkedin-view
-                = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-info"
+                - if !user.external_linkedin.nil? && !user.external_linkedin.empty?
+                  #linkedin-view
+                    = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-info"
 
-            - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
-              #linkedin-add
-                = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-info"
-          
-        - if user.external_links?
-          .external-links
-            %p External links
-            %hr
-            - if user.external_website?
-              .link
-                = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-            - if user.external_twitter?
-              .link
-                = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-            - if user.external_facebook?
-              .link
-                = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
+                - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
+                  #linkedin-add
+                    = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-info"
+
+          .span4
+            .right-block
+              - if user == current_user
+                .profile-completeness
+                  = render partial: 'profile_completeness_bar', locals: { value: user.etkh_profile.completeness_score }
+              - if user.external_links?
+                .external-links
+                  %p External links
+                  %hr
+                  - if user.external_website?
+                    .link
+                      = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
+                  - if user.external_twitter?
+                    .link
+                      = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                  - if user.external_facebook?
+                    .link
+                      = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
   #contact-modal
   .row
     .span8
