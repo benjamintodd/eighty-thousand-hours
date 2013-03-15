@@ -809,6 +809,10 @@
   }
 }
 
+.all-members {
+  .search-form { margin-bottom: 50px; }
+}
+
 
 .search-form {
   @include rounded_borders(rgb(200,200,200),3px,12px);
