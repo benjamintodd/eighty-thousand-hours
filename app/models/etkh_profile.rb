@@ -52,14 +52,20 @@ class EtkhProfile < ActiveRecord::Base
     ## in order of precedence
 
     # add location
-    if self.location.nil?
+    if self.user.location.empty?
       "Add your current location"
     # add organisation
-    elsif self.organisation.nil?
+    elsif self.organisation.empty?
       "Add your current organisation"
+    # add position
+    elsif self.current_position.empty?
+      "Add your current position"
+    # background
+    elsif self.background.empty?
+      "Tell the community about your background and interests"
     # profile photo
     elsif !self.user.avatar?
-      "Upload a photo to your profile so members "
+      "Upload a photo so members "
     # add background info if none already
     elsif !self.background?
       "Fill out your 'background and interests' and tell us why you are here"
@@ -127,7 +133,7 @@ class EtkhProfile < ActiveRecord::Base
     score += PROFILE_PIC if self.user.avatar?
 
     # basic information
-    score += INFO_LOCATION if self.location
+    score += INFO_LOCATION if self.user.location
     score += INFO_ORGANISATION if self.organisation
 
     # background and interests
