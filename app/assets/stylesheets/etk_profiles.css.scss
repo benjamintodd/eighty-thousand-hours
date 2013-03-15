@@ -124,13 +124,11 @@
       }
     }
     .right-block {
+      margin-right: 25px;
       .completeness {
-        float: right;
       }
       .external-links {
-        float: right;
         margin-top: 25px;
-        margin-right: 25px;
         p {
           margin: 0px;
           //margin-left: 15px;
@@ -258,77 +256,170 @@
 
 //********** Edit profile ***********
 
-#linkedin {
-    margin-top: 40px;
-    .header { margin-bottom: 20px; }
-    p { margin-bottom: 12px; }
+.edit-profile {
+  #linkedin {
+      margin-top: 40px;
+      .header { margin-bottom: 20px; }
+      p { margin-bottom: 12px; }
+    }
+
+  .heading {
+    .name { display: inline-block; }
+    .completeness {
+      display: inline-block;
+      float: right;
+      margin-top: 20px;
+      //margin-left: 50px;
+    }
   }
 
-.form {
-  img {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 15px;
-  }
+  .form {
+    img {
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 15px;
+    }
 
-  #declaration {
-    #donation {
-      margin-top: 15px;
-      #user_etkh_profile_attributes_donation_percentage_slider {
+    #declaration {
+      #donation {
         margin-top: 15px;
+        #user_etkh_profile_attributes_donation_percentage_slider {
+          margin-top: 15px;
+        }
+      }
+    }
+
+    #experience {
+      .new-form {
+        width: 385px;
+        height: 300px;
+
+        #position_start_date_month, #position_end_date_month { width: 120px; }
+        #position_start_date_year, #position_end_date_year {
+          visibility: visible;
+          float: right;
+          width: 70px;
+        }
+
+        // Move start date year up to be inline with start date month
+        .control-group:nth-child(6) { 
+          visibility: hidden;
+          position: relative;
+          top: -50px;
+        }
+
+        // Also move up controls below start date to fill blank space
+        .control-group:nth-child(7) { 
+          position: relative;
+          top: -50px;
+        }
+
+        // Move end date year to be inline with end date month
+        .control-group:nth-child(8) { 
+          visibility: hidden;
+          position: relative;
+          top: -100px;
+        }
+
+        .control-group:nth-child(9) { 
+          position: relative;
+          top: -100px;
+        }
+
+        .buttons {
+          position: relative;
+          top: -110px;
+          margin-left: 160px;
+          #btn-add-position-cancel { margin-left: 25px; }
+          #btn-edit-position-cancel { margin-left: 52px; }
+        }
+      }
+
+
+      .edit-form {
+        height: 130px;
+
+        .control-group.hidden { display: none; }
+        .controls {
+          margin-left: 0px;
+        }
+        .optional {
+          width: 170px;
+          margin: 0px;
+        }
+        .control-group {
+          margin-bottom: 3px;
+          .optional {
+            padding-bottom: 2px;
+            padding-top: 3px;
+          }
+        }
+        .select {
+          width: 80px;
+          padding: 0px;
+          height: 24px;
+          font-size: 10px;
+        }
+        .numeric {
+          width: 50px;
+          padding: 0px;
+          font-size: 12px;
+        }
+
+        // shift elements to right
+        #position_start_date_year {
+          position: relative;
+          left: 82px;
+        }
+        #position_end_date_month {
+          position: relative;
+          left: 150px;
+        }
+        #position_end_date_year {
+          position: relative;
+          left: 230px;
+        }
+
+        // shift elements up
+        .control-group:nth-child(6) {
+          position: relative;
+          top: -28px;
+        }
+        .control-group:nth-child(7) {
+          position: relative;
+          top: -58px;
+        }
+        .control-group:nth-child(8) {
+          position: relative;
+          top: -86px;
+        }
+        .buttons {
+          position: relative;
+          top: -80px;
+        }
       }
     }
   }
 
-  #experience {
+  #education {
     .new-form {
       width: 385px;
-      height: 300px;
+      height: 350px;
 
-      #position_start_date_month, #position_end_date_month { width: 120px; }
-      #position_start_date_year, #position_end_date_year {
-        visibility: visible;
-        float: right;
-        width: 70px;
-      }
-
-      // Move start date year up to be inline with start date month
-      .control-group:nth-child(6) { 
-        visibility: hidden;
-        position: relative;
-        top: -50px;
-      }
-
-      // Also move up controls below start date to fill blank space
-      .control-group:nth-child(7) { 
-        position: relative;
-        top: -50px;
-      }
-
-      // Move end date year to be inline with end date month
-      .control-group:nth-child(8) { 
-        visibility: hidden;
-        position: relative;
-        top: -100px;
-      }
-
-      .control-group:nth-child(9) { 
-        position: relative;
-        top: -100px;
+      #education_start_date_year, #education_end_date_year {
+        width: 100px;
       }
 
       .buttons {
-        position: relative;
-        top: -110px;
         margin-left: 160px;
-        #btn-add-position-cancel { margin-left: 25px; }
-        #btn-edit-position-cancel { margin-left: 52px; }
+        #btn-add-education-cancel { margin-left: 15px; }
+        #btn-edit-education-cancel { margin-left: 52px; }
       }
     }
 
 
     .edit-form {
-      height: 130px;
+      height: 170px;
 
       .control-group.hidden { display: none; }
       .controls {
@@ -345,173 +436,91 @@
           padding-top: 3px;
         }
       }
-      .select {
-        width: 80px;
-        padding: 0px;
-        height: 24px;
-        font-size: 10px;
-      }
       .numeric {
         width: 50px;
         padding: 0px;
         font-size: 12px;
       }
 
-      // shift elements to right
-      #position_start_date_year {
+      // shift end year to right
+      #education_end_date_year {
         position: relative;
-        left: 82px;
-      }
-      #position_end_date_month {
-        position: relative;
-        left: 150px;
-      }
-      #position_end_date_year {
-        position: relative;
-        left: 230px;
+        left: 85px;
       }
 
-      // shift elements up
-      .control-group:nth-child(6) {
+      // position paragraph
+      #dates-to {
         position: relative;
+        left: 65px;
         top: -28px;
       }
-      .control-group:nth-child(7) {
-        position: relative;
-        top: -58px;
-      }
+
+      // shift end year up
       .control-group:nth-child(8) {
         position: relative;
-        top: -86px;
+        top: -55px;
       }
+
       .buttons {
         position: relative;
-        top: -80px;
+        top: -45px;
+      }
+    }
+  }
+
+
+  .linkedin-form {
+    width: 500px;
+    height: 345px;
+
+    .header {
+      width: 100%;
+      height: 80px;
+      img {
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+    }
+
+    .content {
+      position: relative;
+      left: 10px;
+      width: 478px;
+      height: 230px;
+      -webkit-border-radius: 4px;
+      border: 1px solid rgb(255,255,255);
+      .body {
+        height: 130px;
+        background-color: #FFFFFF;
+
+        p {
+          padding-top: 40px;
+          padding-bottom: 50px;
+          padding-left: 30px;
+          padding-right: 25px;
+          line-height: 28px;
+          font-size: 18px;
+        }
+      }
+
+      .form-actions {
+        height: 100px;
+        margin: 0px;
+        padding: 0px;
+        background-color: rgb(235,235,235);
+
+        .btn-confirm {
+          margin-top: 25px;
+          margin-left: 75px;
+        }
+        .btn-reject {
+          margin-top: 25px;
+          margin-left: 50px
+        }
       }
     }
   }
 }
-
-#education {
-  .new-form {
-    width: 385px;
-    height: 350px;
-
-    #education_start_date_year, #education_end_date_year {
-      width: 100px;
-    }
-
-    .buttons {
-      margin-left: 160px;
-      #btn-add-education-cancel { margin-left: 15px; }
-      #btn-edit-education-cancel { margin-left: 52px; }
-    }
-  }
-
-
-  .edit-form {
-    height: 170px;
-
-    .control-group.hidden { display: none; }
-    .controls {
-      margin-left: 0px;
-    }
-    .optional {
-      width: 170px;
-      margin: 0px;
-    }
-    .control-group {
-      margin-bottom: 3px;
-      .optional {
-        padding-bottom: 2px;
-        padding-top: 3px;
-      }
-    }
-    .numeric {
-      width: 50px;
-      padding: 0px;
-      font-size: 12px;
-    }
-
-    // shift end year to right
-    #education_end_date_year {
-      position: relative;
-      left: 85px;
-    }
-
-    // position paragraph
-    #dates-to {
-      position: relative;
-      left: 65px;
-      top: -28px;
-    }
-
-    // shift end year up
-    .control-group:nth-child(8) {
-      position: relative;
-      top: -55px;
-    }
-
-    .buttons {
-      position: relative;
-      top: -45px;
-    }
-  }
-}
-
-
-.linkedin-form {
-  width: 500px;
-  height: 345px;
-
-  .header {
-    width: 100%;
-    height: 80px;
-    img {
-      margin-left: 20px;
-      margin-top: 20px;
-    }
-  }
-
-  .content {
-    position: relative;
-    left: 10px;
-    width: 478px;
-    height: 230px;
-    -webkit-border-radius: 4px;
-    border: 1px solid rgb(255,255,255);
-    .body {
-      height: 130px;
-      background-color: #FFFFFF;
-
-      p {
-        padding-top: 40px;
-        padding-bottom: 50px;
-        padding-left: 30px;
-        padding-right: 25px;
-        line-height: 28px;
-        font-size: 18px;
-      }
-    }
-
-    .form-actions {
-      height: 100px;
-      margin: 0px;
-      padding: 0px;
-      background-color: rgb(235,235,235);
-
-      .btn-confirm {
-        margin-top: 25px;
-        margin-left: 75px;
-      }
-      .btn-reject {
-        margin-top: 25px;
-        margin-left: 50px
-      }
-    }
-  }
-}
-
 
 //*******Condensed profiles*********
 
@@ -687,6 +696,7 @@
 
 
 .profile-completeness {
+  width: 190px;
 
   .title {
     font-size: 14px;
@@ -694,12 +704,15 @@
 
   .text {
     font-size: 13px;
+    line-height: 13px;
+    margin-top: 5px;
+    p { line-height: 16px; }
   }
 
   /* bar container */
   .ui-progress-bar {
-    //margin-top: 3em;
-    //margin-bottom: 3em;
+    margin-top: 5px;
+    margin-bottom: 5px;;
     position: relative;
     height: 20px;
     padding-right: 2px;

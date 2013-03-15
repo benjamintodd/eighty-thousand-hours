@@ -1,48 +1,51 @@
-.row
-  .span12
-    .row
-      .span7
-        .box
-          = render partial: 'profile_completeness_bar', locals: { value: 60 }
+.edit-profile
+  .row
+    .span12
+      .row
+        .span7
+          .box
+            .heading
+              .name
+                %h1= current_user.name
+              .completeness
+                = render partial: 'profile_completeness', locals: { value: current_user.etkh_profile.completeness_score, textType: "text" }
+              %hr
+            
+            .form
+              %h2 Fill in your profile
+              = render 'form'
 
-          %h1= current_user.name
-          %hr
-          
-          .form
-            %h2 Fill in your profile
-            = render 'form'
+        .span1
+          &nbsp;
+            
+        .span4
+          .box.sidebar
+            #linkedin
+              .header
+                = image_tag("/assets/linkedin/linkedin-logo32.png")
+              #pull-profile
+                %p Fill in your profile with data from your LinkedIn profile
+                - if @linkedin_signup
+                  = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30'), {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, id: "linkedin-profile-btn"
+                - else
+                  = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30', id: "btn-update-profile"), remote: true
+              - if !@linkedin_signup || @new_profile
+                #linkedin-modal
+                  = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
+            %hr
 
-      .span1
-        &nbsp;
-          
-      .span4
-        .box.sidebar
-          #linkedin
-            .header
-              = image_tag("/assets/linkedin/linkedin-logo32.png")
-            #pull-profile
-              %p Fill in your profile with data from your LinkedIn profile
-              - if @linkedin_signup
-                = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30'), {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, id: "linkedin-profile-btn"
-              - else
-                = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30', id: "btn-update-profile"), remote: true
-            - if !@linkedin_signup || @new_profile
-              #linkedin-modal
-                = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
-          %hr
+            %h2 Public profile
+            %p
+              By creating a public profile, you can help inspire new people to join 80,000 Hours.
+              Seeing example members is a really effective way to persuade others to join.
+              You can also make yourself known to our community, which might lead to
+              connections with other effective altruists.
 
-          %h2 Public profile
-          %p
-            By creating a public profile, you can help inspire new people to join 80,000 Hours.
-            Seeing example members is a really effective way to persuade others to join.
-            You can also make yourself known to our community, which might lead to
-            connections with other effective altruists.
-
-          %h2 Markdown
-          %p All the text fields can be formatted using the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>. For example:
-          %p **bold text** == <strong>bold text</strong>
-          %p _italic text_ == <em>italic text</em>
-          %p [a link](http://80000hours.org/) == <a href="http://80000hours.org">a link</a>
+            %h2 Markdown
+            %p All the text fields can be formatted using the <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>. For example:
+            %p **bold text** == <strong>bold text</strong>
+            %p _italic text_ == <em>italic text</em>
+            %p [a link](http://80000hours.org/) == <a href="http://80000hours.org">a link</a>
 
 
 :javascript
