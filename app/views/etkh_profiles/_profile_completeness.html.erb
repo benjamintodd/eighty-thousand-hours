@@ -1,11 +1,15 @@
 <% # local variable 'textType' indicates whether to display link or text %>
 <div class="profile-completeness">
   <h3 class="title">Profile Completeness</h3>
-  <div id="progressbar" class="ui-progress-bar ui-container">
-    <div class="ui-progress" style="width: <%= value %>%;">
-      <span class="ui-label"><b class="value"><%= value %>%</b></span>
+  <div class="bar">
+    <div id="progressbar" class="ui-progress-bar ui-container">
+      <div class="ui-progress" style="width: <%= value %>%;"></div>
+    </div>
+    <div class="value-container">
+      <p><b class="value"><%= value %>%</b></p>
     </div>
   </div>
+
   <div class="text">
     <% if textType == "link" %>
       <a class="edit-profile" href='<%= edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>'><%= current_user.etkh_profile.get_suggested_profile_addition %></a>
