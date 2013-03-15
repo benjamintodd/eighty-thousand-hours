@@ -68,7 +68,7 @@ class EtkhProfile < ActiveRecord::Base
       "Tell the community about your background and interests"
     # profile photo
     elsif !self.user.avatar?
-      "Upload a photo so members "
+      "Upload a photo"
     # add background info if none already
     elsif !self.background?
       "Fill out your 'background and interests' and tell us why you are here"
@@ -136,10 +136,10 @@ class EtkhProfile < ActiveRecord::Base
 
     # profile photo
     score += PROFILE_PIC if self.user.avatar?
-
+    puts score
     # basic information
-    score += INFO_LOCATION if self.user.location
-    score += INFO_ORGANISATION if self.organisation
+    score += INFO_LOCATION if self.user.location && !self.user.location.empty?
+    score += INFO_ORGANISATION if self.organisation && !self.organisation.empty?
 
     # background and interests
     # completeness score depends on how long the entry is
