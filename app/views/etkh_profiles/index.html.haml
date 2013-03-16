@@ -4,7 +4,7 @@
     .page-header
       %h1= "#{@profiles.size} member profiles"
     
-    = render :partial => 'search_form'
+    = render :partial => 'search_form', locals: { otherPage: true }
     
     Jump to:&nbsp;
     - @grouped_profiles.each do |letter,profiles|

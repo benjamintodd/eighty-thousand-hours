@@ -1,24 +1,51 @@
+-# otherPage is passed in as a local variable to indicate whether partial is being displayed on 'our members' page or on a different page
 .search-form
   = javascript_include_tag "search-form.js"
-  = form_tag('members/search', remote: true) do
-    .labels
-      = label_tag :name
-      #hidden-labels
-        = label_tag :location
-        = label_tag :organisation
-        = label_tag :industry
-        = label_tag :position
+  - if otherPage == true
+    -# submit links to 'our members' page where search results are displayed
+    = form_tag('/members', method: 'GET', remote: false) do
+      = hidden_field_tag :search, :true
+      .labels
+        = label_tag :name
+        #hidden-labels
+          = label_tag :location
+          = label_tag :organisation
+          = label_tag :industry
+          = label_tag :position
 
-    .inputs
-      = text_field_tag :name
-      #hidden-inputs
-        = text_field_tag :location
-        = text_field_tag :organisation
-        = text_field_tag :industry
-        = text_field_tag :position
+      .inputs
+        = text_field_tag :name
+        #hidden-inputs
+          = text_field_tag :location
+          = text_field_tag :organisation
+          = text_field_tag :industry
+          = text_field_tag :position
 
-    .button
-      = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info"
+      .button
+        = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info"
 
-    .link
-      = link_to "Advanced Search", "", remote: true, id: "advanced-search"
+      .link
+        = link_to "Advanced Search", "", remote: true, id: "advanced-search"
+  - else
+    = form_tag('/members/search', remote: true) do
+      .labels
+        = label_tag :name
+        #hidden-labels
+          = label_tag :location
+          = label_tag :organisation
+          = label_tag :industry
+          = label_tag :position
+
+      .inputs
+        = text_field_tag :name
+        #hidden-inputs
+          = text_field_tag :location
+          = text_field_tag :organisation
+          = text_field_tag :industry
+          = text_field_tag :position
+
+      .button
+        = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info"
+
+      .link
+        = link_to "Advanced Search", "", remote: true, id: "advanced-search"

@@ -6,7 +6,7 @@
     %hr
 
     #search-form
-      = render partial: 'search_form'
+      = render partial: 'search_form', locals: { otherPage: false }
     %hr
 
     = content_tag "div", id: "data-search", data: { redirect_to_search: @redirect_to_search } do
