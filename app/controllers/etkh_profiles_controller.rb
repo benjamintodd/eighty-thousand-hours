@@ -170,7 +170,6 @@ class EtkhProfilesController < ApplicationController
       end
     else
       ## get list of users to be displayed
-
       # generate users using algorithm
       @selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
 
