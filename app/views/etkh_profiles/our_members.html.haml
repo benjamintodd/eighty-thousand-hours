@@ -9,7 +9,8 @@
       = render partial: 'search_form', locals: { otherPage: false }
     %hr
 
-    = content_tag "div", id: "data-search", data: { redirect_to_search: @redirect_to_search } do
+    -# pass variables to JS to indicate whether to fill the search form in with values and submit the form
+    = content_tag "div", id: "data-search", data: { redirect_to_search: @redirect_to_search, advanced_search: @advanced_search } do
       -# this line is important
 
     #members-list

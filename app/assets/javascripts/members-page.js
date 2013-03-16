@@ -7,23 +7,36 @@ $(document).ready( function() {
     var redirect = $("#data-search").data("redirect-to-search");
     if (redirect == true)
     {
-      $.ajax({
-        type: 'POST',
-        url: '/members/search',
-        data: 'test'
-      });
+      var advanced_search = $("#data-search").data("advanced-search");
+      $("#form-search").submit();
+      if (advanced_search == true)
+      {
+        // transform into advanced search form
+        $("#advanced-search").trigger("click");
+        showLoadingIcon();
+      }
     }
-    else
-    {
-      // endless page scroll
-      $("#members-list").pageless({
-        totalPages: 100,
-        url: '/members/get_more_members',
-        //msgStyles: {'color': '#000000', 'font-size': '1em'},
-        //loaderMsg: 'Loading more results',   
-        loaderImg: '/assets/images/load.gif',
-        distance: '2500'
-      });
-    }
+
+    // endless page scroll
+    $("#members-list").pageless({
+      totalPages: 100,
+      url: '/members/get_more_members',
+      //msgStyles: {'color': '#000000', 'font-size': '1em'},
+      //loaderMsg: 'Loading more results',   
+      loaderImg: '/assets/images/load.gif',
+      distance: '2500'
+    });
+
+    // search button
+    $("#search-btn").click( function() {
+      showLoadingIcon();
+    });
   }
 });
+
+function showLoadingIcon()
+{
+  var loading_html = "<div id='loading-icon'><img src='/assets/images/load.gif'></img></div>";
+  $(loading_html).insertBefore("#members-list");
+  $("#members-list").hide();
+}

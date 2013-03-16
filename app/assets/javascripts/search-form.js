@@ -29,11 +29,4 @@ $(document).ready( function() {
       $(".button").fadeIn(500);
     }, 500);
   });
-
-  // search button
-  $("#search-btn").click( function() {
-    var loading_html = "<div id='loading-icon'><img src='/assets/images/load.gif'></img></div>";
-    $(loading_html).insertBefore("#members-list");
-    $("#members-list").hide();
-  });
 });

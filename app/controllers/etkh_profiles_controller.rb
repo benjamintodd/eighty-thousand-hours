@@ -120,8 +120,6 @@ class EtkhProfilesController < ApplicationController
   end
 
   def search
-    p params
-    debugger
     # perform searching in model
     search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
     results = User.search(search_params)
@@ -153,21 +151,38 @@ class EtkhProfilesController < ApplicationController
     @menu_current = "Our members"
     @title = "Members"
 
-    ## get list of users to be displayed
+    # determine whether this is a redirect from a search form on a different page
+    # if the search form is submitted on a page other than the members page then it redirects here to display the results
+    if params[:search] == "true"
+      # fill out search form with values from other search form
+      @name = params[:name]
+      @location = params[:location]
+      @organisation = params[:organisation]
+      @industry = params[:industry]
+      @position = params[:position]
 
-    # generate users using algorithm
-    #@selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
+      # notify JS to submit form
+      @redirect_to_search = true
+      if !@location.empty? || !@organisation.empty? || !@industry.empty? || !@position.empty?
+        @advanced_search = true
+      else
+        @advanced_search = false
+      end
+    else
+      ## get list of users to be displayed
 
-    # store newly selected users in session variable
-    # session[:selected_users] = []
-    # @selected_users.each do |user|
-    #   session[:selected_users] << user.id
-    # end
+      # generate users using algorithm
+      @selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
 
-    # indicate that this is not displaying search results
-    session[:search] = false
+      # store newly selected users in session variable
+      session[:selected_users] = []
+      @selected_users.each do |user|
+        session[:selected_users] << user.id
+      end
 
-    @redirect_to_search = true
+      # indicate that this is not displaying search results
+      session[:search] = false
+    end
   end
 
   def get_more_members

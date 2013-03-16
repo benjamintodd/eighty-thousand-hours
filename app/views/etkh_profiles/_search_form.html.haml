@@ -3,7 +3,7 @@
   = javascript_include_tag "search-form.js"
   - if otherPage == true
     -# submit links to 'our members' page where search results are displayed
-    = form_tag('/members', method: 'GET', remote: false) do
+    = form_tag('/members', method: 'GET', remote: false, id: "form-search") do
       = hidden_field_tag :search, :true
       .labels
         = label_tag :name
@@ -27,7 +27,7 @@
       .link
         = link_to "Advanced Search", "", remote: true, id: "advanced-search"
   - else
-    = form_tag('/members/search', remote: true) do
+    = form_tag('/members/search', remote: true, id: "form-search") do
       .labels
         = label_tag :name
         #hidden-labels
@@ -37,12 +37,13 @@
           = label_tag :position
 
       .inputs
-        = text_field_tag :name
+        -# if the search form has been redirected from another search form, fill in form inputs with values from other form
+        = text_field_tag :name, @name
         #hidden-inputs
-          = text_field_tag :location
-          = text_field_tag :organisation
-          = text_field_tag :industry
-          = text_field_tag :position
+          = text_field_tag :location, @location
+          = text_field_tag :organisation, @organisation
+          = text_field_tag :industry, @industry
+          = text_field_tag :position, @position
 
       .button
         = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info"
