@@ -19,15 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def posts
-    @user = User.find( params[:id] )
-    if @user == current_user
-      @posts = @user.blog_posts
-    else
-      @posts = @user.blog_posts.published
-    end
-  end
-
   def index
     @users = User.all
     
