@@ -46,7 +46,13 @@
               - if user == current_user && current_user.etkh_profile
                 .completeness
                   = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
-              = link_to "test", {controller: "users", action: "user_activity", id: user.id}
+              - else
+                - if user.blog_posts.any?
+                  = link_to "View all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
+                  %br
+                - if user.discussion_posts.any?
+                  = link_to "View all forum posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "ForumPosts"}
+
               - if user.external_links?
                 .external-links
                   %p External links
@@ -162,7 +168,7 @@
       .sidebar
         .section#recent-activity
           %h3.title
-            Recent activity
+            = link_to "Recent activity", {controller: "users", action: "user_activity", id: user.id}
           %hr
           .body
             - activity_count = 0
