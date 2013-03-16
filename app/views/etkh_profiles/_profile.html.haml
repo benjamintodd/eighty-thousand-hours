@@ -46,6 +46,7 @@
               - if user == current_user && current_user.etkh_profile
                 .completeness
                   = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
+              = link_to "test", {controller: "users", action: "user_activity", id: user.id}
               - if user.external_links?
                 .external-links
                   %p External links

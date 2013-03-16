@@ -522,7 +522,32 @@
   }
 }
 
-//*******Condensed profiles*********
+
+/******User activity list******/
+.activity-list {
+  .heading {
+    .activity, .activity-link, .break {
+      display: inline-block;
+    }
+    .activity {
+      font-size: 18px;
+      .selected {
+        font-weight: bold;
+      }
+      .braek {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+  
+  .body {
+
+  }
+}
+
+
+/*******Condensed profiles*********/
 
 .eighty-thousand-hours-profile-condensed {
   height: 48px;

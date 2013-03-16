@@ -21,6 +21,11 @@ class UsersController < ApplicationController
 
   def user_activity
     @user = User.find_by_id(params[:id])
+    if params[:activity_type]
+      @activity_type = params[:activity_type]
+    else
+      @activity_type = "BlogPosts"
+    end
   end
 
   def index
