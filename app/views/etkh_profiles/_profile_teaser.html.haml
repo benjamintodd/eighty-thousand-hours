@@ -1,6 +1,6 @@
 - profile = user.etkh_profile
 - if !profile.nil?
-  - background = profile.get_background_snippet(100, 150)
+  - background = profile.get_background_snippet(150, 150)
 
 .profile-teaser
   .row-fluid
@@ -24,7 +24,7 @@
         .row-fluid
           .span3
             .labels
-              - if !profile.nil? && !profile.current_position.nil?
+              - if !profile.nil? && !profile.current_position.nil? && !profile.current_position.empty?
                 .position
                   %p Current position
               - if !profile.nil? && !background.nil?
@@ -47,8 +47,9 @@
                   %p= markdown (background + "... [read more](#{etkh_profile_path(user)})")
               - if !profile.nil? && profile.profile_option_activities.any?
                 .activities
-                  - profile.profile_option_activities.limit(4).each_with_index do |activity, index|
-                    - if index < 3
+                  - activities = profile.profile_option_activities.limit(4)
+                  - activities.each_with_index do |activity, index|
+                    - if activities.length - index > 1
                       = activity.title + ", "
                     - else
                       = activity.title

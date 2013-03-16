@@ -676,18 +676,15 @@
 
   .body {
     .labels {
-      .position p { margin-bottom: 0px; }
-      .activities {
-        position: relative;
-        top: 15px;
-      }
+      margin-top: 5px;
+      p { margin-bottom: 0px; }
+      .background { margin-bottom: 43px; }
     }
     .info {
+      margin-top: 5px;
       font-size: 0.925em;
       line-height: 20px;
-
-      .position p { margin-bottom: 5px; }
-      .background p { margin-bottom: 5px; }
+      p { margin-bottom: 5px; }
     }
   }
 }

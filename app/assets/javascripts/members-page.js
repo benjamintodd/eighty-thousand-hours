@@ -36,7 +36,7 @@ $(document).ready( function() {
 
 function showLoadingIcon()
 {
-  var loading_html = "<div id='loading-icon'><img src='/assets/images/load.gif'></img></div>";
+  var loading_html = "<div class='loading-icon'><img src='/assets/images/load.gif'></img></div>";
   $(loading_html).insertBefore("#members-list");
   $("#members-list").hide();
 }

@@ -105,7 +105,13 @@ class EtkhProfile < ActiveRecord::Base
       # otherwise get max length
       snippet = snippet[0..maxLength]
     end
-    snippet
+
+    # remove hash tags from end of snippet if any exist
+    # this prevents any additional text from being displayed as a heading
+    index = snippet[-4..-1].index("#")
+    snippet = snippet[0..index-5] if index
+
+    return snippet
   end
 
   def self.generate_users(list_length, current_users = nil)
