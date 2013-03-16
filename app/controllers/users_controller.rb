@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_activity
+    @user = User.find_by_id(params[:id])
+  end
+
   def index
     @users = User.all
     
