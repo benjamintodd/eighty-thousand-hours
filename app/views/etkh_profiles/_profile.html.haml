@@ -24,13 +24,13 @@
                     - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
                       %p Email
                   .entries
-                    %p= truncate(profile.current_position, length: 45)
-                    %p= truncate(profile.organisation, length: 45)
-                    %p= truncate(profile.career_sector, length: 45)
+                    %p= truncate(profile.current_position, length: 40)
+                    %p= truncate(profile.organisation, length: 40)
+                    %p= truncate(profile.career_sector, length: 40)
                     %p.karma{ title: "Explanation for karma score..."}
                       = user.get_karma_score
                     - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
-                      %p= truncate(user.email, length: 45)
+                      %p= truncate(user.email, length: 40)
               .buttons
                 #contact
                   = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info", id: "contact-btn"
