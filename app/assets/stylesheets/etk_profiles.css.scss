@@ -525,37 +525,46 @@
 //*******Condensed profiles*********
 
 .eighty-thousand-hours-profile-condensed {
-  height: 64px;
+  height: 48px;
   padding: 0px;
   margin: 0px;
+  margin-bottom: 10px;
+  overflow: hidden;
 
   .avatar {
+    display: inline-block;
     float: left;
     @include box_shadow(#555, 0px, 0px, 2px);
 
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
 
     margin: 3px;
-    margin-right: 10px;
     position: relative;
+    overflow: hidden;
 
     img {
-      // in case non-square photos
       position:absolute;
-      clip:rect(0px,32px,32px,0px);
+      // image dimensions set via JS
     }
   }
 
   .text {
+    display: inline-block;
+    width: 150px;
     padding:0px;
     margin: 0px;
+    margin-left: 10px;
     font-size: 0.9em;
+    p { margin: 0; line-height: 16px; }
     .name {
+      margin-top: 5px;
       font-weight: bold;
+      a { line-height: 16px; }
     }
     .location {
       color: lighten($text_color,50%);
+      margin-top: 5px;
     }
   }
 }

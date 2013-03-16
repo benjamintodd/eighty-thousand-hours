@@ -1,4 +1,5 @@
 var fireCount = 0;
+var popup_hover = false;
 
 $(document).ready( function() {
 
@@ -71,7 +72,6 @@ $(document).ready( function() {
 
 
     // display popup box when mouse hovers over member
-    var popup_hover = false;
     var config = {
       over: showPopup,
       timeout: 50,   // time until out function is called after cursor moves away

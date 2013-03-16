@@ -5,9 +5,8 @@
     = link_to image_tag(user.avatar.url(:thumb)), "/members/#{user.slug}", class: "profile-link"
 
   .text
-    %span.name
+    %p.name
       = link_to user.name, "/members/#{user.slug}", class: "profile-link"
-    %br
     - if user.location?
-      %span.location
+      %p.location
         = truncate( user.location, :length => 20 )
