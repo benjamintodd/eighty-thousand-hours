@@ -1,5 +1,6 @@
-- users.each do |user|
-  = render partial: 'profile_teaser', locals: { user: user }
+- if users
+  - users.each do |user|
+    = render partial: 'profile_teaser', locals: { user: user }
 
 :javascript
   $(document).ready( function() {

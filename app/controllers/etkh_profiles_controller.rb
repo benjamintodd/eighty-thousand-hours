@@ -120,6 +120,8 @@ class EtkhProfilesController < ApplicationController
   end
 
   def search
+    p params
+    debugger
     # perform searching in model
     search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
     results = User.search(search_params)
@@ -154,16 +156,18 @@ class EtkhProfilesController < ApplicationController
     ## get list of users to be displayed
 
     # generate users using algorithm
-    @selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
+    #@selected_users = EtkhProfile.generate_users(LIST_LENGTH,[current_user])
 
     # store newly selected users in session variable
-    session[:selected_users] = []
-    @selected_users.each do |user|
-      session[:selected_users] << user.id
-    end
+    # session[:selected_users] = []
+    # @selected_users.each do |user|
+    #   session[:selected_users] << user.id
+    # end
 
     # indicate that this is not displaying search results
     session[:search] = false
+
+    @redirect_to_search = true
   end
 
   def get_more_members
