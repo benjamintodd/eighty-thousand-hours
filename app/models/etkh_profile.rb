@@ -124,52 +124,60 @@ class EtkhProfile < ActiveRecord::Base
   ### Profile completeness ###
   # define percentages for composition of profile score
   PROFILE_PIC = 25
-  INFO_LOCATION = 5
-  INFO_ORGANISATION = 5
-  BACKGOUND = 15
+  LOCATION = 5
+  ORGANISATION = 5
+  CURRENT_POSITION = 5
+  CAREER_INDUSTRY = 5
+  BACKGROUND = 20
   EXPERIENCE = 5
-  DONATION_TRACKING = 5
+  EDUCATION = 5
+  DONATION_TRACKING = 0
   SKILLS = 5
-  HIGH_IMPACT_ACTIVITIES = 10
-  CAUSES = 10
-  LINKEDIN_PROFILE = 15
+  HIGH_IMPACT_ACTIVITIES = 5
+  CAUSES = 5
+  LINKEDIN_PROFILE = 10
 
   # length of 'background and interests' section after which no more points 
-  BACKGROUND_MAX_LEN = 1000
+  BACKGROUND_MAX_LEN = 1800
 
   def calculate_completeness_score
     score = 0
 
-    # profile photo
     score += PROFILE_PIC if self.user.avatar?
-    puts score
-    # basic information
-    score += INFO_LOCATION if self.user.location && !self.user.location.empty?
-    score += INFO_ORGANISATION if self.organisation && !self.organisation.empty?
+    
+    score += LOCATION if self.user.location && !self.user.location.empty?
+    score += ORGANISATION if self.organisation && !self.organisation.empty?
+    score += CURRENT_POSITION if self.current_position && !self.current_position.empty?
+    score += CAREER_INDUSTRY if self.current_position && !self.current_position.empty?
 
-    # background and interests
     # completeness score depends on how long the entry is
     # the score varies linearly until a max cut-off is reached
     if self.background
       len = self.background.length
       if len >= BACKGROUND_MAX_LEN
-        score += BACKGOUND
+        score += BACKGROUND
       else
-        float = BACKGOUND.to_f / BACKGROUND_MAX_LEN.to_f * len.to_f
+        float = BACKGROUND.to_f / BACKGROUND_MAX_LEN.to_f * len.to_f
         score += float.to_i
       end
     end
 
-    # high impact activities
     score += HIGH_IMPACT_ACTIVITIES if self.profile_option_activities.any?
-
-    # causes
     score += CAUSES if self.profile_option_causes.any?
 
-    # donation tracking ?
-    # experience
     # skills
-    # linkedin profile ?
+    if self.skills_knowledge_learn && !self.skills_knowledge_learn.empty?
+      score += SKILLS
+    elsif self.skills_knowledge_share && !self.skills_knowledge_share.empty?
+      score += SKILLS
+    end
+
+    score += EXPERIENCE if self.positions.any?
+    score += EDUCATION if self.educations.any?
+
+    score += LINKEDIN_PROFILE if self.user.external_linkedin && !self.user.external_linkedin.empty?
+
+    score += DONATION_TRACKING if self.user.donations.any?
 
     return score
   end
