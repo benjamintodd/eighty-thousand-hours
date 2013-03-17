@@ -1,18 +1,16 @@
+- if type == "signup"
+  - linkedin_link = "/authentications/linkedin_signup"
+- elsif type == "signin"
+  - linkedin_link = "/authentications/linkedin_signin"
 .center
-  - if type == "signup"
-    - linkedin_link = "/authentications/linkedin_signup"
-  - elsif type == "signin"
-    - linkedin_link = "/authentications/linkedin_signin"
+  .options
+    #linkedin
+      = link_to (image_tag 'auth/linkedin_64.png', alt: "Connect to LinkedIn"), linkedin_link, id: 'linkedin-connect'
+      = link_to "Connect to LinkedIn", linkedin_link, class: 'btn btn-large'
 
-  %div
-    = link_to (image_tag 'auth/linkedin_64.png', alt: "Connect to LinkedIn"), linkedin_link, id: 'linkedin-connect'
-    = link_to "Connect to LinkedIn", linkedin_link, class: 'btn btn-large'
-
-  %div
-    = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect'
-    = link_to "Connect to Facebook", '/auth/facebook', :class => 'btn btn-large'
-  
-  %div
-    = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), '/auth/google_oauth2', id: 'google-connect'
-    = link_to "Connect to Google", '/auth/google_oauth2', :class => 'btn btn-large'
-  
+    #facebook
+      = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect'
+    
+    #google
+      = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), '/auth/google_oauth2', id: 'google-connect'
+    

@@ -53,3 +53,15 @@
     }
   }
 }
+
+.options {
+  margin-top: 20px;
+  #facebook, #google {
+    margin-top: 5px;
+    display: inline-block;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
