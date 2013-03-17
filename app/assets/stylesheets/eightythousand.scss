@@ -306,6 +306,13 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   @include rounded_borders(#ccc, 1px, 0px);
 }
 
+.btn-info.btn-new {
+  @include background-linear-gradient(top,#DD5D8C,#d4346f);
+}
+.btn-new:hover, .btn-new:active {
+  background-color: #D8487D;
+}
+
 body .btn-primary {
   color: white;
   background-color: #d4346f;
@@ -314,7 +321,7 @@ body .btn-primary {
   }
   :active {
     background-color: #d4346f;
-}    
+  }    
 }
 
 input[type="email"] {

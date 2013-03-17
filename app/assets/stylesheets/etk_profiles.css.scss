@@ -118,9 +118,6 @@
           display: inline-block;
           margin-right: 5px;
         }
-        .btn.btn-info {
-          @include background-linear-gradient(top,#DD5D8C,#d4346f);
-        }
       }
     }
     .right-block {
@@ -702,9 +699,6 @@
       display: inline-block;
       position: relative;
       margin-left: 10px;
-      .btn.btn-info {
-        @include background-linear-gradient(top,#DD5D8C,#d4346f);
-      }
     }
   }
 }
