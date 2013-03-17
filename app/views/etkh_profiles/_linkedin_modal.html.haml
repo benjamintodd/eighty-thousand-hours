@@ -1,98 +1,29 @@
+= javascript_include_tag "linkedin-form.js"
 .linkedin-form
   .header
     %img{ src: '/assets/linkedin/linkedin-logo32.png'}
     
   .content
     -# if not linked with linkedin, offer link option
-    - if @linkedin_signup == false
+    - if linkedin_signup == false
       #linking
         .body
           %p
             Would you like to link your account with LinkedIn so other members can view your LinkedIn profile?
 
         .form-actions
-          .btn.btn-large.btn-info.btn-confirm#btn-linkedin-linking-yes
+          .btn.btn-info.btn-confirm#btn-linkedin-linking-yes
             Link account
-          .btn.btn-large.btn-success.btn-reject#btn-linkedin-linking-no
+          .btn.btn-success.btn-reject#btn-linkedin-linking-no
             No thanks
 
     -# always offer pull data option
-    #profile{ style: @linkedin_signup ? " " : "display: none" }
+    #profile{ style: linkedin_signup ? " " : "display: none" }
       .body
         %p
           Would you like to fill in your profile with data from your LinkedIn profile?
 
       .form-actions
-        = link_to "Pull profile", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-large btn-info btn-confirm form-close", id: "btn-linkedin-profile-yes"
-        .btn.btn-large.btn-success.btn-reject.form-close#btn-linkedin-profile-no
+        = link_to "Pull profile", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-info btn-confirm form-close", id: "btn-linkedin-profile-yes"
+        .btn.btn-success.btn-reject.form-close#btn-linkedin-profile-no
           No thanks
-
-
-:javascript
-  $(document).ready( function() {
-    // set delay time for fade in after fading out
-    var delay = 450;
-
-    $("#btn-linkedin-linking-yes").click( function() {
-      // fade out text and buttons 
-      fadeOut('slow');
-
-      // create html for new buttons
-      var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-large btn-info btn-confirm form-close' id='btn-linkedin-profile-yes'>Pull profile</a>";
-
-      var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn btn-large btn-success btn-reject form-close' id='btn-linkedin-profile-no'>No thanks</a>";
-      
-      // replace html of current buttons with new html, after fading out is complete
-      setTimeout( function() {
-        $("#btn-linkedin-linking-yes").replaceWith(new_yes_html);
-        $("#btn-linkedin-linking-no").replaceWith(new_no_html);
-
-        // hide new buttons
-        $("#btn-linkedin-profile-yes").hide();
-        $("#btn-linkedin-profile-no").hide();
-      }, delay);
-
-      // fade in changed buttons after fading out is complete
-      setTimeout( function() {
-        fadeIn('slow');
-      }, delay);
-    });
-
-    $("#btn-linkedin-linking-no").click( function() {
-      // fade out text and buttons
-      fadeOut('slow');
-
-      // get new text from profile text
-      var new_p_text = $("#profile").find("p").text();
-
-      // replace text and buttons html after fading out is complete
-      setTimeout( function() {
-        $("#linking").find("p").text(new_p_text);
-
-        // use hidden profile buttons to get new html
-        $("#btn-linkedin-linking-yes").replaceWith($("#btn-linkedin-profile-yes"));
-        $("#btn-linkedin-linking-no").replaceWith($("#btn-linkedin-profile-no"));
-
-        // hide new buttons
-        $("#btn-linkedin-profile-yes").hide();
-        $("#btn-linkedin-profile-no").hide();
-      }, delay);
-
-      // fade in after fading out is complete
-      setTimeout( function() {
-        fadeIn('slow');
-      }, delay);
-    });
-
-    
-    function fadeOut(param)
-    {
-      $("#linking").find("p").fadeOut(param);
-      $("#linking").find(".btn").fadeOut(param);
-    }
-    function fadeIn(param)
-    {
-      $("#linking").find("p").fadeIn(param);
-      $("#linking").find(".btn").fadeIn(param);
-    }
-  });

@@ -28,10 +28,10 @@
                 - if @linkedin_signup
                   = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30'), {controller: 'authentications', action: 'linkedin_getprofile'}, remote: false, id: "linkedin-profile-btn"
                 - else
-                  = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30', id: "btn-update-profile"), remote: true
-              - if !@linkedin_signup || @new_profile
-                #linkedin-modal
-                  = render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }
+                  = link_to image_tag('/assets/linkedin/linkedin_button.gif', size: '140x30', id: "btn-update-profile"), {controller: "etkh_profiles", action: "show_linkedin_popup", linkedin_signup: @linkedin_signup}, remote: true
+              = content_tag "div", id: "linkedin-signup", data: { linkedin_signup: @linkedin_signup} do
+                -# this comment is important for syntax
+              #linkedin-modal
             %hr
 
             %h2 Public profile
@@ -51,34 +51,16 @@
 :javascript
   $(document).ready( function() {
     // display modal after flash notice is dismissed
-    $(".flash-modal").children(".modal-footer").children(".btn").click( function() {
-      showLinkedinModal();
-    });
-    $(".modal-backdrop").click( function() {
-      showLinkedinModal();
-    });
-
-
-    function showLinkedinModal()
-    {
-      // insert time delay
-      setTimeout( function() {
-        $("#linkedin-modal").reveal({
-          animation: 'fade',
-          animationspeed: 600,
-          closeonbackgroundclick: true,
-          dismissmodalclass: 'form-close'
-        });
-      }, 350);
-    }
-
-    // display modal if linkedin button clicked
-    $("#btn-update-profile").click( function() {
-      $("#linkedin-modal").reveal({
-        animation: 'fade',
-        animationspeed: 600,
-        closeonbackgroundclick: true,
-        dismissmodalclass: 'form-close'
-      });
-    });
+    $(".flash-modal").children(".modal-footer").children(".btn").click(showLinkedinModal);
+    $(".modal-backdrop").click(showLinkedinModal);
   });
+
+  function showLinkedinModal()
+  {
+    var signup = $("#linkedin-signup").data("linkedin-signup").toString();
+    $.ajax({
+      type: 'GET',
+      url: '/members/show_linkedin_popup',
+      data: 'linkedin_signup=' + signup
+    });
+  }

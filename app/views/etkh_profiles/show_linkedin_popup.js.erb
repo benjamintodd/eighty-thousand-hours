@@ -1,0 +1,13 @@
+var html = "<%= j(render partial: 'linkedin_modal', locals: { linkedin_signup: @linkedin_signup }) %>";
+
+$("#linkedin-modal").html(html);
+$("#linkedin-modal").show();
+
+setTimeout( function() {
+  $("#linkedin-modal").reveal({
+    animation: 'fade',
+    animationspeed: 600,
+    closeonbackgroundclick: true,
+    dismissmodalclass: 'form-close'
+  });
+}, 350);
