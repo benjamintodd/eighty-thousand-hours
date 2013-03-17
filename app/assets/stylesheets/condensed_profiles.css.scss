@@ -1,0 +1,181 @@
+/*******Condensed profiles*********/
+
+.eighty-thousand-hours-profile-condensed {
+  height: 48px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+  overflow: hidden;
+
+  .avatar {
+    display: inline-block;
+    float: left;
+    @include box_shadow(#555, 0px, 0px, 2px);
+
+    height: 40px;
+    width: 40px;
+
+    margin: 3px;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      position:absolute;
+      // image dimensions set via JS
+    }
+  }
+
+  .text {
+    display: inline-block;
+    width: 150px;
+    padding:0px;
+    margin: 0px;
+    margin-left: 10px;
+    font-size: 0.9em;
+    p { margin: 0; line-height: 16px; }
+    .name {
+      margin-top: 5px;
+      font-weight: bold;
+      a { line-height: 16px; }
+    }
+    .location {
+      color: lighten($text_color,50%);
+      margin-top: 5px;
+    }
+  }
+}
+
+.eighty-thousand-hours-profile-condensed-2 {
+  display: block;
+  height: 60px;
+  margin-right: 5px;
+
+  .avatar {
+    display: inline-block;
+    float: left;
+    @include box_shadow(#555, 0px, 0px, 2px);
+    position: relative;
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    img {
+      position: absolute;
+      // image dimensions set via javascript
+    }
+  }
+
+  .body {
+    display: inline-block;
+    margin-left: 10px;
+    width: 200px;
+    height: 55px;
+    
+    .name {
+      margin-top: 2px;
+      font-weight: bold;
+    }
+    .content {
+      position: relative;
+      top: -2px;
+      margin: 0px;
+      p {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+  }
+}
+
+.profile-teaser {
+  @include rounded_borders(#dfdfdf, 1px, 5px);
+  padding: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+
+  .avatar {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    @include box_shadow(#555, 0px, 0px, 5px);
+    img {
+      position: absolute;
+    }
+  }
+
+  .heading {
+    p { 
+      margin: 0px;
+      line-height: 18px;
+    }
+    hr {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border-width: 2px;
+      color: #dfdfdf;
+    }
+
+    .name {
+      font-size: 1.2em;
+    }
+    .location { 
+      font-size: 0.8em;
+      //padding-bottom: 8px;
+    }
+    .organisation { font-size: 0.8em; }
+  }
+
+  .body {
+    .labels {
+      margin-top: 5px;
+      p { margin-bottom: 0px; }
+      .background { margin-bottom: 43px; }
+    }
+    .info {
+      margin-top: 5px;
+      font-size: 0.925em;
+      line-height: 20px;
+      p { margin-bottom: 5px; }
+    }
+  }
+}
+
+#profile-popup {
+  position: absolute;
+  z-index: 100;
+}
+
+#profile-hover {
+  width: 300px;
+  height: 100px;
+  overflow: hidden;
+  padding: 10px;
+  background-color: #FFFFFF;
+  @include rounded_borders(#A1A1A1, 3px, 5px); 
+
+  .avatar {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    @include box_shadow(#555, 0px, 0px, 6px);
+    overflow: hidden;
+    img {
+      position: absolute;        
+    }
+  }
+  .body {
+    margin-left: 5px;
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .content {
+      p {
+        font-size: 14px;
+        line-height: 16px;
+        margin: 0px;
+        margin-bottom: 3px;
+      }
+    }
+  }
+}
