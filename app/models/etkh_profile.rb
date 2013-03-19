@@ -188,7 +188,7 @@ class EtkhProfile < ActiveRecord::Base
   # define minimum requirements
   MIN_PROFILE_COMPLETENESS = 50
   MIN_BACKGROUND_LENGTH = 500
-  PROBABILITY_MIN_PROFILE = 0.50
+  PROBABILITY_MIN_PROFILE = 0.10
 
   # threshold is defined by the probability that a profile with min profile completeness
   # will be selected

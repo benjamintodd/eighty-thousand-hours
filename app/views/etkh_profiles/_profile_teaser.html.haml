@@ -18,6 +18,8 @@
         - if !profile.nil? && !profile.organisation.nil?
           .organisation
             %p= profile.organisation
+        .completeness{ style: "float: right;" }
+          %p= profile.completeness_score
         %hr
 
       .body
