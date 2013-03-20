@@ -45,17 +45,6 @@ endTimes = endTimes.reverse
       <%= markdown content[idx] %>
       <p><strong>When:</strong> <%= format_date_with_day(startTimes[idx]) + startTimes[idx].strftime(", %H:%M")  + endTimes[idx].strftime(" - %H:%M") %></p>
       <p><strong>Where:</strong> <%= raw where[idx] %></p>
-
-      <% if title == "High impact careers in healthcare symposium" %>
-        <%= link_to "View poster", "/pdf/Healthcare careers symposium poster.pdf" %>
-
-        <%= link_to "View speakers", "/pdf/Healthcare careers symposium speakers.pdf" %>
-
-        <div>
-          <br/>
-          <%= link_to "Book your place at this event", 'healthcare-event-register' %>
-        </div>
-      <% end %>
     </div>
   <% end %>
 <% else %>

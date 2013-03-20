@@ -53,7 +53,6 @@ EightyThousandHours::Application.routes.draw do
 
   #temporary page for particular event
   resources :event_booking_requests, only: [:new,:create]
-  match 'healthcare-event-register' => 'event_booking_requests#new'
 
   resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
