@@ -7,6 +7,9 @@
 
     #search-form
       = render partial: 'search_form', locals: { otherPage: false }
+
+    = link_to "View all #{EtkhProfile.all.size} members in alphabetical order", id: "all-members-link"
+
     %hr
 
     -# pass variables to JS to indicate whether to fill the search form in with values and submit the form
