@@ -2,8 +2,8 @@
   .heading
     %h1.name= @user.name
     .profile-link
-      = link_to "View profile", "/members/#{@user.slug}"
-    %h2.activity User activity
+      = link_to "back to member's profile", "/members/#{@user.slug}"
+    %br
     #activity-select
       .activity
         - if @activity_type == "BlogPosts"
