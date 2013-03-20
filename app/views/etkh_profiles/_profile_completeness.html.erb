@@ -12,9 +12,20 @@
 
   <div class="text">
     <% if textType == "link" %>
-      <a class="edit-profile" href='<%= edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>'><%= current_user.etkh_profile.get_suggested_profile_addition %></a>
-    <% else %>
-      <p class="suggestion"><%= current_user.etkh_profile.get_suggested_profile_addition %></p>
+      <%= link_to "Edit profile", edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>
+    <% end %>
+
+    <% tips = current_user.etkh_profile.get_profile_completion_tips %>
+    <% if tips.length > 0 %>
+      <div class="completion-tips">
+        <h3 class="completion-title">Completion tips</h3>
+        <% tips.take(3).each do |tip| %>
+          <div class="tip">
+            <%= image_tag("/assets/images/plus.png", class: "plus-icon") %>
+            <p class="tip-text"><%= tip %></p>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

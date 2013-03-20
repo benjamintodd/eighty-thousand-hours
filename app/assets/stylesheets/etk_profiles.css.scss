@@ -256,8 +256,10 @@
 //********** Edit profile ***********
 
 .edit-profile {
+  .completeness { margin-top: 20px; }
+
   #linkedin {
-      margin-top: 40px;
+      margin-top: 20px;
       .header { margin-bottom: 20px; }
       p { margin-bottom: 12px; }
     }
@@ -550,7 +552,7 @@
 
 /*********Profile completeness********/
 .profile-completeness {
-  width: 190px;
+  width: 100%;
 
   .title {
     font-size: 14px;
@@ -558,9 +560,27 @@
   }
 
   .text {
-    font-size: 13px;
-    line-height: 13px;
-    p { line-height: 16px; }
+    .completion-title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .tip {
+      .plus-icon {
+        display: inline-block;
+        float: left;
+        width: 15px;
+        height: 15px;
+        vertical-align: middle;
+      }
+      .tip-text {
+        display: inline-block;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        width: 85%;
+        font-size: 13px;
+        line-height: 14px;
+      }
+    }
   }
 
   .bar {
@@ -568,8 +588,8 @@
     .ui-progress-bar {
       display: inline-block;
       position: relative;
-      width: 150px;
-      height: 20px;
+      width: 78%;
+      height: 18px;
       background-color: #abb2bc;
 
       border-radius: 5px;
@@ -588,7 +608,7 @@
         position: relative;
         display: block;
         overflow: hidden;
-        height: 18px;
+        height: 16px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border-radius: 5px;

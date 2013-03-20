@@ -46,19 +46,20 @@
               - if user == current_user && current_user.etkh_profile
                 .completeness
                   = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
-              - if user.external_links?
-                .external-links
-                  %p External links
-                  %hr
-                  - if user.external_website?
-                    .link
-                      = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-                  - if user.external_twitter?
-                    .link
-                      = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-                  - if user.external_facebook?
-                    .link
-                      = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
+              - else
+                - if user.external_links?
+                  .external-links
+                    %p External links
+                    %hr
+                    - if user.external_website?
+                      .link
+                        = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
+                    - if user.external_twitter?
+                      .link
+                        = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                    - if user.external_facebook?
+                      .link
+                        = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
   #contact-modal
   .row
     .span8

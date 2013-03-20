@@ -7,8 +7,6 @@
             .heading
               .name
                 %h1= current_user.name
-              .completeness
-                = render partial: 'profile_completeness', locals: { value: current_user.etkh_profile.completeness_score, textType: "text" }
               %hr
             
             .form
@@ -20,6 +18,9 @@
             
         .span4
           .box.sidebar
+            .completeness
+              = render partial: 'profile_completeness', locals: { value: current_user.etkh_profile.completeness_score, textType: "text" }
+              %hr
             #linkedin
               .header
                 = image_tag("/assets/linkedin/linkedin-logo32.png")

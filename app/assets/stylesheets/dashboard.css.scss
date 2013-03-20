@@ -1,6 +1,6 @@
 @import "shared/partials";
 
-.dashboard
+.dashboard {
   h2 {
     margin-top: 0;
   }
@@ -45,5 +45,8 @@
 }
 
 .completeness {
+  width: 275px;
   hr { margin-top: 12px; }
+}
+
 }

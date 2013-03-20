@@ -49,39 +49,41 @@ class EtkhProfile < ActiveRecord::Base
     return score
   end
 
-  # public method which returns a suggestion for what the user
-  # should do to improve their profile
-  def get_suggested_profile_addition
-    ## in order of precedence
+  def get_profile_completion_tips
+    tips = []
 
     # add location
-    if self.user.location.nil? || self.user.location.empty?
-      "Add your current location"
+    tips << "Add your current location" if self.user.location.nil? || self.user.location.empty?
+      
     # add organisation
-    elsif self.organisation.nil? || self.organisation.empty?
-      "Add your current organisation"
+    tips << "Add your current organisation" if self.organisation.nil? || self.organisation.empty?
+      
     # add position
-    elsif self.current_position.nil? || self.current_position.empty?
-      "Add your current position"
+    tips << "Add your current position" if self.current_position.nil? || self.current_position.empty?
+
+    # add industry sector
+    tips << "Add your current industry sector" if self.career_sector.nil? || self.career_sector.empty?
+      
     # background
-    elsif self.background.nil? || self.background.empty?
-      "Tell the community about your background and interests"
+    tips << "Tell the community about your background and interests" if self.background.nil? || self.background.empty?
+      
     # profile photo
-    elsif !self.user.avatar?
-      "Upload a photo"
+    tips << "Upload a photo" if !self.user.avatar?
+      
     # sync their account with linkedin ?
 
     # add causes
-    elsif !self.profile_option_causes.any?
-      "Let us know what you care about and add causes to your profile"
+    tips << "Add causes" if !self.profile_option_causes.any?
+      
     # add high impact activities
-    elsif !self.profile_option_activities.any?
-      "What are you doing to make a difference? Add your high impact activities to your profile"
+    tips << "Add high impact activities" if !self.profile_option_activities.any?
+      
     # improve background if not long
-    elsif !self.background.nil? && self.background.length < BACKGROUND_MAX_LEN
-      "Tell us more about yourself by adding to your 'background and interests'"
+    tips << "Add more to your 'background and interests'" if !self.background.nil? && self.background.length < BACKGROUND_MAX_LEN
+      
     # donation tracking ?
-    end
+    
+    return tips
   end
 
   def get_background_snippet(minLength, maxLength)
