@@ -46,13 +46,6 @@
               - if user == current_user && current_user.etkh_profile
                 .completeness
                   = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
-              - else
-                - if user.blog_posts.any?
-                  = link_to "View user's blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
-                  %br
-                - if user.discussion_posts.any?
-                  = link_to "View user's forum posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "ForumPosts"}
-
               - if user.external_links?
                 .external-links
                   %p External links
@@ -175,22 +168,23 @@
             - if user.blog_posts.any?
               - activity_count += 1
               .blog-posts
-                %h3 Blog posts published
+                %h3= link_to "Blog posts published", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
                 - user.blog_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
+                = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
             
             - if user.discussion_posts.any?
               - activity_count += 1
               .discussion-posts
-                %h3 Discussion posts created
+                %h3= link_to "Discussion posts created", {controller: "users", action: "user_activity", id: user.id, activity_type: "DiscussionPosts"}
                 - user.discussion_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
             
-            - if activity_count < 2
+            - if activity_count < 3
               - if user.comments.any?
                 - activity_count += 1
                 .comments
-                  %h3 Comments made on posts
+                  %h3= link_to "Comments made on posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}
                   - user.comments.order("created_at DESC").limit(3).each do |comment|
                     = link_to comment.get_post.title, comment.get_post, class: "activity-link"
             
