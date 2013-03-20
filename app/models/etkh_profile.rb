@@ -55,23 +55,20 @@ class EtkhProfile < ActiveRecord::Base
     ## in order of precedence
 
     # add location
-    if self.user.location.empty?
+    if self.user.location.nil? || self.user.location.empty?
       "Add your current location"
     # add organisation
-    elsif self.organisation.empty?
+    elsif self.organisation.nil? || self.organisation.empty?
       "Add your current organisation"
     # add position
-    elsif self.current_position.empty?
+    elsif self.current_position.nil? || self.current_position.empty?
       "Add your current position"
     # background
-    elsif self.background.empty?
+    elsif self.background.nil? || self.background.empty?
       "Tell the community about your background and interests"
     # profile photo
     elsif !self.user.avatar?
       "Upload a photo"
-    # add background info if none already
-    elsif !self.background?
-      "Fill out your 'background and interests' and tell us why you are here"
     # sync their account with linkedin ?
 
     # add causes
@@ -81,7 +78,7 @@ class EtkhProfile < ActiveRecord::Base
     elsif !self.profile_option_activities.any?
       "What are you doing to make a difference? Add your high impact activities to your profile"
     # improve background if not long
-    elsif self.background.length < BACKGROUND_MAX_LEN
+    elsif !self.background.nil? && self.background.length < BACKGROUND_MAX_LEN
       "Tell us more about yourself by adding to your 'background and interests'"
     # donation tracking ?
     end
