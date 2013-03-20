@@ -8,7 +8,7 @@
     #search-form
       = render partial: 'search_form', locals: { otherPage: false }
 
-    = link_to "View all #{EtkhProfile.all.size} members in alphabetical order", id: "all-members-link"
+    = link_to "View all #{EtkhProfile.all.size} members in alphabetical order", "/members/all", id: "all-members-link"
 
     %hr
 
