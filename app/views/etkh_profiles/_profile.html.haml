@@ -169,25 +169,27 @@
             - if user.blog_posts.any?
               - activity_count += 1
               .blog-posts
-                %h3= link_to "Blog posts published", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
+                %h3 Blog posts published
                 - user.blog_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
-                = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}
+                = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}, class: "user-activity-link"
             
             - if user.discussion_posts.any?
               - activity_count += 1
               .discussion-posts
-                %h3= link_to "Discussion posts created", {controller: "users", action: "user_activity", id: user.id, activity_type: "DiscussionPosts"}
+                %h3 Forum posts created
                 - user.discussion_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
+                = link_to "See all forum posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "ForumPosts"}, class: "user-activity-link"
             
             - if activity_count < 3
               - if user.comments.any?
                 - activity_count += 1
                 .comments
-                  %h3= link_to "Comments made on posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}
+                  %h3 Comments made on posts
                   - user.comments.order("created_at DESC").limit(3).each do |comment|
                     = link_to comment.get_post.title, comment.get_post, class: "activity-link"
+                  = link_to "See all comments", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}, class: "user-activity-link"
             
             - if activity_count < 3
               - if user.votes.upvotes.any?
