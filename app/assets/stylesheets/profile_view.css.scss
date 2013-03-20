@@ -1,0 +1,253 @@
+@import "shared/partials";
+
+/*****Common to both view and edit profile pages ****/
+
+#positions {
+  margin-left: 7px;
+
+  .position {
+    margin-bottom: 20px;
+    p { margin-bottom: 0px; }
+
+    .title { display: inline-block; }
+    .actions {
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .dates {
+      font-size: 0.8em;
+    }
+  }
+}
+#educations {
+  margin-left: 7px;
+
+  .education {
+    margin-bottom: 20px;
+    p { margin-bottom: 0px; }
+
+    .title { display: inline-block; }
+    .actions {
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .dates {
+      font-size: 0.8em;
+    }
+  }
+}
+
+
+.eighty-thousand-hours-profile {
+  .heading {
+    background-color: #FFFFFF;
+    @include box_shadow(#555, 0px, 0px, 5px);
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+
+    .avatar {
+      @include box_shadow(#555, 0px, 0px, 6px);
+      width: 205px;
+      height: 205px;
+      position: relative;
+      overflow: hidden;
+      img {
+        position: absolute;
+        // width and height set via javascript
+      }
+    }
+
+    .span9 { margin-left: 5px; }
+
+    .header-main {
+      position: relative;
+      height: 205px;
+      .info {
+        p {
+          margin: 0px;
+          line-height: 16px;
+        }
+        .name {
+          margin: 0px;
+          font-size: 30px;
+        }
+        .location {
+          position: relative;
+          top: -5px;
+          font-weight: normal;
+          font-size: 18px;
+          //color: lighten($text_color,50%);
+          margin: 0px;
+        }
+
+        #labels-section {
+          margin-top: 0px;
+          margin-bottom: 10px;
+
+          .labels {
+            display: inline-block;
+            p {
+              display: block;
+              line-height: 22px;
+              font-size: 13px;
+              color: lighten($text_color,50%);
+            }
+          }
+          .entries {
+            margin-left: 30px;
+            display: inline-block;
+            p {
+              display: block;
+              line-height: 22px;
+              height: 22px;
+            }
+            p.karma { width: 35px; }
+          }
+        }
+      }
+
+      .buttons {
+        position: absolute;
+        bottom: 0;
+        > * {
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+    }
+    .right-block {
+      margin-right: 25px;
+      .completeness {
+      }
+      .external-links {
+        margin-top: 25px;
+        p {
+          margin: 0px;
+          //margin-left: 15px;
+          color: lighten($text_color,35%);
+        }
+        hr { margin: 0px; margin-bottom: 5px; }
+        .link {
+          margin-bottom: 5px;
+          display: block;
+        }
+      }
+    }
+  }
+
+  // common to both content and sidebar sections
+  .section {
+    background-color: #FFFFFF;
+    @include box_shadow(#555, 0px, 0px, 5px);
+  }
+
+  .content {
+    margin-bottom: 15px;
+    margin-left: 2px;
+    .shortened-list { margin-bottom: 0px; }
+    .see-more { margin-left: 25px; }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .section {
+      margin-top: 14px;
+      padding-top: 5px;
+      padding-left: 10px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+
+      .body {
+
+      }
+    }
+  }
+
+  .sidebar {
+    margin-left: -3px;
+    margin-right: 2px;
+    margin-top: 14px;
+    font-size: 0.9em;
+    color: #555;
+    .joined {
+      text-align: center;
+    }
+
+    .section {
+      margin-top: 14px;
+      padding-left: 15px;
+      padding-bottom: 15px;
+
+      .title {
+        padding-top: 10px;
+        font-size: 16px;
+        color: rgb(38,38,38);
+      }
+      > hr {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        padding-right: 15px;
+      }
+    }
+
+    #recent-activity {
+      .body h3 {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .activity-link {
+        display: block;
+        padding-top: 3px;
+        padding-left: 7px;
+        line-height: 18px;
+        margin-bottom: 5px;
+      }
+      .user-activity-link { font-weight: bold; }
+    }
+    #other-members {
+      > .body { padding-top: 15px; }
+      .eighty-thousand-hours-profile-condensed-2 { margin-bottom: 5px; }
+    }
+  }
+}
+
+
+.contact-user-form {
+  width: 450px;
+  .header {
+    background-color: rgb(235,235,235);
+    h2 { 
+      position: relative;
+      left: 20px;
+      margin-top: 0px;
+      padding-top: 30px;
+    }
+  }
+  .form-inputs {
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 400px;
+    
+    #message-subject {
+      width: 100%;
+    }
+    #message-body {
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+  .form-actions {
+    margin-bottom: 0px;
+    background-color: rgb(235,235,235);
+    #submit-btn { margin-left: 40px; }
+    #cancel-btn { margin-left: 40px; }
+  }
+
+  form { margin-bottom: 0px; }
+}
