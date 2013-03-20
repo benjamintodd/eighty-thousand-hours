@@ -52,9 +52,14 @@
       = f.input :mailing_list, :as => :boolean, :input_html => { :checked => true }, label: 'Would you like to receive our emails summarising our latest advice content?'
     .form-actions
       %p
-        We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
-        %strong
-          We can't take responsibility for the outcomes of your choices.
-        Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+        :markdown
+          We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
+            **We can't take responsibility for the outcomes of your choices.**
+          Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+
+          The contents of guidance sessions are kept between you and the 80,000 Hours careers advice team. This allows us to most effectively improve our service. On request, we’re happy to make the session confidential between you and the person you speak to.
+
+          Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
 
       = f.button :submit, "Request session", :"data-loading-text" => "Please wait..."
+    
