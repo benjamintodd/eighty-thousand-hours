@@ -91,7 +91,7 @@
       %p &nbsp;
     .span4.dashboard.blog.box.sidebar.blog-sidebar
       %br
-      - if current_user.etkh_profile
+      - if current_user && current_user.etkh_profile
         .completeness
           = render partial: 'etkh_profiles/profile_completeness', locals: { value: current_user.etkh_profile.completeness_score, textType: "link" }
           %hr
