@@ -164,8 +164,34 @@ class User < ActiveRecord::Base
     # convert array of profiles into array of users
     user_profile_results = profile_results.map{|p|p.user}
 
+    results = user_results & user_profile_results
+
+    # perform search by keyword if it exists
+    if !options[:keyword].empty?
+      keyword_search_results = search_by_keyword(options[:keyword]) 
+      results = results & keyword_search_results
+    end
+
     # find common elements in both results arrays
-    return user_results & user_profile_results
+    return results
+  end
+
+  def self.search_by_keyword(keyword)
+    keyword = keyword.downcase
+
+    results = []
+    results << User.where([ 'lower(name) LIKE ?', "%#{keyword}%" ])
+    results << User.where([ 'lower(location) LIKE ?', "%#{keyword}%" ])
+
+    results << EtkhProfile.where([ 'lower(organisation) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(career_sector) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(current_position) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(background) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(skills_knowledge_share) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(skills_knowledge_learn) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+
+    results = results.flatten.uniq
+    return results
   end
 
   def self.sort_by_profile_completeness(users)

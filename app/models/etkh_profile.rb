@@ -52,35 +52,17 @@ class EtkhProfile < ActiveRecord::Base
   def get_profile_completion_tips
     tips = []
 
-    # add location
     tips << "Add your current location" if self.user.location.nil? || self.user.location.empty?
-      
-    # add organisation
     tips << "Add your current organisation" if self.organisation.nil? || self.organisation.empty?
-      
-    # add position
     tips << "Add your current position" if self.current_position.nil? || self.current_position.empty?
-
-    # add industry sector
     tips << "Add your current industry sector" if self.career_sector.nil? || self.career_sector.empty?
-      
-    # background
     tips << "Tell the community about your background and interests" if self.background.nil? || self.background.empty?
-      
-    # profile photo
     tips << "Upload a photo" if !self.user.avatar?
-      
-    # sync their account with linkedin ?
-
-    # add causes
     tips << "Add causes" if !self.profile_option_causes.any?
-      
-    # add high impact activities
     tips << "Add high impact activities" if !self.profile_option_activities.any?
-      
-    # improve background if not long
     tips << "Add more to your 'background and interests'" if !self.background.nil? && self.background.length < BACKGROUND_MAX_LEN
       
+    # sync their account with linkedin ?
     # donation tracking ?
     
     return tips

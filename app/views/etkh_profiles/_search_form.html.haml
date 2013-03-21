@@ -6,7 +6,10 @@
     = form_tag('/members', method: 'GET', remote: false, id: "form-search") do
       = hidden_field_tag :search, :true
       #inputs
-        .name
+        .keyword
+          = label_tag :keyword
+          = text_field_tag :keyword
+        .hidden
           = label_tag :name
           = text_field_tag :name
         .hidden
@@ -31,7 +34,10 @@
     -# if the search form has been redirected from another search form, fill in form inputs with values from other form
     = form_tag('/members/search', remote: true, id: "form-search") do
       #inputs
-        .name
+        .keyword
+          = label_tag :keyword
+          = text_field_tag :keyword, @keyword
+        .hidden
           = label_tag :name
           = text_field_tag :name, @name
         .hidden

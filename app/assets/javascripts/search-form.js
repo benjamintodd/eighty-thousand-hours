@@ -17,7 +17,7 @@ $(document).ready( function() {
     // change dimensions of search form and shift up slightly
     $(".search-form").animate({
       width: 360,
-      height: 305
+      height: 360
     }, time);
 
     // button behaves strangely during animation so hide it and then fade it back in

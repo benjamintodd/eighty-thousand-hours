@@ -126,7 +126,7 @@ class EtkhProfilesController < ApplicationController
 
   def search
     # perform searching in model
-    search_params = {name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
+    search_params = {keyword: params[:keyword], name: params[:name], location: params[:location], organisation: params[:organisation], industry: params[:industry], position: params[:position], cause: params[:cause]}
     results = User.search(search_params)
 
     # order results by profile completeness
@@ -163,6 +163,7 @@ class EtkhProfilesController < ApplicationController
     # if the search form is submitted on a page other than the members page then it redirects here to display the results
     if params[:search] == "true"
       # fill out search form with values from other search form
+      @keyword = params[:keyword]
       @name = params[:name]
       @location = params[:location]
       @organisation = params[:organisation]
