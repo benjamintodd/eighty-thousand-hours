@@ -71,9 +71,9 @@
     margin-left: 10px;
     width: 200px;
     height: 55px;
+    overflow: hidden;
     
     .name {
-      margin-top: 2px;
       font-weight: bold;
     }
     .content {
@@ -83,6 +83,7 @@
       p {
         font-size: 14px;
         line-height: 16px;
+        margin-bottom: 0px;
       }
     }
   }
