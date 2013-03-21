@@ -1,3 +1,6 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "bootstrap-datepicker.js"
+
 - if @donation.errors.any?
   .alert.alert-error
     <a class="close" data-dismiss="alert">×</a>
