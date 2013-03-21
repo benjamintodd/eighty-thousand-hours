@@ -1,3 +1,5 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "edit-profile.js"
 .edit-profile
   .row
     .span12
@@ -47,21 +49,3 @@
             %p **bold text** == <strong>bold text</strong>
             %p _italic text_ == <em>italic text</em>
             %p [a link](http://80000hours.org/) == <a href="http://80000hours.org">a link</a>
-
-
-:javascript
-  $(document).ready( function() {
-    // display modal after flash notice is dismissed
-    $(".flash-modal").children(".modal-footer").children(".btn").click(showLinkedinModal);
-    $(".modal-backdrop").click(showLinkedinModal);
-  });
-
-  function showLinkedinModal()
-  {
-    var signup = $("#linkedin-signup").data("linkedin-signup").toString();
-    $.ajax({
-      type: 'GET',
-      url: '/members/show_linkedin_popup',
-      data: 'linkedin_signup=' + signup
-    });
-  }

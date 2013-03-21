@@ -1,4 +1,5 @@
-= javascript_include_tag "application-form.js"
+- content_for :javascript_includes do
+  = javascript_include_tag "application-form.js"
 
 = simple_form_for(current_user, url: user_etkh_profile_url(current_user, current_user.etkh_profile),
                                 html: { class: 'form-horizontal' },

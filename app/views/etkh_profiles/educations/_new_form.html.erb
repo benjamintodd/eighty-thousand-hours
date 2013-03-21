@@ -1,5 +1,7 @@
 <div class="new-form">
-  <%= javascript_include_tag "education-form.js" %>
+  <% content_for :javascript_includes do %>
+    <%= javascript_include_tag "education-form.js" %>
+  <% end %>
   <% edit = @education.id.nil? ? false : true %>
 
   <%# set up content tags for data to be accessed from javascript %>

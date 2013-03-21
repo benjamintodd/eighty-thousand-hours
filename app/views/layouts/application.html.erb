@@ -13,6 +13,7 @@
     <%= stylesheet_link_tag "application" %>
 
     <%= javascript_include_tag "application" %>
+    <%= yield :javascript_includes %>
 
     <!--[if lt IE 9]>
     <%= javascript_include_tag "html5" %>

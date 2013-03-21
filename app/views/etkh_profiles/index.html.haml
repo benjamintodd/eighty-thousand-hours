@@ -1,5 +1,6 @@
 .all-members
-  = javascript_include_tag "all-members-page.js"
+  - content_for :javascript_includes do
+    = javascript_include_tag "all-members-page.js"
   .box
     .page-header
       %h1= "#{@profiles.size} member profiles"

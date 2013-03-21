@@ -1,5 +1,7 @@
-<%= javascript_include_tag "highcharts.js" %>
-<%= javascript_include_tag "donation-calculator.js" %>
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag "highcharts.js" %>
+	<%= javascript_include_tag "donation-calculator.js" %>
+<% end %>
 
 <div class="box">
 <p>
