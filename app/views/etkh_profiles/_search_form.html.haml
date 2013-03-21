@@ -5,20 +5,21 @@
     -# submit links to 'our members' page where search results are displayed
     = form_tag('/members', method: 'GET', remote: false, id: "form-search") do
       = hidden_field_tag :search, :true
-      .labels
-        = label_tag :name
-        #hidden-labels
+      #inputs
+        .name
+          = label_tag :name
+          = text_field_tag :name
+        .hidden
           = label_tag :location
-          = label_tag :organisation
-          = label_tag :industry
-          = label_tag :position
-
-      .inputs
-        = text_field_tag :name
-        #hidden-inputs
           = text_field_tag :location
+        .hidden
+          = label_tag :organisation
           = text_field_tag :organisation
+        .hidden
+          = label_tag :industry
           = text_field_tag :industry
+        .hidden
+          = label_tag :position
           = text_field_tag :position
 
       .button
@@ -27,26 +28,25 @@
       .link
         = link_to "Advanced Search", "", remote: true, id: "advanced-search"
   - else
+    -# if the search form has been redirected from another search form, fill in form inputs with values from other form
     = form_tag('/members/search', remote: true, id: "form-search") do
-      .labels
-        = label_tag :name
-        #hidden-labels
+      #inputs
+        .name
+          = label_tag :name
+          = text_field_tag :name, @name
+        .hidden
           = label_tag :location
-          = label_tag :organisation
-          = label_tag :industry
-          = label_tag :position
-
-      .inputs
-        -# if the search form has been redirected from another search form, fill in form inputs with values from other form
-        = text_field_tag :name, @name
-        #hidden-inputs
           = text_field_tag :location, @location
+        .hidden
+          = label_tag :organisation
           = text_field_tag :organisation, @organisation
+        .hidden
+          = label_tag :industry
           = text_field_tag :industry, @industry
+        .hidden
+          = label_tag :position
           = text_field_tag :position, @position
-
       .button
         = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info btn-new"
-
       .link
         = link_to "Advanced Search", "", remote: true, id: "advanced-search"

@@ -6,7 +6,10 @@
   .options
     #linkedin
       = link_to (image_tag 'auth/linkedin_64.png', alt: "Sign-up with LinkedIn"), linkedin_link, id: 'linkedin-connect'
-      = link_to "Connect to LinkedIn", linkedin_link, class: 'btn btn-large btn-info btn-new'
+      - if type == "signup"
+        = link_to "Sign-up with LinkedIn", linkedin_link, class: 'btn btn-large btn-info'
+      - else
+        = link_to "Sign-in with LinkedIn", linkedin_link, class: 'btn btn-large btn-info'
 
     #facebook
       = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect'

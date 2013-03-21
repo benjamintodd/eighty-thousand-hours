@@ -31,7 +31,7 @@
   width: 100%;
 
   .title {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 5px;
   }
 
@@ -170,7 +170,7 @@
 
 .search-form {
   @include rounded_borders(rgb(200,200,200),3px,12px);
-  width: 550px;
+  width: 575px;
 
   form {
     padding: 10px;
@@ -178,22 +178,21 @@
     padding-bottom: 20px;
     margin-bottom: 0px;
 
-    .labels {
+    #inputs {
       display: inline-block;
-      margin-left: 15px;
-      label { margin-bottom: 25px; }
-    }
-    .inputs {
-      display: inline-block;
-      margin-left: 30px;
-      position: relative;
+      margin-top: -15px;
+      label {
+        display: inline-block;
+        margin-left: 15px;
+        width: 85px;;
+      }
       input {
-        display: block;
-        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-top: 10px;
         width: 170px;
       }
     }
-    #hidden-labels, #hidden-inputs { display: none }
+    .hidden { display: none; }
     .link {
       display: inline-block;
       margin-left: 10px;
