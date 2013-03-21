@@ -1,5 +1,7 @@
 - content_for :javascript_includes do
-	= javascript_include_tag "view-profile.js"
+  = javascript_include_tag "view-profile.js"
+  = javascript_include_tag "jquery.reveal.js"
+  = javascript_include_tag "jquery.hoverIntent.minified.js"
 
 = render :partial => 'profile', :locals => { :profile => @profile }
 

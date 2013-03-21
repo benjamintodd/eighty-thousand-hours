@@ -1,6 +1,8 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "all-members-page.js"
+  = javascript_include_tag "jquery.hoverIntent.minified.js"
+
 .all-members
-  - content_for :javascript_includes do
-    = javascript_include_tag "all-members-page.js"
   .box
     .page-header
       %h1= "#{@profiles.size} member profiles"
