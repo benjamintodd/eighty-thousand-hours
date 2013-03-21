@@ -129,7 +129,7 @@
                       .bar{:"data-percentage" => profile.donation_percentage}
 
               -# only show donations to members
-              - if current_user and current_user.eighty_thousand_hours_member?
+              - if current_user && current_user.eighty_thousand_hours_member?
                 - donations = user.donations.order("date DESC")
                 - if donations.confirmed.is_public.size > 0
                   .donations{:id => "#{user.slug}-donations"}
@@ -144,18 +144,18 @@
                     - if donations.length > 8
                       %a{ class: "see-more", id: "see-more-donations"}See more
 
-          -# only show skills to other members
-          - if current_user and current_user.eighty_thousand_hours_member?
-            - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
-              .section
-                .title
-                .body
-                - if profile.skills_knowledge_share?
-                  %h2 Skills and knowledge I can share with other members
-                  %p= profile.skills_knowledge_share
-                - if profile.skills_knowledge_learn?
-                  %h2 Skills and knowledge I would like to learn from other members
-                  %p= profile.skills_knowledge_learn
+        -# only show skills to other members
+        - if current_user && current_user.eighty_thousand_hours_member?
+          - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
+            .section
+              .title
+              .body
+              - if profile.skills_knowledge_share?
+                %h2 Skills and knowledge I can share with other members
+                %p= profile.skills_knowledge_share
+              - if profile.skills_knowledge_learn?
+                %h2 Skills and knowledge I would like to learn from other members
+                %p= profile.skills_knowledge_learn
 
     .span4
       .sidebar
