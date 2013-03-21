@@ -1,4 +1,6 @@
-- if users
+- if no_results
+  %p Your search did not match any of our members
+- elsif users
   - users.each do |user|
     = render partial: 'profile_teaser', locals: { user: user }
 

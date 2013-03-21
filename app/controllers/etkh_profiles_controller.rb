@@ -144,6 +144,9 @@ class EtkhProfilesController < ApplicationController
     # create pointer to indicate which results are already displayed
     session[:search_results_pointer] = LIST_LENGTH
 
+    # tell view to display 'no results' text if required
+    @no_results = @selection.nil? || @selection.empty? ? true : false
+
     session[:search] = true
     render 'etkh_profiles/search'
   end
@@ -214,6 +217,7 @@ class EtkhProfilesController < ApplicationController
         session[:search_results_pointer] += LIST_LENGTH
       end
     else
+      # generate more users from pseudo-random algorithm
 
       # get already selected users from session data
       if session[:selected_users]

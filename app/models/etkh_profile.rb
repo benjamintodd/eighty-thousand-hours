@@ -107,8 +107,11 @@ class EtkhProfile < ActiveRecord::Base
 
     # remove hash tags from end of snippet if any exist
     # this prevents any additional text from being displayed as a heading
-    index = snippet[-4..-1].index("#")
-    snippet = snippet[0..index-5] if index
+    if snippet
+      endstr = snippet[-4..-1]
+      index = endstr.index("#") if endstr
+      snippet = snippet[0..index-5] if index
+    end
 
     return snippet
   end
