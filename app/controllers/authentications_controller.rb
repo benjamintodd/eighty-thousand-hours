@@ -543,7 +543,7 @@ class AuthenticationsController < ApplicationController
     # returns an error when queried for items within it(eg 'degree') so I have had to parse the
     # Mash myself using regex
     educations = client.profile(fields: %w(educations)).educations
-    educations.all do |education|
+    educations.all.each do |education|
       # get data
       string = education.to_s
       string_array = string.split
