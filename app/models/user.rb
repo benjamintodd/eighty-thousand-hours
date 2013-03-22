@@ -120,14 +120,18 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    columns = ["id", "name", "email", "sign_in_count", "last_sign_in_at", "created_at", "location", "organisation", "background", "skills_knowledge_share", "skills_knowledge_learn", "donation_percentage", "donation_percentage_optout", "external twitter", "external facebook", "external_linkedin", "external_website"]
+    columns = ["id", "name", "email", "sign_in_count", "last_sign_in_at", "created_at", "location", "organisation", "background", "skills_knowledge_share", "skills_knowledge_learn", "donation_percentage", "donation_percentage_optout", "external twitter", "external facebook", "external_linkedin", "external_website", "DOB"]
     CSV.generate(options) do |csv|
       csv << columns
       self.all.each do |user|
         if user.etkh_profile
-          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website]
+          if user.member_info
+            entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website, user.member_info.DOB]
+          else
+            entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website, nil]
+          end
         else
-          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, nil, nil, nil, nil, nil, user.external_twitter, user.external_linkedin, user.external_website]
+          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, nil, nil, nil, nil, nil, user.external_twitter, user.external_linkedin, user.external_website, nil]
         end
         csv << entries
       end
