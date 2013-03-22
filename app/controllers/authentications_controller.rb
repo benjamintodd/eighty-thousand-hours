@@ -481,8 +481,10 @@ class AuthenticationsController < ApplicationController
   def add_linkedin_to_profile(client, user)
     # update data fields with relevant info from linkedin profile
 
+    profile = user.etkh_profile
+
     user.location = client.profile(fields: %w(location)).location.name
-    user.etkh_profile.career_sector = client.profile(fields: %w(industry)).industry
+    profile.career_sector = client.profile(fields: %w(industry)).industry
     user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
     # create memberinfo table if not already exist
@@ -508,8 +510,8 @@ class AuthenticationsController < ApplicationController
     positions.each do |position|
       # check for existing position
       t = nil
-      if user.etkh_profile.positions
-        user.etkh_profile.positions.each do |p| 
+      if profile.positions
+        profile.positions.each do |p| 
           if p.position == position.title && p.organisation == position.company.name
             t = Position.find_by_id(p.id)
             break
@@ -529,10 +531,10 @@ class AuthenticationsController < ApplicationController
         t.end_date_year = position.end_date.year
       else
         t.current_position = true
-        user.etkh_profile.organisation = t.organisation
-        user.etkh_profile.current_position = t.position
+        profile.organisation = t.organisation
+        profile.current_position = t.position
       end
-      t.etkh_profile_id = user.etkh_profile.id
+      t.etkh_profile_id = profile.id
       t.save
     end
 
@@ -562,8 +564,8 @@ class AuthenticationsController < ApplicationController
 
       # check for existing education
       t = nil
-      if user.etkh_profile.educations
-        user.etkh_profile.educations.each do |e|
+      if profile.educations
+        profile.educations.each do |e|
           if e.university == university && e.course == course
             t = Education.find_by_id(e.id)
             break
@@ -579,11 +581,12 @@ class AuthenticationsController < ApplicationController
       t.qualification = qualification if qualification
       t.start_date_year = start_date_year if start_date_year
       t.end_date_year = end_date_year if end_date_year
-      t.etkh_profile_id = user.etkh_profile.id
+      t.etkh_profile_id = profile.id
       t.save
     end
 
     user.save
+    profile.get_profile_completeness
   end
 
   def convert_month(num)
