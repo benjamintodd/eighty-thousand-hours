@@ -22,6 +22,7 @@ namespace :donations do
     puts "Percentage opted in: #{percentage_opted_in}"
   end
 
+
   desc 'Calculates the median donation percentage value for members who have opted-in, after a certain date'
   task :median, [:day, :month, :year] => :environment do |t, args|
     # get start_date from args
@@ -50,5 +51,24 @@ namespace :donations do
 
     puts "Sample size: #{donations.length}"
     puts "Median donation percentage: #{median}"
+  end
+end
+
+namespace :members do
+  desc 'Calculates the average profile completeness score from all members'
+  task :average_profile_completeness => :environment do
+    puts "Calculating average profile completeness score..."
+    total = 0
+    count = 0
+    User.all.each do |user|
+      if user.etkh_profile
+        total += user.etkh_profile.completeness_score
+        count += 1
+      end
+    end
+
+    average = total.to_f / count.to_f
+    puts "Number of profiles: #{count}"
+    puts "Average profile completeness score: #{average.round(2)}%"
   end
 end

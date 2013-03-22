@@ -7,3 +7,17 @@ task :update_profile_completeness_scores => :environment do
   end
   puts "done."
 end
+
+desc 'One-off task to fix personal website bug'
+task :fix_personal_website_bug => :environment do 
+  puts "Starting..."
+  User.all.each do |user|
+    if user.external_website
+      if user.external_website[0..6] != "http://" && user.external_website[0..7] != "https://"
+        new_address = "http://" + user.external_website
+        user.update_attributes(external_website: new_address)
+      end
+    end
+  end
+  puts "Done."
+end

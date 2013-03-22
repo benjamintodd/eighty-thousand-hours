@@ -89,7 +89,7 @@ class EtkhProfilesController < ApplicationController
   end
 
   def update
-    if params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..6] != "https://"
+    if params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..7] != "https://"
       params[:user][:external_website] = "http://" + params[:user][:external_website]
     end
 
