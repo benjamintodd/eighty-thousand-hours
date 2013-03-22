@@ -1,22 +1,39 @@
 .box
   %h1 Career advice session
   %p 
-    In an advice session, you’ll have a chance to talk to a member of the 80,000 Hours
-    Careers Research team. The session will start with the advisor aiming to
-    understand your situation, after which they will suggest how to apply
-    <a href="/career-research">our research</a> to your choices. They may also
-    be able to introduce you to people with similar interests in the
-    community or do follow up work.
+    :markdown
+      If you’re interested in having a big impact with your life, we’d like to help you! Use the form below to ask to speak to one of our advisers.
+
+      ##What happens in an advice session?
+
+      A member of our research team will speak to you on Skype or at our offices in Oxford. First, they’ll aim to understand your situation and career problems. Then they’ll help you to apply our research on careers to your situation.
+
+      ##Who will benefit most from our advice?
+
+      Do you care about making a big positive impact with your career, and want to use the latest evidence to increase the scale of your impact? If yes, then we can help.
+
+      A few warnings:
+
+      * Our expertise lies in helping you find ways to have a big positive impact with your career. We don’t have special expertise on issues covered by standard career advice, like how to write a CV.
+      * We take an evidence-based approach, so you should be comfortable occasionally using quantitative methods to analyse your options.
+      * You’ll get the most out of us if you’re open minded and happy to consider lots of different options.
+
+      For more on how our approach is different, see [our features](/our-features)
+
+      ##Our Knowledge
+
+      Our research team carries out world-leading research on how to rationally analyse career options in terms of impact. We do this by summarising the latest academic research relevant to these questions and applying it. To assist us, we collaborate with academics at the University of Oxford and world-leading charity cost-effectiveness analysts (such as our sister organisation [Giving What We Can](http://www.givingwhatwecan.org)). We’re also building up an extensive knowledge of standard career advice and facts. Despite being new, we’ve already helped hundreds of people to better understand their careers.
+      
+
+      ##What preparation should I do?
+
+      * Try to clarify your career blocking points as much as possible
+      * Glance over our [basic career advice content](http://80000hours.org/career-advice)
+      * Check our [blog](/blog) by searching, looking at our tag cloud or seeing our [archive](/career-research) for articles relevant to your situation
+
+
+      Please also note that our advice service is currently in a trial phase. One thing this means is that we sometimes run out of capacity, and we won’t always be able to give you a session. We apologise in advance if this is the case.
     
-  %p 
-    Please glance at the <a href="/career-advice">basic ideas</a> behind our
-    approach and <a href="/how-are-we-different">how our advice is
-    different</a> before attending the session.
-    
-  %p 
-    Please also note that our advice service is currently in a trial phase.
-    One thing this means is that we sometimes run out of capacity, and we won’t
-    always be able to give you a session.
 
   = simple_form_for @career_advice_request, :url => { :action => "create" }, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|
 
@@ -35,9 +52,14 @@
       = f.input :mailing_list, :as => :boolean, :input_html => { :checked => true }, label: 'Would you like to receive our emails summarising our latest advice content?'
     .form-actions
       %p
-        We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
-        %strong
-          We can't take responsibility for the outcomes of your choices.
-        Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+        :markdown
+          We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
+            **We can't take responsibility for the outcomes of your choices.**
+          Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+
+          The contents of guidance sessions are kept between you and the 80,000 Hours careers advice team. This allows us to most effectively improve our service. On request, we’re happy to make the session confidential between you and the person you speak to.
+
+          Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
 
       = f.button :submit, "Request session", :"data-loading-text" => "Please wait..."
+    

@@ -42,7 +42,7 @@ class AuthenticationsController < ApplicationController
       user.save
 
       # Log this in Google Analytics
-      log_event("Members", "Created via Omniauth", user.name, user.id)
+      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via Omniauth", user.name, user.id)
 
       UserMailer.welcome_email(user).deliver!
 
@@ -73,7 +73,7 @@ class AuthenticationsController < ApplicationController
 
         if user.save
           # Log this in Google Analytics
-          log_event("Members", "Created via LinkedIn", user.name, user.id)
+          Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via LinkedIn", user.name, user.id)
 
           # create linkedin info table
           linkedinfo = LinkedinInfo.new
