@@ -74,6 +74,9 @@ gem 'money-rails'
 # exchange rates
 gem 'google_currency'
 
+# google analytics custom events
+gem 'gabba'
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
 end

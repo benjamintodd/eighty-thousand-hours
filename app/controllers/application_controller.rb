@@ -33,16 +33,4 @@ class ApplicationController < ActionController::Base
     #redirect to previous path
     request.referrer
   end
-
-  protected
-  # For Google Analytics event tracking from within controllers
-  # http://stackoverflow.com/questions/9283763/how-do-i-use-google-analytics-custom-events-inside-my-rails-controller
-  #
-  # Calling this from a controller will add to the list of 'events' to be
-  # added to the Google Analytics queue. This will be executed on the first
-  # page render (shared/_google_analytics_events.html.erb).
-  def log_event(category, action, label = nil, value = nil)
-    session[:events] ||= Array.new
-    session[:events] << {:category => category, :action => action, :label => label, :value => value}
-  end
 end
