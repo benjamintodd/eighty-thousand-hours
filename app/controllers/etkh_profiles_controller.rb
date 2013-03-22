@@ -77,7 +77,7 @@ class EtkhProfilesController < ApplicationController
     @etkh_profile = current_user.etkh_profile
 
     # indicate whether profile is being created for first time or not
-    @new_profile = session[:new_profile] == "true" ? true : false
+    @new_profile = session[:new_profile] == true ? true : false
     session[:new_profile] = nil
 
     # indicate whether user has signedup with linkedin or not

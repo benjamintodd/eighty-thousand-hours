@@ -186,6 +186,7 @@ class AuthenticationsController < ApplicationController
 
         # redirect if not an AJAX request
         unless request.xhr?
+          session[:new_profile] = true
           redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
         end
       else
