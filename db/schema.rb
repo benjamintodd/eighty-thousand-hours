@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322101524) do
+ActiveRecord::Schema.define(:version => 20130322211103) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -335,5 +335,12 @@ ActiveRecord::Schema.define(:version => 20130322101524) do
   end
 
   add_index "votes", ["post_id", "post_type"], :name => "index_votes_on_post_id_and_post_type"
+
+  create_table "weekly_metrics", :force => true do |t|
+    t.datetime "date"
+    t.float    "average_profile_completeness"
+    t.float    "median_donation_percentage"
+    t.float    "donation_optin_percentage"
+  end
 
 end

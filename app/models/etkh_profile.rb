@@ -102,6 +102,64 @@ class EtkhProfile < ActiveRecord::Base
     return self.gen_users(list_length, current_users)
   end
 
+  ### Metrics ###
+  def self.calculate_average_profile_completeness
+    total = 0
+    count = 0
+    User.all.each do |user|
+      if user.etkh_profile
+        total += user.etkh_profile.completeness_score
+        count += 1
+      end
+    end
+
+    average = total.to_f / count.to_f
+    return average.round(2)
+  end
+
+  # Calculates the percentage of members who have opted-in for donation declaration since a specified date
+  def self.calculate_donation_optin_percentage(start_date)
+
+    # get all members who have signed up since date argument
+    members = User.where("created_at >= :start_date", start_date: start_date)
+
+    # cycle through members and calculate percentage
+    opted_in = 0
+    opted_out = 0
+    members.each do |member|
+      profile = member.etkh_profile
+      if profile
+        profile.donation_percentage_optout ? opted_out+=1 : opted_in+=1
+      end
+    end
+
+    percentage_opted_in = opted_in.to_f / members.length.to_f * 100
+    return percentage_opted_in
+  end
+
+  # Calculates the median donation percentage value for members who have opted-in, after a certain date
+  def self.calculate_median_donation_percentage(start_date)
+    # get all members who have signed up since date argument
+    members = User.where("created_at >= :start_date", start_date: start_date)
+
+    # cycle through members and create array of donation percentage values
+    donations = []
+    members.each do |member|
+      profile = member.etkh_profile
+      if profile
+        if profile.donation_percentage_optout == false
+          donations << profile.donation_percentage
+        end
+      end
+    end
+
+    # sort values into order
+    donations.sort
+
+    # calculate median
+    median = donations[donations.length/2]
+    return median
+  end
 
   private
 

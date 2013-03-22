@@ -96,6 +96,9 @@ EightyThousandHours::Application.routes.draw do
 
   resources :surveys, :only => [:show]
 
+  # metrics output
+  match "metrics/weekly_metrics.csv"  => 'metrics#weekly_metrics'
+
   #temp for testing new functionality
   match 'karma_test'  => 'users#karma_test'
   match 'gen_test'    => 'users#generate_users_test'
