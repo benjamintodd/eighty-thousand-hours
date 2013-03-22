@@ -484,6 +484,24 @@ class AuthenticationsController < ApplicationController
     user.etkh_profile.career_sector = client.profile(fields: %w(industry)).industry
     user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
+    # create memberinfo table if not already exist
+    if !user.member_info
+      info = MemberInfo.new
+      info.user_id = user.id
+    else
+      info = user.member_info
+    end
+
+    # store date of birth
+    dob = client.profile(fields: %w(date-of-birth)).date_of_birth
+    if !dob.nil?
+      year = dob.year
+      month = dob.month ? dob.month : 01
+      day = dob.day ? dob.day : 01
+      info.DOB = DateTime.new(year,month,day) if year
+    end
+    info.save
+
     ## get list of positions
     positions = client.profile(fields: %w(positions)).positions.all
     positions.each do |position|
