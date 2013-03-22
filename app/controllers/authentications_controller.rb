@@ -301,6 +301,9 @@ class AuthenticationsController < ApplicationController
     # return to edit member profile
     flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+
+    # log event in google analytics
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn profile pulled")
   end
 
 
@@ -355,13 +358,15 @@ class AuthenticationsController < ApplicationController
     # return to edit member profile
     flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
+
+    # log event in google analytics
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn profile pulled")
   end
 
 
   def linkedin_invite_connection
     # called when user tries to invite another member as a connection on linkedin
     
-    user = current_user
     session[:email] = params[:email]
     session[:user_id] = params[:user_id]
     
@@ -383,7 +388,7 @@ class AuthenticationsController < ApplicationController
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
 
     # check for existing access tokens for messaging
-    linkedinfo = user.linkedin_info
+    linkedinfo = current_user.linkedin_info
     if linkedinfo && linkedinfo.permissions.include?("w_messages")
       # check if still valid
       time_elapsed = Time.now - linkedinfo.last_updated #seconds
@@ -412,6 +417,9 @@ class AuthenticationsController < ApplicationController
         else
           redirect_to '/'
         end
+
+        # log event in google analytics
+        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn connection invitation sent", current_user.id, user.id)
         return
       end
     end
@@ -473,6 +481,9 @@ class AuthenticationsController < ApplicationController
     else
       redirect_to '/'
     end
+
+    # log event in google analytics
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn connection invitation sent", current_user.id, user.id)
   end
 
 
