@@ -548,9 +548,9 @@ class AuthenticationsController < ApplicationController
       string = education.to_s
       string_array = string.split
 
-      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2]
-      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2]
-      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2]
+      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2] if string.index("school_name")
+      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2] if string.index("field_of_study")
+      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2] if string.index("degree")
 
       start_date_year = nil
       end_date_year = nil
