@@ -8,9 +8,9 @@ $(document).ready( function() {
     fadeOut('slow');
 
     // create html for new buttons
-    var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-large btn-info btn-confirm form-close' id='btn-linkedin-profile-yes'>Pull profile</a>";
+    var new_yes_html = "<a href='/authentications/linkedin_getprofile_and_link_account' class='btn btn-info btn-confirm form-close' id='btn-linkedin-profile-yes'>Pull profile</a>";
 
-    var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn btn-large btn-success btn-reject form-close' id='btn-linkedin-profile-no'>No thanks</a>";
+    var new_no_html = "<a href='/authentications/linkedin_signup?linking=true' class='btn btn-success btn-reject form-close' id='btn-linkedin-profile-no'>No thanks</a>";
     
     // replace html of current buttons with new html, after fading out is complete
     setTimeout( function() {
