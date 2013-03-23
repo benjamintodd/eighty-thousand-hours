@@ -16,5 +16,12 @@ class MemberInfo < ActiveRecord::Base
       position.save
       position.destroy
   	end
+
+    # same for educations
+    info.educations.each do |education|
+      education.member_info_id = nil
+      education.save
+      education.destroy
+    end
   end
 end

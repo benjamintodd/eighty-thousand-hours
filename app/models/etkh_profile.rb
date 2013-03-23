@@ -48,6 +48,13 @@ class EtkhProfile < ActiveRecord::Base
       position.save
       position.destroy
     end
+
+    # same for educations
+    profile.educations.each do |education|
+      education.etkh_profile_id = nil
+      education.save
+      education.destroy
+    end
   end
 
 

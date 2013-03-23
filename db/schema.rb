@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20130323103428) do
   create_table "member_infos", :force => true do |t|
     t.integer  "user_id"
     t.datetime "DOB"
+    t.string   "gender"
   end
 
   create_table "monthly_metrics", :force => true do |t|

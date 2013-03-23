@@ -4,12 +4,12 @@ class Position < ActiveRecord::Base
   belongs_to :member_info
 
   attr_accessible :position,
-  				  :organisation,
-  				  :start_date_month,
-  				  :start_date_year,
-  				  :end_date_month,
-  				  :end_date_year,
-            :current_position
+        				  :organisation,
+        				  :start_date_month,
+        				  :start_date_year,
+        				  :end_date_month,
+        				  :end_date_year,
+                  :current_position
 
   # if saved in etkh_profile also store position in member info table if it exists
   before_save do |position|
