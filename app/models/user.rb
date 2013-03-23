@@ -1,3 +1,4 @@
+require 'open-uri'
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
@@ -66,7 +67,13 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avater, :content_type=>['image/jpeg', 'image/png', 'image/gif'],
                                     :unless => Proc.new {|m| m[:image].nil?}
 
-
+  def avatar_from_url(url)
+    io = open(URI.parse(url))
+    def io.original_filename; base_uri.path.split('/').last; end
+    self.avatar = io.original_filename.blank? ? nil : io
+    self.avatar_remote_url = url
+  end
+  
   # e.g. Admin, BlogAdmin, WebAdmin
   has_and_belongs_to_many :roles
   

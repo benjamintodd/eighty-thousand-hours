@@ -498,6 +498,11 @@ class AuthenticationsController < ApplicationController
     profile.career_sector = client.profile(fields: %w(industry)).industry
     user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
+    if !user.avatar || user.avatar.to_s.include?("avatar_default")
+      url = client.profile(fields: %w(picture-url)).picture_url.to_s
+      user.avatar_from_url(url)
+    end
+
     # create memberinfo table if not already exist
     if !user.member_info
       info = MemberInfo.new

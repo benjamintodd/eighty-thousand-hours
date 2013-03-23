@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322211103) do
+ActiveRecord::Schema.define(:version => 20130323103428) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -313,6 +313,7 @@ ActiveRecord::Schema.define(:version => 20130322211103) do
     t.boolean  "notifications_on_comments",                   :default => true
     t.boolean  "linkedin_signup",                             :default => false
     t.string   "linkedin_email"
+    t.string   "avatar_remote_url"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
