@@ -1,6 +1,8 @@
 # contains individual positions under experience in members profile
 class Position < ActiveRecord::Base
   belongs_to :etkh_profile
+  belongs_to :member_info
+
   attr_accessible :position,
   				  :organisation,
   				  :start_date_month,
@@ -8,6 +10,36 @@ class Position < ActiveRecord::Base
   				  :end_date_month,
   				  :end_date_year,
             :current_position
+
+  # if saved in etkh_profile also store position in member info table if it exists
+  before_save do |position|
+    if position.etkh_profile
+      if position.etkh_profile.user.member_info
+        member_info = position.etkh_profile.user.member_info
+      else
+        member_info = MemberInfo.new
+        member_info.user_id = position.etkh_profile.user.id
+        member_info.save
+      end
+
+      # store if position doesn't already exist in member info table
+      member_info.positions.each do |p|
+        if p.position == position.position && p.organisation == position.organisation
+          # already exists
+          return
+        end
+      end
+      position.member_info_id = member_info.id
+    end
+   end
+
+   # don't destroy if it belongs to etkh_profile or member_info
+   before_destroy do |position|
+    if position.etkh_profile_id != nil || position.member_info_id != nil
+      errors.add :base, "Must set both etkh_profile_id and member_info_id to nil before position can be destroyed"
+      return false
+    end
+   end
 
   def self.custom_order(positions)
     # orders positions by year and then by month, with nil entries placed at top of list

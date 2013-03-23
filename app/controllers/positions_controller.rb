@@ -27,7 +27,14 @@ class PositionsController < ApplicationController
 
   def destroy
     @position = Position.find_by_id(params[:id])
+    
+    # remove position from this profile
+    @position.etkh_profile_id = nil
+    @position.save
+
+    # will destroy position if it does not also belong to member_info
     @position.destroy
+    
     render 'etkh_profiles/positions/redraw_positions'
   end
 end

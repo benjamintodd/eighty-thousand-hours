@@ -37,8 +37,18 @@ class EtkhProfile < ActiveRecord::Base
   has_and_belongs_to_many :profile_option_causes
   has_and_belongs_to_many :profile_option_activities
 
-  has_many :positions, :dependent => :destroy
-  has_many :educations, :dependent => :destroy
+  has_many :positions
+  has_many :educations
+
+  # can't simply destroy positions and educations
+  before_destroy do |profile|
+    # remove profile from the position and it will be destroyed if it does not also belong to a member_info
+    profile.positions.each do |position|
+      position.etkh_profile_id = nil
+      position.save
+      position.destroy
+    end
+  end
 
 
   # public method for profile completeness score

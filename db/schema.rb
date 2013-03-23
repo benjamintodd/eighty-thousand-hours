@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130323103428) do
 
   create_table "educations", :force => true do |t|
     t.integer "etkh_profile_id"
+    t.integer "member_info_id"
     t.string  "university"
     t.string  "course"
     t.string  "qualification"
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20130323103428) do
 
   create_table "positions", :force => true do |t|
     t.integer "etkh_profile_id"
+    t.integer "member_info_id"
     t.string  "position"
     t.string  "organisation"
     t.string  "start_date_month"
