@@ -78,7 +78,6 @@ class EtkhProfilesController < ApplicationController
 
     # indicate whether profile is being created for first time or not
     @new_profile = session[:new_profile] == true ? true : false
-    session[:new_profile] = nil
 
     # indicate whether user has signedup with linkedin or not
     @linkedin_signup = current_user.linkedin_email ? true : false
@@ -101,17 +100,12 @@ class EtkhProfilesController < ApplicationController
         current_user.etkh_profile.get_profile_completeness
       end
       
-      #work out time since user profile was first created
-      timediff = Time.now - current_user.confirmed_at   #in seconds
-      timediff = timediff / 60  #in minutes
-
-      #if much time has elapsed since the profile was created
-      maxTime = 60 #minutes
-      if timediff > maxTime
+      if session[:new_profile] != true
         #assume the user is editing their profile
         redirect_to( etkh_profile_path( current_user ) )
       else
         #assume the user is creating their profile for the first time
+        session[:new_profile] = nil
         redirect_to( members_survey_path )
       end
     else
