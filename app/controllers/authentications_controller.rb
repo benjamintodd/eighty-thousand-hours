@@ -12,6 +12,12 @@ class AuthenticationsController < ApplicationController
       flash[:"alert-success"] = "You are now signed in."
       remember_me auth.user # set the remember_me cookie
       sign_in_and_redirect(:user, auth.user) 
+
+      # retrospective processing of facebook info
+      if omniauth.provider == "facebook"
+        auth.user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400") if !auth.user.avatar || auth.user.avatar.include?("avatar_default")
+        auth.user.external_facebook = omniauth.urls.Facebook if !auth.user.external_facebook || auth.user.external_facebook.empty?
+      end
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:"alert-success"] = "Authentication successful! You can now login using your #{omniauth['provider'].to_s.titleize} account."
@@ -40,6 +46,9 @@ class AuthenticationsController < ApplicationController
       user.omniauth_signup = true
       user.skip_confirmation!
       user.save
+
+      # process facebook profile info
+      Authentication.process_facebook_info(omniauth, user) if omniauth.provider == "facebook"
 
       # Log this in Google Analytics
       Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via Omniauth", user.name, user.id)
@@ -296,7 +305,7 @@ class AuthenticationsController < ApplicationController
     end
 
     # pull profile data
-    add_linkedin_to_profile(client, current_user)
+    User.add_linkedin_to_profile(client, current_user)
 
     # return to edit member profile
     flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
@@ -353,7 +362,7 @@ class AuthenticationsController < ApplicationController
     current_user.save
 
     # pull profile data
-    add_linkedin_to_profile(client, current_user)
+    User.add_linkedin_to_profile(client, current_user)
 
     # return to edit member profile
     flash[:"alert-success"] = "Profile data successfully pulled from LinkedIn."
@@ -399,7 +408,6 @@ class AuthenticationsController < ApplicationController
         client.authorize_from_access(linkedinfo.access_token, linkedinfo.access_secret)
 
         # send invitation
-        puts "sending invitation from existing access tokens: #{session[:email]}"
         response = client.send_invitation({email: session[:email]})
         
         # confirm
@@ -484,129 +492,5 @@ class AuthenticationsController < ApplicationController
 
     # log event in google analytics
     Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn connection invitation sent", current_user.id, user.id)
-  end
-
-
-  private
-
-  def add_linkedin_to_profile(client, user)
-    # update data fields with relevant info from linkedin profile
-
-    profile = user.etkh_profile
-
-    user.location = client.profile(fields: %w(location)).location.name
-    profile.career_sector = client.profile(fields: %w(industry)).industry
-    user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
-
-    if !user.avatar || user.avatar.to_s.include?("avatar_default")
-      url = client.profile(fields: %w(picture-url)).picture_url.to_s
-      user.avatar_from_url(url)
-    end
-
-    # create memberinfo table if not already exist
-    if !user.member_info
-      info = MemberInfo.new
-      info.user_id = user.id
-    else
-      info = user.member_info
-    end
-
-    # store date of birth
-    dob = client.profile(fields: %w(date-of-birth)).date_of_birth
-    if !dob.nil?
-      year = dob.year
-      month = dob.month ? dob.month : 01
-      day = dob.day ? dob.day : 01
-      info.DOB = DateTime.new(year,month,day) if year
-    end
-    info.save
-
-    ## get list of positions
-    positions = client.profile(fields: %w(positions)).positions.all
-    positions.each do |position|
-      # check for existing position
-      t = nil
-      if profile.positions
-        profile.positions.each do |p| 
-          if p.position == position.title && p.organisation == position.company.name
-            t = Position.find_by_id(p.id)
-            break
-          end
-        end
-      end
-      
-      t = Position.new unless t
-
-      t.position = position.title
-      t.organisation = position.company.name
-      t.start_date_month = convert_month(position.start_date.month)
-      t.start_date_year = position.start_date.year
-      
-      if position.is_current != true
-        t.end_date_month = convert_month(position.end_date.month)
-        t.end_date_year = position.end_date.year
-      else
-        t.current_position = true
-        profile.organisation = t.organisation
-        profile.current_position = t.position
-      end
-      t.etkh_profile_id = profile.id
-      t.save
-    end
-
-    ## get list of educations
-    # for some strange and unknown reason the mash returned for educations from the profile
-    # returns an error when queried for items within it(eg 'degree') so I have had to parse the
-    # Mash myself using regex
-    educations = client.profile(fields: %w(educations)).educations
-    educations.all.each do |education|
-      # get data
-      string = education.to_s
-      string_array = string.split
-
-      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2] if string.index("school_name")
-      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2] if string.index("field_of_study")
-      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2] if string.index("degree")
-
-      start_date_year = nil
-      end_date_year = nil
-      string_array.each_with_index do |str, index|
-        if str.include?("start_date")
-          start_date_year = string_array[index+1][/\d+/]
-        elsif str.include?("end_date")
-          end_date_year = string_array[index+1][/\d+/]
-        end
-      end
-
-      # check for existing education
-      t = nil
-      if profile.educations
-        profile.educations.each do |e|
-          if e.university == university && e.course == course
-            t = Education.find_by_id(e.id)
-            break
-          end
-        end
-      end
-
-      # otherwise create new education table
-      t = Education.new unless t
-
-      t.university = university if university
-      t.course = course if course
-      t.qualification = qualification if qualification
-      t.start_date_year = start_date_year if start_date_year
-      t.end_date_year = end_date_year if end_date_year
-      t.etkh_profile_id = profile.id
-      t.save
-    end
-
-    user.save
-    profile.get_profile_completeness
-  end
-
-  def convert_month(num)
-    months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    return months[num.to_i]
-  end
+  end  
 end

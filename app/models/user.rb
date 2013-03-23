@@ -145,6 +145,124 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.add_linkedin_to_profile(client, user)
+    # update data fields with relevant info from linkedin profile
+
+    profile = user.etkh_profile
+
+    # create memberinfo table if not already exist
+    if !user.member_info
+      memberinfo = MemberInfo.new
+      memberinfo.user_id = user.id
+    else
+      memberinfo = user.member_info
+    end
+
+    user.location = client.profile(fields: %w(location)).location.name
+    profile.career_sector = client.profile(fields: %w(industry)).industry
+    user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+
+    if !user.avatar || user.avatar.to_s.include?("avatar_default")
+      url = client.profile(fields: %w(picture-url)).picture_url.to_s
+      user.avatar_from_url(url)
+    end
+
+    # store date of birth in member info table
+    dob = client.profile(fields: %w(date-of-birth)).date_of_birth
+    if !dob.nil?
+      year = dob.year
+      month = dob.month ? dob.month : 01
+      day = dob.day ? dob.day : 01
+      memberinfo.DOB = DateTime.new(year,month,day) if year
+    end
+    memberinfo.save
+
+    ## get list of positions
+    positions = client.profile(fields: %w(positions)).positions.all
+    positions.each do |position|
+      # check for existing position
+      t = nil
+      if profile.positions
+        profile.positions.each do |p| 
+          if p.position == position.title && p.organisation == position.company.name
+            t = Position.find_by_id(p.id)
+            break
+          end
+        end
+      end
+      
+      t = Position.new unless t
+
+      t.position = position.title
+      t.organisation = position.company.name
+      t.start_date_month = convert_month(position.start_date.month)
+      t.start_date_year = position.start_date.year
+      
+      if position.is_current != true
+        t.end_date_month = convert_month(position.end_date.month)
+        t.end_date_year = position.end_date.year
+      else
+        t.current_position = true
+        profile.organisation = t.organisation
+        profile.current_position = t.position
+      end
+      t.etkh_profile_id = profile.id
+      t.save
+    end
+
+    ## get list of educations
+    # for some strange and unknown reason the mash returned for educations from the profile
+    # returns an error when queried for items within it(eg 'degree') so I have had to parse the
+    # Mash myself using regex
+    educations = client.profile(fields: %w(educations)).educations
+    educations.all.each do |education|
+      # get data
+      string = education.to_s
+      string_array = string.split
+
+      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2] if string.index("school_name")
+      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2] if string.index("field_of_study")
+      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2] if string.index("degree")
+
+      start_date_year = nil
+      end_date_year = nil
+      string_array.each_with_index do |str, index|
+        if str.include?("start_date")
+          start_date_year = string_array[index+1][/\d+/]
+        elsif str.include?("end_date")
+          end_date_year = string_array[index+1][/\d+/]
+        end
+      end
+
+      # check for existing education
+      t = nil
+      if profile.educations
+        profile.educations.each do |e|
+          if e.university == university && e.course == course
+            t = Education.find_by_id(e.id)
+            break
+          end
+        end
+      end
+
+      # otherwise create new education table
+      t = Education.new unless t
+
+      t.university = university if university
+      t.course = course if course
+      t.qualification = qualification if qualification
+      t.start_date_year = start_date_year if start_date_year
+      t.end_date_year = end_date_year if end_date_year
+      t.etkh_profile_id = profile.id
+      t.save
+    end
+
+    user.save
+
+    # recalculate profile completeness
+    profile.get_profile_completeness
+  end
+
   # static method that generates a list of users with good profiles
   def self.generate_users_list(list_size)
     # create new UsersSelection object
@@ -345,5 +463,10 @@ class User < ActiveRecord::Base
     # prepend conditions array with argument string
     conditions.unshift(arguments)
     return conditions
+  end
+
+  def self.convert_month(num)
+    months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    return months[num.to_i]
   end
 end
