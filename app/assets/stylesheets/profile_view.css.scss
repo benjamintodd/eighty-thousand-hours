@@ -115,7 +115,10 @@
         bottom: 0;
         > * {
           display: inline-block;
-          margin-right: 5px;
+        }
+        .btn-new {
+          padding-left: 10px;
+          padding-right: 10px;
         }
       }
     }
