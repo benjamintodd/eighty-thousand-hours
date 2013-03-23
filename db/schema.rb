@@ -181,6 +181,13 @@ ActiveRecord::Schema.define(:version => 20130322211103) do
     t.datetime "DOB"
   end
 
+  create_table "monthly_metrics", :force => true do |t|
+    t.datetime "date"
+    t.float    "average_profile_completeness"
+    t.float    "median_donation_percentage"
+    t.float    "donation_optin_percentage"
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "body"

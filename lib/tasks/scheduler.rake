@@ -30,3 +30,29 @@ task :calculate_weekly_metrics => :environment do
 
   puts "done."
 end
+
+desc 'Calculates a set of metrics on a monthly basis'
+task :calculate_monthly_metrics => :environment do
+  puts "Calculating monthly metrics..."
+
+  previous = MonthlyMetric.last
+  last_month_date = previous ? previous.date : Time.now.advance(months: -1)
+
+  puts "Calculating average profile completeness score for all profiles"
+  completeness = EtkhProfile.calculate_average_profile_completeness
+
+  puts "Calculating percentage of users who opted in to donation declaration this week"
+  optin = EtkhProfile.calculate_donation_optin_percentage(last_month_date)
+
+  puts "Calculating median donation percentage value for users donation declaration"
+  median = EtkhProfile.calculate_median_donation_percentage(last_month_date)
+
+  month = MonthlyMetric.new
+  month.average_profile_completeness = completeness
+  month.median_donation_percentage = median
+  month.donation_optin_percentage = optin
+  month.date = Time.now
+  month.save
+
+  puts "done."
+end

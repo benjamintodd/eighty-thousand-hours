@@ -1,7 +1,7 @@
 # class stores all the metrics calculated on a weekly basis
 class WeeklyMetric < ActiveRecord::Base
   def self.to_csv
-    columns = ["date", "average overall profile completeness", "donation declaration opt-in", "median donation delcaration percentage"]
+    columns = ["date", "average overall profile completeness", "donation declaration opt-in", "median donation declaration percentage"]
     CSV.generate do |csv|
       csv << columns
       self.all.each do |week|
