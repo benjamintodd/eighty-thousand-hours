@@ -56,10 +56,10 @@
                         = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
                     - if user.external_twitter?
                       .link
-                        = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                        = link_to image_tag("/assets/images/social/twitter.png") + " Twitter".html_safe, user.external_twitter
                     - if user.external_facebook?
                       .link
-                        = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
+                        = link_to image_tag("/assets/images/social/facebook.png") + " Facebook".html_safe, user.external_facebook
   #contact-modal
   .row
     .span8
