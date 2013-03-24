@@ -92,10 +92,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'yui-compressor'
   gem 'jquery-ui-rails'
+  gem 'sass-rails', '~> 3.2.6'
   gem 'asset_sync'
 end
-
-gem 'sass-rails', '~> 3.2.6'
 
 gem 'jquery-rails'
 
