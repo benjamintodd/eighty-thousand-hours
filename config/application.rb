@@ -65,5 +65,8 @@ module EightyThousandHours
       # g.stylesheets         false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    # needed for logging to work under unicorn
+    config.logger = Logger.new(STDOUT)
   end
 end
