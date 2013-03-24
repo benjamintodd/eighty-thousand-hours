@@ -82,6 +82,7 @@ gem 'unicorn'
 
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
+  gem 'heroku_san'
 end
 
 # Gems used only for assets and not required

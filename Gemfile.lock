@@ -171,6 +171,9 @@ GEM
       rubyzip
     heroku-api (0.3.7)
       excon (~> 0.16.10)
+    heroku_san (4.2.5)
+      heroku-api (>= 0.1.2)
+      rake
     hike (1.2.1)
     httparty (0.10.0)
       multi_json (~> 1.0)
@@ -421,6 +424,7 @@ DEPENDENCIES
   guard-spork
   haml
   heroku
+  heroku_san
   jasmine
   jquery-rails
   jquery-ui-rails
