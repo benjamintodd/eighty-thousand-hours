@@ -26,7 +26,14 @@ class EducationsController < ApplicationController
 
   def destroy
     @education = Education.find_by_id(params[:id])
+    
+    # remove education from this profile
+    @education.etkh_profile_id = nil
+    @education.save
+
+    # will destroy education if it does not also belong to member_info
     @education.destroy
+
     render 'etkh_profiles/educations/redraw'
   end
 end
