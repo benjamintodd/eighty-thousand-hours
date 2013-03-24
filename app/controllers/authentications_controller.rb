@@ -51,7 +51,7 @@ class AuthenticationsController < ApplicationController
       Authentication.process_facebook_info(omniauth, user) if omniauth.provider == "facebook"
 
       # Log this in Google Analytics
-      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via Omniauth", user.name, user.id)
+      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via #{omniauth.provider}")
 
       UserMailer.welcome_email(user).deliver!
 
@@ -82,7 +82,7 @@ class AuthenticationsController < ApplicationController
 
         if user.save
           # Log this in Google Analytics
-          Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via LinkedIn", user.name, user.id)
+          Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via LinkedIn")
 
           # create linkedin info table
           linkedinfo = LinkedinInfo.new
@@ -178,6 +178,8 @@ class AuthenticationsController < ApplicationController
       # if initial request was made by an existing user to link their account to linkedin
       if user_signed_in? && session[:linking] == "true"
         session[:linking] = nil
+
+        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "User linked account with LinkedIn", user.id)
 
         # create linkedin info table
         linkedinfo = LinkedinInfo.new
@@ -312,7 +314,7 @@ class AuthenticationsController < ApplicationController
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
 
     # log event in google analytics
-    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn profile pulled")
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn profile pulled", current_user.id)
   end
 
 
@@ -369,7 +371,7 @@ class AuthenticationsController < ApplicationController
     redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile)
 
     # log event in google analytics
-    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn profile pulled")
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn profile pulled", current_user.id)
   end
 
 
@@ -427,7 +429,7 @@ class AuthenticationsController < ApplicationController
         end
 
         # log event in google analytics
-        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn connection invitation sent", current_user.id, user.id)
+        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
         return
       end
     end
@@ -491,6 +493,6 @@ class AuthenticationsController < ApplicationController
     end
 
     # log event in google analytics
-    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn connection invitation sent", current_user.id, user.id)
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
   end  
 end

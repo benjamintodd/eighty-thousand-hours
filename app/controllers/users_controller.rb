@@ -87,7 +87,7 @@ class UsersController < ApplicationController
       UserMailer.contact_user(sender, recipient, subject, body).deliver!
 
       #log event in google analytics
-      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "User contacted by other user", sender.id, recipient.id)
+      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "User contacted by other user", nil, recipient.id)
     end
     render nothing: true
   end

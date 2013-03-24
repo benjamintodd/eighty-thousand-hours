@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     # Log this in Google Analytics
-    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "Created via email/password", params[:user][:name], params[:user][:email])
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via email/password")
     super
   end
 
