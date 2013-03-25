@@ -244,7 +244,7 @@ class EtkhProfilesController < ApplicationController
       render nothing: true
     else
       if session[:search] == false
-        render partial: 'profiles_selection', locals: { users: @next_selection }
+        render partial: 'profiles_selection', locals: { users: @next_selection, no_results: false }
       else
         # for some strange reason there is a bug which prevents the first
         # render method work for search results, so a JS view is called instead
