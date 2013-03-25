@@ -1,3 +1,4 @@
+require 'open-uri'
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
@@ -31,6 +32,9 @@ class User < ActiveRecord::Base
 
   delegate :public_profile, :to => :etkh_profile
 
+  has_one :linkedin_info, :dependent => :destroy
+  has_one :member_info, :dependent => :destroy
+
   # omniauth authentication
   has_many :authentications, :dependent => :destroy
 
@@ -63,7 +67,13 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avater, :content_type=>['image/jpeg', 'image/png', 'image/gif'],
                                     :unless => Proc.new {|m| m[:image].nil?}
 
-
+  def avatar_from_url(url)
+    io = open(URI.parse(url))
+    def io.original_filename; base_uri.path.split('/').last; end
+    self.avatar = io.original_filename.blank? ? nil : io
+    self.avatar_remote_url = url
+  end
+  
   # e.g. Admin, BlogAdmin, WebAdmin
   has_and_belongs_to_many :roles
   
@@ -117,18 +127,324 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    columns = ["id", "name", "email", "sign_in_count", "last_sign_in_at", "created_at", "location", "organisation", "background", "skills_knowledge_share", "skills_knowledge_learn", "donation_percentage", "donation_percentage_optout", "external twitter", "external facebook", "external_linkedin", "external_website"]
+    columns = ["id", "name", "email", "sign_in_count", "last_sign_in_at", "created_at", "location", "organisation", "background", "skills_knowledge_share", "skills_knowledge_learn", "donation_percentage", "donation_percentage_optout", "external twitter", "external facebook", "external_linkedin", "external_website", "DOB"]
     CSV.generate(options) do |csv|
       csv << columns
       self.all.each do |user|
         if user.etkh_profile
-          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website]
+          if user.member_info
+            entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website, user.member_info.DOB]
+          else
+            entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, user.etkh_profile.organisation, user.etkh_profile.background, user.etkh_profile.skills_knowledge_share, user.etkh_profile.skills_knowledge_learn, user.etkh_profile.donation_percentage, user.etkh_profile.donation_percentage_optout, user.external_twitter, user.external_linkedin, user.external_website, nil]
+          end
         else
-          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, nil, nil, nil, nil, nil, user.external_twitter, user.external_linkedin, user.external_website]
+          entries = [user.id, user.name, user.email, user.sign_in_count, user.last_sign_in_at, user.created_at, user.location, nil, nil, nil, nil, nil, user.external_twitter, user.external_linkedin, user.external_website, nil]
         end
         csv << entries
       end
     end
+  end
+
+  def self.add_linkedin_to_profile(client, user)
+    # update data fields with relevant info from linkedin profile
+
+    profile = user.etkh_profile
+
+    # create memberinfo table if not already exist
+    if !user.member_info
+      memberinfo = MemberInfo.new
+      memberinfo.user_id = user.id
+    else
+      memberinfo = user.member_info
+    end
+
+    user.location = client.profile(fields: %w(location)).location.name
+    profile.career_sector = client.profile(fields: %w(industry)).industry
+    user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+
+    if !user.avatar || user.avatar.to_s.include?("avatar_default")
+      url = client.profile(fields: %w(picture-url)).picture_url.to_s
+      user.avatar_from_url(url)
+    end
+
+    # store date of birth in member info table
+    dob = client.profile(fields: %w(date-of-birth)).date_of_birth
+    if !dob.nil?
+      year = dob.year
+      month = dob.month ? dob.month : 01
+      day = dob.day ? dob.day : 01
+      memberinfo.DOB = DateTime.new(year,month,day) if year
+    end
+    memberinfo.save
+
+    ## get list of positions
+    positions = client.profile(fields: %w(positions)).positions.all
+    positions.each do |position|
+      # check for existing position
+      t = nil
+      if profile.positions
+        profile.positions.each do |p| 
+          if p.position == position.title && p.organisation == position.company.name
+            t = Position.find_by_id(p.id)
+            break
+          end
+        end
+      end
+      
+      t = Position.new unless t
+
+      t.position = position.title
+      t.organisation = position.company.name
+      t.start_date_month = convert_month(position.start_date.month)
+      t.start_date_year = position.start_date.year
+      
+      if position.is_current != true
+        t.end_date_month = convert_month(position.end_date.month)
+        t.end_date_year = position.end_date.year
+      else
+        t.current_position = true
+        profile.organisation = t.organisation
+        profile.current_position = t.position
+      end
+      t.etkh_profile_id = profile.id
+      t.save
+    end
+
+    ## get list of educations
+    # for some strange and unknown reason the mash returned for educations from the profile
+    # returns an error when queried for items within it(eg 'degree') so I have had to parse the
+    # Mash myself using regex
+    educations = client.profile(fields: %w(educations)).educations
+    educations.all.each do |education|
+      # get data
+      string = education.to_s
+      string_array = string.split
+
+      university = string[string.index("school_name")+13..-1][/(.*?)"/][0..-2] if string.index("school_name")
+      course = string[string.index("field_of_study")+16..-1][/(.*?)"/][0..-2] if string.index("field_of_study")
+      qualification = string[string.index("degree")+8..-1][/(.*?)"/][0..-2] if string.index("degree")
+
+      start_date_year = nil
+      end_date_year = nil
+      string_array.each_with_index do |str, index|
+        if str.include?("start_date")
+          start_date_year = string_array[index+1][/\d+/]
+        elsif str.include?("end_date")
+          end_date_year = string_array[index+1][/\d+/]
+        end
+      end
+
+      # check for existing education
+      t = nil
+      if profile.educations
+        profile.educations.each do |e|
+          if e.university == university && e.course == course
+            t = Education.find_by_id(e.id)
+            break
+          end
+        end
+      end
+
+      # otherwise create new education table
+      t = Education.new unless t
+
+      t.university = university if university
+      t.course = course if course
+      t.qualification = qualification if qualification
+      t.start_date_year = start_date_year if start_date_year
+      t.end_date_year = end_date_year if end_date_year
+      t.etkh_profile_id = profile.id
+      t.save
+    end
+
+    user.save
+
+    # recalculate profile completeness
+    profile.get_profile_completeness
+  end
+
+  # static method that generates a list of users with good profiles
+  def self.generate_users_list(list_size)
+    # create new UsersSelection object
+    selection = UsersSelection.new(list_size)
+    # return object
+    return selection
+  end
+
+  def self.search(options)
+    # define search conditions
+    # search terms are case-insensitive
+    user_conditions_array = []
+    user_conditions_array << [ 'lower(name) LIKE ?', "%#{options[:name].downcase}%" ] if !options[:name].empty?
+    user_conditions_array << [ 'lower(location) LIKE ?', "%#{options[:location].downcase}%" ] if !options[:location].empty?    
+
+    # concatenate conditions into search string
+    user_conditions = build_search_conditions(user_conditions_array)
+    user_results = User.where(user_conditions).all
+
+    # now search etkh_profiles 
+    profiles_conditions_array = []
+    profiles_conditions_array << [ 'lower(organisation) LIKE ?', "%#{options[:organisation].downcase}%" ] if !options[:organisation].empty?
+    profiles_conditions_array << [ 'lower(career_sector) LIKE ?', "%#{options[:industry].downcase}%" ] if !options[:industry].empty?
+    profiles_conditions_array << [ 'lower(current_position) LIKE ?', "%#{options[:position].downcase}%" ] if !options[:position].empty?
+
+    profile_conditions = build_search_conditions(profiles_conditions_array)
+    profile_results = EtkhProfile.where(profile_conditions).all
+    
+    # convert array of profiles into array of users
+    user_profile_results = profile_results.map{|p|p.user}
+
+    results = user_results & user_profile_results
+
+    # perform search by keyword if it exists
+    if !options[:keyword].empty?
+      keyword_search_results = search_by_keyword(options[:keyword]) 
+      results = results & keyword_search_results
+    end
+
+    # find common elements in both results arrays
+    return results
+  end
+
+  def self.search_by_keyword(keyword)
+    keyword = keyword.downcase
+
+    results = []
+    results << User.where([ 'lower(name) LIKE ?', "%#{keyword}%" ])
+    results << User.where([ 'lower(location) LIKE ?', "%#{keyword}%" ])
+
+    results << EtkhProfile.where([ 'lower(organisation) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(career_sector) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(current_position) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(background) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(skills_knowledge_share) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+    results << EtkhProfile.where([ 'lower(skills_knowledge_learn) LIKE ?', "%#{keyword}%" ]).map{|p| p.user}
+
+    results = results.flatten.uniq
+    return results
+  end
+
+  def self.sort_by_profile_completeness(users)
+    sorted = users.sort do |a,b|
+      if a.etkh_profile
+        if !b.etkh_profile
+          -1
+        else
+          if a.etkh_profile.completeness_score > b.etkh_profile.completeness_score
+            -1
+          else
+            1
+          end
+        end
+      else
+        if b.etkh_profile
+          1
+        else
+          0
+        end
+      end
+    end
+  end
+
+  ### Karma score ###
+  # define variable weights
+  BLOG_POST_CREATED         = 15
+  DISCUSSION_POST_CREATED   = 10
+  BLOG_POST_COMMENT         = 5  # comments user has made
+  DISCUSSION_POST_COMMENT   = 5  # ditto
+  BLOG_POST_UPVOTE          = 3  # upvotes of user's blog posts
+  BLOG_POST_FBLIKE          = 2  # etc
+  DISCUSSSION_POST_UPVOTE   = 3
+  COMMENT_UPVOTE            = 3
+  BLOG_POST_DOWNVOTE        = BLOG_POST_UPVOTE
+  DISCUSSION_POST_DOWNVOTE  = DISCUSSSION_POST_UPVOTE
+  COMMENT_DOWNVOTE          = COMMENT_UPVOTE
+
+  # method to calculate user's karma score
+  def get_karma_score
+    # posts created
+    n_blog_posts = self.blog_posts.length
+    score = n_blog_posts * BLOG_POST_CREATED
+
+    n_discus_posts = self.discussion_posts.length
+    score += n_discus_posts * DISCUSSION_POST_CREATED
+
+    # comments
+    n_blog_comments = 0
+    n_discus_comments = 0
+    n_upvotes_comment = 0
+    n_downvotes_comment = 0
+    self.comments.each do |comment|
+      # comments posted
+      if comment.get_post.instance_of?(BlogPost) 
+        n_blog_comments += 1
+      elsif comment.get_post.instance_of?(DiscussionPost) 
+        n_discus_comments += 1
+      end
+
+      # comments up or down voted
+      comment.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_comment += 1
+        else
+          n_downvotes_comment += 1
+        end
+      end
+    end
+    score += n_blog_comments * BLOG_POST_COMMENT
+    score += n_discus_comments * DISCUSSION_POST_COMMENT
+    score += n_upvotes_comment * COMMENT_UPVOTE
+    score -= n_downvotes_comment * COMMENT_DOWNVOTE
+
+    # blog post votes
+    n_upvotes_blog = 0
+    n_downvotes_blog = 0
+    self.blog_posts.each do |post|
+      post.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_blog += 1
+        else
+          n_downvotes_blog += 1
+        end
+      end
+      score += post.facebook_likes * BLOG_POST_FBLIKE
+    end
+    score += n_upvotes_blog * BLOG_POST_UPVOTE
+    score -= n_downvotes_blog * BLOG_POST_DOWNVOTE
+    
+    # discussion post votes
+    n_upvotes_discus = 0
+    n_downvotes_discus = 0
+    self.discussion_posts.each do |post|
+      post.votes.each do |vote|
+        if vote.positive == true
+          n_upvotes_discus += 1
+        else
+          n_downvotes_discus += 1
+        end
+      end
+    end
+    score += n_upvotes_discus * DISCUSSSION_POST_UPVOTE
+    score -= n_downvotes_discus * DISCUSSION_POST_DOWNVOTE
+
+    return score
+  end
+
+
+  ## Calculations for metrics
+  def self.calculate_avatar_percentage(start_date = nil)
+    avatar_count = 0
+    if !start_date
+      users = User.all
+    else
+      users = User.where("created_at >= :start_date", start_date: start_date)
+    end
+
+    total = users.length
+    users.each do |user|
+      avatar_count += 1 if user.avatar && !user.avatar.to_s.include?("avatar_default")
+    end
+    return (avatar_count.to_f / total.to_f * 100).round(2)
   end
 
 
@@ -145,5 +461,29 @@ class User < ActiveRecord::Base
          # if doing this. View code should check the errors of the child.
          # Or add the child's errors to the User model's error array of the :base
          # error item
+  end
+
+  def self.build_search_conditions(conditions_array)
+    conditions = []
+    arguments = ""
+    i = 0
+    conditions_array.each do |key, val|
+      # combine search terms together
+      arguments += key
+      arguments += " AND " if i < conditions_array.length - 1
+
+      # build list of search values
+      conditions << val
+
+      i += 1
+    end
+    # prepend conditions array with argument string
+    conditions.unshift(arguments)
+    return conditions
+  end
+
+  def self.convert_month(num)
+    months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    return months[num.to_i]
   end
 end

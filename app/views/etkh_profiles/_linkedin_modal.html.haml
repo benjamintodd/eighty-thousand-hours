@@ -1,0 +1,30 @@
+= javascript_include_tag "linkedin-form.js"
+
+.linkedin-form
+  .header
+    %img{ src: '/assets/linkedin/linkedin-logo32.png'}
+    
+  .content
+    -# if not linked with linkedin, offer link option
+    - if linkedin_signup == false
+      #linking
+        .body
+          %p
+            Would you like to link your account with LinkedIn so other members can view your LinkedIn profile?
+
+        .form-actions
+          .btn.btn-info.btn-confirm#btn-linkedin-linking-yes
+            Link account
+          .btn.btn-success.btn-reject#btn-linkedin-linking-no
+            No thanks
+
+    -# always offer pull data option
+    #profile{ style: linkedin_signup ? " " : "display: none" }
+      .body
+        %p
+          Would you like to fill in your profile with data from your LinkedIn profile?
+
+      .form-actions
+        = link_to "Pull profile", {controller: 'authentications', action: 'linkedin_getprofile'}, class: "btn btn-info btn-confirm form-close", id: "btn-linkedin-profile-yes"
+        .btn.btn-success.btn-reject.form-close#btn-linkedin-profile-no
+          No thanks

@@ -1,13 +1,12 @@
+-# profile is passed as a local var
 - user = profile.user
-
-.eighty-thousand-hours-profile-condensed
+.eighty-thousand-hours-profile-condensed{ id: "#{user.id}" }
   .avatar
-    = link_to image_tag(user.avatar.url(:thumb)), "/members/#{user.slug}"
+    = link_to image_tag(user.avatar.url(:thumb)), "/members/#{user.slug}", class: "profile-link"
 
   .text
-    %span.name
-      = link_to user.name, "/members/#{user.slug}"
-    %br
+    %p.name
+      = link_to user.name, "/members/#{user.slug}", class: "profile-link"
     - if user.location?
-      %span.location
+      %p.location
         = truncate( user.location, :length => 20 )

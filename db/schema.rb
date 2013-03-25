@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201143727) do
+ActiveRecord::Schema.define(:version => 20130324214546) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.datetime "updated_at"
   end
 
+  add_index "attached_images", ["blog_post_id"], :name => "index_attached_images_on_blog_post_id"
+
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -61,7 +65,9 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.string   "category",       :default => "discussion"
   end
 
+  add_index "blog_posts", ["created_at"], :name => "index_blog_posts_on_created_at"
   add_index "blog_posts", ["slug"], :name => "index_posts_on_slug", :unique => true
+  add_index "blog_posts", ["user_id"], :name => "index_blog_posts_on_user_id"
 
   create_table "causes", :force => true do |t|
     t.string   "name"
@@ -86,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "discussion_posts", :force => true do |t|
     t.string   "title"
@@ -98,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
   end
 
   add_index "discussion_posts", ["slug"], :name => "index_discussion_posts_on_slug", :unique => true
+  add_index "discussion_posts", ["user_id"], :name => "index_discussion_posts_on_user_id"
 
   create_table "donations", :force => true do |t|
     t.integer  "amount_cents",         :default => 0
@@ -118,6 +126,20 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
 
   add_index "donations", ["cause_id"], :name => "index_donations_on_charity_id"
   add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
+
+  create_table "educations", :force => true do |t|
+    t.integer "etkh_profile_id"
+    t.integer "member_info_id"
+    t.string  "university"
+    t.string  "course"
+    t.string  "qualification"
+    t.integer "start_date_year"
+    t.integer "end_date_year"
+    t.boolean "current_education"
+  end
+
+  add_index "educations", ["etkh_profile_id"], :name => "index_educations_on_etkh_profile_id"
+  add_index "educations", ["member_info_id"], :name => "index_educations_on_member_info_id"
 
   create_table "endorsements", :force => true do |t|
     t.string   "author"
@@ -143,16 +165,52 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.text     "activities_comment"
     t.integer  "donation_percentage",        :default => 30
     t.boolean  "donation_percentage_optout", :default => true
+    t.string   "career_sector"
+    t.string   "current_position"
+    t.integer  "completeness_score",         :default => 0
   end
+
+  add_index "etkh_profiles", ["user_id"], :name => "index_etkh_profiles_on_user_id", :unique => true
 
   create_table "etkh_profiles_profile_option_activities", :id => false, :force => true do |t|
     t.integer "etkh_profile_id"
     t.integer "profile_option_activity_id"
   end
 
+  add_index "etkh_profiles_profile_option_activities", ["etkh_profile_id"], :name => "index_profile_option_activities_on_etkh_profile_id"
+
   create_table "etkh_profiles_profile_option_causes", :id => false, :force => true do |t|
     t.integer "etkh_profile_id"
     t.integer "profile_option_cause_id"
+  end
+
+  add_index "etkh_profiles_profile_option_causes", ["etkh_profile_id"], :name => "index_profile_option_causes_on_etkh_profile_id"
+
+  create_table "linkedin_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "permissions"
+    t.string   "access_token"
+    t.string   "access_secret"
+    t.datetime "last_updated"
+  end
+
+  add_index "linkedin_infos", ["user_id"], :name => "index_linkedin_infos_on_user_id", :unique => true
+
+  create_table "member_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "DOB"
+    t.string   "gender"
+  end
+
+  add_index "member_infos", ["user_id"], :name => "index_member_infos_on_user_id", :unique => true
+
+  create_table "monthly_metrics", :force => true do |t|
+    t.datetime "date"
+    t.float    "average_profile_completeness"
+    t.float    "median_donation_percentage"
+    t.float    "donation_optin_percentage"
+    t.float    "avatar_percentage"
+    t.float    "avatar_percentage_new_users"
   end
 
   create_table "pages", :force => true do |t|
@@ -173,6 +231,21 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
+
+  create_table "positions", :force => true do |t|
+    t.integer "etkh_profile_id"
+    t.integer "member_info_id"
+    t.string  "position"
+    t.string  "organisation"
+    t.string  "start_date_month"
+    t.integer "start_date_year"
+    t.string  "end_date_month"
+    t.integer "end_date_year"
+    t.boolean "current_position"
+  end
+
+  add_index "positions", ["etkh_profile_id"], :name => "index_positions_on_etkh_profile_id"
+  add_index "positions", ["member_info_id"], :name => "index_positions_on_member_info_id"
 
   create_table "profile_option_activities", :force => true do |t|
     t.string "title"
@@ -267,6 +340,9 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
     t.boolean  "omniauth_signup",                             :default => false
     t.boolean  "notifications_on_forum_posts",                :default => true
     t.boolean  "notifications_on_comments",                   :default => true
+    t.boolean  "linkedin_signup",                             :default => false
+    t.string   "linkedin_email"
+    t.string   "avatar_remote_url"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
@@ -296,5 +372,15 @@ ActiveRecord::Schema.define(:version => 20130201143727) do
   end
 
   add_index "votes", ["post_id", "post_type"], :name => "index_votes_on_post_id_and_post_type"
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+
+  create_table "weekly_metrics", :force => true do |t|
+    t.datetime "date"
+    t.float    "average_profile_completeness"
+    t.float    "median_donation_percentage"
+    t.float    "donation_optin_percentage"
+    t.float    "avatar_percentage"
+    t.float    "avatar_percentage_new_users"
+  end
 
 end

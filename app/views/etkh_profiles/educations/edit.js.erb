@@ -1,0 +1,8 @@
+// get id of education
+var id = "<%= j @education.id.to_s %>";
+
+// get form html
+var form_html = "<%= j(render partial: 'etkh_profiles/educations/edit_form') %>";
+
+// replace education with edit form
+$("#education-" + id).html(form_html);

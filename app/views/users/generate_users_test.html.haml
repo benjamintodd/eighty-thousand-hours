@@ -1,0 +1,11 @@
+.box
+  - @selection_list.users.each do |user|
+    %h3
+      = link_to "#{user.name}", "/members/#{user.slug}"
+    %p= user.etkh_profile.get_profile_completeness
+  %hr
+  - more_users = @selection_list.generate_more_users(30)
+  - more_users.each do |user|
+    %h3
+      = link_to "#{user.name}", "/members/#{user.slug}"
+    %p= user.etkh_profile.get_profile_completeness

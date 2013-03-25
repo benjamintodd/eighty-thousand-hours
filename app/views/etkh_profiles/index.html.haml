@@ -1,34 +1,40 @@
-.box
-  .page-header
-    %h1= "#{@profiles.size} member profiles"
-  
-  = render :partial => 'search_form'
-  
-  Jump to:&nbsp;
-  - @grouped_profiles.each do |letter,profiles|
-    =link_to letter, "##{letter}"
-    &nbsp;|&nbsp;
-  
-  .page-header
-    %h3 Newest members
+- content_for :javascript_includes do
+  = javascript_include_tag "all-members-page.js"
+  = javascript_include_tag "jquery.hoverIntent.minified.js"
 
-  - @newest_profiles.in_groups_of(4) do |profiles|
-    .row
-      - profiles.each do |profile|
-        .span3
-          = render :partial => 'profile_condensed', :locals => { :profile => profile }
-      .clearfix
-  %hr
+.all-members
+  .box
+    .page-header
+      %h1= "#{@profiles.size} member profiles"
+    
+    = render :partial => 'search_form', locals: { otherPage: true }
+    
+    Jump to:&nbsp;
+    - @grouped_profiles.each do |letter,profiles|
+      =link_to letter, "##{letter}"
+      &nbsp;|&nbsp;
+    
+    #profile-popup
 
-  - @grouped_profiles.to_a.in_groups_of(4) do |groups|
-    .row
-      - groups.each do |profiles|
-        - if profiles
+    .page-header
+      %h3 Newest members
+
+    - @newest_profiles.in_groups_of(4) do |profiles|
+      .row
+        - profiles.each do |profile|
           .span3
-            .page-header{:id => profiles[0]}
-              %h1= profiles[0]
-            - profiles[1].each do |profile|
-              = render :partial => 'profile_condensed', :locals => { :profile => profile }
-              .clearfix
-              %br
-.clearfix
+            = render :partial => 'profile_condensed', :locals => { :profile => profile }
+        .clearfix
+    %hr
+
+    - @grouped_profiles.to_a.in_groups_of(4) do |groups|
+      .row
+        - groups.each do |profiles|
+          - if profiles
+            .span3
+              .page-header{:id => profiles[0]}
+                %h1= profiles[0]
+              - profiles[1].each do |profile|
+                = render :partial => 'profile_condensed', :locals => { :profile => profile }
+                .clearfix
+  .clearfix

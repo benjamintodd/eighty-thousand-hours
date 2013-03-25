@@ -13,6 +13,7 @@
     <%= stylesheet_link_tag "application" %>
 
     <%= javascript_include_tag "application" %>
+    <%= yield :javascript_includes %>
 
     <!--[if lt IE 9]>
     <%= javascript_include_tag "html5" %>
@@ -46,7 +47,7 @@
       <% if !flash.empty?  %>
         <% count = 0 %>
         <% flash.each do |key,value| %>
-          <div class="modal" id="flash-modal-<%= count %>">
+          <div class="modal flash-modal" id="flash-modal-<%= count %>">
             <div class="modal-body alert <%= key %>">
               <%= value.html_safe %>
             </div>

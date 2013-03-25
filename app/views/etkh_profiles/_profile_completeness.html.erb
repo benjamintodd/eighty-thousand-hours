@@ -1,0 +1,35 @@
+<% # local variable 'textType' indicates whether to display link or text %>
+<div class="profile-completeness">
+  <h3 class="title">Profile Completeness</h3>
+  <div class="bar">
+    <div id="progressbar" class="ui-progress-bar ui-container">
+      <div class="ui-progress" style="width: <%= value %>%;"></div>
+    </div>
+    <div class="value-container">
+      <p><b class="value"><%= value %>%</b></p>
+    </div>
+  </div>
+
+  <div class="text">
+    <% if textType == "link" %>
+      <%= link_to "Edit profile", edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>
+    <% end %>
+
+    <% tips = current_user.etkh_profile.get_profile_completion_tips %>
+    <% if tips.length > 0 %>
+      <div class="completion-tips">
+        <h3 class="completion-title">Completion tips</h3>
+        <% tips.take(3).each do |tip| %>
+          <div class="tip">
+            <% if textType == "link" %>
+              <%= link_to image_tag("/assets/images/plus.png", class: "plus-icon"), edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>
+            <% else %>
+              <%= image_tag("/assets/images/plus.png", class: "plus-icon") %>
+            <% end %>
+            <p class="tip-text"><%= tip %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

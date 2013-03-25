@@ -2,17 +2,18 @@
   %h1 Become an 80,000 Hours member
 
 .alert.alert-info
-  The easiest way to create an 80,000 Hours account is to link to an existing account from Facebook or Google. This means you don't have yet another password to remember.
-  You can do this by clicking the appropriate button.
+  The easiest way to create an 80,000 Hours account is to link to an existing account from LinkedIn, Facebook or Google. This means you don't have yet another password to remember.
+  %br
+  %br
+  We recommend connecting to your LinkedIn account to take full advantage of the networking opportunities within the community.
   %br
   %br
   %strong Note:
-  We only request the most limited data from Facebook or Google: just your name and email address.
   We will 
   %strong never
   post to your Facebook wall without your permission.
 
-= render partial: 'authentications/options'
+= render partial: 'authentications/options', locals: { type: "signup" }
 
 %hr
 

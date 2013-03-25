@@ -1,7 +1,59 @@
-= form_tag('/members/search', :class => 'form-horizontal') do
-  .control-group
-    %label.control-label{ for: 'prependedInput'}
-      Search by name
-    .controls
-      .input-prepend
-        = '<span class="add-on"><i class="icon-search"></i></span>'.html_safe + (text_field_tag 'name', '', :placeholder => 'search by name', :id => 'prependedInput', :"data-provide"=>"typeahead", :"data-source"=>"#{@profiles.map{|p| p.user.name}}").html_safe
+-# otherPage is passed in as a local variable to indicate whether partial is being displayed on 'our members' page or on a different page
+.search-form
+  - content_for :javascript_includes do
+    = javascript_include_tag "search-form.js"
+  - if otherPage == true
+    -# submit links to 'our members' page where search results are displayed
+    = form_tag('/members', method: 'GET', remote: false, id: "form-search") do
+      = hidden_field_tag :search, :true
+      #inputs
+        .keyword
+          = label_tag :keyword
+          = text_field_tag :keyword
+        .hidden
+          = label_tag :name
+          = text_field_tag :name
+        .hidden
+          = label_tag :location
+          = text_field_tag :location
+        .hidden
+          = label_tag :organisation
+          = text_field_tag :organisation
+        .hidden
+          = label_tag :industry
+          = text_field_tag :industry
+        .hidden
+          = label_tag :position
+          = text_field_tag :position
+
+      .button
+        = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info btn-new"
+
+      .link
+        = link_to "Advanced Search", "", remote: true, id: "advanced-search"
+  - else
+    -# if the search form has been redirected from another search form, fill in form inputs with values from other form
+    = form_tag('/members/search', remote: true, id: "form-search") do
+      #inputs
+        .keyword
+          = label_tag :keyword
+          = text_field_tag :keyword, @keyword
+        .hidden
+          = label_tag :name
+          = text_field_tag :name, @name
+        .hidden
+          = label_tag :location
+          = text_field_tag :location, @location
+        .hidden
+          = label_tag :organisation
+          = text_field_tag :organisation, @organisation
+        .hidden
+          = label_tag :industry
+          = text_field_tag :industry, @industry
+        .hidden
+          = label_tag :position
+          = text_field_tag :position, @position
+      .button
+        = submit_tag "Search", name: nil, id: "search-btn", class: "btn btn-info btn-new"
+      .link
+        = link_to "Advanced Search", "", remote: true, id: "advanced-search"

@@ -1,130 +1,211 @@
 - user = profile.user
 
-.row
-  .eighty-thousand-hours-profile
-    .span3
-      .sidebar
+.eighty-thousand-hours-profile
+  .heading
+    .row-fluid
+      .span3
         .avatar
-          = link_to image_tag(user.avatar.url(:medium)), user.avatar.url
+          = link_to image_tag(user.avatar(:medium)), user.avatar.url
+      .span9
+        .row-fluid
+          .span8
+            .header-main
+              .info
+                %h1.name
+                  = profile.name
+                %p.location 
+                  = user.location
+                #labels-section
+                  .labels
+                    %p Position
+                    %p Organisation
+                    %p Industry
+                    %p.karma{ title: "Explanation for karma score..."}Karma score
+                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
+                      %p Email
+                  .entries
+                    %p= truncate(profile.current_position, length: 40)
+                    %p= truncate(profile.organisation, length: 40)
+                    %p= truncate(profile.career_sector, length: 40)
+                    %p.karma{ title: "Explanation for karma score..."}
+                      = user.get_karma_score
+                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
+                      %p= truncate(user.email, length: 40)
+              .buttons
+                #contact
+                  = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-info btn-new", id: "contact-btn"
+                - if !user.external_linkedin.nil? && !user.external_linkedin.empty?
+                  #linkedin-view
+                    = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-info btn-new"
+                - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
+                  #linkedin-add
+                    = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-info btn-new"
 
-        - if user.location?
-          %p
-            %h5 Location
-            = user.location
-
-        %p
-          %h5 Member since 
-          = profile.created_at.strftime "%B %Y"
-
-        - upvotes = user.votes.upvotes.recent
-        - if upvotes.size > 0
-          %p
-            %h5 Recent activity
-            - user.blog_posts.published.limit(3).each do |post|
-              wrote blog post:
-              %br
-              =link_to post.title, post
-              %br
-            - upvotes.limit(3).each do |v|
-              - if v.post.instance_of?(BlogPost)
-                liked blog post:
-                %br
-                =link_to v.post.title, blog_post_path(v.post)
-                %br
-
-        -if user.external_links?
-          %p
-            %h5 External links
-            - if user.external_website?
-              = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
-              %br
-
-            - if user.external_twitter?
-              = link_to image_tag("social/twitter.png") + " Twitter".html_safe, user.external_twitter
-              %br
-            
-            - if user.external_facebook?
-              = link_to image_tag("social/facebook.png") + " Facebook".html_safe, user.external_facebook
-              %br
-            
-            - if user.external_linkedin?
-              = link_to image_tag("social/linkedin.png") + " LinkedIn".html_safe, user.external_linkedin
-              %br
-
-        %p
-          %h5 Navigation
-          = link_to '<i class="icon-user"></i> view all members'.html_safe, etkh_profiles_path
-    .span1
-      &nbsp;
+          .span4
+            .right-block
+              - if user == current_user && current_user.etkh_profile
+                .completeness
+                  = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
+              - else
+                - if user.external_links?
+                  .external-links
+                    %p External links
+                    %hr
+                    - if user.external_website?
+                      .link
+                        = link_to "<i class='icon-info-sign'></i> Personal website".html_safe, user.external_website
+                    - if user.external_twitter?
+                      .link
+                        = link_to image_tag("/assets/images/social/twitter.png") + " Twitter".html_safe, user.external_twitter
+                    - if user.external_facebook?
+                      .link
+                        = link_to image_tag("/assets/images/social/facebook.png") + " Facebook".html_safe, user.external_facebook
+  #contact-modal
+  .row
     .span8
-      .main
-        .page-header
-          %h1= profile.name
-
-          %h2.location
-            - if profile.organisation?
-              = profile.organisation + (', ' if user.location)
-            - if user.location?
-              = user.location
-
-          - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
-            %h3= user.email
-        
+      .content
         - if profile.background?
-          %h2 Background and interests
-          = markdown profile.background
+          .section
+            .title
+            .body
+              %h2 Background and interests
+              = markdown profile.background
 
-        - if profile.profile_option_causes.any?
-          %h2 Causes I support
-          %ul
-            - profile.profile_option_causes.each do |cause|
-              %li= cause.title
-          - if profile.causes_comment
-            = markdown profile.causes_comment
+        - if profile.profile_option_causes.any? || profile.profile_option_activities.any?
+          .section
+            .title
+            .body
+              - if profile.profile_option_causes.any?
+                %h2 Causes I support
+                %ul{ class: "shortened-list", id: "causes-list" }
+                  - profile.profile_option_causes.each do |cause|
+                    %li= cause.title
+                - if profile.profile_option_causes.length > 8
+                  %a{ class: "see-more", id: "see-more-causes" }See more
+                - if profile.causes_comment
+                  = markdown profile.causes_comment
 
-        - if profile.profile_option_activities.any?
-          %h2 My high impact activities
-          %ul
-            - profile.profile_option_activities.each do |activity|
-              %li= activity.title
-          - if profile.activities_comment
-            = markdown profile.activities_comment
+              - if profile.profile_option_activities.any?
+                %h2 My high impact activities
+                %ul{ class: "shortened-list", id: "activities-list" }
+                  - profile.profile_option_activities.each do |activity|
+                    %li= activity.title
+                - if profile.profile_option_activities.length > 8
+                  %a{ class: "see-more", id: "see-more-activities"}See more 
 
-        - if !profile.donation_percentage_optout
-          %h2 Donation pledge
-          .donations-thermometer.well
-            .text
-              %p 
-                I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
-            .bar-container
-              .progress.progress-striped.progress-danger
-                .bar{:"data-percentage" => profile.donation_percentage}
+                - if profile.activities_comment
+                  = markdown profile.activities_comment
 
-        // only show skills to other members
-        - if current_user and current_user.eighty_thousand_hours_member?
-          - if profile.skills_knowledge_share?
-            %h2 Skills and knowledge I can share with other members
-            %p= profile.skills_knowledge_share
-          - if profile.skills_knowledge_learn?
-            %h2 Skills and knowledge I would like to learn from other members
-            %p= profile.skills_knowledge_learn
+        - if profile.positions.any? || profile.educations.any?
+          .section
+            .title
+            .body
+              - if profile.positions.any?
+                %h2 Experience
+                = render partial: 'etkh_profiles/positions/positions', locals: { positions: profile.positions, edit_profile: false }
+                - if profile.positions.length > 3
+                  %a{ class: "see-more", id: "see-more-positions"}See more
+                %hr
+
+              - if profile.educations.any?
+                %h2 Education
+                = render partial: 'etkh_profiles/educations/educations', locals: { educations: profile.educations, edit_profile: false }
+                - if profile.educations.length > 3
+                  %a{ class: "see-more", id: "see-more-educations"}See more
+
+        - if !profile.donation_percentage_optout || user.donations.any?
+          .section
+            .title
+            .body
+              - if !profile.donation_percentage_optout
+                %h2 Donation pledge
+                .donations-thermometer.well
+                  .text
+                    %p 
+                      I have pledged to donate #{profile.donation_percentage}% of my pre-tax income to cost-effective causes.
+                  .bar-container
+                    .progress.progress-striped.progress-danger
+                      .bar{:"data-percentage" => profile.donation_percentage}
+
+              -# only show donations to members
+              - if current_user && current_user.eighty_thousand_hours_member?
+                - donations = user.donations.order("date DESC")
+                - if donations.confirmed.is_public.size > 0
+                  .donations{:id => "#{user.slug}-donations"}
+                    %h2
+                      Donations
+                    %p
+                      %ul
+                        - donations.each do |donation|
+                          - if donation.public
+                            %li
+                              = render donation
+                    - if donations.length > 8
+                      %a{ class: "see-more", id: "see-more-donations"}See more
+
+        -# only show skills to other members
+        - if current_user && current_user.eighty_thousand_hours_member?
+          - if profile.skills_knowledge_share? || profile.skills_knowledge_learn?
+            .section
+              .title
+              .body
+              - if profile.skills_knowledge_share?
+                %h2 Skills and knowledge I can share with other members
+                %p= profile.skills_knowledge_share
+              - if profile.skills_knowledge_learn?
+                %h2 Skills and knowledge I would like to learn from other members
+                %p= profile.skills_knowledge_learn
+
+    .span4
+      .sidebar
+        .section#recent-activity
+          %h3.title
+            = link_to "Recent activity", {controller: "users", action: "user_activity", id: user.id}
+          %hr
+          .body
+            - activity_count = 0
+            - if user.blog_posts.any?
+              - activity_count += 1
+              .blog-posts
+                %h3 Blog posts published
+                - user.blog_posts.published.limit(3).each do |post|
+                  = link_to post.title, post, class: "activity-link"
+                = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}, class: "user-activity-link"
+            
+            - if user.discussion_posts.any?
+              - activity_count += 1
+              .discussion-posts
+                %h3 Forum posts created
+                - user.discussion_posts.published.limit(3).each do |post|
+                  = link_to post.title, post, class: "activity-link"
+                = link_to "See all forum posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "ForumPosts"}, class: "user-activity-link"
+            
+            - if activity_count < 3
+              - if user.comments.any?
+                - activity_count += 1
+                .comments
+                  %h3 Comments made on posts
+                  - user.comments.order("created_at DESC").limit(3).each do |comment|
+                    = link_to comment.get_post.title, comment.get_post, class: "activity-link"
+                  = link_to "See all comments", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}, class: "user-activity-link"
+            
+            - if activity_count < 3
+              - if user.votes.upvotes.any?
+                .upvotes
+                  %h3 Blog posts liked
+                  - user.votes.upvotes.belongs_to_blog_post.recent.each do |vote|
+                    -#%p Liked blog post
+                    = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
         
-        // only show donations to members
-        - if current_user and current_user.eighty_thousand_hours_member?
-          - donations = user.donations.order("date DESC")
-          - if donations.confirmed.is_public.size > 0
-            .donations{:id => "#{user.slug}-donations"}
-              %h2
-                Donations
-              %p
-                %ul
-                  - donations.each do |donation|
-                    - if donation.public
-                      %li
-                        = render donation
-
-        - if user.blog_posts.published.size > 0
-          .blog
-            %h2 Recent blog posts
-            - user.blog_posts.published.limit(3).each do |post|
-              =render :partial => 'blog_posts/display_heading', :locals => {:post => post}
+        .section#other-members{ style: "display: none;" }
+          %h3.title
+            Other members
+          %hr
+          .body
+            - members = EtkhProfile.generate_users(15, [current_user, user])
+            - members.each_slice(5).with_index do |batch,i|
+              %div{ id: "batch-#{i+1}", style: "display: none" }
+                - batch.each do |member|
+                  = render partial: 'profile_condensed_2', locals: { profile: member.etkh_profile }
+        
+        #profile-popup

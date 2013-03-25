@@ -1,0 +1,23 @@
+// get partial to be displayed
+var signup_html = "<%= escape_javascript(render partial: 'shared/sign_up_modal') %>";
+
+// add a new element to the page
+$("body").append("<div id='error-modal'></div>");
+
+// insert the modal into the new element
+$("#error-modal").html(signup_html);
+
+// position modal in centre of viewport
+var left = ($(window).width() - $("#error-modal").outerWidth())/ 2 + 'px';
+var top2 = ($(window).height() - $("#error-modal").outerHeight())/ 2 + 'px';
+$("#error-modal").css('left', left);
+$("#error-modal").css('top', top2);
+
+// display the modal
+$("#error-modal").show();
+$("#error-modal").reveal({
+	animation: 'fade',
+	animationspeed: 400,
+	closeonbackgroundclick: true,
+  dismissmodalclass: 'form-close'
+});

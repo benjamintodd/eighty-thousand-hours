@@ -1,0 +1,15 @@
+.contact-user-form
+  .header
+    %h2
+      Contact User
+    %hr
+  .form
+    = form_tag({:controller => 'users', :action => 'contact_user', :user_id => user_id}, :method => 'put', :remote => true) do 
+      .form-inputs
+        = text_field_tag :subject, nil, id: "message-subject", placeholder: "subject"
+        %br
+        = text_area_tag :body, nil, size: "50x8", id: "message-body", placeholder: "message"
+
+      .form-actions
+        = submit_tag "Submit", class: "btn btn-large btn-success form-close", id: "submit-btn"
+        = submit_tag "Cancel", class: "btn btn-large form-close", id: "cancel-btn"

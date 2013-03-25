@@ -1,0 +1,7 @@
+// clears previous selection and displays new search results
+var results_html = "<%= j(render partial: 'profiles_selection', locals: { users: @selection, no_results: @no_results }) %>";
+$(".loading-icon").remove();
+$("#members-list").html(results_html).fadeIn(800);
+
+// shift page down to see search results
+window.location.hash = "members-list";

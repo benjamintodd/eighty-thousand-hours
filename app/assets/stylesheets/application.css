@@ -12,7 +12,10 @@
  *= require eightythousand 
  *= require donations
  *= require etk_applications
- *= require etk_profiles
+ *= require profile_general
+ *= require profile_view
+ *= require profile_edit
+ *= require profile_condensed
  *= require events
  *= require fonts
  *= require footer
@@ -25,5 +28,6 @@
  *= require comments
  *= require dashboard
  *= require_tree ./shared
+ *= require modals
 */
 

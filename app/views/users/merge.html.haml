@@ -15,6 +15,6 @@
     = render partial: 'devise/sessions/form', locals: {url: new_session_path(:user)}
 
   .span6
-    -#= render partial: 'authentications/options'
+    = link_to (image_tag 'auth/linkedin_64.png', alt: "Connect to LinkedIn"), {action: 'create_new_account', controller: 'authentications'}
     = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), {:action => 'create_new_account', :controller => 'authentications'}
     = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), {:action => 'create_new_account', :controller => 'authentications'}

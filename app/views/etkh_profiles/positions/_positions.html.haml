@@ -1,0 +1,6 @@
+#positions
+  - if !positions.nil? && !positions.empty?
+    - Position.custom_order(positions).each do |position|
+      = render partial: 'etkh_profiles/positions/position', locals: { position: position, edit_profile: edit_profile }
+  - if edit_profile
+    = link_to "Add a position", "/members/#{current_user.etkh_profile.id}/positions/new", remote: true, id: "add-position"

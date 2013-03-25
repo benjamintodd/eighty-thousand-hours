@@ -1,0 +1,7 @@
+// removes current educations from DOM and adds them in order of date
+
+var educations_html = "<%= j(render partial: 'etkh_profiles/educations/educations', locals: { educations: current_user.etkh_profile.educations, edit_profile: true }) %>";
+$("#educations").replaceWith(educations_html);
+
+// hide form
+$("#education-form").html("");

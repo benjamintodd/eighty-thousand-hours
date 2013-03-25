@@ -1,0 +1,7 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "profiles-selection.js"
+- if no_results
+  %p Your search did not match any of our members
+- elsif users
+  - users.each do |user|
+    = render partial: 'profile_teaser', locals: { user: user }

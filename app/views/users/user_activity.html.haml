@@ -1,0 +1,50 @@
+.activity-list
+  .heading
+    %h1.name= @user.name
+    .profile-link
+      = link_to "back to member's profile", "/members/#{@user.slug}"
+    %br
+    #activity-select
+      .activity
+        - if @activity_type == "BlogPosts"
+          .activity-link.selected= "Blog posts"
+        - else
+          = link_to "Blog posts", {controller: "users", action: "user_activity", id: @user.id, activity_type: "BlogPosts"}, id: "blog", class: "activity-link"
+        .break
+          = " | "
+      .activity
+        - if @activity_type == "ForumPosts"
+          .activity-link.selected= "Forum posts"
+        - else
+          = link_to "Forum posts", {controller: "users", action: "user_activity", id: @user.id, activity_type: "ForumPosts"}, id: "blog", class: "activity-link"
+        .break
+          = " | "
+      .activity
+        - if @activity_type == "Comments"
+          .activity-link.selected= "Comments"
+        - else
+          = link_to "Comments", {controller: "users", action: "user_activity", id: @user.id, activity_type: "Comments"}, id: "blog", class: "activity-link"
+  %hr
+  .body
+    - if @activity_type == "BlogPosts"
+      - sorted_posts = @user.blog_posts.by_votes
+      - sorted_posts.each do |post|
+        - if !post.draft || post.user == current_user
+          .blog
+            = render :partial => 'blog_posts/display_heading', :locals => { :post => post }
+
+    - elsif @activity_type == "ForumPosts"
+      - sorted_posts = @user.discussion_posts.by_votes
+      - sorted_posts.each do |post|
+        - if !post.draft || post.user == current_user
+          .blog
+            = render :partial => 'discussion_posts/display_heading', :locals => { :post => post }
+
+    - elsif @activity_type == "Comments"
+      .blog
+        #comments
+          #body
+            .display-comments
+              - @user.comments.each do |comment|
+                %h4 Posted a comment in #{link_to comment.get_post.title, comment.get_post}:
+                = render comment

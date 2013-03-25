@@ -1,0 +1,23 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "members-page.js"
+  = javascript_include_tag "jquery.pageless.js"
+
+.members-page
+  .span10
+    .heading
+      %h1 Our members
+    %hr
+
+    #search-form
+      = render partial: 'search_form', locals: { otherPage: false }
+
+    = link_to "View all #{EtkhProfile.all.size} members in alphabetical order", "/members/all", id: "all-members-link"
+
+    %hr
+
+    -# pass variables to JS to indicate whether to fill the search form in with values and submit the form
+    = content_tag "div", id: "data-search", data: { redirect_to_search: @redirect_to_search, advanced_search: @advanced_search } do
+      -# this line is important
+
+    #members-list
+      = render partial: 'profiles_selection', locals: { users: @selected_users, no_results: false }

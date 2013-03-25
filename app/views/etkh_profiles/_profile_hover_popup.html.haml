@@ -1,0 +1,23 @@
+-# user passed in as local var
+- profile = user.etkh_profile
+- content_for :javascript_includes do
+  = javascript_include_tag "profile-popup.js"
+#profile-hover
+  .row-fluid
+    .span4
+      .avatar
+        = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}"
+    .span8
+      .body
+        .name
+          = link_to user.name, "/members/#{user.slug}"
+        .content
+          %p.location 
+            = user.location
+          - if profile
+            %p.position
+              = profile.current_position
+            %p.organisation
+              = profile.organisation
+            %p.industry
+              = profile.career_sector

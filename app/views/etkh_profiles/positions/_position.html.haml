@@ -1,0 +1,27 @@
+.position{ id: "position-#{position.id}"}
+  .title
+    %h3
+      = position.position
+  - if edit_profile
+    .actions
+      = link_to "Edit", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}/edit", remote: true, class: "edit-position"
+      = " | "
+      = link_to "Delete", "/members/#{current_user.etkh_profile.id}/positions/#{position.id.to_s}", method: "DELETE", remote: true, class: "delete-position"
+  .organisation
+    %p
+      = position.organisation
+  .dates
+    - str = ""
+    - if position.start_date_month && position.start_date_year
+      - str = position.start_date_month + " " + position.start_date_year.to_s
+    - elsif position.start_date_year
+      - str = position.start_date_year.to_s
+    - str += " - "
+    - if position.current_position == true
+      - str += "Present"
+    - elsif position.end_date_month && position.end_date_year
+      - str += position.end_date_month + " " + position.end_date_year.to_s
+    - elsif position.end_date_year
+      - str += position.end_date_year.to_s
+    %p
+      = str

@@ -1,6 +1,18 @@
 EightyThousandHours::Application.routes.draw do
   resources :authentications do
-    get 'create_new_account', :on => :collection
+    collection do
+      get 'create_new_account'
+      get 'linkedin_signup'
+      get 'linkedin_signup_callback'
+      get 'linkedin_signin'
+      get 'linkedin_signin_callback'
+      get 'linkedin_getprofile'
+      get 'linkedin_getprofile_callback'
+      get 'linkedin_invite_connection'
+      get 'linkedin_invite_connection_callback'
+      get 'linkedin_getprofile_and_link_account'
+      get 'linkedin_getprofile_and_link_account_callback'
+    end
   end
 
   match '/auth/:provider/callback' => 'authentications#create'
@@ -57,8 +69,15 @@ EightyThousandHours::Application.routes.draw do
   resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
 
+  match '/members/all'  => 'etkh_profiles#index'
+  match '/members'      => 'etkh_profiles#our_members'
+  match '/members/get_more_members' =>'etkh_profiles#get_more_members'
   resources :etkh_profiles, :path => "members", :only => [:new,:create,:show,:index] do
+    resources :positions, :only => [:new,:create,:edit,:update,:destroy]
+    resources :educations, :only => [:new,:create,:edit,:update,:destroy]
     collection do
+      get 'show_linkedin_popup'
+      get 'display_profile_hover_info'
       post 'search'
     end
   end
@@ -66,16 +85,25 @@ EightyThousandHours::Application.routes.draw do
   match 'users' => 'users#index'
   resources :users, :path => 'accounts', :only => [:show,:edit,:update,:destroy] do
     resources :etkh_profiles 
-    member do
-      get 'posts'
-    end
     collection do
       get 'all'
       get 'email_list'
+      put 'contact_user'
+      get 'user_activity'
     end
   end
+  match '/users/initalise_contact_user' => 'users#initalise_contact_user'
 
   resources :surveys, :only => [:show]
+
+  # metrics output
+  match "metrics/weekly_metrics.csv"  => 'metrics#weekly_metrics'
+  match "metrics/monthly_metrics.csv" => 'metrics#monthly_metrics'
+
+  #temp for testing new functionality
+  match 'karma_test'  => 'users#karma_test'
+  match 'gen_test'    => 'users#generate_users_test'
+  match 'button_test' => 'pages#button_test'
 
   # pages which don't live in the database as they can't be
   # converted to pure Markdown

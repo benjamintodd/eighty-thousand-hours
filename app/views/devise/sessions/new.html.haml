@@ -4,7 +4,7 @@
 .alert.alert-info
   If you've linked your account to an external provider such as Facebook or Google, then you can click the appropriate button to login.
 
-= render partial: 'authentications/options'
+= render partial: 'authentications/options', locals: { type: 'signin' }
 
 %hr
 

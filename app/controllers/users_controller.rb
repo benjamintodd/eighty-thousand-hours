@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :only => [:edit,:update,:destroy]
 
+  def karma_test
+    @users = User.all
+  end
+
+  def generate_users_test
+    @selection_list = User.generate_users_list(10)
+  end
+
   def merge
     if session[:omniauth]
       # want the user to be redirected to account edit page on sign-in
@@ -11,12 +19,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def posts
-    @user = User.find( params[:id] )
-    if @user == current_user
-      @posts = @user.blog_posts
+  def user_activity
+    @user = User.find_by_id(params[:id])
+    if params[:activity_type]
+      @activity_type = params[:activity_type]
     else
-      @posts = @user.blog_posts.published
+      @activity_type = "BlogPosts"
     end
   end
 
@@ -67,5 +75,36 @@ class UsersController < ApplicationController
     @non_members = User.non_etkh_members
 
     authorize! :read, User
+  end
+
+  def contact_user
+    if params[:commit] != "Cancel"
+      # deliver message to user
+      sender = current_user
+      recipient = User.find(params[:user_id])
+      subject = params[:subject]
+      body = params[:body]
+      UserMailer.contact_user(sender, recipient, subject, body).deliver!
+
+      #log event in google analytics
+      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "User contacted by other user", nil, recipient.id)
+    end
+    render nothing: true
+  end
+
+  def initalise_contact_user
+    if user_signed_in?
+      @user_id = params[:user_id]
+
+      # javascript to show popup
+      render 'users/initialise_contact_user'
+    else
+      if request.xhr?
+        render 'shared/sign_up_modal'
+      else
+        @error_type = "signup"
+        render 'shared/display_error'
+      end
+    end
   end
 end

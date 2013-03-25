@@ -1,0 +1,202 @@
+@import "shared/partials";
+
+
+/******User activity list******/
+.activity-list {
+  .heading {
+    .activity, .activity-link, .break {
+      display: inline-block;
+    }
+    .activity {
+      font-size: 18px;
+      .selected {
+        font-weight: bold;
+      }
+      .break {
+        margin-left: 5px;
+        margin-right: 5px;
+        color: lighten($text_color, 30%);
+      }
+    }
+  }
+  
+  .body {
+
+  }
+}
+
+
+/*********Profile completeness********/
+.profile-completeness {
+  width: 100%;
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .text {
+    .completion-title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .tip {
+      .plus-icon {
+        display: inline-block;
+        float: left;
+        width: 15px;
+        height: 15px;
+        vertical-align: middle;
+      }
+      .tip-text {
+        display: inline-block;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        width: 85%;
+        font-size: 13px;
+        line-height: 14px;
+      }
+    }
+  }
+
+  .bar {
+    /* bar container */
+    .ui-progress-bar {
+      display: inline-block;
+      position: relative;
+      width: 78%;
+      height: 18px;
+      background-color: #abb2bc;
+
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+
+      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #b6bcc6), color-stop(1, #9da5b0));
+      background: -moz-linear-gradient(#9da5b0 0%, #b6bcc6 100%);
+
+      -webkit-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+      -moz-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+      box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+
+        /* progress bar itelf */
+      .ui-progress {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        height: 16px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-background-size: 44px 44px;
+        background-color: #74d04c;
+
+        background: -webkit-gradient(linear, 0 0, 44 44,
+          color-stop(0.00, rgba(255,255,255,0.17)),
+          color-stop(0.25, rgba(255,255,255,0.17)),
+          color-stop(0.26, rgba(255,255,255,0)),
+          color-stop(0.50, rgba(255,255,255,0)),
+          color-stop(0.51, rgba(255,255,255,0.17)),
+          color-stop(0.75, rgba(255,255,255,0.17)),
+          color-stop(0.76, rgba(255,255,255,0)),
+          color-stop(1.00, rgba(255,255,255,0))
+        ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #74d04c), color-stop(1, #9bdd62));
+        background: -moz-repeating-linear-gradient(top left -30deg,
+          rgba(255,255,255,0.17),
+          rgba(255,255,255,0.17) 15px,
+          rgba(255,255,255,0) 15px,
+          rgba(255,255,255,0) 30px
+        ), -moz-linear-gradient(#9bdd62 0%, #74d04c 100%);
+
+        -webkit-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
+        -moz-box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
+        box-shadow: inset 0px 1px 0px 0px #dbf383, inset 0px -1px 1px #58c43a;
+        border: 1px solid #4c8932;
+        -webkit-animation: animate-stripes 2s linear infinite;
+      }
+    }
+
+    /* label inside progress bar */
+    .value-container {
+      display: inline-block;
+      margin-left: 5px;
+      position: relative;
+      top: -5px;
+      height: 20px;
+      right: 0;
+      text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;
+      white-space: nowrap;
+    }
+  }
+
+  /* for animation */
+  @-webkit-keyframes animate-stripes {
+    from {
+      background-position: 0 0;
+    }
+    to {
+     background-position: 44px 0;
+    }
+  }
+}
+
+
+/********Members pages**********/
+
+.members-page {
+  #search-form {
+    margin: 0px;
+    margin-bottom: 25px;
+    //display: inline-block;
+  }
+  #members-list {
+    position: relative;
+  }
+  .loading-icon {
+    margin-left: 400px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+  }
+}
+
+.all-members {
+  .search-form { margin-bottom: 50px; }
+}
+
+
+.search-form {
+  @include rounded_borders(rgb(200,200,200),3px,12px);
+  width: 575px;
+
+  form {
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+
+    #inputs {
+      display: inline-block;
+      margin-top: -15px;
+      label {
+        display: inline-block;
+        margin-left: 15px;
+        width: 85px;;
+      }
+      input {
+        margin-left: 15px;
+        margin-top: 10px;
+        width: 170px;
+      }
+    }
+    .hidden { display: none; }
+    .link {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .button {
+      display: inline-block;
+      position: relative;
+      margin-left: 10px;
+    }
+  }
+}

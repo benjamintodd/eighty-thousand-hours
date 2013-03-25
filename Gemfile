@@ -65,6 +65,9 @@ gem 'simple_form'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+# gem for linkedin api
+gem 'linkedin'
+
 # talk to the YouTube API
 gem 'youtube_it'
 
@@ -102,7 +105,7 @@ gem 'jquery-rails'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'ruby_gntp'

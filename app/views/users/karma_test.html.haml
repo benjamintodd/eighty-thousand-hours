@@ -1,0 +1,6 @@
+.box
+  - @users.each do |user|
+    - score = user.get_karma_score
+    - if score != 0
+      %p
+        = "#{user.name} : #{score.to_s}"
