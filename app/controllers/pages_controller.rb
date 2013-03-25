@@ -2,8 +2,6 @@ class PagesController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
-
-  caches_action :show
  
   def index
     @pages = Page.all
@@ -46,7 +44,7 @@ class PagesController < ApplicationController
       redirect_to(@page)
     end
 
-    expire_action :action => :show
+    expire_fragment(controller: "pages", action: "show")
   end
 
   def new
@@ -63,7 +61,7 @@ class PagesController < ApplicationController
       render :action => "new"
     end
 
-    expire_action :action => :show
+    expire_fragment(controller: "pages", action: "show")
   end
 
   def destroy
