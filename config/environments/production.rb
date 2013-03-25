@@ -8,11 +8,16 @@ EightyThousandHours::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  # configure app to use Amazon S3 as an asset host
+  config.action_controller.asset_host = "http://#{ENV['S3_BUCKET']}.s3.amazonaws.com"
+
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
+  config.assets.css_compressor = :yui
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   # NOTE: required for Heroku (as of Nov. 2011, with Rails 3.1)

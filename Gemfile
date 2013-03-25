@@ -80,8 +80,12 @@ gem 'google_currency'
 # google analytics custom events
 gem 'gabba'
 
+# ruby http server
+gem 'unicorn'
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
+  gem 'heroku_san'
 end
 
 # Gems used only for assets and not required
@@ -89,10 +93,11 @@ end
 group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
+  gem 'yui-compressor'
   gem 'jquery-ui-rails'
+  gem 'sass-rails', '~> 3.2.6'
+  gem 'asset_sync'
 end
-
-gem 'sass-rails', '3.2.5'
 
 gem 'jquery-rails'
 

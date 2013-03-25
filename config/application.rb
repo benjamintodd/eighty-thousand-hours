@@ -57,6 +57,9 @@ module EightyThousandHours
     # devise instructions said maybe want to do this for Rails 3.1 on Heroku...
     config.assets.initialize_on_precompile = false
 
+    # must precompile active admin assets to avoid error
+    config.assets.precompile += %w[active_admin.css active_admin.js]
+
     # serve up our own custom fonts
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     
@@ -65,5 +68,8 @@ module EightyThousandHours
       # g.stylesheets         false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    # needed for logging to work under unicorn
+    config.logger = Logger.new(STDOUT)
   end
 end
