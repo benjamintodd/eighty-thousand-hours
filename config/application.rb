@@ -62,6 +62,9 @@ module EightyThousandHours
 
     # serve up our own custom fonts
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # caching in heroku
+    config.cache_store = :dalli_store
     
     # generators
     config.generators do |g|

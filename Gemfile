@@ -83,6 +83,10 @@ gem 'gabba'
 # ruby http server
 gem 'unicorn'
 
+# required for caching in heroku
+gem 'memcachier'
+gem 'dalli'
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
   gem 'heroku_san'
