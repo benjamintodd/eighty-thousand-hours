@@ -1,65 +1,66 @@
-.box
-  %h1 Career advice session
-  %p 
-    :markdown
-      If you’re interested in having a big impact with your life, we’d like to help you! Use the form below to ask to speak to one of our advisers.
+.row
+  .span7
+    %h1 Career advice session
+    %p 
+      :markdown
+        If you’re interested in having a big impact with your life, we’d like to help you! Use the form below to ask to speak to one of our advisers.
 
-      ##What happens in an advice session?
+        ##What happens in an advice session?
 
-      A member of our research team will speak to you on Skype or at our offices in Oxford. First, they’ll aim to understand your situation and career problems. Then they’ll help you to apply our research on careers to your situation.
+        A member of our research team will speak to you on Skype or at our offices in Oxford. First, they’ll aim to understand your situation and career problems. Then they’ll help you to apply our research on careers to your situation.
 
-      ##Who will benefit most from our advice?
+        ##Who will benefit most from our advice?
 
-      Do you care about making a big positive impact with your career, and want to use the latest evidence to increase the scale of your impact? If yes, then we can help.
+        Do you care about making a big positive impact with your career, and want to use the latest evidence to increase the scale of your impact? If yes, then we can help.
 
-      A few warnings:
+        A few warnings:
 
-      * Our expertise lies in helping you find ways to have a big positive impact with your career. We don’t have special expertise on issues covered by standard career advice, like how to write a CV.
-      * We take an evidence-based approach, so you should be comfortable occasionally using quantitative methods to analyse your options.
-      * You’ll get the most out of us if you’re open minded and happy to consider lots of different options.
+        * Our expertise lies in helping you find ways to have a big positive impact with your career. We don’t have special expertise on issues covered by standard career advice, like how to write a CV.
+        * We take an evidence-based approach, so you should be comfortable occasionally using quantitative methods to analyse your options.
+        * You’ll get the most out of us if you’re open minded and happy to consider lots of different options.
 
-      For more on how our approach is different, see [our features](/our-features)
+        For more on how our approach is different, see [our features](/our-features)
 
-      ##Our Knowledge
+        ##Our Knowledge
 
-      Our research team carries out world-leading research on how to rationally analyse career options in terms of impact. We do this by summarising the latest academic research relevant to these questions and applying it. To assist us, we collaborate with academics at the University of Oxford and world-leading charity cost-effectiveness analysts (such as our sister organisation [Giving What We Can](http://www.givingwhatwecan.org)). We’re also building up an extensive knowledge of standard career advice and facts. Despite being new, we’ve already helped hundreds of people to better understand their careers.
+        Our research team carries out world-leading research on how to rationally analyse career options in terms of impact. We do this by summarising the latest academic research relevant to these questions and applying it. To assist us, we collaborate with academics at the University of Oxford and world-leading charity cost-effectiveness analysts (such as our sister organisation [Giving What We Can](http://www.givingwhatwecan.org)). We’re also building up an extensive knowledge of standard career advice and facts. Despite being new, we’ve already helped hundreds of people to better understand their careers.
+        
+
+        ##What preparation should I do?
+
+        * Try to clarify your career blocking points as much as possible
+        * Glance over our [basic career advice content](http://80000hours.org/career-advice)
+        * Check our [blog](/blog) by searching, looking at our tag cloud or seeing our [archive](/career-research) for articles relevant to your situation
+
+
+        Please also note that our advice service is currently in a trial phase. One thing this means is that we sometimes run out of capacity, and we won’t always be able to give you a session. We apologise in advance if this is the case.
       
 
-      ##What preparation should I do?
+    = simple_form_for @career_advice_request, :url => { :action => "create" }, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|
 
-      * Try to clarify your career blocking points as much as possible
-      * Glance over our [basic career advice content](http://80000hours.org/career-advice)
-      * Check our [blog](/blog) by searching, looking at our tag cloud or seeing our [archive](/career-research) for articles relevant to your situation
+      = f.error_notification
 
+      = field_set_tag "Your contact details" do
+        = f.input :name
+        = f.input :email
+        = f.input :skype, placeholder: 'optional',
+          hint: 'required if you are unable to come to our office in Oxford'
 
-      Please also note that our advice service is currently in a trial phase. One thing this means is that we sometimes run out of capacity, and we won’t always be able to give you a session. We apologise in advance if this is the case.
-    
+        = f.input :background, :as => :text, placeholder: 'Briefly describe your background, what you currently do, and your interests.'
+        = f.input :thoughts, :as => :text, label: 'What are your thoughts on how you could make a difference?'
+        = f.input :questions, :as => :text, label: 'What questions do you have for our advisor?'
+        = f.input :upload_cv, :as => :file, label: 'If you have a CV (even an old one) it would be helpful for us to have a look so that we can tailor our advice to you.'
+        = f.input :mailing_list, :as => :boolean, :input_html => { :checked => true }, label: 'Would you like to receive our emails summarising our latest advice content?'
+      .form-actions
+        %p
+          :markdown
+            We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
+              **We can't take responsibility for the outcomes of your choices.**
+            Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
 
-  = simple_form_for @career_advice_request, :url => { :action => "create" }, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|
+            The contents of guidance sessions are kept between you and the 80,000 Hours careers advice team. This allows us to most effectively improve our service. On request, we’re happy to make the session confidential between you and the person you speak to.
 
-    = f.error_notification
+            Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
 
-    = field_set_tag "Your contact details" do
-      = f.input :name
-      = f.input :email
-      = f.input :skype, placeholder: 'optional',
-        hint: 'required if you are unable to come to our office in Oxford'
-
-      = f.input :background, :as => :text, placeholder: 'Briefly describe your background, what you currently do, and your interests.'
-      = f.input :thoughts, :as => :text, label: 'What are your thoughts on how you could make a difference?'
-      = f.input :questions, :as => :text, label: 'What questions do you have for our advisor?'
-      = f.input :upload_cv, :as => :file, label: 'If you have a CV (even an old one) it would be helpful for us to have a look so that we can tailor our advice to you.'
-      = f.input :mailing_list, :as => :boolean, :input_html => { :checked => true }, label: 'Would you like to receive our emails summarising our latest advice content?'
-    .form-actions
-      %p
-        :markdown
-          We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
-            **We can't take responsibility for the outcomes of your choices.**
-          Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
-
-          The contents of guidance sessions are kept between you and the 80,000 Hours careers advice team. This allows us to most effectively improve our service. On request, we’re happy to make the session confidential between you and the person you speak to.
-
-          Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
-
-      = f.button :submit, "Request session", :"data-loading-text" => "Please wait..."
-    
+        = f.button :submit, "Request session", :"data-loading-text" => "Please wait..."
+      
