@@ -209,6 +209,8 @@ ActiveRecord::Schema.define(:version => 20130324214546) do
     t.float    "average_profile_completeness"
     t.float    "median_donation_percentage"
     t.float    "donation_optin_percentage"
+    t.float    "avatar_percentage"
+    t.float    "avatar_percentage_new_users"
   end
 
   create_table "pages", :force => true do |t|
@@ -377,6 +379,8 @@ ActiveRecord::Schema.define(:version => 20130324214546) do
     t.float    "average_profile_completeness"
     t.float    "median_donation_percentage"
     t.float    "donation_optin_percentage"
+    t.float    "avatar_percentage"
+    t.float    "avatar_percentage_new_users"
   end
 
 end

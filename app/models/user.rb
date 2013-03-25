@@ -431,6 +431,23 @@ class User < ActiveRecord::Base
   end
 
 
+  ## Calculations for metrics
+  def self.calculate_avatar_percentage(start_date = nil)
+    avatar_count = 0
+    if !start_date
+      users = User.all
+    else
+      users = User.where("created_at >= :start_date", start_date: start_date)
+    end
+
+    total = users.length
+    users.each do |user|
+      avatar_count += 1 if user.avatar && !user.avatar.to_s.include?("avatar_default")
+    end
+    return (avatar_count.to_f / total.to_f * 100).round(2)
+  end
+
+
   private
   def build_default_profile
     # build default profile instance. Will use default params.
