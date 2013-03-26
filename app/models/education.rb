@@ -28,7 +28,7 @@ class Education < ActiveRecord::Base
           return
         end
       end
-      education.member_info_id = member_info.id
+      education.member_info = member_info
     end
    end
 
