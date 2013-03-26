@@ -10,6 +10,7 @@ class ChatRequestMailer < ActionMailer::Base
     mail(:to => "info@80000hours.org",
          :subject => "[ChatToUs] #{name}",
          :template_path => 'chat_requests',
-         :template_name => 'chat_request_email')
+         :template_name => 'chat_request_email',
+         :reply_to => email)
   end
 end
