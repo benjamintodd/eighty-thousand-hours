@@ -85,20 +85,13 @@
       .edit-form {
         height: 130px;
 
-        .control-group.hidden { display: none; }
-        .controls {
-          margin-left: 0px;
+        .text-input {
+          display: block;
+          width: 170px;
         }
         .optional {
           width: 170px;
           margin: 0px;
-        }
-        .control-group {
-          margin-bottom: 3px;
-          .optional {
-            padding-bottom: 2px;
-            padding-top: 3px;
-          }
         }
         .select {
           width: 80px;
@@ -111,38 +104,8 @@
           padding: 0px;
           font-size: 12px;
         }
-
-        // shift elements to right
-        #position_start_date_year {
-          position: relative;
-          left: 82px;
-        }
-        #position_end_date_month {
-          position: relative;
-          left: 150px;
-        }
-        #position_end_date_year {
-          position: relative;
-          left: 230px;
-        }
-
-        // shift elements up
-        .control-group:nth-child(6) {
-          position: relative;
-          top: -28px;
-        }
-        .control-group:nth-child(7) {
-          position: relative;
-          top: -58px;
-        }
-        .control-group:nth-child(8) {
-          position: relative;
-          top: -86px;
-        }
-        .buttons {
-          position: relative;
-          top: -80px;
-        }
+        .form-row { margin-bottom: 3px; }
+        .buttons { margin-top: 10px; }
       }
     }
   }
@@ -167,50 +130,30 @@
     .edit-form {
       height: 170px;
 
-      .control-group.hidden { display: none; }
-      .controls {
-        margin-left: 0px;
+      .text-input {
+        display: block;
+        width: 170px;
       }
       .optional {
         width: 170px;
         margin: 0px;
       }
-      .control-group {
-        margin-bottom: 3px;
-        .optional {
-          padding-bottom: 2px;
-          padding-top: 3px;
-        }
+      .optional {
+        padding-bottom: 2px;
+        padding-top: 3px;
       }
       .numeric {
         width: 50px;
         padding: 0px;
         font-size: 12px;
       }
+      .form-row { margin-bottom: 3px; }
 
-      // shift end year to right
-      #education_end_date_year {
-        position: relative;
-        left: 85px;
-      }
-
-      // position paragraph
       #dates-to {
-        position: relative;
-        left: 65px;
-        top: -28px;
+        display: inline-block;
+        margin: 0 5px 0 5px;
       }
-
-      // shift end year up
-      .control-group:nth-child(8) {
-        position: relative;
-        top: -55px;
-      }
-
-      .buttons {
-        position: relative;
-        top: -45px;
-      }
+      .buttons { margin-top: 10px; }
     }
   }
 

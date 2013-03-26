@@ -88,7 +88,7 @@ class EtkhProfilesController < ApplicationController
   end
 
   def update
-    if !params[:user][:external_website][0..6].empty? && params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..7] != "https://"
+    if !params[:user][:external_website].empty? && params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..7] != "https://"
       params[:user][:external_website] = "http://" + params[:user][:external_website]
     end
 
@@ -96,9 +96,7 @@ class EtkhProfilesController < ApplicationController
       flash[:"alert-success"] = "Your profile was successfully updated."
 
       # also update profile completeness score
-      if current_user.etkh_profile
-        current_user.etkh_profile.get_profile_completeness
-      end
+      current_user.etkh_profile.get_profile_completeness if current_user.etkh_profile
       
       if session[:new_profile] != true
         #assume the user is editing their profile
