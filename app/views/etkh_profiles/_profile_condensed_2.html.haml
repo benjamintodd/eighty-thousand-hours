@@ -1,11 +1,12 @@
 -# profile is passed as a local var
+-# NOTE: event tracking is added specifically for the view-profile page. This will need to be chnaged if this partial is to be used elsewhere!
 - user = profile.user
 .eighty-thousand-hours-profile-condensed-2{ id: "#{user.id}" }
   .avatar
-    = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}", class: "profile-link"
+    = link_to image_tag(user.avatar.url(:small)), "/members/#{user.slug}", onclick: "_gaq.push(['_trackEvent', 'Profile_page', 'Profile_link', '/#{user.slug}'])", class: "profile-link"
   .body
     .name
-      = link_to user.name, "/members/#{user.slug}", class: "profile-link"
+      = link_to user.name, "/members/#{user.slug}", onclick: "_gaq.push(['_trackEvent', 'Profile-page', 'Profile-link', '/#{user.slug}'])", class: "profile-link"
     .content
       - if profile.current_position
         .position
