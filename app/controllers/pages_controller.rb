@@ -43,6 +43,8 @@ class PagesController < ApplicationController
       flash[:"alert-success"] = "Page was successfully updated"
       redirect_to(@page)
     end
+
+    expire_fragment(controller: "pages", action: "show")
   end
 
   def new
@@ -58,6 +60,8 @@ class PagesController < ApplicationController
     else
       render :action => "new"
     end
+
+    expire_fragment(controller: "pages", action: "show")
   end
 
   def destroy

@@ -44,7 +44,7 @@ class EtkhProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:etkh_profile, :donations, :blog_posts, :discussion_posts, {:comments => :votes}, :votes).find(params[:id])
     @title = @user.name
     @donations = @user.donations.confirmed
     @profile = @user.etkh_profile
@@ -88,7 +88,7 @@ class EtkhProfilesController < ApplicationController
   end
 
   def update
-    if !params[:user][:external_website][0..6].empty? && params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..7] != "https://"
+    if !params[:user][:external_website].empty? && params[:user][:external_website][0..6] != "http://" && params[:user][:external_website][0..7] != "https://"
       params[:user][:external_website] = "http://" + params[:user][:external_website]
     end
 
@@ -96,9 +96,7 @@ class EtkhProfilesController < ApplicationController
       flash[:"alert-success"] = "Your profile was successfully updated."
 
       # also update profile completeness score
-      if current_user.etkh_profile
-        current_user.etkh_profile.get_profile_completeness
-      end
+      current_user.etkh_profile.get_profile_completeness if current_user.etkh_profile
       
       if session[:new_profile] != true
         #assume the user is editing their profile
@@ -244,7 +242,7 @@ class EtkhProfilesController < ApplicationController
       render nothing: true
     else
       if session[:search] == false
-        render partial: 'profiles_selection', locals: { users: @next_selection }
+        render partial: 'profiles_selection', locals: { users: @next_selection, no_results: false }
       else
         # for some strange reason there is a bug which prevents the first
         # render method work for search results, so a JS view is called instead

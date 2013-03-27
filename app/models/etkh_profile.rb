@@ -256,7 +256,8 @@ class EtkhProfile < ActiveRecord::Base
 
   # algorithm for generating users
   def self.gen_users(list_length, current_users = nil)
-    subset = current_users.nil? ? User.all : (User.all - current_users)
+    all_users = User.includes(:etkh_profile).all
+    subset = current_users.nil? ? all_users : (all_users - current_users)
     
     subset.select do |user|
       profile = user.etkh_profile and

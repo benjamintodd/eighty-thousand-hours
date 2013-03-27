@@ -1,48 +1,49 @@
 .dashboard 
   .row
     .span7
-      .user-need-block
-        %h1 Get advice
-        .row.user-activity-block
-          .span3
-            %h2 Read articles
-            =image_tag('/assets/images/dashboard/read_articles.png', :class => 'dashboard_icon')
-          .span4.next-to-h2
-            :markdown
-              <p><a href="/getting-started" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/getting-started']);">Getting started with career planning</a></p>
-            
-              <p><a href="/causes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/causes']);">High impact causes</a></p>
-            
-              <p><a href="/types-of-career" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/types-of-career']);">Types of high-impact career</a></p>
+      - cache do
+        .user-need-block
+          %h1 Get advice
+          .row.user-activity-block
+            .span3
+              %h2 Read articles
+              =image_tag('/assets/images/dashboard/read_articles.png', :class => 'dashboard_icon')
+            .span4.next-to-h2
+              :markdown
+                <p><a href="/getting-started" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/getting-started']);">Getting started with career planning</a></p>
               
-              <p><a href="/career-strategy" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/career-strategy']);">Big questions that affect your choice of career</a></p>
+                <p><a href="/causes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/causes']);">High impact causes</a></p>
               
-              <p><a href="/how-to-choose" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/how-to-choose']);">A step-by-step process for choosing a career</a></p>
-            
-              <p>Also take a look at our <a href="/blog?order=votes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/blog?order=votes']);">most useful blog posts</a></p>
+                <p><a href="/types-of-career" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/types-of-career']);">Types of high-impact career</a></p>
+                
+                <p><a href="/career-strategy" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/career-strategy']);">Big questions that affect your choice of career</a></p>
+                
+                <p><a href="/how-to-choose" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/how-to-choose']);">A step-by-step process for choosing a career</a></p>
+              
+                <p>Also take a look at our <a href="/blog?order=votes" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/blog?order=votes']);">most useful blog posts</a></p>
 
-        .row.user-activity-block
-          .span3
-            %h2 Get career advice
-            =image_tag('/assets/images/dashboard/career_advice.png', :class => 'dashboard_icon')
-          .span4.next-to-h2
-            :markdown
-              Book a <a href="/request-a-career-advice-session" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/request-a-career-advice-session']);">career advice session</a> for one-on-one advice with one of our careers advisors. They can discuss your best options and guide you on how to choose a high impact career.
-            
-              Ask a question or introduce yourself on our <a href="/forum" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/forum']);">forum</a>
-        .row.user-activity-block
-          .span3
-            %h2 Get a mentor
-            =image_tag('/assets/images/dashboard/get_mentor.png', :class => 'dashboard_icon')
-          .span4.next-to-h2
-            :markdown
-              Ask our more experienced members for advice about specific careers:
-            
-              <p><a href="/members/robbie-shade" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/robbie-shade']);">Robbie Shade</a> software developer at Google.</p>
-
-              <p><a href="/members/sebastian-farquhar" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/sebastian-farquhar']);">Sebastian Farquhar</a> management consultant.</p>
+          .row.user-activity-block
+            .span3
+              %h2 Get career advice
+              =image_tag('/assets/images/dashboard/career_advice.png', :class => 'dashboard_icon')
+            .span4.next-to-h2
+              :markdown
+                Book a <a href="/request-a-career-advice-session" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/request-a-career-advice-session']);">career advice session</a> for one-on-one advice with one of our careers advisors. They can discuss your best options and guide you on how to choose a high impact career.
               
-              More coming soon ...
+                Ask a question or introduce yourself on our <a href="/forum" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get career advice', '/forum']);">forum</a>
+          .row.user-activity-block
+            .span3
+              %h2 Get a mentor
+              =image_tag('/assets/images/dashboard/get_mentor.png', :class => 'dashboard_icon')
+            .span4.next-to-h2
+              :markdown
+                Ask our more experienced members for advice about specific careers:
+              
+                <p><a href="/members/robbie-shade" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/robbie-shade']);">Robbie Shade</a> software developer at Google.</p>
+
+                <p><a href="/members/sebastian-farquhar" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Get a mentor', '/members/sebastian-farquhar']);">Sebastian Farquhar</a> management consultant.</p>
+                
+                More coming soon ...
 
       .user-need-block
         %h1 Get involved

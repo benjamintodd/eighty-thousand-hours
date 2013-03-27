@@ -14,6 +14,12 @@ class DonationsController < ApplicationController
       @donation.user_id = current_user.id
     end
 
+    if params[:inspired_by_cea] && params[:inspired_by_cea] == "true"
+      @donation.inspired_by_cea = true
+    else
+      @donation.inspired_by_cea = false
+    end
+
     if @donation.save
       flash[:"alert-success"] = "Thanks #{current_user.first_name}, your donation is being processed! We'll send you an email once it's been added to your profile."
       redirect_to donations_path
@@ -38,6 +44,13 @@ class DonationsController < ApplicationController
 
   def update
     @donation = current_user.donations.find(params[:id])
+
+    if params[:inspired_by_cea] && params[:inspired_by_cea] == "true"
+      @donation.update_attributes(inspired_by_cea: true)
+    else
+      @donation.update_attributes(inspired_by_cea: false)
+    end
+
     if @donation.update_attributes(params[:donation])
       flash[:"alert-success"] = "Your donation details were updated successfully"
       redirect_to(@donation)

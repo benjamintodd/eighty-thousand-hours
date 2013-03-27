@@ -23,7 +23,8 @@ class Donation < ActiveRecord::Base
                   :public_amount,
                   :date,
                   :currency,
-                  :confirmed
+                  :confirmed,
+                  :inspired_by_cea  # user selects whether donation is a result of CEA
   
   # paperclip gem for receipt uploads to s3
   has_attached_file :receipt,

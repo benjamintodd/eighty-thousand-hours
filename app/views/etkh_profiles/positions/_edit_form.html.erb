@@ -10,20 +10,26 @@
   <% end %>
 
 
-  <%= simple_form_for(@position, url: "") do |f| %>
-    <%= f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id } %>
+  <%= form_for(@position, url: "") do |f| %>
+    <%= f.hidden_field :etkh_profile_id, input_html: { value: current_user.etkh_profile.id } %>
 
-    <%= f.input :position, label: false %>
-    <%= f.input :organisation, label: false %>
+    <div class="form-row">
+      <%= f.text_field :position, class: "text-input" %>
+    </div>
+    <div class="form-row">
+      <%= f.text_field :organisation, class: "text-input" %>
+    </div>
 
     <% months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %>
 
-    <%= f.input :start_date_month, collection: months, prompt: "Month", label: false %>
-    <%= f.input :start_date_year, placeholder: "Year", label: false %>
+    <div class="form-row">
+      <%= f.select :start_date_month, ["Month", months].flatten, {}, {class: "select optional"} %>
+      <%= f.number_field :start_date_year, placeholder: "Year", class: "numeric integer optional" %>
 
-    <%= f.input :end_date_month, collection: months, prompt: "Month", label: false %>
-    <%= f.input :end_date_year, placeholder: "Year", label: false %>
-    <%#= f.input :current_position %>
+      <%= f.select :end_date_month, ["Month", months].flatten, {}, {class: "select optional"} %>
+      <%= f.number_field :end_date_year, placeholder: "Year", class: "numeric integer optional" %>
+      <%#= f.input :current_position %>
+    </div>
 
     <div class="buttons">
       <% if edit %>

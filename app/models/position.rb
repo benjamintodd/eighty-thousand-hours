@@ -26,14 +26,14 @@ class Position < ActiveRecord::Base
       member_info.positions.each do |p|
         if p.position == position.position && p.organisation == position.organisation
           # already exists
-          return
+          return true
         end
       end
-      position.member_info_id = member_info.id
+      position.member_info = member_info
     end
    end
 
-   # don't destroy if it belongs to etkh_profile or member_info
+   # don't destroy if position belongs to etkh_profile or member_info
    before_destroy do |position|
     if position.etkh_profile_id != nil || position.member_info_id != nil
       errors.add :base, "Must set both etkh_profile_id and member_info_id to nil before position can be destroyed"

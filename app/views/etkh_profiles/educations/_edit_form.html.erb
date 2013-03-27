@@ -10,16 +10,16 @@
   <% end %>
 
 
-  <%= simple_form_for(@education, url: "") do |f| %>
-    <%= f.input :etkh_profile_id, as: :hidden, input_html: { value: current_user.etkh_profile.id } %>
+  <%= form_for(@education, url: "") do |f| %>
+    <%= f.hidden_field :etkh_profile_id, input_html: { value: current_user.etkh_profile.id } %>
 
-    <%= f.input :university, label: false %>
-    <%= f.input :course, label: false %>
-    <%= f.input :qualification, label: false %>
+    <div class="form-row"><%= f.text_field :university, class: "text-input" %></div>
+    <div class="form-row"><%= f.text_field :course, class: "text-input" %></div>
+    <div class="form-row"><%= f.text_field :qualification, class: "text-input" %></div>
 
-    <%= f.input :start_date_year, placeholder: "Year", label: false %>
+    <%= f.number_field :start_date_year, placeholder: "Year", class: "numeric integer optional" %>
     <p id="dates-to">-</p>
-    <%= f.input :end_date_year, placeholder: "Year", label: false %>
+    <%= f.number_field :end_date_year, placeholder: "Year", class: "numeric integer optional" %>
     <%#= f.input :current_education %>
 
     <div class="buttons">
