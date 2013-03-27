@@ -47,7 +47,7 @@
                 .completeness
                   = render partial: 'profile_completeness', locals: { value: user.etkh_profile.completeness_score, textType: "link" }
               - else
-                - if user.external_links?
+                - if user.external_facebook? || user.external_website? || user.external_twitter?
                   .external-links
                     %p External links
                     %hr
