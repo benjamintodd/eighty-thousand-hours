@@ -12,7 +12,6 @@
 
 production:
   app: eighty-thousand-hours
-  repo: origin
   stack: cedar
   config:
     BUNDLE_WITHOUT: "development:test"
