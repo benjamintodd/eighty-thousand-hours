@@ -76,7 +76,6 @@ class AuthenticationsController < ApplicationController
         user = User.new(:name => name, :email => email, :password => pwd, :password_confirmation => pwd)  
         user.omniauth_signup = false
         user.skip_confirmation!
-        user.linkedin_signup = true
         user.linkedin_email = email
         user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
 
@@ -116,9 +115,9 @@ class AuthenticationsController < ApplicationController
     if @authentication
       @authentication.destroy
       flash[:notice] = "Your account is no longer linked to #{@authentication.provider.titleize}."
-    elsif current_user.linkedin_signup
-      current_user.linkedin.destroy
-      current_user.update_attributes(linkedin_connection: false)
+    elsif current_user.linkedin_email && !current_user.linkedin_email.empty?
+      current_user.linkedin_info.destroy
+      current_user.linkedin_email = nil
       flash[:notice] = "Your account is no longer linked to LinkedIn."
     end
     
@@ -254,9 +253,25 @@ class AuthenticationsController < ApplicationController
 
     # check if user account exists
     if user = User.find_by_email(email)
+      # create linkedin_info table if not already exist
+      if !user.linkedin_info
+        linkedin_info = LinkedinInfo.new
+        linkedin_info.user_id = user.id
+      else
+        linkedin_info = user.linkedin_info
+      end
+
       # always store latest access tokens
-      user.linkedin_info.update_attributes( \
-        permissions: "r_basicprofile+r_emailaddress", access_token: atoken, access_secret: asecret, last_updated: Time.now)
+      linkedin_info.permissions = "r_basicprofile+r_emailaddress"
+      linkedin_info.access_token = atoken
+      linkedin_info.access_secret = asecret
+      linkedin_info.last_updated = Time.now
+      linkedin_info.save
+
+      # store email and LinkedIn profile url
+      user.linkedin_email = client.get_email[1..-2]
+      user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
+      user.save
       
       # redirect to dashboard
       flash[:"alert-success"] = "Signed in successfully."
