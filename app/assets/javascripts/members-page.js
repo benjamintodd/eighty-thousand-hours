@@ -31,6 +31,13 @@ $(document).ready( function() {
     $("#search-btn").click( function() {
       showLoadingIcon();
     });
+
+    // Add onClick GA tracking to 'read more' links
+    // has to be done in JS because link it created via markdown
+    $("#members-list .profile-teaser").each( function() {
+      var click_event = $(this).find(".heading").find("a").attr("onClick");
+      $(this).find(".background").find("a").attr('onClick', click_event);
+    });
   }
 });
 
