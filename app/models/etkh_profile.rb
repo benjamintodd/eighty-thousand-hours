@@ -77,7 +77,7 @@ class EtkhProfile < ActiveRecord::Base
     tips << "Upload a photo" if !self.user.avatar?
     tips << "Add causes" if !self.profile_option_causes.any?
     tips << "Add high impact activities" if !self.profile_option_activities.any?
-    tips << "Add more to your 'background and interests'" if !self.background.nil? && self.background.length < BACKGROUND_MAX_LEN
+    tips << "Add more to your 'background and interests'" if !self.background.nil? && !self.background.empty? && self.background.length < BACKGROUND_MAX_LEN
       
     # sync their account with linkedin ?
     # donation tracking ?
