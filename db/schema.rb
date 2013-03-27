@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324214546) do
+ActiveRecord::Schema.define(:version => 20130326211128) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130324214546) do
     t.boolean  "public_amount",        :default => false
     t.date     "date"
     t.string   "currency"
+    t.boolean  "inspired_by_cea",      :default => false
   end
 
   add_index "donations", ["cause_id"], :name => "index_donations_on_charity_id"
