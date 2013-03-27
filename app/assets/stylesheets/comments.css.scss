@@ -56,11 +56,12 @@ $odd_level_nested_comments_border_colour: #F0F0F0;
           @include box_shadow(#ccc, 0px, 0px, 5px);
           width:  48px;
           height: 48px;
+          position: relative;
+          overflow: hidden;
           img {
             vertical-align: middle;
             position: absolute;
-            clip:rect(0px,48px,48px,0px);
-            width:  48px;
+            // width and height set via javascript
           }
         }
 
