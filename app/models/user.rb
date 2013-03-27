@@ -68,10 +68,15 @@ class User < ActiveRecord::Base
                                     :unless => Proc.new {|m| m[:image].nil?}
 
   def avatar_from_url(url)
-    io = open(URI.parse(url))
-    def io.original_filename; base_uri.path.split('/').last; end
-    self.avatar = io.original_filename.blank? ? nil : io
-    self.avatar_remote_url = url
+    if url?
+      io = open(URI.parse(url))
+      def io.original_filename; base_uri.path.split('/').last; end
+      self.avatar = io.original_filename.blank? ? nil : io
+      self.avatar_remote_url = url
+      return true
+    else
+      return false
+    end
   end
   
   # e.g. Admin, BlogAdmin, WebAdmin
@@ -164,7 +169,7 @@ class User < ActiveRecord::Base
 
     if !user.avatar || user.avatar.to_s.include?("avatar_default")
       url = client.profile(fields: %w(picture-url)).picture_url.to_s
-      user.avatar_from_url(url)
+      user.avatar_from_url(url) if url && !url.empty?
     end
 
     # store date of birth in member info table
