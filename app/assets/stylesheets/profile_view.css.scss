@@ -108,19 +108,21 @@
       }
 
       .buttons {
+        width: 480px;
+        overflow: hidden;
         position: absolute;
         bottom: 0;
         > * {
           display: inline-block;
         }
         .btn-new {
-          padding-left: 10px;
-          padding-right: 10px;
+         // padding-left: 10px;
+          //padding-right: 10px;
         }
       }
     }
     .right-block {
-      margin-right: 25px;
+      margin-right: 10px;
       .completeness {
       }
       .external-links {
