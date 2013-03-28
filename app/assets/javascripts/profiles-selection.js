@@ -20,13 +20,16 @@ function resizeImages()
     var img = new Image();
     img.src = $(this).attr('src');
 
-    if (img.width > img.height)
+    if (img.width > 0 && img.height > 0)
     {
-      $(this).css('height', '100%');
-    }
-    else
-    {
-      $(this).css('width', '100%');
+      if (img.width > img.height)
+      {
+        $(this).css('height', '100%');
+      }
+      else
+      {
+        $(this).css('width', '100%');
+      }
     }
   });
 }
