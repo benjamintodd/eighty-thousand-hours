@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327203714) do
+ActiveRecord::Schema.define(:version => 20130328122200) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -212,6 +212,8 @@ ActiveRecord::Schema.define(:version => 20130327203714) do
     t.float    "donation_optin_percentage"
     t.float    "avatar_percentage"
     t.float    "avatar_percentage_new_users"
+    t.integer  "number_users_tracking_donations"
+    t.float    "total_donations"
   end
 
   create_table "pages", :force => true do |t|

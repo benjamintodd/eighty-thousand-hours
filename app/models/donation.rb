@@ -77,6 +77,22 @@ class Donation < ActiveRecord::Base
     "#{amount.currency.iso_code} #{ "%g" % amount.dollars }"
   end
 
+  def self.number_of_users_donate_since_date(start_date)
+    donations = Donation.where("created_at >= :start_date", start_date: start_date)
+    users = donations.map{|d|d.user}
+    return users.uniq.length
+  end
+
+  def self.total_donations_since_date(start_date)
+    donations = Donation.where("created_at >= :start_date", start_date: start_date)
+    total = 0
+    donations.each do |donation|
+      total += (donation.amount_cents.to_f / 100.to_f)
+    end
+    # in dollars
+    return total
+  end
+
   private
     def send_confirmation_email_to_user
       if self.confirmed
