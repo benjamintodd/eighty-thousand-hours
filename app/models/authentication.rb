@@ -62,6 +62,5 @@ class Authentication < ActiveRecord::Base
     end
 
     user.save
-    user.etkh_profile.get_profile_completeness
   end
 end
