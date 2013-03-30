@@ -5,7 +5,7 @@ class Authentication < ActiveRecord::Base
   	# pull main info
     user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400")
     user.location = omniauth.info.location.name if omniauth.info.location.name
-    user.external_facebook = omniauth.urls.Facebook if omniauth.urls.Facebook
+    user.external_facebook = omniauth.extra.raw_info.link if omniauth.extra.raw_info.link
 
     # if other info present add to member_info table
     if user.member_info
