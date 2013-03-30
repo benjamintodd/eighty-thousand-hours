@@ -31,9 +31,9 @@ class AuthenticationsController < ApplicationController
       sign_in_and_redirect(:user, user)  
     else
       # store omniauth data in session
-      # the 'extra' field can be too big to fit in the session so we drop it
+      # the 'extra' field can be too big to fit in the session so perhaps it should be dropped?
       # https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-      session[:omniauth] = omniauth.except('extra')
+      session[:omniauth] = omniauth
       redirect_to accounts_merge_url
     end  
   end
@@ -431,6 +431,7 @@ class AuthenticationsController < ApplicationController
         # confirm
         if response.code == "201" || response.code == "200"
           flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+          Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
         else
           flash[:"alert-error"] = "Sorry! There seems to have been a problem sending an invitation to connect."
         end
@@ -443,9 +444,7 @@ class AuthenticationsController < ApplicationController
         else
           redirect_to '/'
         end
-
-        # log event in google analytics
-        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
+        
         return
       end
     end
@@ -496,6 +495,7 @@ class AuthenticationsController < ApplicationController
     # confirm
     if response.code == "201" || response.code == "200"
       flash[:"alert-success"] = "An invitation to connect has been sent to the user's LinkedIn account."
+      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
     else
       flash[:"alert-error"] = "Sorry! There seems to have been a problem sending an invitation to connect."
     end
@@ -507,8 +507,5 @@ class AuthenticationsController < ApplicationController
     else
       redirect_to '/'
     end
-
-    # log event in google analytics
-    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "LinkedIn connection invitation sent", user.id)
   end  
 end
