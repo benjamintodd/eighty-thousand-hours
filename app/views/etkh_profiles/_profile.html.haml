@@ -20,14 +20,14 @@
                     %p Position
                     %p Organisation
                     %p Industry
-                    %p.karma{ title: "Karma score is earned by creating forum posts, posting comments and receiving upvotes"}Karma score
+                    %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}Karma score
                     - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
                       %p Email
                   .entries
                     %p= truncate(profile.current_position, length: 40)
                     %p= truncate(profile.organisation, length: 40)
                     %p= truncate(profile.career_sector, length: 40)
-                    %p.karma{ title: "Karma score is earned by creating forum posts, posting comments and receiving upvotes"}
+                    %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}
                       = user.get_karma_score
                     - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
                       %p= truncate(user.email, length: 40)
