@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
                                     :unless => Proc.new {|m| m[:image].nil?}
 
   def avatar_from_url(url)
-    if url?
+    if url && !url.empty?
       io = open(URI.parse(url))
       def io.original_filename; base_uri.path.split('/').last; end
       self.avatar = io.original_filename.blank? ? nil : io
