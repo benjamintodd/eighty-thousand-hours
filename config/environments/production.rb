@@ -90,4 +90,7 @@ EightyThousandHours::Application.configure do
                                :s3_credentials => { :access_key_id     => ENV['S3_ACCESS'],
                                                     :secret_access_key => ENV['S3_SECRET'],
                                                     :bucket            => ENV['S3_BUCKET'] } }
+
+  config.logger.level = 2 # Must be numeric here - 0 :debug, 1 :info, 2 :warn, 3 :error, and 4 :fatal
+  # NOTE:   with 0 you're going to get all DB calls, etc.
 end
