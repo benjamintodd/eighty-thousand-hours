@@ -16,7 +16,7 @@ class AuthenticationsController < ApplicationController
       # retrospective processing of facebook info
       if omniauth.provider == "facebook"
         auth.user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400") if !auth.user.avatar || auth.user.avatar.to_s.include?("avatar_default")
-        auth.user.external_facebook = omniauth.extra.raw_info.link if !auth.user.external_facebook || auth.user.external_facebook.empty?
+        auth.user.external_facebook = omniauth['info']['urls']['Facebook'] if omniauth['info']['urls'] && omniauth['info']['urls']['Facebook']
         auth.user.save
       end
     elsif current_user
