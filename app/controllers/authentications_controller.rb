@@ -17,6 +17,7 @@ class AuthenticationsController < ApplicationController
       if omniauth.provider == "facebook"
         auth.user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400") if !auth.user.avatar || auth.user.avatar.to_s.include?("avatar_default")
         auth.user.external_facebook = omniauth.extra.raw_info.link if !auth.user.external_facebook || auth.user.external_facebook.empty?
+        auth.user.save
       end
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
