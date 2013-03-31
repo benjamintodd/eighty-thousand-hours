@@ -44,7 +44,10 @@ class CommentsController < ApplicationController
       end
 
       # call javascript to add new comment to page
-      render 'comments/create'
+      respond_to do |format|
+        format.html { render nothing: true }
+        format.js { render 'comments/create' }
+      end
     else
       render 'comments/error'
     end
