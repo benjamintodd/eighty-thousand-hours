@@ -1,6 +1,21 @@
 class Authentication < ActiveRecord::Base
   belongs_to :user
 
+  def self.process_omniauth_session(omniauth, user)
+    if omniauth.provider == "facebook"
+      user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400") if !user.avatar || user.avatar.to_s.include?("avatar_default")
+      user.external_facebook = omniauth['info']['urls']['Facebook'] if omniauth['info']['urls'] && omniauth['info']['urls']['Facebook']
+      user.save
+    elsif omniauth.provider == "google_oauth2"
+      if !user.avatar || user.avatar.to_s.include?("avatar_default")
+        if omniauth.info.image
+          user.avatar_from_url(omniauth.info.image)
+          user.save
+        end
+      end
+    end
+  end
+
   def self.process_facebook_info(omniauth, user)
   	# pull main info
     user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400")

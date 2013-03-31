@@ -8,25 +8,32 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env['omniauth.auth']
     auth = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+
+    p omniauth
+
     if auth
       flash[:"alert-success"] = "You are now signed in."
       remember_me auth.user # set the remember_me cookie
       sign_in_and_redirect(:user, auth.user) 
 
-      # retrospective processing of facebook info
-      if omniauth.provider == "facebook"
-        auth.user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400") if !auth.user.avatar || auth.user.avatar.to_s.include?("avatar_default")
-        auth.user.external_facebook = omniauth['info']['urls']['Facebook'] if omniauth['info']['urls'] && omniauth['info']['urls']['Facebook']
-        auth.user.save
-      end
+      # retrospective processing of profile info
+      Authentication.process_omniauth_session(omniauth, auth.user)
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:"alert-success"] = "Authentication successful! You can now login using your #{omniauth['provider'].to_s.titleize} account."
+
+      # retrospective processing of profile info
+      Authentication.process_omniauth_session(omniauth, auth.user)
+      
       redirect_to edit_user_registration_path current_user
     elsif user = User.where( email: omniauth['info']['email'] ).first
       user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
       user.save!
       flash[:"alert-success"] = "Your 80,000 Hours account is now linked to your #{omniauth['provider'].to_s.titleize} account, and you have been logged in."
+
+      # retrospective processing of profile info
+      Authentication.process_omniauth_session(omniauth, auth.user)
+
       remember_me user # set the remember_me cookie
       sign_in_and_redirect(:user, user)  
     else
@@ -50,6 +57,9 @@ class AuthenticationsController < ApplicationController
 
       # process facebook profile info
       Authentication.process_facebook_info(omniauth, user) if omniauth.provider == "facebook"
+
+      # retrospective processing of google profile info
+      Authentication.process_omniauth_session(omniauth, user) if omniauth.provider == "google_oauth2"
 
       # Log this in Google Analytics
       Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via #{omniauth.provider}")
