@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html
 
+  before_filter do
+    if user_signed_in? && current_user.last_sign_in_at < !now
+    #if user_signed_in? && current_user.last_sign_in_at < DateTime.new(2013,03,31,21,05,0)
+      sign_out(current_user)
+    end
+  end
+
   protect_from_forgery
   
   rescue_from CanCan::AccessDenied do |exception|
