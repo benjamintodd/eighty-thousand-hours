@@ -13,10 +13,10 @@ class DonationsController < ApplicationController
     if !@donation.user_id
       @donation.user_id = current_user.id
     end
-
-    if params[:inspired_by_cea] && params[:inspired_by_cea] == "true"
+    
+    if params[:inspired_by_cea] == "true"
       @donation.inspired_by_cea = true
-    else
+    elsif params[:inspired_by_cea] == "false"
       @donation.inspired_by_cea = false
     end
 

@@ -6,6 +6,7 @@ class Donation < ActiveRecord::Base
   validates :amount_cents, numericality: { greater_than_or_equal_to: 1 }
   validates :currency, :inclusion => { :in => %w(GBP USD EUR),
             :message => "Currency must be GBP, USD, or EUR (%{value} given)" }
+  validates :inspired_by_cea, inclusion: {in: [true, false], message: "select an option"}
 
   monetize :amount_cents
 

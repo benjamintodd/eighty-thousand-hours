@@ -30,16 +30,17 @@
       = f.input :date, :as => :string, :placeholder => 'yyyy-mm-dd', :hint => 'only add donations made after you joined 80,000 Hours', :required => true, :input_html => { id: 'datepicker' }
       #tracking
         %p#title
-          %strong Choose which of the following two applies to this donation:
+          *
+          %strong Choose which of the following two applies to this donation(if you are not sure, please choose whichever seems more likely):
         %p#parenthesis
           (This will not affect how this donation is displayed on our website, it is only used for internal tracking purposes.)
 
         .radio-options
           .radio-option
-            %input{ type: "radio", name: "inspired_by_cea", value: "true", checked: page == :new ? false : @donation.inspired_by_cea == true  ? true : false }
+            %input{ type: "radio", name: "inspired_by_cea", value: "true", checked: @donation.inspired_by_cea == true ? true : false }
             %p.text If I had not come across 80,000 Hours or Giving What We Can or Effective Animal Activism, I would not have made this donation to this organisation.
           .radio-option
-            %input{ type: "radio", name: "inspired_by_cea", value: "false", checked: page == :new ? false : @donation.inspired_by_cea == false ? true : false }
+            %input{ type: "radio", name: "inspired_by_cea", value: "false", checked: @donation.inspired_by_cea == false ? true : false }
             %p.text I would have made this donation to this organisation even if I had not come across 80,000 Hours or Giving What We Can or Effective Animal Activism.
 
     = field_set_tag "#{ (page == :new ) ? 'Accountability' : 'Privacy' }" do
