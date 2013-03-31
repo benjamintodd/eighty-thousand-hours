@@ -8,11 +8,19 @@ class Authentication < ActiveRecord::Base
       user.save
     elsif omniauth.provider == "google_oauth2"
       if !user.avatar || user.avatar.to_s.include?("avatar_default")
-        if omniauth.info.image
-          user.avatar_from_url(omniauth.info.image)
-          user.save
-        end
+        user.avatar_from_url(omniauth.info.image) if omniauth.info.image
       end
+      if omniauth.extra && omniauth.extra.raw_info && omniauth.extra.raw_info.gender
+        if user.member_info
+          member_info = user.member_info
+        else
+          member_info = MemberInfo.new
+          member_info.user = user
+        end
+        member_info.gender = omniauth.extra.raw_info.gender
+        member_info.save
+      end
+      user.save
     end
   end
 

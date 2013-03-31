@@ -8,9 +8,6 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env['omniauth.auth']
     auth = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-
-    p omniauth
-
     if auth
       flash[:"alert-success"] = "You are now signed in."
       remember_me auth.user # set the remember_me cookie
