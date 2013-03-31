@@ -1,7 +1,38 @@
-- content_for :javascript_includes do
-  = javascript_include_tag "profiles-selection.js"
 - if no_results
   %p Your search did not match any of our members
 - elsif users
   - users.each do |user|
     = render partial: 'profile_teaser', locals: { user: user }
+
+:javascript
+  $(document).ready( function() {
+    setTimeout( function() {
+      resizeImages();
+    }, 250);
+    setTimeout( function() {
+      resizeImages();
+    }, 500);
+    setTimeout( function() {
+      resizeImages();
+    }, 1000);
+  });
+
+  function resizeImages()
+  {
+    $(".avatar").find("img").each( function() {
+      var img = new Image();
+      img.src = $(this).attr('src');
+
+      if (img.width > 0 && img.height > 0)
+      {
+        if (img.width > img.height)
+        {
+          $(this).css('height', '100%');
+        }
+        else
+        {
+          $(this).css('width', '100%');
+        }
+      }
+    });
+  }
