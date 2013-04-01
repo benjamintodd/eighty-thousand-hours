@@ -139,6 +139,14 @@ class EtkhProfilesController < ApplicationController
     # tell view to display 'no results' text if required
     @no_results = @selection.nil? || @selection.empty? ? true : false
 
+    # Log this in Google Analytics
+    if !params[:name].empty? || !params[:location].empty? || !params[:organisation].empty? || !params[:industry].empty? || !params[:position].empty?
+      search_type = "Advanced search"
+    else
+      search_type = "Keyword search"
+    end
+    Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members-page", "Members-search", search_type, results.length)
+
     session[:search] = true
     render 'etkh_profiles/search'
   end
