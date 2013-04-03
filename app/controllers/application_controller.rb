@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   before_filter do
-    if user_signed_in? && current_user.last_sign_in_at < !now
-    #if user_signed_in? && current_user.last_sign_in_at < DateTime.new(2013,03,31,21,05,0)
+    if user_signed_in? && current_user.last_sign_in_at < DateTime.new(2013,04,03,17,0,0)
       sign_out(current_user)
     end
   end
