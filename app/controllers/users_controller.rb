@@ -64,6 +64,9 @@ class UsersController < ApplicationController
     else
       render nothing: true
     end
+    user.avatar = nil
+    user.avatar_remote_url = nil
+    user.save
   end
 
   def edit
