@@ -8,10 +8,12 @@
   .profile-photo
     = f.label "Add a photo to your profile"
     - if current_user.avatar?
-      = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url
+      = link_to image_tag(current_user.avatar.url(:small), :class=>"shadow", :style=>"margin-left:20px;"), current_user.avatar.url, id: "user-avatar"
+      .remove-photo
+        = link_to "Remove photo", {controller: "users", action: "remove_avatar", id: current_user.id}, remote: true, class: "file optional"
     - else
       = image_tag("profiles/avatar_default_96x96.png", :class=>"shadow")
-    = f.input :avatar, :label => "Change photo"
+    = f.input :avatar, :label => "Change photo"      
   %hr
 
   = f.fields_for :etkh_profile, defaults: { input_html: { class: 'span4' } } do |ep|

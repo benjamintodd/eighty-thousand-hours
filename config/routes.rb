@@ -90,6 +90,7 @@ EightyThousandHours::Application.routes.draw do
       get 'email_list'
       put 'contact_user'
       get 'user_activity'
+      get 'remove_avatar'
     end
   end
   match '/users/initalise_contact_user' => 'users#initalise_contact_user'

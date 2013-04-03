@@ -20,10 +20,17 @@
   }
 
   .form {
-    img {
-      margin-left: 20px;
-      margin-right: 20px;
-      margin-bottom: 15px;
+    .profile-photo {
+      //height: 120px;
+      img {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+      }
+      .remove-photo {
+        margin-left: 150px;
+        margin-bottom: 5px;
+      }
     }
 
     #declaration {

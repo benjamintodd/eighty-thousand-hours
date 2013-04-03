@@ -57,6 +57,15 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def remove_avatar
+    user = User.find(params[:id])
+    if user.avatar.destroy
+      render 'etkh_profiles/remove_avatar'
+    else
+      render nothing: true
+    end
+  end
+
   def edit
     @user = current_user
   end
