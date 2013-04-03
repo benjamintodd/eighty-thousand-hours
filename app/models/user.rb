@@ -452,6 +452,14 @@ class User < ActiveRecord::Base
     return (avatar_count.to_f / total.to_f * 100).round(2)
   end
 
+  def self.active_link?(url)
+    uri = URI.parse(url)
+    response = nil
+    Net::HTTP.start(uri.host, uri.port) { |http|
+      response = http.head(uri.path.size > 0 ? uri.path : "/")
+    }  
+    return response.code == "200"
+  end
 
   private
   def build_default_profile

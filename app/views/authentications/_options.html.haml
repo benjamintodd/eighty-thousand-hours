@@ -1,19 +1,23 @@
-- if type == "signup"
-  - linkedin_link = "/authentications/linkedin_signup"
-- elsif type == "signin"
-  - linkedin_link = "/authentications/linkedin_signin"
 .center
   .options
     #linkedin
-      = link_to (image_tag 'auth/linkedin_64.png', alt: "Sign-up with LinkedIn"), linkedin_link, id: 'linkedin-connect'
       - if type == "signup"
-        = link_to "Sign-up with LinkedIn", linkedin_link, class: 'btn btn-large btn-info'
+        = link_to (image_tag 'auth/linkedin_64.png', alt: "Sign-up with LinkedIn"), "/authentications/linkedin_signup", id: 'linkedin-connect'
+        = link_to "Sign-up with LinkedIn", "/authentications/linkedin_signup", class: 'btn btn-large '
       - else
-        = link_to "Sign-in with LinkedIn", linkedin_link, class: 'btn btn-large btn-info'
+        = link_to (image_tag 'auth/linkedin_64.png', alt: "Sign-up with LinkedIn"), "/authentications/linkedin_signin", id: 'linkedin-connect'
+        = link_to "Sign-in with LinkedIn", "/authentications/linkedin_signin", class: 'btn btn-large '
 
-    #facebook
-      = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect'
+    #facebook{ class: type == "signup" ? "signup" : "signin" }
+      - if type == "signup"
+        = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect', class: "small-icon"
+      - else
+        = link_to (image_tag 'auth/facebook_64.png', alt: "Connect to Facebook"), '/auth/facebook', id: 'fb-connect'
+        = link_to "Sign-in with Facebook", "/auth/facebook", class: "btn btn-large "
     
-    #google
-      = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), '/auth/google_oauth2', id: 'google-connect'
-    
+    #google{ class: type == "signup" ? "signup" : "signin" }
+      - if type == "signup"
+        = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), '/auth/google_oauth2', id: 'google-connect', class: "small-icon"
+      - else
+        = link_to (image_tag 'auth/google_oauth2_64.png', alt: "Connect to Google"), '/auth/google_oauth2', id: 'google-connect'
+        = link_to "Sign-in with Google", "/auth/google_oauth2", class: "btn btn-large "
