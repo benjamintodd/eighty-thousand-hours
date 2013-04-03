@@ -26,9 +26,14 @@ task :mail_users_avatars => :environment do
   puts "Identifying deleted avatars"
   User.all.each do |user|
     if user.avatar && !user.avatar.to_s.include?("avatar_default")
-      UserMailer.avatar_deleted_email(user).deliver! if !User.active_link?(user.avatar.to_s)
       puts "Emailing: #{user.slug}"
+      UserMailer.avatar_deleted_email(user).deliver! if !User.active_link?(user.avatar.to_s)
     end
   end
   puts "done."
+end
+
+task :test => :environment do
+  user = User.find_by_name "Jeff Pole"
+  UserMailer.avatar_deleted_email(user).deliver!
 end
