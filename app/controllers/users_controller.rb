@@ -67,6 +67,7 @@ class UsersController < ApplicationController
     user.avatar = nil
     user.avatar_remote_url = nil
     user.save
+    user.etkh_profile.get_profile_completeness
   end
 
   def edit
