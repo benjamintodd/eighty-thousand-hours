@@ -20,10 +20,4 @@ class UserMailer < ActionMailer::Base
   	mail(to: recipient.email, \
   		subject: "[80,000 Hours] You have been contacted by another member")
   end
-
-  def avatar_deleted_email(user)
-    @name = user.first_name
-    @profile_path = edit_user_etkh_profile_path(user, user.etkh_profile) if user.etkh_profile
-    mail(to: user.email, subject: "[80,000 Hours] Problem with your avatar")
-  end
 end

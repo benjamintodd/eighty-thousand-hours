@@ -21,19 +21,3 @@ task :fix_personal_website_bug => :environment do
   end
   puts "Done."
 end
-
-task :mail_users_avatars => :environment do
-  puts "Identifying deleted avatars"
-  User.all.each do |user|
-    if user.avatar && !user.avatar.to_s.include?("avatar_default")
-      puts user.email if !User.active_link?(user.avatar.to_s)
-      #UserMailer.avatar_deleted_email(user).deliver! if !User.active_link?(user.avatar.to_s)
-    end
-  end
-  puts "done."
-end
-
-task :test => :environment do
-  user = User.find_by_name "Jeff Pole"
-  UserMailer.avatar_deleted_email(user).deliver!
-end
