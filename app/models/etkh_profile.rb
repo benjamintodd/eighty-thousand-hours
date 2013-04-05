@@ -257,14 +257,14 @@ class EtkhProfile < ActiveRecord::Base
   # algorithm for generating users
   def self.gen_users(list_length, current_users = nil)
     all_users = User.includes(:etkh_profile).all
-    subset = current_users.nil? ? all_users : (all_users - current_users)
+    subset = current_users.nil? ? all_users.shuffle : (all_users - current_users).shuffle
     
     subset.select do |user|
       profile = user.etkh_profile and
       !profile.background.nil? and
       profile.background.length >= MIN_BACKGROUND_LENGTH and
       (completeness = profile.completeness_score) >= MIN_PROFILE_COMPLETENESS and
-      RANDOM_GENERATOR.rand(1..10) * completeness >= THRESHOLD
+      RANDOM_GENERATOR.rand(1..10) * (completeness + profile.admin_rating) >= THRESHOLD
     end
     .select(&:avatar?)
     .sample(list_length)
