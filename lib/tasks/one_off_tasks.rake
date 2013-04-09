@@ -27,7 +27,7 @@ task :assign_default_avatars => :environment do
   User.all.each do |user|
     if user.avatar && !user.avatar.to_s.include?("avatar_default") && !User.active_link?(user.avatar.to_s)
       user.avatar = nil
-      user.avatar.avatar_remote_url = nil
+      user.avatar_remote_url = nil
       user.save
       puts user.name
     end
