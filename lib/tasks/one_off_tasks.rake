@@ -21,16 +21,3 @@ task :fix_personal_website_bug => :environment do
   end
   puts "Done."
 end
-
-task :assign_default_avatars => :environment do
-  puts "Identifying deleted avatars"
-  User.all.each do |user|
-    if user.avatar && !user.avatar.to_s.include?("avatar_default") && !User.active_link?(user.avatar.to_s)
-      user.avatar = nil
-      user.avatar_remote_url = nil
-      user.save
-      puts user.name
-    end
-  end
-  puts "done."
-end
