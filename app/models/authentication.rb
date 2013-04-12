@@ -25,13 +25,14 @@ class Authentication < ActiveRecord::Base
   end
 
   def self.process_facebook_info(omniauth, user)
-  	# pull main info
-    user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400")
-    user.location = omniauth.info.location.name if omniauth.info.location && omniauth.info.location.name
-    #user.external_facebook = omniauth.extra.raw_info.link if omniauth.extra.raw_info.link
-    user.external_facebook = omniauth['info']['urls']['Facebook'] if omniauth['info']['urls'] && omniauth['info']['urls']['Facebook']
-
     begin
+    	# pull main info
+      user.avatar_from_url("http://graph.facebook.com/#{omniauth.uid}/picture?type=square&width=400&height=400")
+      user.location = omniauth.info.location.name if omniauth.info.location && omniauth.info.location.name
+      #user.external_facebook = omniauth.extra.raw_info.link if omniauth.extra.raw_info.link
+      user.external_facebook = omniauth['info']['urls']['Facebook'] if omniauth['info']['urls'] && omniauth['info']['urls']['Facebook']
+
+      # get extra info to add into member info table
       if omniauth.extra && omniauth.extra.raw_info
         # if other info present add to member_info table
         if user.member_info
