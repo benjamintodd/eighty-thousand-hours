@@ -61,12 +61,16 @@ class AuthenticationsController < ApplicationController
       # Log this in Google Analytics
       Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via #{omniauth.provider}")
 
-      UserMailer.welcome_email(user).deliver!
+      begin
+        UserMailer.welcome_email(user).deliver!
+      rescue => e
+        p e.message
+      ensure
+        flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
-      flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
-
-      remember_me user # set the remember_me cookie
-      sign_in_and_redirect(:user, user) # devise helper method
+        remember_me user # set the remember_me cookie
+        sign_in_and_redirect(:user, user) # devise helper method
+      end
     else
       # check if user has signuped with linkedin
       if !session[:access_token].nil?
@@ -104,13 +108,16 @@ class AuthenticationsController < ApplicationController
           linkedinfo.last_updated = Time.now
           linkedinfo.save
 
-          # deliver welcome mail
-          UserMailer.welcome_email(user).deliver!
+          begin
+            UserMailer.welcome_email(user).deliver!
+          rescue => e
+            p e.message
+          ensure
+            flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
-          flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
-
-          remember_me user # set the remember_me cookie
-          sign_in_and_redirect(:user, user) # devise helper method
+            remember_me user # set the remember_me cookie
+            sign_in_and_redirect(:user, user) # devise helper method
+          end
         else
           # error
           flash[:"alert-error"] = "Sorry! There seems to have been a problem linking your account to LinkedIn"
