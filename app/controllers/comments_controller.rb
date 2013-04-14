@@ -12,41 +12,44 @@ class CommentsController < ApplicationController
       # get the blog or discussion post the comment has been posted on
       post = @comment.get_post
 
-      # mail creator of post
-      if post.instance_of?(BlogPost) && @comment.user != post.user
-        BlogPostMailer.new_comment(@comment).deliver!
-      elsif post.instance_of?(DiscussionPost) && @comment.user != post.user
-        # check user notification settings
-        if post.user.notifications_on_forum_posts
-          DiscussionPostMailer.new_comment(@comment).deliver!
+      # mailer is currently not fully working
+      begin
+        # mail creator of post
+        if post.instance_of?(BlogPost) && @comment.user != post.user
+          BlogPostMailer.new_comment(@comment).deliver!
+        elsif post.instance_of?(DiscussionPost) && @comment.user != post.user
+          # check user notification settings
+          DiscussionPostMailer.new_comment(@comment).deliver! if post.user.notifications_on_forum_posts
         end
-      end
 
-      #email anyone who already made a comment
-      mail_previous_commenters(@comment, post)
+        #email anyone who already made a comment
+        mail_previous_commenters(@comment, post)
+      rescue => e
+        p e.message
+      ensure
+        #create array of comment ids in hierarchy of nested comments
+        #this is then used in create.js.erb 
+        @comment_hierarchy_ids = []
 
-      #create array of comment ids in hierarchy of nested comments
-      #this is then used in create.js.erb 
-      @comment_hierarchy_ids = []
-
-      # if parent is a comment
-      if @comment.commentable_type == "Comment"
-        # add current parent id to array of ids
-        parent_temp = parent
-        @comment_hierarchy_ids << parent_temp.id
-
-        # loop through parents and add their id to array
-        # stop when the next parent is not a comment
-        while parent_temp.commentable_type != "BlogPost" && parent_temp.commentable_type != "DiscussionPost"
-          parent_temp = Comment.find_by_id(parent_temp.commentable_id)
+        # if parent is a comment
+        if @comment.commentable_type == "Comment"
+          # add current parent id to array of ids
+          parent_temp = parent
           @comment_hierarchy_ids << parent_temp.id
-        end
-      end
 
-      # call javascript to add new comment to page
-      respond_to do |format|
-        format.html { render nothing: true }
-        format.js { render 'comments/create' }
+          # loop through parents and add their id to array
+          # stop when the next parent is not a comment
+          while parent_temp.commentable_type != "BlogPost" && parent_temp.commentable_type != "DiscussionPost"
+            parent_temp = Comment.find_by_id(parent_temp.commentable_id)
+            @comment_hierarchy_ids << parent_temp.id
+          end
+        end
+
+        # call javascript to add new comment to page
+        respond_to do |format|
+          format.html { render nothing: true }
+          format.js { render 'comments/create' }
+        end
       end
     else
       render 'comments/error'

@@ -14,13 +14,13 @@ class AuthenticationsController < ApplicationController
       sign_in_and_redirect(:user, auth.user) 
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:"alert-success"] = "Authentication successful! You can now login using your #{omniauth['provider'].to_s.titleize} account."
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
       
       redirect_to edit_user_registration_path current_user
     elsif user = User.where( email: omniauth['info']['email'] ).first
@@ -29,7 +29,7 @@ class AuthenticationsController < ApplicationController
       flash[:"alert-success"] = "Your 80,000 Hours account is now linked to your #{omniauth['provider'].to_s.titleize} account, and you have been logged in."
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
 
       remember_me user # set the remember_me cookie
       sign_in_and_redirect(:user, user)  
@@ -61,12 +61,16 @@ class AuthenticationsController < ApplicationController
       # Log this in Google Analytics
       Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "New member", "Created via #{omniauth.provider}")
 
-      UserMailer.welcome_email(user).deliver!
+      begin
+        UserMailer.welcome_email(user).deliver!
+      rescue => e
+        p e.message
+      ensure
+        flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
-      flash[:"alert-success"] = "We've linked your #{omniauth['provider'].to_s.titleize} account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
-
-      remember_me user # set the remember_me cookie
-      sign_in_and_redirect(:user, user) # devise helper method
+        remember_me user # set the remember_me cookie
+        sign_in_and_redirect(:user, user) # devise helper method
+      end
     else
       # check if user has signuped with linkedin
       if !session[:access_token].nil?
@@ -104,13 +108,16 @@ class AuthenticationsController < ApplicationController
           linkedinfo.last_updated = Time.now
           linkedinfo.save
 
-          # deliver welcome mail
-          UserMailer.welcome_email(user).deliver!
+          begin
+            UserMailer.welcome_email(user).deliver!
+          rescue => e
+            p e.message
+          ensure
+            flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
 
-          flash[:"alert-success"] = "We've linked your LinkedIn account!<br/>You are signed in to 80,000 Hours with the name #{user.name}".html_safe
-
-          remember_me user # set the remember_me cookie
-          sign_in_and_redirect(:user, user) # devise helper method
+            remember_me user # set the remember_me cookie
+            sign_in_and_redirect(:user, user) # devise helper method
+          end
         else
           # error
           flash[:"alert-error"] = "Sorry! There seems to have been a problem linking your account to LinkedIn"
