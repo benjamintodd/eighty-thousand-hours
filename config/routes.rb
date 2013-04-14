@@ -101,6 +101,9 @@ EightyThousandHours::Application.routes.draw do
   match "metrics/weekly_metrics.csv"  => 'metrics#weekly_metrics'
   match "metrics/monthly_metrics.csv" => 'metrics#monthly_metrics'
 
+  #temp
+  match "members_spreadsheet.csv" => 'users#members_spreadsheet'
+
   # pages which don't live in the database as they can't be
   # converted to pure Markdown
   match 'events'             => 'info#events'
