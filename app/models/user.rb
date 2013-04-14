@@ -150,18 +150,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.members_spreadsheet
-    columns = ["Name", "Profile Link", "Gender"]
-    CSV.generate do |csv|
-      csv << columns
-      self.all.each do |user|
-        entry = [user.name]
-        entry << "80000hours.org/members/#{user.slug}" if user.etkh_profile
-        csv << entry
-      end
-    end
-  end
-
   def self.add_linkedin_to_profile(client, user)
     # update data fields with relevant info from linkedin profile
 

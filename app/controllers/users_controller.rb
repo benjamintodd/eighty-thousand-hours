@@ -9,10 +9,6 @@ class UsersController < ApplicationController
     @selection_list = User.generate_users_list(10)
   end
 
-  def members_spreadsheet
-    send_data User.members_spreadsheet
-  end
-
   def merge
     if session[:omniauth]
       # want the user to be redirected to account edit page on sign-in
