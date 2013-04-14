@@ -14,13 +14,13 @@ class AuthenticationsController < ApplicationController
       sign_in_and_redirect(:user, auth.user) 
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
     elsif current_user
       current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
       flash[:"alert-success"] = "Authentication successful! You can now login using your #{omniauth['provider'].to_s.titleize} account."
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
       
       redirect_to edit_user_registration_path current_user
     elsif user = User.where( email: omniauth['info']['email'] ).first
@@ -29,7 +29,7 @@ class AuthenticationsController < ApplicationController
       flash[:"alert-success"] = "Your 80,000 Hours account is now linked to your #{omniauth['provider'].to_s.titleize} account, and you have been logged in."
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user)
+      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
 
       remember_me user # set the remember_me cookie
       sign_in_and_redirect(:user, user)  
