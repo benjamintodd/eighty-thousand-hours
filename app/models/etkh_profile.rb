@@ -245,7 +245,7 @@ class EtkhProfile < ActiveRecord::Base
   ### Generate list of users
 
   # define minimum requirements
-  MIN_PROFILE_COMPLETENESS = 50
+  MIN_PROFILE_COMPLETENESS = 60
   MIN_BACKGROUND_LENGTH = 500
   PROBABILITY_MIN_PROFILE = 0.10
 
