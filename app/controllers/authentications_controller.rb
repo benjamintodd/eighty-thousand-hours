@@ -189,6 +189,10 @@ class AuthenticationsController < ApplicationController
     if session[:access_token].nil?
       # get access tokens
       pin = params[:oauth_verifier]
+
+      # if user clicks cancel on authentication window pin will be null
+      redirect_to "/accounts/sign_up" and return if !pin
+
       atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
       session[:access_token] = atoken
       session[:access_secret] = asecret
@@ -265,6 +269,10 @@ class AuthenticationsController < ApplicationController
 
     # authorise user using latest request tokens
     pin = params[:oauth_verifier]
+
+    # if user clicks cancel on authentication window pin will be null
+    redirect_to "/accounts/sign_in" and return if !pin
+
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
     
     # get user email
@@ -336,6 +344,10 @@ class AuthenticationsController < ApplicationController
 
     # authorise user using latest request tokens
     pin = params[:oauth_verifier]
+
+    # if user clicks cancel on authentication window pin will be null
+    redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile) and return if !pin
+
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
     # always store latest access tokens
@@ -385,6 +397,10 @@ class AuthenticationsController < ApplicationController
 
     # authorise user using latest request tokens
     pin = params[:oauth_verifier]
+
+    # if user clicks cancel on authentication window pin will be null
+    redirect_to edit_user_etkh_profile_path(current_user, current_user.etkh_profile) and return if !pin
+    
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
     # create linkedin info table
