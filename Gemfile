@@ -87,6 +87,9 @@ gem 'unicorn'
 gem 'memcachier'
 gem 'dalli'
 
+# automatically create links within a body of text
+gem 'rails_autolink'
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
   gem 'heroku_san'
