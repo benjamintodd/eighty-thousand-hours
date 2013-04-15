@@ -19,9 +19,7 @@ EightyThousandHours::Application.configure do
   config.assets.css_compressor = :yui
   config.assets.js_compressor = :uglifier
 
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  # NOTE: required for Heroku (as of Nov. 2011, with Rails 3.1)
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
