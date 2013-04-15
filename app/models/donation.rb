@@ -88,7 +88,7 @@ class Donation < ActiveRecord::Base
     donations = Donation.where("created_at >= :start_date", start_date: start_date)
     total = 0
     donations.each do |donation|
-      total += (donation.amount_cents.to_f / 100.to_f)
+      total += donation.amount.exchange_to(:USD).dollars
     end
     # in dollars
     return total
