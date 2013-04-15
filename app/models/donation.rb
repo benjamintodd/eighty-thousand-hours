@@ -4,8 +4,7 @@ class Donation < ActiveRecord::Base
   validates :user_id, presence: true
   validates :cause_id, presence: true
   validates :amount_cents, numericality: { greater_than_or_equal_to: 1 }
-  validates :currency, :inclusion => { :in => %w(GBP USD EUR),
-            :message => "Currency must be GBP, USD, or EUR (%{value} given)" }
+  validates :currency, presence: true
   validates :inspired_by_cea, inclusion: {in: [true, false], message: "select an option"}
 
   monetize :amount_cents
@@ -38,6 +37,17 @@ class Donation < ActiveRecord::Base
   scope :confirmed, where(:confirmed => true).order("date DESC")
   scope :is_public, where(:public => true)
   scope :is_public_amount, is_public.where(:public_amount => true)
+
+  def self.major_currencies(hash)
+    hash.inject([]) do |array, (id, attributes)|
+      priority = attributes[:priority]
+      if priority && priority < 10
+        array[priority] ||= []
+        array[priority] << id
+      end
+      array
+    end.compact.flatten
+  end
 
   def self.total( currency = "GBP", with_symbol = false )
     donations = Donation.confirmed.all
