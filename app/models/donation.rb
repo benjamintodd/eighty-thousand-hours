@@ -109,11 +109,19 @@ class Donation < ActiveRecord::Base
       if self.confirmed
         send_acceptance_email_to_user
       else
-        DonationMailer.confirmation(self).deliver!
+        begin
+          DonationMailer.confirmation(self).deliver!
+        rescue => e
+          puts e.message
+        end
       end
     end
     def send_acceptance_email_to_user
-      DonationMailer.accepted(self).deliver!
+      begin
+        DonationMailer.accepted(self).deliver!
+      rescue => e
+        puts e.message
+      end
     end
 
     def ensure_date_filled

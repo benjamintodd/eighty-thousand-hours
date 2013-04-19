@@ -22,8 +22,13 @@ class CareerAdviceRequest
 
   def save
     if self.valid?
-      CareerAdviceRequestMailer.career_advice_request_email(name,email,skype,background,thoughts,questions,mailing_list,upload_cv).deliver!
-      return true
+      begin
+        CareerAdviceRequestMailer.career_advice_request_email(name,email,skype,background,thoughts,questions,mailing_list,upload_cv).deliver!
+      rescue => e
+        puts e.message
+      ensure
+        return true
+      end
     end
     return false
   end

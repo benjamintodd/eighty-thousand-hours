@@ -27,8 +27,13 @@ class ChatRequest
                  :questions => options_questions,
                  :other => options_other,
                  :other_text => other_text }
-      ChatRequestMailer.chat_request_email(name,email,phone,skype,options).deliver!
-      return true
+      begin
+        ChatRequestMailer.chat_request_email(name,email,phone,skype,options).deliver!
+      rescue => e
+        puts e.message
+      ensure
+        return true
+      end
     end
     return false
   end
