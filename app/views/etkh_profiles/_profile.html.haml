@@ -21,7 +21,7 @@
                     %p Organisation
                     %p Industry
                     %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}Karma score
-                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
+                    - if current_user && current_user.eighty_thousand_hours_member? && profile.display_email
                       %p Email
                   .entries
                     %p= truncate(profile.current_position, length: 40)
@@ -29,7 +29,7 @@
                     %p= truncate(profile.career_sector, length: 40)
                     %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}
                       = user.get_karma_score
-                    - if current_user && current_user.eighty_thousand_hours_member? && user.slug != "christophhewett"
+                    - if current_user && current_user.eighty_thousand_hours_member? && profile.display_email
                       %p= truncate(user.email, length: 40)
               .buttons
                 #contact

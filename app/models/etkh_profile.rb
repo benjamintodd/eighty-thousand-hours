@@ -25,7 +25,8 @@ class EtkhProfile < ActiveRecord::Base
                   :activities_comment,
                   :profile_option_activity_ids,
                   :donation_percentage,
-                  :donation_percentage_optout
+                  :donation_percentage_optout,
+                  :display_email
 
   # now we can access @etkh_profile.name etc.
   delegate :name, :name=, 

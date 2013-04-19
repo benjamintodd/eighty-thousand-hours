@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404110204) do
+ActiveRecord::Schema.define(:version => 20130419220659) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20130404110204) do
     t.string   "current_position"
     t.integer  "completeness_score",         :default => 0
     t.integer  "admin_rating",               :default => 0
+    t.boolean  "display_email",              :default => true
   end
 
   add_index "etkh_profiles", ["user_id"], :name => "index_etkh_profiles_on_user_id", :unique => true
