@@ -269,4 +269,15 @@ class EtkhProfile < ActiveRecord::Base
     .select(&:avatar?)
     .sample(list_length)
   end
+
+  RATING = 1000
+  def self.prioritise_female_profiles
+    users_list = ["Abbie Taylor", "Jess Whittlestone", "Holly Morgan", "Roxanne Heston", "Lisanne Pueschel"]
+
+    users_list.each do |username|
+      user = User.find_by_name(username)
+      user.etkh_profile.admin_rating = RATING
+      user.etkh_profile.save
+    end
+  end
 end
