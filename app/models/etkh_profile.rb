@@ -262,7 +262,8 @@ class EtkhProfile < ActiveRecord::Base
     subset.select do |user|
       profile = user.etkh_profile and
       !profile.background.nil? and
-      profile.background.length >= MIN_BACKGROUND_LENGTH and
+      !profile.background.empty? and
+      #profile.background.length >= MIN_BACKGROUND_LENGTH and
       (completeness = profile.completeness_score) >= MIN_PROFILE_COMPLETENESS and
       RANDOM_GENERATOR.rand(1..10) * (completeness + profile.admin_rating) >= THRESHOLD
     end
@@ -270,13 +271,13 @@ class EtkhProfile < ActiveRecord::Base
     .sample(list_length)
   end
 
-  RATING = 1000
   def self.prioritise_female_profiles
-    users_list = ["Abbie Taylor", "Jess Whittlestone", "Holly Morgan", "Roxanne Heston", "Lisanne Pueschel"]
+    users_list = ["Abbie Taylor", "Jess Whittlestone", "Holly Morgan", "Roxanne Heston", "Lisanne Pueschel", "Julia Wise", "Holly Maiden"]
+    rating = 200
 
     users_list.each do |username|
       user = User.find_by_name(username)
-      user.etkh_profile.admin_rating = RATING
+      user.etkh_profile.admin_rating = rating
       user.etkh_profile.save
     end
   end
