@@ -150,6 +150,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.import_csv(filepath)
+    CSV.foreach(filepath) do |row|
+      user = User.find_by_name(row[0])
+      if row[2] != "unknown" 
+        if !(info = user.member_info)
+          info = MemberInfo.new
+          info.user = user
+        end
+        info.gender = row[2]
+        info.save
+      end
+    end
+  end
+
   def self.add_linkedin_to_profile(client, user)
     # update data fields with relevant info from linkedin profile
 
