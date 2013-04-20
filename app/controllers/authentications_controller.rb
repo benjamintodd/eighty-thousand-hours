@@ -29,7 +29,7 @@ class AuthenticationsController < ApplicationController
       flash[:"alert-success"] = "Your 80,000 Hours account is now linked to your #{omniauth['provider'].to_s.titleize} account, and you have been logged in."
 
       # retrospective processing of profile info
-      Authentication.process_omniauth_session(omniauth, auth.user) if auth.user
+      Authentication.process_omniauth_session(omniauth, user) if user
 
       remember_me user # set the remember_me cookie
       sign_in_and_redirect(:user, user)  
