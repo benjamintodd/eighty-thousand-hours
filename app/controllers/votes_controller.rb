@@ -63,7 +63,7 @@ class VotesController < ApplicationController
 
     # expire caching of blog post index
     expire_action :action => :index
-    expire_fragment(controller: 'blog_posts', action: 'index')
+    expire_fragment("blog_index")
 
     respond_to do |format|
       format.js { render :layout => false }
