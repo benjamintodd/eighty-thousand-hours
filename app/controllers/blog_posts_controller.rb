@@ -1,5 +1,6 @@
 class BlogPostsController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:drafts,:edit,:update,:destroy]
+  caches_action :index
 
   def prepare_sidebar
     @recommended_posts = Page.find('recommended-posts')
@@ -11,6 +12,23 @@ class BlogPostsController < ApplicationController
   end
 
   def index
+    @posts = BlogPost.published.paginate(:page => params[:page], :per_page => 10)
+    @condensed = false
+    @heading = "80,000 Hours blog"
+
+    @title = "Blog"
+    @menu_root = "Blog"
+    
+    prepare_sidebar
+  end
+
+  def drafts
+    @posts = BlogPost.by_author_drafts(current_user)
+    @title = "Blog"
+    @menu_root = "Blog"
+  end
+
+  def sorted
     @sort = params[:order]
     case @sort
     when 'popularity'
@@ -33,22 +51,6 @@ class BlogPostsController < ApplicationController
 
     @title = "Blog"
     @menu_root = "Blog"
-    
-    prepare_sidebar
-  end
-
-  def drafts
-    @posts = BlogPost.by_author_drafts(current_user)
-    @title = "Blog"
-    @menu_root = "Blog"
-  end
-
-  def sorted
-    @posts = BlogPost.by_votes
-
-    @title = "Most popluar posts of all time"
-    @menu_root = "Blog"
-    @condensed = params[:condensed]
     
     prepare_sidebar
   end
@@ -99,7 +101,8 @@ class BlogPostsController < ApplicationController
     else
       post.vote!( user, (params[:up] == 'true') ? true : false )
     end
-
+    expire_action :action => :index
+    expire_fragment(controller: 'blog_posts', action: 'index')
     redirect_to :action => 'index' 
   end
 
@@ -141,6 +144,8 @@ class BlogPostsController < ApplicationController
     else
       render :edit
     end
+    expire_action :action => :index
+    expire_fragment(controller: 'blog_posts', action: 'index')
   end
 
   def new
@@ -155,12 +160,16 @@ class BlogPostsController < ApplicationController
     else
       render :new
     end
+    expire_action :action => :index
+    expire_fragment(controller: 'blog_posts', action: 'index')
   end
 
   def destroy
     @post = BlogPost.find( params[:id] )
     @post.destroy
     redirect_to blog_posts_path, :notice => "Post permanently deleted"
+    expire_action :action => :index
+    expire_fragment(controller: 'blog_posts', action: 'index')
   end
 
   private

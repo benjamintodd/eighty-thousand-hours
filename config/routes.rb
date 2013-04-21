@@ -34,6 +34,7 @@ EightyThousandHours::Application.routes.draw do
       get :tag
       get :author
       get :vote
+      get :sorted
     end
   end
 
