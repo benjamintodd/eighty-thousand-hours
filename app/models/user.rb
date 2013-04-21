@@ -198,14 +198,14 @@ class User < ActiveRecord::Base
       
       t = Position.new unless t
 
-      t.position = position.title
-      t.organisation = position.company.name
-      t.start_date_month = convert_month(position.start_date.month)
-      t.start_date_year = position.start_date.year
+      t.position = position.title if position.title
+      t.organisation = position.company.name if position.company.name
+      t.start_date_month = convert_month(position.start_date.month) if position.start_date.month
+      t.start_date_year = position.start_date.year if position.start_date.year
       
       if position.is_current != true
-        t.end_date_month = convert_month(position.end_date.month)
-        t.end_date_year = position.end_date.year
+        t.end_date_month = convert_month(position.end_date.month) if position.end_date.month
+        t.end_date_year = position.end_date.year if position.end_date.year
       else
         t.current_position = true
         profile.organisation = t.organisation
