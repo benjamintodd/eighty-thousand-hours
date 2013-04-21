@@ -39,7 +39,7 @@
                     = link_to "View LinkedIn profile", user.external_linkedin, class: "btn btn-new"
                 - if !user.linkedin_email.nil? && !user.linkedin_email.empty?
                   #linkedin-add
-                    = link_to "Add connection on LinkedIn", {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-new"
+                    = link_to "Add connection on LinkedIn", {controller: 'users', action: 'initialise_invite_linkedin_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-new"
 
           .span4
             .right-block

@@ -91,6 +91,7 @@ EightyThousandHours::Application.routes.draw do
       put 'contact_user'
       get 'user_activity'
       get 'remove_avatar'
+      get 'initialise_invite_linkedin_connection'
     end
   end
   match '/users/initalise_contact_user' => 'users#initalise_contact_user'
