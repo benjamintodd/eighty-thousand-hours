@@ -1,6 +1,6 @@
 %h3 Popular blog posts
-- BlogPost.by_popularity(5).each do |post|
-
+- posts = get_popular_posts
+- posts.each do |post|
   = render partial: 'shared/sidebar_item',
            locals: { date: post.created_at,
                      content: "<span class='votes'>#{post.net_votes}</span><i class='icon-arrow-up'></i>#{link_to post.title, blog_post_path( post )}".html_safe,
