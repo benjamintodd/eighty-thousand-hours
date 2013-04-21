@@ -2,15 +2,6 @@ class BlogPostsController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:drafts,:edit,:update,:destroy]
   caches_action :index
 
-  def prepare_sidebar
-    @recommended_posts = Page.find('recommended-posts')
-    @tag_cloud = BlogPost.tag_counts_on(:tags) || []
-    @popular_posts = BlogPost.by_popularity(5)
-    @authors = BlogPost.author_list
-    @latest_comments = Comment.blog.order("created_at DESC").limit(4)
-    @latest_discussion_posts = DiscussionPost.published.recent(4)
-  end
-
   def index
     @posts = BlogPost.published.paginate(:page => params[:page], :per_page => 10)
     @condensed = false
@@ -18,8 +9,6 @@ class BlogPostsController < ApplicationController
 
     @title = "Blog"
     @menu_root = "Blog"
-    
-    prepare_sidebar
   end
 
   def drafts
@@ -51,8 +40,6 @@ class BlogPostsController < ApplicationController
 
     @title = "Blog"
     @menu_root = "Blog"
-    
-    prepare_sidebar
   end
 
   def show
@@ -77,8 +64,6 @@ class BlogPostsController < ApplicationController
       @tags = @post.tag_list
 
       @menu_root = "Blog"
-
-      prepare_sidebar
     end
   end
 
@@ -86,8 +71,6 @@ class BlogPostsController < ApplicationController
     @heading = "BlogPosts by #{params[:id]}"
     @posts = BlogPost.by_author(params[:id],params[:page])
     @condensed = true
-
-    prepare_sidebar
 
     render :action => 'index'
   end
@@ -110,8 +93,6 @@ class BlogPostsController < ApplicationController
     @heading = "BlogPosts tagged with '#{params[:id]}'"
     @posts = BlogPost.published.tagged_with(params[:id]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @condensed = true
-
-    prepare_sidebar
 
     render :action => 'index'
   end
