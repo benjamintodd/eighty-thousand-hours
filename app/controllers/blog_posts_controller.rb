@@ -85,7 +85,6 @@ class BlogPostsController < ApplicationController
       post.vote!( user, (params[:up] == 'true') ? true : false )
     end
     expire_action :action => :index
-    expire_fragment("blog_index")
     redirect_to :action => 'index' 
   end
 
@@ -126,7 +125,6 @@ class BlogPostsController < ApplicationController
       render :edit
     end
     expire_action :action => :index
-    expire_fragment("blog_index")
   end
 
   def new
@@ -142,7 +140,6 @@ class BlogPostsController < ApplicationController
       render :new
     end
     expire_action :action => :index
-    expire_fragment("blog_index")
   end
 
   def destroy
@@ -150,7 +147,6 @@ class BlogPostsController < ApplicationController
     @post.destroy
     redirect_to blog_posts_path, :notice => "Post permanently deleted"
     expire_action :action => :index
-    expire_fragment("blog_index")
   end
 
   private

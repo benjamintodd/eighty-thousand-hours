@@ -1,39 +1,38 @@
-- cache "blog_index" do
-  .blog
-    .row
-      .span7
-        .box
-          - @posts.each do |post|
-            - if @condensed
-              = render :partial => 'display_heading',
-                       :locals => { :post => post }
-            - else
-              = render :partial => 'display_teaser',
-                       :locals => { :post => post }
+.blog
+  .row
+    .span7
+      .box
+        - @posts.each do |post|
+          - if @condensed
+            = render :partial => 'display_heading',
+                     :locals => { :post => post }
+          - else
+            = render :partial => 'display_teaser',
+                     :locals => { :post => post }
 
-          - if (@sort == nil) && (will_paginate @posts)
-            .box.tight
-              .center
-                = page_navigation_links @posts
-      .span1
-        &nbsp;
-      .span4
-        .box.sidebar.blog-sidebar
-          %p
-            .fblike
-              <fb:like href="#{blog_posts_path}" send="false" width="450" show_faces="false"></fb:like>
+        - if (@sort == nil) && (will_paginate @posts)
+          .box.tight
+            .center
+              = page_navigation_links @posts
+    .span1
+      &nbsp;
+    .span4
+      .box.sidebar.blog-sidebar
+        %p
+          .fblike
+            <fb:like href="#{blog_posts_path}" send="false" width="450" show_faces="false"></fb:like>
 
-          = render :partial => "subscribe"
-          %hr
-          = render :partial => "popular_posts"
-          %hr
-          = render :partial => "latest_discussion_posts"
-          %hr
-          = render :partial => "disclaimer"
-          %hr
-          = render :partial => "latest_comments"
-          %hr
-          = render :partial => "tag_cloud"
-          %hr
+        = render :partial => "subscribe"
+        %hr
+        = render :partial => "popular_posts"
+        %hr
+        = render :partial => "latest_discussion_posts"
+        %hr
+        = render :partial => "disclaimer"
+        %hr
+        = render :partial => "latest_comments"
+        %hr
+        = render :partial => "tag_cloud"
+        %hr
 
-          
+        

@@ -146,7 +146,6 @@ class BlogPost < ActiveRecord::Base
       p.facebook_likes = num_likes
       p.save
     end
-    ActionController::Base.new.expire_fragment("blog_index", options = nil)
   end
 
   # for active admin dashboard
