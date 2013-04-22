@@ -1,6 +1,6 @@
 class BlogPostsController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:drafts,:edit,:update,:destroy]
-  caches_action :index, cache_path: Proc.new { |controller| controller.params }
+  caches_action :index, cache_path: Proc.new { |controller| controller.params }, expires_in: 4.hours
 
   def index
     @posts = BlogPost.published.paginate(:page => params[:page], :per_page => 10)
