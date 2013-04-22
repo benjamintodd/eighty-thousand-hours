@@ -93,7 +93,7 @@ class BlogPostsController < ApplicationController
     @posts = BlogPost.published.tagged_with(params[:id]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @condensed = true
 
-    render :action => 'index'
+    render 'index'
   end
 
   # Atom feed
