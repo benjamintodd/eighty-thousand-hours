@@ -163,9 +163,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
 
-    &.small  { width: 25%; }
-    &.medium { width: 50%; }
-    &.large  { width: 100%; }
+    width: 100%;
 
     border: 1px solid #ccc;
     @include box_shadow(#ccc, 0px, 0px, 2px);
