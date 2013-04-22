@@ -59,7 +59,7 @@ module EightyThousandHours
 
     # must explicitly precompile all JS and CSS except application.js/css
     config.assets.precompile += %w[active_admin.js all-members-page.js application-form.js authentications.js.coffee comments.js donation-calculator.js donations.js.coffee edit-profile.js education-form.js faq_toggle.js linkedin-form.js members-page.js misc.js position-form.js profile-popup.js profiles-selection.js search-form.js view-profile.js bootstrap-datepicker.js bootstrap-progressbar.js google-analytics.js highcharts.js html5.js jquery.hoverIntent.minified.js jquery.pageless.js jquery.reveal.js]
-    config.assets.precompile += %w[active_admin.css]
+    config.assets.precompile += %w[active_admin.css active_admin/print.css]
 
     # serve up our own custom fonts
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
