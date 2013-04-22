@@ -46,21 +46,26 @@
     </header>
 
     <div class="container">
-      <% if !flash.empty?  %>
-        <% count = 0 %>
-        <% flash.each do |key,value| %>
-          <div class="modal flash-modal" id="flash-modal-<%= count %>">
-            <div class="modal-body alert <%= key %>">
-              <%= value.html_safe %>
-            </div>
-            <div class="modal-footer">
-              <a class="btn" data-dismiss="modal">Ok</a>
-            </div>
-          </div>
-          <script>$("#flash-modal-<%= count %>").modal('show');</script>
-          <% count += 1 %>
-        <% end %>
-      <% end %>
+      <div class="modal flash-modal" id="flash-modal">
+        <div class="modal-body alert" id="flash-message"></div>
+        <div class="modal-footer">
+          <a class="btn" data-dismiss="modal">Ok</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        Flash.transferFromCookies();
+        Flash.writeDataTo('error', $('#flash-message'));
+        Flash.writeDataTo('notice', $('#flash-message'));
+        if ($("#flash-message").text().length > 0)
+        {
+          $(".flash-modal").modal('show');
+        }
+        else
+        {
+          $(".flash-modal").hide();
+        }
+      </script>
+
 
       <section id="content">
         <div class="row">

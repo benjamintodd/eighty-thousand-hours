@@ -4,5 +4,7 @@
 //= require jquery.easing
 //= require accordion
 //= require bootstrap
+//= require flash
+//= require jquery.cookie
 //= require_tree .
 

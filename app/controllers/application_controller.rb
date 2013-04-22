@@ -1,6 +1,7 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
+  include CacheableFlash
   self.responder = ApplicationResponder
   respond_to :html
 
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    expire_action(controller: "blog_posts", action: "index")
     if current_user.sign_in_count <= 1
       #assume the user has just signed up so redirect to edit profile
       session[:new_profile] = true
@@ -37,6 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
+    expire_action(controller: "blog_posts", action: "index")
     #redirect to previous path
     request.referrer
   end
