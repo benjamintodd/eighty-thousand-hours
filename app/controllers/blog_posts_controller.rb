@@ -72,7 +72,7 @@ class BlogPostsController < ApplicationController
     @posts = BlogPost.by_author(params[:id],params[:page])
     @condensed = true
 
-    render :action => 'index'
+    render 'index'
   end
 
   def vote
@@ -84,8 +84,7 @@ class BlogPostsController < ApplicationController
     else
       post.vote!( user, (params[:up] == 'true') ? true : false )
     end
-    expire_action :action => :index
-    redirect_to :action => 'index' 
+    render 'index' 
   end
 
   def tag
