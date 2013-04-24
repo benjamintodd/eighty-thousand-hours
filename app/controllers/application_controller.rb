@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    expire_fragment(/.*blog.*/)
+    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
 
     if current_user.sign_in_count <= 1
       #assume the user has just signed up so redirect to edit profile
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    expire_fragment(/.*blog.*/)
+    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
     
     #redirect to previous path
     request.referrer

@@ -123,7 +123,8 @@ class BlogPostsController < ApplicationController
     else
       render :edit
     end
-    expire_action :action => :index
+    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
+    expire_fragment("bpost-#{@post.id}")
   end
 
   def new
@@ -138,14 +139,15 @@ class BlogPostsController < ApplicationController
     else
       render :new
     end
-    expire_action :action => :index
+    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
   end
 
   def destroy
     @post = BlogPost.find( params[:id] )
     @post.destroy
     redirect_to blog_posts_path, :notice => "Post permanently deleted"
-    expire_action :action => :index
+    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
+    expire_fragment("bpost-#{@post.id}")
   end
 
   private
