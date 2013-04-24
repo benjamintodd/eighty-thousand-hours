@@ -96,7 +96,7 @@ EightyThousandHours::Application.routes.draw do
     end
   end
   match '/users/initalise_contact_user' => 'users#initalise_contact_user'
-
+  match '/members2.csv' => 'users#users_since'
   resources :surveys, :only => [:show]
 
   # metrics output

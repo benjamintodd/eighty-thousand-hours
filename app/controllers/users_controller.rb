@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :only => [:edit,:update,:destroy]
 
+  def users_since
+    send_data User.members_since
+    #render nothing: true
+  end
+
   def merge
     if session[:omniauth]
       # want the user to be redirected to account edit page on sign-in
