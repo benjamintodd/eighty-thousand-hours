@@ -13,7 +13,7 @@ module BlogPostsHelper
 
   def get_popular_posts
     posts = []
-  	if session[:popular_posts] && (Time.now - session[:popular_posts_updated_at].to_datetime) < 15.minutes
+  	if session[:popular_posts] && (Time.now - session[:popular_posts_updated_at].to_datetime) < 30.minutes
       session[:popular_posts].each do |post_id|
   		  posts << BlogPost.find_by_id(post_id)
       end
