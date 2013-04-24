@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/defconomicron/dalli-store-extensions.git
+  revision: 04145d3e8c79768333d5adfdadef6ba91fae5de3
+  specs:
+    dalli-store-extensions (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -426,6 +432,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   cucumber-rails
   dalli
+  dalli-store-extensions!
   database_cleaner
   devise
   exception_notification (= 2.6.1)

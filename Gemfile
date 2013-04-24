@@ -86,6 +86,7 @@ gem 'unicorn'
 # required for caching in heroku
 gem 'memcachier'
 gem 'dalli'
+gem 'dalli-store-extensions', :git => "git://github.com/defconomicron/dalli-store-extensions.git"
 gem 'cacheable_flash' # used to deal with flash messages when caching pages
 
 # automatically create links within a body of text
