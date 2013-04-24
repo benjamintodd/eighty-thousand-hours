@@ -92,7 +92,7 @@ class AuthenticationsController < ApplicationController
         user.external_linkedin = client.profile(fields: %w(site-standard-profile-request)).site_standard_profile_request.url
         
         # get linkedin profile photo
-        url = client.profile(fields: %w(picture-url)).picture_url.to_s
+        url = client.get_picture
         user.avatar_from_url(url) if url && !url.empty?
 
         if user.save

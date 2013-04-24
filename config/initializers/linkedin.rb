@@ -5,10 +5,17 @@ LINKEDIN_CONFIG_INVITE = { :site => 'https://api.linkedin.com', :authorize_path 
 LINKEDIN_CONFIG_FULL_EMAIL = { :site => 'https://api.linkedin.com', :authorize_path => '/uas/oauth/authenticate', :request_token_path =>'/uas/oauth/requestToken?scope=r_fullprofile+r_emailaddress', :access_token_path => '/uas/oauth/accessToken' }
 
 LinkedIn::Client.class_eval do
+  def get_picture
+    path = "/people/~/picture-urls::(original)"
+    response = get(path)
+    response
+  end
+
   def get_email
     path = "/people/~/email-address"
     response = get(path)
-    response
+    url = response[/\[(.*?)\]/][/"(.*?)"/][/"(.*?)"/,1]
+    return url
   end
 
   def send_invitation(options)
