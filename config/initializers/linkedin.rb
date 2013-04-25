@@ -8,14 +8,14 @@ LinkedIn::Client.class_eval do
   def get_picture
     path = "/people/~/picture-urls::(original)"
     response = get(path)
-    response
+    url = response[/\[(.*?)\]/][/"(.*?)"/][/"(.*?)"/,1]
+    return url
   end
 
   def get_email
     path = "/people/~/email-address"
     response = get(path)
-    url = response[/\[(.*?)\]/][/"(.*?)"/][/"(.*?)"/,1]
-    return url
+    return response
   end
 
   def send_invitation(options)
