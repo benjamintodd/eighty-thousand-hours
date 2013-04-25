@@ -16,6 +16,9 @@ class VotesController < ApplicationController
     if type == :blog
       post = BlogPost.find(params[:post])
       user_votes = Vote.by_post(post).by_user(user)
+      # expire caching of blog post index and blog post itself
+      expire_action(controller: 'blog_posts', :action => 'index')
+      expire_fragment("bpost-#{post.id}")
     elsif type == :discussion
       post = DiscussionPost.find(params[:post])
       user_votes = Vote.by_post(post).by_user(user)
@@ -60,9 +63,6 @@ class VotesController < ApplicationController
       @error_element = "vote-error-#{post.id}"
       @error = "NO!"
     end
-
-    # expire caching of blog post index
-    expire_action(controller: 'blog_posts', :action => 'index')
 
     respond_to do |format|
       format.js { render :layout => false }

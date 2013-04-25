@@ -1,6 +1,6 @@
 class BlogPostsController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:drafts,:edit,:update,:destroy]
-  caches_action :index, cache_path: Proc.new { |controller| controller.params }, expires_in: 30.minutes
+  caches_action :index, cache_path: Proc.new { |controller| controller.params }, expires_in: 30.minutes, if: Proc.new { params[:page].nil? }
 
   def index
     @posts = BlogPost.published.paginate(:page => params[:page], :per_page => 10)
@@ -123,7 +123,7 @@ class BlogPostsController < ApplicationController
     else
       render :edit
     end
-    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
+    #expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
     expire_fragment("bpost-#{@post.id}")
   end
 
@@ -139,15 +139,15 @@ class BlogPostsController < ApplicationController
     else
       render :new
     end
-    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
+    #expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
   end
 
   def destroy
     @post = BlogPost.find( params[:id] )
     @post.destroy
     redirect_to blog_posts_path, :notice => "Post permanently deleted"
-    expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
-    expire_fragment("bpost-#{@post.id}")
+    #expire_fragment(/.*blog.*/) # expires cached items which include 'blog' in the key
+    #expire_fragment("bpost-#{@post.id}")
   end
 
   private
