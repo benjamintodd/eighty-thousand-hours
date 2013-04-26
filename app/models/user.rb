@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   has_one :etkh_profile, :dependent => :destroy
   accepts_nested_attributes_for :etkh_profile
   before_create :build_default_profile
+  after_create :create_info_table
 
   # a user can write many blog posts
   has_many :blog_posts
@@ -493,6 +494,12 @@ class User < ActiveRecord::Base
     # prepend conditions array with argument string
     conditions.unshift(arguments)
     return conditions
+  end
+
+  def create_info_table
+    info = MemberInfo.new
+    info.user_id = self.id
+    info.save
   end
 
   def self.convert_month(num)
