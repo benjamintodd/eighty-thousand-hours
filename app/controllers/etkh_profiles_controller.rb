@@ -104,7 +104,7 @@ class EtkhProfilesController < ApplicationController
       else
         #assume the user is creating their profile for the first time
         session[:new_profile] = nil
-        redirect_to( members_survey_path )
+        redirect_to "/surveys/new_member_survey"
       end
     else
       render :action => "edit"

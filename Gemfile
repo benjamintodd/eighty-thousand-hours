@@ -77,6 +77,9 @@ gem 'money-rails'
 # exchange rates
 gem 'google_currency'
 
+# allows interaction with google docs in drive
+gem 'google_drive'
+
 # google analytics custom events
 gem 'gabba'
 

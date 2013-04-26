@@ -1,4 +1,5 @@
 @import "shared/partials";
+
 .survey {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -6,5 +7,58 @@
     padding: 20px;
     border: 1px solid #ccc;
     @include rounded_borders(#ccc, 1px, 5px);
+  }
+}
+
+#new-member-survey {
+  .main-section {
+    margin-top: 40px;
+    > h3 { font-size: 22px; }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    > :nth-child(3) { margin-top: 20px; }
+
+    .section {
+      margin-top: 40px;
+    }
+    .sub-section {
+      margin-top: 40px;
+      label { margin-bottom: 8px; }
+    }
+    .comments-section { margin-top: 20px; }
+    .options {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  }
+  
+  #bottom {
+    height: 50px;
+    margin: 40px 0 20px 0;
+    #submit-btn { margin-left: 150px; }
+    #thank-you {
+      display: none;
+      margin-left: 50px;
+    }
+  }
+  
+	
+  p { margin-bottom: 0px; }
+  .inline { display: inline-block; margin-right: 15px; }
+  .medium-text-area {
+    width: 300px;
+    height: 50px;
+  }
+  .currency { width: 75px; }
+  .numeric { width: 80px; }
+  .bold {
+    font-family: "MuseoSlab-700", helvetica, arial, sans-serif;
+  }
+  .tick {
+    font-size: 14px;
+    color: lighten($text_color,20%);
+    margin-top: -5px;
   }
 }
