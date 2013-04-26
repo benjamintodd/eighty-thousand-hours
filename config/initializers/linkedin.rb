@@ -8,7 +8,7 @@ LinkedIn::Client.class_eval do
   def get_picture
     path = "/people/~/picture-urls::(original)"
     response = get(path)
-    url = response[/\[(.*?)\]/][/"(.*?)"/][/"(.*?)"/,1]
+    url = response[/\[(.*?)\]/][/"(.*?)"/][/"(.*?)"/,1] if response
     return url
   end
 
