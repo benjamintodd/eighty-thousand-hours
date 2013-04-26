@@ -97,7 +97,12 @@ EightyThousandHours::Application.routes.draw do
   end
   match '/users/initalise_contact_user' => 'users#initalise_contact_user'
 
-  resources :surveys, :only => [:show]
+  resources :surveys do
+    collection do
+      get 'new_member_survey'
+      put 'completed_new_member_survey'
+    end
+  end
 
   # metrics output
   match "metrics/weekly_metrics.csv"  => 'metrics#weekly_metrics'
@@ -121,7 +126,6 @@ EightyThousandHours::Application.routes.draw do
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
-  match 'members_survey'  =>  'pages#members_survey'
 
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
