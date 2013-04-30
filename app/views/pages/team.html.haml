@@ -1,0 +1,46 @@
+- content_for :javascript_includes do
+  = javascript_include_tag "meet-the-team.js"
+
+.meet-the-team
+  %h1 Core Team
+
+  = render partial: 'team_member', locals: { slug: "william-crouch", position: "Co-founder and President", description: "Will, as a philosopher at Oxford and co-founder of Giving What We Can, provides the conceptual and ethical foundations of the project. He leads our fundraising efforts and contributes to our content. He is currently on a Fulbright scholarship, has published in the top philosophy journal Ethics, and has received the Oxford Vice Chancellor’s Civic Award in recognition of his charitable work." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "benjamin-todd", position: "Co-founder and Executive Director", description: "Ben takes Will’s ethical foundations and combines them with the latest empirical research, plus experience on the ground, to create our innovative but practical content. He leads the team in forming strategy and carrying it out day-to-day. Having graduated with a First in a Masters in Physics and Philosophy at Oxford, he intended to follow his more practical interest in investing. After becoming the first ever undergraduate intern at Orbis Mutual Funds he planned to take up a job as an investment analyst. Instead he became our first full-time staff member in July 2012." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "niel-bowerman", position: "Director of Communications", description: "Niel takes the content and delivers it to the world. In doing this, he capitalises on six years of experience in climate advocacy, during which he was on Obama’s 2008 Environment Policy Team, adviser to the President of the Maldives, founder of Climatico and named a Young Global Shaper by the World Economic Forum. He joined us in January 2013 after completing a PhD in Climate Physics." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "tom-ash", position: "Director of Operations for 80,000 Hours and Giving What We Can", description: "Tom provides manages finances, legal and logistics shared 50% with Giving What We Can. After completing the BPhil in Philosophy at Oxford, he worked for 5 years as a professional web-developer at a variety of non-profits, including the New Internationalist." }
+  %hr
+
+  %h1 Product team
+
+  = render partial: 'team_member', locals: { slug: "jess-whittlestone", position: "", description: "Jess recently graduated from Oxford with a First in Maths and Philosophy, and now works on 80,000 Hours careers advice and research and has written many of our most popular blog posts. She plans to go on to study a PhD in Behavioural Science." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "roman-duda", position: "", description: "Roman has worked at Memrise and SelfSpark, and recently graduated from the BPhil in Philosophy from Oxford. Roman is working on our product and on evaluating our impact." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "jonathan-willis", position: "", description: "Jonathan has an Engineering Masters from Cambridge, and co-founder of The Ecohouse initiative. He handles quantitative analysis for the product team." }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "jeff-pole", position: "", description: "" }
+  %hr
+
+  %h1 Community
+
+  = render partial: 'team_member', locals: { slug: "jacob-nebel", position: "Head of the Princeton Chapter", description: "As a philosophy student, Marshall Scholar and former anti-nuclear campaigner, Jake is most concerned with finding ways to prevent harm to future generations" }
+  %hr
+
+  = render partial: 'team_member', locals: { slug: "abbie-taylor", position: "Head of the Oxford Chapter", description: "Abbie is a Medical student at Oxford University and organises the 80,000 Hours events in Oxford." }
+  %hr
+
+  =# render partial: 'team_member', locals: { slug: "ilan-fischer", position: "Head of the Yale Chapter", description: "Inspired by the work of Peter Singer, Ilan is a student of philosophy and animal welfare campaigner. While working for 80,000 Hours, he founded Effective Animal Activism - the world’s first charity evaluator for animal welfare charities." }
+  -#%hr
+
+  %h1 Operations
+  = render partial: 'team_member', locals: { slug: "adam-casey", position: "Finance Officer", description: "Adam, a Cambridge maths graduate, handles budgeting and financial procedures for 80,000 Hours and Giving What We Can." }
+  

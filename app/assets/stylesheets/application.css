@@ -27,6 +27,7 @@
  *= require datepicker
  *= require comments
  *= require dashboard
+ *= require meet-the-team
  *= require_tree ./shared
  *= require modals
 */

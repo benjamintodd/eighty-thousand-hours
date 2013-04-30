@@ -126,6 +126,7 @@ EightyThousandHours::Application.routes.draw do
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
+  match 'meet-the-team' => 'pages#team'
 
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
