@@ -49,16 +49,20 @@ class EtkhProfilesController < ApplicationController
     @donations = @user.donations.confirmed
     @profile = @user.etkh_profile
 
-    if !@profile.public_profile && !current_user
-      @error_type = "signup"
-      @error_message = "This member's profile is private."
+    if @user && !@profile
       if request.xhr?
-        render 'shared/sign_up_modal'
+        render 'shared/error_modal', locals: { error_type: "", error_message: "This member does not have a profile." }
       else
-        render 'shared/display_error'
+        render 'shared/display_error', locals: { error_type: "", error_message: "This member does not have a profile." }
+      end
+    elsif !@profile.public_profile && !current_user
+      if request.xhr?
+        render 'shared/error_modal', locals: { error_type: "signup", error_message: ""}
+      else
+        render 'shared/display_error', locals: { error_type: "signup", error_message: ""}
       end
     end
-
+    
     @menu_root = "Our community"
     @menu_current = "Our members"
   end
