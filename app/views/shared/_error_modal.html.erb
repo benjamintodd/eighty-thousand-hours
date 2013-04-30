@@ -1,15 +1,18 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag "jquery.reveal.js" %>
 <% end %>
+
 <div class="modal-body alert alert-error">
   <div class="modal-heading">
     <h4>Sorry!</h4>
   </div>
-  <% if @error_message %>
-    <%= @error_message %>
+  <% if error_message && !error_message.empty? %>
+    <%= error_message %>
     <br/>
 	<% end %>
-  You have to <a href="/accounts/sign_up">sign up</a> or <a href="/accounts/sign_in">sign in</a> to perform this action!
+  <% if error_type && error_type == "signup" %>
+    You have to <a href="/accounts/sign_up">sign up</a> or <a href="/accounts/sign_in">sign in</a> to perform this action!
+  <% end %>
 </div>
 <div class="modal-footer">
   <a class="btn form-close" data-dismiss="modal">OK</a>

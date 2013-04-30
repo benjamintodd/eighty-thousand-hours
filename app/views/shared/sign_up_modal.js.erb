@@ -1,5 +1,5 @@
 // get partial to be displayed
-var signup_html = "<%= escape_javascript(render partial: 'shared/sign_up_modal') %>";
+var signup_html = "<%= escape_javascript(render partial: 'shared/error_modal', locals: {error_type: 'signup', error_message: ''}) %>";
 
 // add a new element to the page
 $("body").append("<div id='error-modal'></div>");

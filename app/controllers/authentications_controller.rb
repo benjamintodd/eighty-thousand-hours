@@ -439,11 +439,10 @@ class AuthenticationsController < ApplicationController
     unless user_signed_in?
       # if AJAX request simply display modal
       if request.xhr?
-        render 'shared/sign_up_modal'
+        render 'shared/error_modal', locals: { error_type: "signup", error_message: "" }
       else
         # display error page
-        @error_type = "signup"
-        render 'shared/display_error'
+        render 'shared/display_error', locals: { error_type: "signup", error_message: "" }
       end
       return
     end

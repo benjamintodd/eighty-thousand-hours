@@ -1,3 +1,2 @@
 .box
-  - if @error_type == "signup"
-    = render partial: 'shared/sign_up_modal'
+  = render partial: 'shared/error_modal', locals: { error_type: error_type, error_message: error_message }

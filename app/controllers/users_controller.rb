@@ -105,10 +105,9 @@ class UsersController < ApplicationController
       render 'users/initialise_contact_user'
     else
       if request.xhr?
-        render 'shared/sign_up_modal'
+        render 'shared/error_modal', locals: { error_type: "signup", error_message: ""}
       else
-        @error_type = "signup"
-        render 'shared/display_error'
+        render 'shared/display_error', locals: { error_type: "signup", error_message: ""}
       end
     end
   end
@@ -118,10 +117,10 @@ class UsersController < ApplicationController
       #redirect_to {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}
       redirect_to "/authentications/linkedin_invite_connection?email=#{params[:email]}&user_id=#{params[:user_id]}"
     else
+      @error_type = "signup"
       if request.xhr?
-        render 'shared/sign_up_modal'
+        render 'shared/error_modal'
       else
-        @error_type = "signup"
         render 'shared/display_error'
       end
     end

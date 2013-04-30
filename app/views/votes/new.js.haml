@@ -5,5 +5,5 @@ $( "##{@arrow_element_other}" ).addClass( "notvoted" );
 $( "##{@vote_element}" ).html( "#{@net_votes}" );
 - if @error
   $( "##{@error_element}" ).addClass( "modal" );
-  $( "##{@error_element}" ).html( "#{escape_javascript( render( :partial => "shared/sign_up_modal" ) )}" )
+  $( "##{@error_element}" ).html( "#{escape_javascript( render( :partial => "shared/error_modal", locals: {error_type: "signup", error_message: ""} ) )}" )
   $( "##{@error_element}" ).modal('show'); 
