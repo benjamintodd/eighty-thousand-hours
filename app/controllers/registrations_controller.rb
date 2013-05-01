@@ -16,11 +16,11 @@ class RegistrationsController < Devise::RegistrationsController
 
     #update email notification settings
     @user = User.find(current_user.id)
-    @user.notifications_on_forum_posts = params[:new_notifications_on_forum_posts]
-    @user.notifications_on_comments = params[:new_notifications_on_comments]
-    @user.etkh_profile.display_email = params[:display_email]
+    @user.notifications_on_forum_posts = params[:new_notifications_on_forum_posts] ? true : false
+    @user.notifications_on_comments = params[:new_notifications_on_comments] ? true : false
+    @user.etkh_profile.display_email = params[:display_email] ? true : false
     @user.save
-
+    
     #update other details
     if current_user.omniauth_signup      
       if @user.update_attributes(params[:user])
