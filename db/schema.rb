@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "author_type"
     t.text     "body"
     t.string   "namespace"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   add_index "attached_images", ["blog_post_id"], :name => "index_attached_images_on_blog_post_id"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "title"
     t.text     "body"
     t.boolean  "draft",          :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "attribution"
     t.string   "slug"
     t.text     "teaser"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
   create_table "causes", :force => true do |t|
     t.string   "name"
     t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "slug"
     t.text     "description"
   end
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "name"
     t.string   "email"
     t.integer  "commentable_id"
@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.boolean  "draft",      :default => false
     t.integer  "user_id"
     t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "discussion_posts", ["slug"], :name => "index_discussion_posts_on_slug", :unique => true
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
   create_table "donations", :force => true do |t|
     t.integer  "amount_cents",         :default => 0
     t.integer  "cause_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "user_id"
     t.string   "receipt_file_name"
     t.string   "receipt_content_type"
@@ -146,16 +146,16 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "author"
     t.string   "position"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.boolean  "header",           :default => false
     t.boolean  "endorsement_page", :default => true
     t.integer  "weight",           :default => 1
   end
 
   create_table "etkh_profiles", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.text     "background"
     t.string   "organisation"
     t.boolean  "public_profile",             :default => true
@@ -224,8 +224,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "title"
     t.text     "body"
     t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.boolean  "show_box",               :default => true
     t.string   "header_title"
     t.boolean  "menu_top_level",         :default => false
@@ -264,8 +264,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
@@ -278,8 +278,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "email"
     t.boolean  "dont_email_me"
     t.boolean  "anonymous"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "supporters", ["email"], :name => "index_supporters_on_email", :unique => true
@@ -291,8 +291,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "name_box"
     t.string   "email_box"
     t.string   "id_box"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "surveys", ["slug"], :name => "index_surveys_on_slug", :unique => true
@@ -316,11 +316,11 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",           :limit => 128, :default => "",    :null => false
+    t.string   "encrypted_password",           :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                               :default => 0
+    t.integer  "sign_in_count",                :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -328,9 +328,9 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "name"
     t.string   "slug"
     t.string   "location"
@@ -344,14 +344,13 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
     t.string   "external_linkedin"
     t.string   "real_name"
     t.string   "external_website"
-    t.boolean  "omniauth_signup",                             :default => false
-    t.boolean  "notifications_on_forum_posts",                :default => true
-    t.boolean  "notifications_on_comments",                   :default => true
+    t.boolean  "omniauth_signup",              :default => false
+    t.boolean  "notifications_on_forum_posts", :default => true
+    t.boolean  "notifications_on_comments",    :default => true
     t.string   "linkedin_email"
     t.string   "avatar_remote_url"
   end
 
-  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
@@ -371,8 +370,8 @@ ActiveRecord::Schema.define(:version => 20130426012601) do
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "positive"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "post_id"
     t.string   "post_type"
   end

@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '>= 3.2.11'
 
 # rake
-gem "rake", "~> 10.0.3"
+gem "rake", ">= 10.0.3"
 
 # user login
 gem 'devise'
@@ -126,7 +126,6 @@ group :development, :test do
   gem 'guard-spork'
   gem 'cucumber-rails'
   gem 'jasmine'
-  gem 'ruby-debug19', :require => 'ruby-debug'
 
   # guard prompt on osx
   platforms :ruby do
