@@ -282,4 +282,8 @@ class EtkhProfile < ActiveRecord::Base
       user.etkh_profile.save
     end
   end
+
+  def self.to_csv
+
+  end
 end

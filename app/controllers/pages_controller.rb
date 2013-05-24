@@ -26,7 +26,7 @@ class PagesController < ApplicationController
         @total_members = EtkhProfile.all.size
       end
     end
-    #otherwise render show.html...
+    # otherwise render show.html...
   end
 
   def edit
