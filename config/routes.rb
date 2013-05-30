@@ -1,4 +1,12 @@
 EightyThousandHours::Application.routes.draw do
+  get "coaching_requests/new"
+
+  get "coaching_requests/create"
+
+  get "coaching_requests_controller/new"
+
+  get "coaching_requests_controller/create"
+
   resources :authentications do
     collection do
       get 'create_new_account'

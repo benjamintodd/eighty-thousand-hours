@@ -114,7 +114,7 @@ class UsersController < ApplicationController
 
   def initialise_invite_linkedin_connection
     if user_signed_in?
-      #redirect_to {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}
+      # redirect_to {controller: 'authentications', action: 'linkedin_invite_connection', email: user.linkedin_email, user_id: user.id}
       redirect_to "/authentications/linkedin_invite_connection?email=#{params[:email]}&user_id=#{params[:user_id]}"
     else
       @error_type = "signup"
