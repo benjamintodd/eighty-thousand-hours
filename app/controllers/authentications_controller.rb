@@ -148,7 +148,6 @@ class AuthenticationsController < ApplicationController
     redirect_to edit_user_registration_path
   end
 
-
   ### LinkedIn API
 
   def linkedin_signup
@@ -184,12 +183,12 @@ class AuthenticationsController < ApplicationController
     config = LINKEDIN_CONFIG_BASIC_EMAIL
     client = LinkedIn::Client.new(ENV['LINKEDIN_AUTH_KEY'], ENV['LINKEDIN_AUTH_SECRET'], config)
 
-    puts "LINKEDIN CALLBACK: created client"
+    STDOUT.puts "LINKEDIN CALLBACK: created client"
 
     # action may have already been called recently
     # in which case we already have access tokens
     if session[:access_token].nil?
-      puts "LINKEDIN CALLBACK: access token was nil"
+      STDOUT.puts "LINKEDIN CALLBACK: access token was nil"
 
       # get access tokens
       pin = params[:oauth_verifier]
@@ -197,18 +196,18 @@ class AuthenticationsController < ApplicationController
       # if user clicks cancel on authentication window pin will be null
       redirect_to "/accounts/sign_up" and return if !pin
 
-      puts "LINKEDIN CALLBACK: pin OK, not redirecting"
+      STDOUT.puts "LINKEDIN CALLBACK: pin OK, not redirecting"
 
       atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
       session[:access_token] = atoken
       session[:access_secret] = asecret
 
-      puts "LINKEDIN CALLBACK: saving tokens"
+      STDOUT.puts "LINKEDIN CALLBACK: saving tokens"
 
       # if initial request was made by an existing user to link their account to linkedin
       if user_signed_in? && session[:linking] == "true"
 
-        puts "LINKEDIN CALLBACK: linking to existing account"
+        STDOUT.puts "LINKEDIN CALLBACK: linking to existing account"
         session[:linking] = nil
 
         Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "LinkedIn", "User linked account with LinkedIn", user.id)
@@ -235,12 +234,12 @@ class AuthenticationsController < ApplicationController
       else
         # new user
         # access tokens are stored in database when user is created
-        puts "LINKEDIN CALLBACK: new user, redirecting"
+        STDOUT.puts "LINKEDIN CALLBACK: new user, redirecting"
         redirect_to '/authentications/create_new_account'
       end
     else
       # can simply authorize from access tokens already requested
-      puts "LINKEDIN CALLBACK: access token was not nil"
+      STDOUT.puts "LINKEDIN CALLBACK: access token was not nil"
       client.authorize_from_access(session[:access_token], session[:access_secret])
       redirect_to '/dashboard' # ?
     end
@@ -525,7 +524,7 @@ class AuthenticationsController < ApplicationController
     atoken, asecret = client.authorize_from_request(session[:request_token], session[:request_secret], pin)
 
     # send invitation
-    puts "about to send invitation: #{session[:email]}"
+    STDOUT.puts "about to send invitation: #{session[:email]}"
     response = client.send_invitation({email: session[:email]})
 
     # store access tokens
