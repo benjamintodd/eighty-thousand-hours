@@ -11,6 +11,7 @@ EightyThousandHours::Application.routes.draw do
     collection do
       get 'create_new_account'
       get 'linkedin_signup'
+      get 'linkedin_signup_callback'
       get 'linkedin_callback'
       get 'linkedin_signin'
       get 'linkedin_signin_callback'
