@@ -130,8 +130,10 @@ EightyThousandHours::Application.routes.draw do
   match 'what-we-do'                    => 'info#what_we_do'
 
   # pages kept in views/pages
-  root :to => 'pages#show', id: "home"
+  root :to => 'pages#home'
   match 'dashboard'          => 'pages#dashboard'
+
+  match 'dashboard'     => 'pages#dashboard'
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
