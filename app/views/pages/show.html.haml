@@ -3,17 +3,12 @@
     = render :partial => 'admin_box'
 - cache do
   .row
-    - if @page.sidebar?
-      .span7
-        %div{ :class => @page.show_box ? 'box' : nil }
-          = markdown @page.body
+    .span7
+      %div{ :class => @page.show_box ? 'box' : nil }
+        = markdown @page.body
       .span1
         &nbsp;
-        
-    -else
-      .span12
-        = markdown @page.body
-      
+    
     - if @page.sidebar?
       .span4
         .box.sidebar.page-sidebar
