@@ -123,28 +123,38 @@ h6 {
     margin-bottom: 0;
     line-height: 1.125em;
   }
+
+}
+
+p.fp-sidebar {
+  font-size: 115%;
+}   
+
+
+
+#big-video {
+  border: 3px solid #777;
+  margin-bottom: 26px;
 }
 
 a.fp-splash-find-out-more {
-  /*float: right;*/
-/*  padding: 10px;
-/
-  @include rounded_borders(#ccc, 0px, $dim_border_radius);
+  @include rounded_borders(#ccc, 0px, 5px);
   color: #fff;
   background: $link_color !important;
 
   font-family: $museo_sans_500;
 
-  display: block;
-  width: 170px;
-
-  &:hover {
-    text-decoration: none;
-    color: $text_color;
-  }
   &:visited {
     color: #fff !important;
   }
+
+  &:hover {
+    text-decoration: none;
+    color: #fdd;
+  }
+
+  font-size: 200%;	
+  padding: 18px 20px 12px 20px;
 }
 
 .right {
