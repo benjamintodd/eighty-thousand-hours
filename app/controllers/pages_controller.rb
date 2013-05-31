@@ -12,20 +12,20 @@ class PagesController < ApplicationController
 
     # if we have set a custon header_title then we should use that
     # otherwise use the page title (which maps to the URL slug)
-    @title = ((@page.header_title.to_s == '') ? @page.title : @page.header_title )
+    @title = ((@page.header_title.to_s == '') ? @page.title : @page.header_title)
     
     @menu_current = @page.title
     @menu_root = @page.root.title
 
-    if @page.title == "Home"
-      if user_signed_in?
-        redirect_to dashboard_path
-      else
-        @total_members = EtkhProfile.all.size
-        render :home and return
-      end
-    end
     # otherwise render show.html...
+  end
+
+  def home
+    if user_signed_in?
+      redirect_to dashboard_path
+    else
+      @total_members = EtkhProfile.all.size
+    end
   end
 
   def edit

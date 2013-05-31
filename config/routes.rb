@@ -130,7 +130,7 @@ EightyThousandHours::Application.routes.draw do
   match 'what-we-do'                    => 'info#what_we_do'
 
   # pages kept in views/pages
-  root :to => 'pages#show', id: "home"
+
   match 'dashboard'          => 'pages#dashboard'
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
@@ -141,5 +141,5 @@ EightyThousandHours::Application.routes.draw do
   match 'how-we-are-different', to: redirect('/our-features')
   
   resources :pages
-  resources :pages, :path => '/', :only => [:show]
+  root :to => 'pages#home'
 end
