@@ -21,9 +21,8 @@ class PagesController < ApplicationController
       if user_signed_in?
         redirect_to dashboard_path
       else
-        render :home
-        
         @total_members = EtkhProfile.all.size
+        render :home and return
       end
     end
     # otherwise render show.html...
