@@ -152,8 +152,10 @@ EightyThousandHours::Application.routes.draw do
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
   match 'how-we-are-different', to: redirect('/our-features')
+
   
   resources :pages
   resources :pages, :path => '/', :only => [:show]
+  get 'video/:id', to: 'pages#video'
   root :to => 'pages#home'
 end

@@ -88,4 +88,13 @@ class PagesController < ApplicationController
       redirect_to :root
     end
   end
+
+  def video
+    @video_no = params[:id].to_i
+    @video_id = [nil, "JQcfoboTomg","u2XNfeIASoA","pTYiwLcBFH4"][@video_no]
+    @video_title = [nil, 
+                    "We Want You to Change the World",
+                    "Which Careers Make The Most Difference?",
+                    "Which Career Should You Take?"][@video_no]
+  end
 end
