@@ -1,0 +1,31 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+.event {
+  padding: 20px;
+  margin: 20px;
+  -moz-border-radius: 0px 0px;
+  -webkit-border-radius: 0px 0px;
+  -khtml-border-radius: 0px 0px;
+  -o-border-radius: 0px 0px;
+  border-radius: 0px 0px;
+  border: 1px #cccccc solid;
+  -o-box-shadow: 0px 0px 3px #cccccc;
+  -webkit-box-shadow: 0px 0px 3px #cccccc;
+  -moz-box-shadow: 0px 0px 3px #cccccc;
+  box-shadow: 0px 0px 3px #cccccc; }
+  .event h1 {
+    font-size: 1.7em;
+    margin-bottom: 0px;
+    line-height: 1.1em; }
+  .event h2 {
+    font-size: 1.4em;
+    color: #555555; }

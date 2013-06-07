@@ -1,0 +1,76 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+.authentications .authentication {
+  float: left;
+  width: 200px;
+  height: 64px;
+  padding: 5px 10px;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  -moz-border-radius: 5px 5px;
+  -webkit-border-radius: 5px 5px;
+  -khtml-border-radius: 5px 5px;
+  -o-border-radius: 5px 5px;
+  border-radius: 5px 5px;
+  border: 1px #cccccc solid;
+  -o-box-shadow: 0px 0px 2px #cccccc;
+  -webkit-box-shadow: 0px 0px 2px #cccccc;
+  -moz-box-shadow: 0px 0px 2px #cccccc;
+  box-shadow: 0px 0px 2px #cccccc; }
+  .authentications .authentication .provider {
+    padding: 10px;
+    font-weight: bold; }
+  .authentications .authentication .remove {
+    text-decoration: none;
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    padding: 2px 4px;
+    -moz-border-radius: 5px 5px;
+    -webkit-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+    -o-border-radius: 5px 5px;
+    border-radius: 5px 5px;
+    border: 1px white solid; }
+  .authentications .authentication .remove:hover {
+    color: #d4346f;
+    cursor: pointer;
+    -moz-border-radius: 5px 5px;
+    -webkit-border-radius: 5px 5px;
+    -khtml-border-radius: 5px 5px;
+    -o-border-radius: 5px 5px;
+    border-radius: 5px 5px;
+    border: 1px #cccccc solid;
+    background-color: #efefef; }
+  .authentications .authentication img {
+    float: left;
+    margin-right: 10px; }
+
+.auth-providers .auth-provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px; }
+  .auth-providers .auth-provider img {
+    display: block; }
+
+.options {
+  margin-top: 20px; }
+  .options #facebook, .options #google {
+    margin-top: 5px; }
+    .options #facebook .small-icon img, .options #google .small-icon img {
+      width: 50px;
+      height: 50px; }
+  .options .signup {
+    display: inline-block; }

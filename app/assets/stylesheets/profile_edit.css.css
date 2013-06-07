@@ -1,0 +1,158 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+.edit-profile .completeness {
+  margin-top: 20px; }
+.edit-profile #linkedin {
+  margin-top: 20px; }
+  .edit-profile #linkedin .header {
+    margin-bottom: 20px; }
+  .edit-profile #linkedin p {
+    margin-bottom: 12px; }
+.edit-profile .heading .name {
+  display: inline-block; }
+.edit-profile .heading .completeness {
+  display: inline-block;
+  float: right;
+  margin-top: 20px; }
+.edit-profile .form .profile-photo img {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 15px; }
+.edit-profile .form .profile-photo .remove-photo {
+  margin-left: 150px;
+  margin-bottom: 5px; }
+.edit-profile .form #declaration #donation {
+  margin-top: 15px; }
+  .edit-profile .form #declaration #donation #user_etkh_profile_attributes_donation_percentage_slider {
+    margin-top: 15px; }
+.edit-profile .form #experience .new-form {
+  width: 385px;
+  height: 300px; }
+  .edit-profile .form #experience .new-form #position_start_date_month, .edit-profile .form #experience .new-form #position_end_date_month {
+    width: 120px; }
+  .edit-profile .form #experience .new-form #position_start_date_year, .edit-profile .form #experience .new-form #position_end_date_year {
+    visibility: visible;
+    float: right;
+    width: 70px; }
+  .edit-profile .form #experience .new-form .control-group:nth-child(6) {
+    visibility: hidden;
+    position: relative;
+    top: -50px; }
+  .edit-profile .form #experience .new-form .control-group:nth-child(7) {
+    position: relative;
+    top: -50px; }
+  .edit-profile .form #experience .new-form .control-group:nth-child(8) {
+    visibility: hidden;
+    position: relative;
+    top: -100px; }
+  .edit-profile .form #experience .new-form .control-group:nth-child(9) {
+    position: relative;
+    top: -100px; }
+  .edit-profile .form #experience .new-form .buttons {
+    position: relative;
+    top: -110px;
+    margin-left: 160px; }
+    .edit-profile .form #experience .new-form .buttons #btn-add-position-cancel {
+      margin-left: 25px; }
+    .edit-profile .form #experience .new-form .buttons #btn-edit-position-cancel {
+      margin-left: 52px; }
+.edit-profile .form #experience .edit-form {
+  height: 130px; }
+  .edit-profile .form #experience .edit-form .text-input {
+    display: block;
+    width: 170px; }
+  .edit-profile .form #experience .edit-form .optional {
+    width: 170px;
+    margin: 0px; }
+  .edit-profile .form #experience .edit-form .select {
+    width: 80px;
+    padding: 0px;
+    height: 24px;
+    font-size: 10px; }
+  .edit-profile .form #experience .edit-form .numeric {
+    width: 50px;
+    padding: 0px;
+    font-size: 12px; }
+  .edit-profile .form #experience .edit-form .form-row {
+    margin-bottom: 3px; }
+  .edit-profile .form #experience .edit-form .buttons {
+    margin-top: 10px; }
+.edit-profile #education .new-form {
+  width: 385px;
+  height: 350px; }
+  .edit-profile #education .new-form #education_start_date_year, .edit-profile #education .new-form #education_end_date_year {
+    width: 100px; }
+  .edit-profile #education .new-form .buttons {
+    margin-left: 160px; }
+    .edit-profile #education .new-form .buttons #btn-add-education-cancel {
+      margin-left: 15px; }
+    .edit-profile #education .new-form .buttons #btn-edit-education-cancel {
+      margin-left: 52px; }
+.edit-profile #education .edit-form {
+  height: 170px; }
+  .edit-profile #education .edit-form .text-input {
+    display: block;
+    width: 170px; }
+  .edit-profile #education .edit-form .optional {
+    width: 170px;
+    margin: 0px; }
+  .edit-profile #education .edit-form .optional {
+    padding-bottom: 2px;
+    padding-top: 3px; }
+  .edit-profile #education .edit-form .numeric {
+    width: 50px;
+    padding: 0px;
+    font-size: 12px; }
+  .edit-profile #education .edit-form .form-row {
+    margin-bottom: 3px; }
+  .edit-profile #education .edit-form #dates-to {
+    display: inline-block;
+    margin: 0 5px 0 5px; }
+  .edit-profile #education .edit-form .buttons {
+    margin-top: 10px; }
+.edit-profile .linkedin-form {
+  width: 500px;
+  height: 275px; }
+  .edit-profile .linkedin-form .header {
+    width: 100%;
+    height: 50px; }
+    .edit-profile .linkedin-form .header img {
+      margin-left: 20px;
+      margin-top: 20px; }
+  .edit-profile .linkedin-form .content {
+    position: relative;
+    left: 10px;
+    width: 478px;
+    height: 170px;
+    -webkit-border-radius: 4px;
+    border: 1px solid white; }
+    .edit-profile .linkedin-form .content .body {
+      height: 125px;
+      background-color: #FFFFFF; }
+      .edit-profile .linkedin-form .content .body p {
+        padding-top: 35px;
+        padding-bottom: 55px;
+        padding-left: 30px;
+        padding-right: 25px;
+        line-height: 28px;
+        font-size: 18px; }
+    .edit-profile .linkedin-form .content .form-actions {
+      height: 60px;
+      margin: 0px;
+      padding: 0px;
+      background-color: #ebebeb; }
+      .edit-profile .linkedin-form .content .form-actions .btn-confirm {
+        margin-top: 15px;
+        margin-left: 75px; }
+      .edit-profile .linkedin-form .content .form-actions .btn-reject {
+        margin-top: 15px;
+        margin-left: 50px; }

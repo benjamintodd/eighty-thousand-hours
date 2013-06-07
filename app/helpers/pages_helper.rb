@@ -48,7 +48,7 @@ module PagesHelper
           #{t.title} <b class='caret'></b>
         </a>
         <ul class='dropdown-menu'>"
-        result += "<li>#{t.get_menu_link(active)}</li>"
+        result += "<li>#{t.get_menu_link(active)}</li>" if t.menu_display
 
         t.children.each do |c| 
           active = (@menu_current == c.title)

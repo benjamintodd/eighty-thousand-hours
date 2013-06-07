@@ -1,0 +1,29 @@
+<%= form_for(@page_feedback) do |f| %>
+  <% if @page_feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page_feedback.errors.count, "error") %> prohibited this page_feedback from being saved:</h2>
+
+      <ul>
+      <% @page_feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :page_id %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select(:rating, ["Good","OK","Bad"]) %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments, :size => "80x8", :class => "auto-sized" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit Feedback" %>
+  </div>
+<% end %>

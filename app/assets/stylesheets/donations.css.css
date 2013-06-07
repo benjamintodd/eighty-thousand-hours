@@ -1,0 +1,23 @@
+.donations-thermometer .target {
+  padding-left: 10px;
+  font-weight: bold;
+  float: right; }
+
+.donation-form #tracking {
+  margin-bottom: 25px; }
+  .donation-form #tracking #title {
+    margin-bottom: 0; }
+  .donation-form #tracking #parenthesis {
+    margin-bottom: 5px; }
+  .donation-form #tracking .radio-options {
+    margin-left: 30px; }
+    .donation-form #tracking .radio-options .radio-option input {
+      display: inline-block;
+      vertical-align: middle;
+      float: left; }
+    .donation-form #tracking .radio-options .radio-option .text {
+      display: inline-block;
+      width: 650px;
+      margin-left: 10px;
+      text-align: left;
+      font-size: 14px; }

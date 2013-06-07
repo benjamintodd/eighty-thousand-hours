@@ -1,0 +1,203 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+/*****Common to both view and edit profile pages ****/
+#positions {
+  margin-left: 7px; }
+  #positions .position {
+    margin-bottom: 20px; }
+    #positions .position p {
+      margin-bottom: 0px; }
+    #positions .position .title {
+      display: inline-block; }
+    #positions .position .actions {
+      display: inline-block;
+      margin-left: 20px; }
+    #positions .position .dates {
+      font-size: 0.8em; }
+
+#educations {
+  margin-left: 7px; }
+  #educations .education {
+    margin-bottom: 20px; }
+    #educations .education p {
+      margin-bottom: 0px; }
+    #educations .education .title {
+      display: inline-block; }
+    #educations .education .actions {
+      display: inline-block;
+      margin-left: 20px; }
+    #educations .education .dates {
+      font-size: 0.8em; }
+
+.eighty-thousand-hours-profile .heading {
+  background-color: #FFFFFF;
+  -o-box-shadow: 0px 0px 5px #555555;
+  -webkit-box-shadow: 0px 0px 5px #555555;
+  -moz-box-shadow: 0px 0px 5px #555555;
+  box-shadow: 0px 0px 5px #555555;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px; }
+  .eighty-thousand-hours-profile .heading .avatar {
+    -o-box-shadow: 0px 0px 6px #555555;
+    -webkit-box-shadow: 0px 0px 6px #555555;
+    -moz-box-shadow: 0px 0px 6px #555555;
+    box-shadow: 0px 0px 6px #555555;
+    width: 205px;
+    height: 205px;
+    position: relative;
+    overflow: hidden; }
+    .eighty-thousand-hours-profile .heading .avatar img {
+      position: absolute; }
+  .eighty-thousand-hours-profile .heading .span9 {
+    margin-left: 5px; }
+  .eighty-thousand-hours-profile .heading .header-main {
+    position: relative;
+    height: 205px; }
+    .eighty-thousand-hours-profile .heading .header-main .info p {
+      margin: 0px;
+      line-height: 16px; }
+    .eighty-thousand-hours-profile .heading .header-main .info .name {
+      margin: 0px;
+      font-size: 30px; }
+    .eighty-thousand-hours-profile .heading .header-main .info .location {
+      font-weight: normal;
+      font-size: 18px;
+      margin: 0px; }
+    .eighty-thousand-hours-profile .heading .header-main .info #labels-section {
+      margin-top: 0px;
+      margin-bottom: 10px; }
+      .eighty-thousand-hours-profile .heading .header-main .info #labels-section .labels {
+        display: inline-block; }
+        .eighty-thousand-hours-profile .heading .header-main .info #labels-section .labels p {
+          display: block;
+          line-height: 22px;
+          font-size: 13px;
+          color: #a6a6a6; }
+      .eighty-thousand-hours-profile .heading .header-main .info #labels-section .entries {
+        margin-left: 30px;
+        display: inline-block; }
+        .eighty-thousand-hours-profile .heading .header-main .info #labels-section .entries p {
+          display: block;
+          line-height: 22px;
+          height: 22px; }
+        .eighty-thousand-hours-profile .heading .header-main .info #labels-section .entries p.karma {
+          width: 35px; }
+    .eighty-thousand-hours-profile .heading .header-main .buttons {
+      width: 480px;
+      overflow: hidden;
+      position: absolute;
+      bottom: 0; }
+      .eighty-thousand-hours-profile .heading .header-main .buttons > * {
+        display: inline-block; }
+  .eighty-thousand-hours-profile .heading .right-block {
+    margin-right: 10px; }
+    .eighty-thousand-hours-profile .heading .right-block .external-links {
+      margin-top: 25px; }
+      .eighty-thousand-hours-profile .heading .right-block .external-links p {
+        margin: 0px;
+        color: #7f7f7f; }
+      .eighty-thousand-hours-profile .heading .right-block .external-links hr {
+        margin: 0px;
+        margin-bottom: 5px; }
+      .eighty-thousand-hours-profile .heading .right-block .external-links .link {
+        margin-bottom: 5px;
+        display: block; }
+.eighty-thousand-hours-profile .section {
+  background-color: #FFFFFF;
+  -o-box-shadow: 0px 0px 5px #555555;
+  -webkit-box-shadow: 0px 0px 5px #555555;
+  -moz-box-shadow: 0px 0px 5px #555555;
+  box-shadow: 0px 0px 5px #555555; }
+.eighty-thousand-hours-profile .content {
+  margin-bottom: 15px;
+  margin-left: 2px; }
+  .eighty-thousand-hours-profile .content .shortened-list {
+    margin-bottom: 0px; }
+  .eighty-thousand-hours-profile .content .see-more {
+    margin-left: 25px; }
+  .eighty-thousand-hours-profile .content h2 {
+    font-size: 20px;
+    margin-bottom: 15px; }
+  .eighty-thousand-hours-profile .content .section {
+    margin-top: 14px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px; }
+.eighty-thousand-hours-profile .sidebar {
+  margin-left: -3px;
+  margin-right: 2px;
+  margin-top: 14px;
+  font-size: 0.9em;
+  color: #555; }
+  .eighty-thousand-hours-profile .sidebar .joined {
+    text-align: center; }
+  .eighty-thousand-hours-profile .sidebar .section {
+    margin-top: 14px;
+    padding-left: 15px;
+    padding-bottom: 15px; }
+    .eighty-thousand-hours-profile .sidebar .section .title {
+      padding-top: 10px;
+      font-size: 16px;
+      color: #262626; }
+    .eighty-thousand-hours-profile .sidebar .section > hr {
+      margin-top: 5px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      padding-right: 15px; }
+  .eighty-thousand-hours-profile .sidebar #recent-activity .body h3 {
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .eighty-thousand-hours-profile .sidebar #recent-activity .activity-link {
+    display: block;
+    padding-top: 3px;
+    padding-left: 7px;
+    line-height: 18px;
+    margin-bottom: 5px; }
+  .eighty-thousand-hours-profile .sidebar #recent-activity .user-activity-link {
+    font-weight: bold; }
+  .eighty-thousand-hours-profile .sidebar #other-members > .body {
+    padding-top: 15px; }
+  .eighty-thousand-hours-profile .sidebar #other-members .eighty-thousand-hours-profile-condensed-2 {
+    margin-bottom: 5px; }
+
+.contact-user-form {
+  width: 450px; }
+  .contact-user-form .header {
+    background-color: #ebebeb; }
+    .contact-user-form .header h2 {
+      position: relative;
+      left: 20px;
+      margin-top: 0px;
+      padding-top: 30px; }
+  .contact-user-form .form-inputs {
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 400px; }
+    .contact-user-form .form-inputs #message-subject {
+      width: 100%; }
+    .contact-user-form .form-inputs #message-body {
+      margin-top: 10px;
+      width: 100%; }
+  .contact-user-form .form-actions {
+    margin-bottom: 0px;
+    background-color: #ebebeb; }
+    .contact-user-form .form-actions #submit-btn {
+      margin-left: 40px; }
+    .contact-user-form .form-actions #cancel-btn {
+      margin-left: 40px; }
+  .contact-user-form form {
+    margin-bottom: 0px; }

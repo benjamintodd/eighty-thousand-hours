@@ -1,0 +1,1 @@
+$(document).ready(function(){setTimeout(function(){$("#profile-hover").find(".avatar").find("img").each(function(){var e=new Image;e.src=$(this).attr("src"),e.width>e.height?$(this).css("height","100%"):$(this).css("width","100%")})},20)});

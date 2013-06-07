@@ -1,0 +1,170 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+/*******Condensed profiles*********/
+.eighty-thousand-hours-profile-condensed {
+  height: 48px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+  overflow: hidden; }
+  .eighty-thousand-hours-profile-condensed .avatar {
+    display: inline-block;
+    float: left;
+    -o-box-shadow: 0px 0px 2px #555555;
+    -webkit-box-shadow: 0px 0px 2px #555555;
+    -moz-box-shadow: 0px 0px 2px #555555;
+    box-shadow: 0px 0px 2px #555555;
+    height: 40px;
+    width: 40px;
+    margin: 3px;
+    position: relative;
+    overflow: hidden; }
+    .eighty-thousand-hours-profile-condensed .avatar img {
+      position: absolute; }
+  .eighty-thousand-hours-profile-condensed .text {
+    display: inline-block;
+    width: 150px;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 10px;
+    font-size: 0.9em; }
+    .eighty-thousand-hours-profile-condensed .text p {
+      margin: 0;
+      line-height: 16px; }
+    .eighty-thousand-hours-profile-condensed .text .name {
+      margin-top: 5px;
+      font-weight: bold; }
+      .eighty-thousand-hours-profile-condensed .text .name a {
+        line-height: 16px; }
+    .eighty-thousand-hours-profile-condensed .text .location {
+      color: #a6a6a6;
+      margin-top: 5px; }
+
+.eighty-thousand-hours-profile-condensed-2 {
+  display: block;
+  height: 60px;
+  margin-right: 5px; }
+  .eighty-thousand-hours-profile-condensed-2 .avatar {
+    display: inline-block;
+    float: left;
+    -o-box-shadow: 0px 0px 2px #555555;
+    -webkit-box-shadow: 0px 0px 2px #555555;
+    -moz-box-shadow: 0px 0px 2px #555555;
+    box-shadow: 0px 0px 2px #555555;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    overflow: hidden; }
+    .eighty-thousand-hours-profile-condensed-2 .avatar img {
+      position: absolute; }
+  .eighty-thousand-hours-profile-condensed-2 .body {
+    display: inline-block;
+    margin-left: 10px;
+    width: 200px;
+    height: 55px;
+    overflow: hidden; }
+    .eighty-thousand-hours-profile-condensed-2 .body .name {
+      font-weight: bold; }
+    .eighty-thousand-hours-profile-condensed-2 .body .content {
+      position: relative;
+      top: -2px;
+      margin: 0px; }
+      .eighty-thousand-hours-profile-condensed-2 .body .content p {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 0px; }
+
+.profile-teaser {
+  -moz-border-radius: 5px 5px;
+  -webkit-border-radius: 5px 5px;
+  -khtml-border-radius: 5px 5px;
+  -o-border-radius: 5px 5px;
+  border-radius: 5px 5px;
+  border: 1px #dfdfdf solid;
+  padding: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 7px; }
+  .profile-teaser .avatar {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    -o-box-shadow: 0px 0px 5px #555555;
+    -webkit-box-shadow: 0px 0px 5px #555555;
+    -moz-box-shadow: 0px 0px 5px #555555;
+    box-shadow: 0px 0px 5px #555555; }
+    .profile-teaser .avatar img {
+      position: absolute; }
+  .profile-teaser .heading p {
+    margin: 0px;
+    line-height: 18px; }
+  .profile-teaser .heading hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-width: 2px;
+    color: #dfdfdf; }
+  .profile-teaser .heading .name {
+    font-size: 1.2em; }
+  .profile-teaser .heading .location {
+    font-size: 0.8em; }
+  .profile-teaser .heading .organisation {
+    font-size: 0.8em; }
+  .profile-teaser .body .labels {
+    margin-top: 5px; }
+    .profile-teaser .body .labels p {
+      margin-bottom: 0px; }
+    .profile-teaser .body .labels .background {
+      margin-bottom: 43px; }
+  .profile-teaser .body .info {
+    margin-top: 5px;
+    font-size: 0.925em;
+    line-height: 20px; }
+    .profile-teaser .body .info p {
+      margin-bottom: 5px; }
+
+#profile-popup {
+  position: absolute;
+  z-index: 100; }
+
+#profile-hover {
+  width: 300px;
+  height: 100px;
+  overflow: hidden;
+  padding: 10px;
+  background-color: #FFFFFF;
+  -moz-border-radius: 5px 5px;
+  -webkit-border-radius: 5px 5px;
+  -khtml-border-radius: 5px 5px;
+  -o-border-radius: 5px 5px;
+  border-radius: 5px 5px;
+  border: 3px #a1a1a1 solid; }
+  #profile-hover .avatar {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    -o-box-shadow: 0px 0px 6px #555555;
+    -webkit-box-shadow: 0px 0px 6px #555555;
+    -moz-box-shadow: 0px 0px 6px #555555;
+    box-shadow: 0px 0px 6px #555555;
+    overflow: hidden; }
+    #profile-hover .avatar img {
+      position: absolute; }
+  #profile-hover .body {
+    margin-left: 5px; }
+    #profile-hover .body .name {
+      font-size: 16px;
+      font-weight: bold; }
+    #profile-hover .body .content p {
+      font-size: 14px;
+      line-height: 16px;
+      margin: 0px;
+      margin-bottom: 3px; }

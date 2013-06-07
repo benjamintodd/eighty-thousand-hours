@@ -1,4 +1,6 @@
 EightyThousandHours::Application.routes.draw do
+  resources :page_feedbacks
+
   get "coaching_requests/new"
 
   get "coaching_requests/create"
