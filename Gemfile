@@ -131,6 +131,9 @@ group :development, :test do
   platforms :ruby do
     gem 'rb-readline'
   end
+
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do

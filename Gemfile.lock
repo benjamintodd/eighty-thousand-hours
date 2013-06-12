@@ -63,6 +63,11 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
+    better_errors (0.9.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bourbon (3.0.1)
       sass (>= 3.2.0)
       thor
@@ -104,6 +109,7 @@ GEM
     daemons (1.1.9)
     dalli (2.6.2)
     database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
     devise (2.2.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -410,6 +416,8 @@ DEPENDENCIES
   asset_sync
   aws-s3
   aws-sdk
+  better_errors
+  binding_of_caller
   cacheable_flash
   cancan
   capybara

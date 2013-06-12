@@ -29,11 +29,11 @@
 
 
         .feedback-box
-          Help us make our site more awesome.
+          Was this page useful?
           %br
           Rate this page:
           %br
-          - ['Bad', 'OK', 'Good'].each do |r|
+          - ['Not useful', 'Slightly useful', 'Quite useful', 'Very useful'].each do |r|
             = link_to controller: :page_feedbacks, action: :new, 'page_feedback[page_id]' => @page.id, 'page_feedback[rating]' => r  do
               .btn.btn-feedback
                 = r

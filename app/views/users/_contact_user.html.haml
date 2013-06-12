@@ -11,6 +11,11 @@
         = text_area_tag :body, nil, size: "50x8", id: "message-body", placeholder: "message"
 
         %br
+        Prove you're human:
+        = @captcha
+        %br
+        = hidden_field_tag :captcha_question, @captcha
+        = text_field_tag :captcha_answer, nil
 
       .form-actions
         = submit_tag "Submit", class: "btn btn-large btn-success form-close", id: "submit-btn"

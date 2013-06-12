@@ -84,22 +84,53 @@ class UsersController < ApplicationController
 
   def contact_user
     if params[:commit] != "Cancel"
-      # deliver message to user
-      sender = current_user
-      recipient = User.find(params[:user_id])
-      subject = params[:subject]
-      body = params[:body]
-      UserMailer.contact_user(sender, recipient, subject, body).deliver!
+      # check captcha
+      answer = Captchas[params[:captcha_question]]
 
-      #log event in google analytics
-      Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "User contacted by other user", nil, recipient.id)
+      if answer.downcase != params[:captcha_answer].downcase
+        @user_id = params[:user_id]
+        @captcha = Captchas.keys.sample
+
+        # TODO: display error message here
+      else
+        # deliver message to user
+        sender = current_user
+        recipient = User.find(params[:user_id])
+        subject = params[:subject]
+        body = params[:body]
+        UserMailer.contact_user(sender, recipient, subject, body).deliver!
+
+        #log event in google analytics
+        Gabba::Gabba.new("UA-27180853-1", "80000hours.org").event("Members", "User contacted by other user", nil, recipient.id)
+      end
     end
     render nothing: true
   end
 
+  Captchas = {
+    "Which is larger, 1 or 2?" => "2",
+    "Which is larger, 1 or 4?" => "4",
+    "Which is larger, 7 or 1?" => "7",
+    "Which is larger, 2 or 3?" => "3",
+    "Which is larger, 3 or 6?" => "6",
+    "Which is larger, 9 or 3?" => "9",
+    "Which is larger, 4 or 2?" => "4",
+    "Which is larger, 5 or 8?" => "8",
+    "The sky is blue. What colour is the sky?" => "blue",
+    "Grass is green. What colour is grass?" => "green",
+    "Tomatoes are red. What colour are tomatoes?" => "red",
+    "What is 1 plus 1?" => "2",
+    "What is 2 plus 3?" => "5",
+    "What is 3 plus 1?" => "4",
+    "What is 3 plus 3?" => "6",
+    "What is 2 plus 5?" => "7"
+  }
+
   def initalise_contact_user
     if user_signed_in?
       @user_id = params[:user_id]
+
+      @captcha = Captchas.keys.sample
 
       # javascript to show popup
       render 'users/initialise_contact_user'
