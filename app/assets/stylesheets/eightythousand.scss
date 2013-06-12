@@ -148,6 +148,8 @@ a.fp-splash-find-out-more {
     max-width: 300px;
     line-height: 25px;
 
+    font-size: 12px;
+
     &:visited {
 	color: #fff !important;
     }
@@ -167,7 +169,8 @@ a.fp-splash-find-out-more {
 
 .btn-feedback {
     background-color: #fafafa;
-    width: 55px;
+    width: 34px;
+    font-size: 12px;
 
     &:hover {
 	background-color: #ccc;
