@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 config/s3.yml
 config/database.yml
+public/assets/*.gz
+app/assets/*.css.css
