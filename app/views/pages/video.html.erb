@@ -5,6 +5,8 @@
       <h1 id="you_want_to_make_a_difference__but_you_have_questions"><%= @video_title %></h1>
     </div>
   </div>
+
+
 </div>
 
 <div class="row">
@@ -23,24 +25,40 @@
       <p class="fp-sidebar">And we won’t just tell you to &#147;follow your passion&#148;.</p>    
     </div>
   </div>
-
 </div>
 
-
-
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <a class="fp-splash-find-out-more btn btn-primary btn-giant" href="/pages/getting-started--2">Find Out More</a>
   </div>
-  <div class="span1">
+
+  <div class="span3">
     &nbsp;
   </div>
-  <div class="span4">
-  <% if @video_no >= 3 %>
+
+  <div class="span3">
+    <% if @video_no >= 3 %>
     <a class="fp-splash-find-out-more btn btn-primary btn-giant" href="/pages/get-coaching">Get Coaching</a>
-  <% else %>
+    <% else %>
     <a class="fp-splash-find-out-more btn btn-primary btn-giant" href="/video/<%= @video_no + 1%>">Next Video</a>
-  <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <div>
+      <strong>Was this video useful?</strong>
+      Rate this video:&nbsp;&nbsp;&nbsp;
+      <% ['Not useful', 'Slightly useful', 'Quite useful', 'Very useful'].each do |r| %>
+
+      <%= link_to controller: :page_feedbacks, action: :new, 'page_feedback[page_id]' => nil, 'page_feedback[rating]' => r, 'page_feedback[video_id]' => @video_no do %>
+
+      <div class="btn btn-feedback"><%= r %></div>
+
+      <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 <%= form_for(@page_feedback) do |f| %>
   <% if @page_feedback.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page_feedback.errors.count, "error") %> prohibited this page_feedback from being saved:</h2>
+      <h2><%= pluralize(@page_feedback.errors.count, "error") %> prohibited this feedback from being submitted:</h2>
 
       <ul>
       <% @page_feedback.errors.full_messages.each do |msg| %>
@@ -12,6 +12,7 @@
   <% end %>
 
   <%= f.hidden_field :page_id %>
+  <%= f.hidden_field :video_id %>
   <div class="field">
     <%= f.label :rating %>
     <%= f.select(:rating, ['Not useful', 'Slightly useful', 'Quite useful', 'Very useful']) %>
@@ -20,7 +21,7 @@
   </br>
 
   <div class="field">
-    <%= f.label :comments %><br />
+    <%= f.label :comments, "How can we improve this #{@page ? 'page' : 'video'}?" %><br />
     <%= f.text_area :comments, :size => "80x8", :class => "auto-sized" %>
   </div>
   <div class="actions">

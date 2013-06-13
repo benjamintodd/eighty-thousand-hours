@@ -5,6 +5,7 @@ ActiveAdmin.register PageFeedback do
 
   index do
     column :page
+    column :video_id
     column :rating
     column :comments
     default_actions
