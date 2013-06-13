@@ -143,7 +143,11 @@ EightyThousandHours::Application.routes.draw do
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
   match 'how-we-are-different', to: redirect('/our-features')
-  
+  match 'how-to-be-successful', to: redirect('/pages/getting-started--2')
+  match 'how-to-choose', to: redirect('/pages/getting-started--2')
+  match 'career-advice', to: redirect('/pages/getting-started--2')
+  match 'career-profiles', to: redirect('/pages/our-findings')
+
   resources :pages
   root :to => 'pages#show', id: "home"
   match 'dashboard'          => 'pages#dashboard'
