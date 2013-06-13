@@ -37,7 +37,7 @@
           Rate this page:
           %br
           - ['Not useful', 'Slightly useful', 'Quite useful', 'Very useful'].each do |r|
-            = link_to controller: :page_feedbacks, action: :new, 'page_feedback[page_id]' => nil, 'page_feedback[video_id]' => , 'page_feedback[rating]' => r  do
+            = link_to controller: :page_feedbacks, action: :new, 'page_feedback[page_id]' => @page.id, 'page_feedback[rating]' => r  do
               .btn.btn-feedback
                 = r
 
