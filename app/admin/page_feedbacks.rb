@@ -8,6 +8,7 @@ ActiveAdmin.register PageFeedback do
     column :video_id
     column :rating
     column :comments
+    column :user
     default_actions
   end
 end

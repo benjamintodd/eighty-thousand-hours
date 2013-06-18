@@ -20,6 +20,8 @@ class PageFeedbacksController < ApplicationController
       @page_feedback.page = @page
     end
 
+    @page_feedback.user_id = current_user.id if current_user
+
     if @page_feedback.save
       redirect_to (session[:return_to] || :root), notice: 'Feedback submitted.'
     else

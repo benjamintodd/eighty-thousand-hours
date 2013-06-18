@@ -53,6 +53,9 @@ class User < ActiveRecord::Base
   # a user can write many discussion posts
   has_many :discussion_posts
 
+  # a user can give feedback to many pages
+  has_many :page_feedbacks
+
   # note that Devise handles the validation for email and password
   validates_presence_of   :name, :message => "You must tell us your name"
 
