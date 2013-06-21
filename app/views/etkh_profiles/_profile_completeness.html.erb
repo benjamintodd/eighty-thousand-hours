@@ -22,9 +22,9 @@
         <% tips.take(3).each do |tip| %>
           <div class="tip">
             <% if textType == "link" %>
-              <%= link_to image_tag("/assets/images/plus.png", class: "plus-icon"), edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>
+              <%= link_to image_tag("/assets/plus.png", class: "plus-icon"), edit_user_etkh_profile_path(current_user, current_user.etkh_profile) %>
             <% else %>
-              <%= image_tag("/assets/images/plus.png", class: "plus-icon") %>
+              <%= image_tag("/assets/plus.png", class: "plus-icon") %>
             <% end %>
             <p class="tip-text"><%= tip %></p>
           </div>

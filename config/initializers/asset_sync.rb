@@ -8,6 +8,6 @@ if defined?(AssetSync)
     config.fog_directory = ENV['S3_BUCKET']
 
     # Fail silently.  Useful for environments such as Heroku
-    config.fail_silently = true
+    config.fail_silently = false
   end
 end

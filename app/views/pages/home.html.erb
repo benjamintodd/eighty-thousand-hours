@@ -68,69 +68,92 @@
   </div>
 </div>
 
+
+<div class="span12">
+  <div class="row"><hr></div>
+</div>
+
+<div class="row">
+  <div class="span4">
+    <%= link_to "http://www.washingtonpost.com/blogs/wonkblog/wp/2013/05/31/join-wall-street-save-the-world/" do %>
+    <%= image_tag("/assets/press/washpo.png", alt: "Washington Post logo", height:"100px") %>
+    <% end %>
+  </div>
+
+  <div class="span1">&nbsp;</div>
+
+  <div class="span2">
+    <%= link_to "http://www.bbc.co.uk/news/education-15820786" do %>
+    <%= image_tag("/assets/press/bbc.jpeg", alt: "BBC logo", height:"20") %>
+    <% end %>
+  </div>
+
+  <div class="span1">&nbsp;</div>
+  
+  <div class="span3">
+    <%= link_to "http://www.ted.com/talks/peter_singer_the_why_and_how_of_effective_altruism.html" do %>
+    <%= image_tag("/assets/press/ted_logo.gif", alt: "Washington Post", height:"100") %>
+    <% end %>
+  </div>
+</div>
+
 <div class="row">
   <div class="span12">
     <hr>
   </div>
 </div>
 
-<div>
-  <div>
-    <div>
-      <div class="row">
-	<div class="span3">
-	  <div class="fp-splash">
-	    <h2 id="career_advice"><a href="/career-advice">Career advice</a></h2>
+<div class="row">
+  <div class="span3">
+    <div class="fp-splash">
+      <h2 id="career_advice"><a href="/career-advice">Career advice</a></h2>
 
-	    <p>Most people want careers that make a difference. But it’s not easy to get started. How can you have more impact with your career? <a href="/what-should-i-read-if-i-m-new">Learn more</a> or <a href="/request-a-career-advice-session/">book a one-on-one advice session</a>.</p>
-	  </div>
-	</div>
+      <p>Most people want careers that make a difference. But it’s not easy to get started. How can you have more impact with your career? <a href="/what-should-i-read-if-i-m-new">Learn more</a> or <a href="/request-a-career-advice-session/">book a one-on-one advice session</a>.</p>
+    </div>
+  </div>
 
-	<div class="span1">
-	  <p>&nbsp;</p>
-	</div>
+  <div class="span1">
+    <p>&nbsp;</p>
+  </div>
 
-	<div class="span3">
-	  <div class="fp-splash">
-	    <h2 id="our_community"><a href="/our-community">Our community</a></h2>
-	    <p>Join our community of <%= EtkhProfile.all.size %> members who all want to use their career to make the world a better place. <a href="/join">Become a member</a>, find out more about <a href="/our-community">our community</a>, or post a question on our <a href="/discussion">discussion forum</a>.</p></div>
-	</div>
+  <div class="span3">
+    <div class="fp-splash">
+      <h2 id="our_community"><a href="/our-community">Our community</a></h2>
+      <p>Join our community of <%= EtkhProfile.all.size %> members who all want to use their career to make the world a better place. <a href="/join">Become a member</a>, find out more about <a href="/our-community">our community</a>, or post a question on our <a href="/discussion">discussion forum</a>.</p></div>
+  </div>
 
-	<div class="span1">
-	  <p>&nbsp;</p>
-	</div>
+  <div class="span1">
+    <p>&nbsp;</p>
+  </div>
 
-	<div class="span4">
-	  <div class="fp-splash">
-	    <h2 id="keep_in_touch"><a href="http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true">Keep in touch</a></h2>
-	    <p>Follow the latest research on our <a href='/blog'>blog</a>.</P>
+  <div class="span4">
+    <div class="fp-splash">
+      <h2 id="keep_in_touch"><a href="http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true">Keep in touch</a></h2>
+      <p>Follow the latest research on our <a href='/blog'>blog</a>.</P>
 
-	    <div class="mail-list">
-	      <%= render partial: "shared/mailing_list", locals: { text: "Get updates on our latest career advice" } %>
-	      <br/>
-	    </div>
-
-	    <div id="mc_embed_signup"><a class="social-btn-facebook" href="http://www.facebook.com/80000Hours">Facebook</a><a class="social-btn-twitter" href="http://www.twitter.com/80000Hours">Twitter</a><a class="social-btn-reddit" href="http://reddit.com/r/EffectiveAltruism">Reddit</a><a class="social-btn-rss" href="/blog/feed.atom">RSS</a></div></div>
-	</div>
+      <div class="mail-list">
+	<%= render partial: "shared/mailing_list", locals: { text: "Get updates on our latest career advice" } %>
+	<br/>
       </div>
 
-      <div class="span12">
-	<div class="row"><hr></div>
-      </div>
+      <div id="mc_embed_signup"><a class="social-btn-facebook" href="http://www.facebook.com/80000Hours">Facebook</a><a class="social-btn-twitter" href="http://www.twitter.com/80000Hours">Twitter</a><a class="social-btn-reddit" href="http://reddit.com/r/EffectiveAltruism">Reddit</a><a class="social-btn-rss" href="/blog/feed.atom">RSS</a></div></div>
+  </div>
+</div>
 
-      <div class="row">
-	<div class="span1"><a href="http://www.ox.ac.uk/"><%= image_tag("/assets/images/front_page/university_of_oxford.png", alt: "Oxford university logo", height: "59", id: "oxford_logo", width: "59") %></a></div>
+<div class="span12">
+  <div class="row"><hr></div>
+</div>
 
-	<div class="span1"><a href="http://www.practicalethics.ox.ac.uk/"><%= image_tag("/assets/front_page/uehiro_logo_60x60.gif", alt: "Oxford University Uehiro Centre for Practical Ethics logo", height: "60", id: "uehir_logo", width: "60") %></a></div>
+<div class="row">
+  <div class="span1"><a href="http://www.ox.ac.uk/"><%= image_tag("/assets/front_page/university_of_oxford.png", alt: "Oxford university logo", height: "59", id: "oxford_logo", width: "59") %></a></div>
 
-	<div class="span10">
-	  <div class="floated-paragraph">
-	    <p>Our research is done with academics at the <strong>University of Oxford</strong> and 80,000 Hours is affiliated with the <strong>University of Oxford Uehiro Centre for Practical Ethics</strong>.</p>
-	  </div>
-	</div>
-      </div>
-      <hr> 
+  <div class="span1"><a href="http://www.practicalethics.ox.ac.uk/"><%= image_tag("/assets/front_page/uehiro_logo_60x60.gif", alt: "Oxford University Uehiro Centre for Practical Ethics logo", height: "60", id: "uehir_logo", width: "60") %></a></div>
+
+  <div class="span10">
+    <div class="floated-paragraph">
+      <p>Our research is done with academics at the <strong>University of Oxford</strong> and 80,000 Hours is affiliated with the <strong>University of Oxford Uehiro Centre for Practical Ethics</strong>.</p>
     </div>
   </div>
 </div>
+<hr> 
 <% end %>
