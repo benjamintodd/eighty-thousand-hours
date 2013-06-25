@@ -143,10 +143,12 @@ EightyThousandHours::Application.routes.draw do
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
   match 'how-we-are-different', to: redirect('/our-features')
-  match 'how-to-be-successful', to: redirect('/pages/getting-started--2')
-  match 'how-to-choose', to: redirect('/pages/getting-started--2')
-  match 'career-advice', to: redirect('/pages/getting-started--2')
-  match 'career-profiles', to: redirect('/pages/our-findings')
+  match 'how-to-be-successful', to: redirect('/getting-started')
+  match 'how-to-choose', to: redirect('/getting-started')
+  match 'career-advice', to: redirect('/getting-started')
+  match 'career-profiles', to: redirect('/our-findings')
+  match 'getting-started--2', to: redirect('/getting-started')
+  match 'pages/getting-started--2', to: redirect('/getting-started')
 
   resources :pages
   root :to => 'pages#show', id: "home"
@@ -154,7 +156,6 @@ EightyThousandHours::Application.routes.draw do
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
-  match 'meet-the-team' => 'pages#team'
 
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
