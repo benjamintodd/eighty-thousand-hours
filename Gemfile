@@ -126,7 +126,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'cucumber-rails'
   gem 'jasmine'
-
+  
   # guard prompt on osx
   platforms :ruby do
     gem 'rb-readline'
