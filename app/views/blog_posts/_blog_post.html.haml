@@ -28,6 +28,9 @@
       -#.attribution= markdown (blog_post.attribution.blank? ? (blog_post.user ? blog_post.user.name : blog_post.author ) : blog_post.attribution )
       %hr
       %p
+        %em
+          = blog_post.attribution
+      %p
         = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
       %p
         = link_to '<i class="icon-list"></i> Take me back to the blog'.html_safe, blog_posts_path
