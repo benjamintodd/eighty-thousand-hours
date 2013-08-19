@@ -39,8 +39,9 @@ a, li {
 }
 
 strong {
-    font-weight: normal;
-    font-family: $museo_sans_700;
+    font-weight: bold;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 105%;
 }
 
 /*For some reason the following doesn't work*/

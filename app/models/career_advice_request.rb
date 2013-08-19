@@ -3,6 +3,10 @@ class CareerAdviceRequest
 
   validates_presence_of :name, :email
 
+  validates_each :email do |record, attr, value|
+    record.errors.add attr, 'not a valid email address' if value !~ /@/
+  end
+
   # to deal with form, you must have an id attribute
   attr_accessor :id, :name, :email, :skype, :background, :thoughts, :questions, :mailing_list, :upload_cv
 

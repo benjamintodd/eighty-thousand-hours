@@ -14,7 +14,7 @@ class Page < ActiveRecord::Base
                   :menu_top_level,:menu_display,:menu_priority,:parent_id,:menu_display_in_footer,:menu_sidebar
 
   scope :display_in_menu, where(:menu_display => true)
-  scope :display_in_menu_footer, display_in_menu.where(:menu_display_in_footer => true)
+  scope :display_in_menu_footer, where(:menu_display_in_footer => true)
   scope :top_level, where(:menu_top_level => true)
 
   scope :top_level_menu, where(:menu_top_level => true).order('menu_priority DESC')
