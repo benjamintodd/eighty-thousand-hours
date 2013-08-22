@@ -1,7 +1,9 @@
-.bundle
+on.bundle
 db/*.sqlite3
 log/*.log
 .sass-cache/
 config/s3.yml
 config/database.yml
+config/aws.yml
 tmp/
+tmp/**/*

@@ -42,4 +42,5 @@ class Page < ActiveRecord::Base
   def admin_permalink
     admin_page_path(self)
   end
+
 end
