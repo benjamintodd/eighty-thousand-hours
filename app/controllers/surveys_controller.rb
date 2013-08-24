@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
   def new_member_survey
     if !user_signed_in?
       @error_type = "signup"
-      render 'shared/display_error'
+      render 'shared/display_error', locals: { error_type: "signup", error_message: "" }
     end
   end
 
