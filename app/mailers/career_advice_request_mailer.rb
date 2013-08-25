@@ -15,7 +15,7 @@ class CareerAdviceRequestMailer < ActionMailer::Base
          :mime_type=>uploaded_cv.content_type
       }
     end
-    mail(:to => "careers@80000hours.org",
+    mail(:to => "ozzie.gooen@80000hours.org",
          :subject => "[Career advice request] #{name}",
          :reply_to => @email,
          :template_path => 'career_advice_requests',
