@@ -12,6 +12,7 @@ class CareerAdviceRequest < ActiveRecord::Base
     record.errors.add attr, 'not a valid email address' if value !~ /@/
   end
 
+  before_save :update_cv_name
   after_create :send_email
 
 
@@ -28,6 +29,10 @@ class CareerAdviceRequest < ActiveRecord::Base
  
   #def to_key
   #end
+  
+  def update_cv_name
+    self.cv_filename = upload_cv.original_filename if upload_cv
+  end
 
   def send_email
     if self.valid?
