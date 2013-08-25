@@ -1,4 +1,3 @@
-require 'pry'
 class CareerAdviceRequest < ActiveRecord::Base
 
   # to deal with form, you must have an id attribute
