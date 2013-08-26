@@ -1,9 +1,9 @@
 development:
-  access_key_id: AKIAI4OX2ZMEPGLECJRQ
-  secret_access_key: 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
-  bucket: eightythousand
+  access_key_id: ENV['S3_ACCESS']
+  secret_access_key: ENV['S3_SECRET']
+  bucket: ENV['S3_BUCKET']
 
 production:
-  access_key_id: AKIAI4OX2ZMEPGLECJRQ
-  secret_access_key: 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
-  bucket: eightythousand
+  access_key_id: ENV['S3_ACCESS']
+  secret_access_key: ENV['S3_SECRET']
+  bucket: ENV['S3_BUCKET']
