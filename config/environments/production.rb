@@ -9,7 +9,7 @@ EightyThousandHours::Application.configure do
   config.action_controller.perform_caching = true
 
   # configure app to use Amazon S3 as an asset host
-  config.action_controller.asset_host = "http://#{ENV['S3_BUCKET']}.s3.amazonaws.com"
+  config.action_controller.asset_host = "http://#{ENV['S3_BUCKET']}.s3-eu-west-1.amazonaws.com"
 
   config.serve_static_assets = true
 
