@@ -101,7 +101,7 @@ class BlogPostsController < ApplicationController
     @title = "80,000 Hours - Blog"
 
     # the blog posts
-    @posts = BlogPost.published
+    @posts = BlogPost.published.limit(20)
 
     # this will be our feed's update timestamp
     @updated = @posts.first.updated_at unless @posts.empty?
