@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.2.11'
+gem 'rails', '~> 3.2.14'
 
 # rake
-gem "rake", ">= 10.0.3"
+gem "rake", "~> 10.1.0"
 
 # user login
 gem 'devise'
@@ -122,9 +122,7 @@ group :development, :test do
   gem 'ruby_gntp'
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-cucumber'
   gem 'guard-spork'
-  gem 'cucumber-rails'
   gem 'jasmine'
   
   # guard prompt on osx
@@ -137,6 +135,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'guard-cucumber'
+  gem 'cucumber-rails'
   gem "factory_girl_rails"
   gem 'launchy'
   # database_cleaner is necessary when database transactions are switched off,
