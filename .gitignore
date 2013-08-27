@@ -9,3 +9,4 @@ tmp/
 public/assets/**
 tmp/**/*
 /config/local_env.yml
+public/assets/*
