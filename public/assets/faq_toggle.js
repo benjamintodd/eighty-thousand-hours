@@ -1,1 +1,0 @@
-faq={init:function(){$("div.faq .answer").toggle(),$("div.faq .question").click(function(){faq.toggle(this)})},toggle:function(e){$(e).toggleClass("active"),$(e).siblings(".answer").slideToggle("fast"),$(e).children(".more").toggle()}},$(function(){faq.init()});
