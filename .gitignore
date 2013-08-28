@@ -8,5 +8,5 @@ config/aws.yml
 tmp/
 tmp/**/*
 /config/local_env.yml
-
 public/assets/*
+lib/tasks/local_tasks.rake
