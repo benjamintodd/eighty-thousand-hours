@@ -6,5 +6,3 @@
 //= require bootstrap
 //= require flash
 //= require jquery.cookie
-//= require_tree .
-
