@@ -1,48 +1,44 @@
 var popup_hover = false;
-var fireCount3 = 0;
+
 $(document).ready( function() {
-  fireCount3++;
-  if (fireCount3 > 1)
-  {
-    // set image dimensions dynamically to avoid stretching
-    // short delay to allow images to load
-    setTimeout( function() {
-      $(".avatar").find("img").each( function() {
-        var img = new Image();
-        img.src = $(this).attr('src');
+  // set image dimensions dynamically to avoid stretching
+  // short delay to allow images to load
+  setTimeout( function() {
+    $(".avatar").find("img").each( function() {
+      var img = new Image();
+      img.src = $(this).attr('src');
 
-        // set shorter side to maximum so that image fills square without stretching
-        if (img.width > img.height)
-        {
-          $(this).css('height', '100%');
-        }
-        else
-        {
-          $(this).css('width', '100%');
-        }
-      });
-    }, 50);
-
-    // display popup box when mouse hovers over member
-    var popup_hover = false;
-    var config = {
-      over: showPopup,
-      timeout: 850,   // time until out function is called after cursor moves away
-      interval: 200,  // time until over function is called after cursor hovers
-      out: hidePopup
-    };
-    $(".profile-link").hoverIntent(config);
-
-    // don't hide popup if mouse is hovering over it
-    $("#profile-popup").hover( function() {
-      popup_hover = true
-    }, function() {
-      popup_hover = false;
-      setTimeout( function() {
-        $("#profile-popup").hide();
-      }, 300);
+      // set shorter side to maximum so that image fills square without stretching
+      if (img.width > img.height)
+      {
+        $(this).css('height', '100%');
+      }
+      else
+      {
+        $(this).css('width', '100%');
+      }
     });
-  }
+  }, 50);
+
+  // display popup box when mouse hovers over member
+  var popup_hover = false;
+  var config = {
+    over: showPopup,
+    timeout: 850,   // time until out function is called after cursor moves away
+    interval: 200,  // time until over function is called after cursor hovers
+    out: hidePopup
+  };
+  $(".profile-link").hoverIntent(config);
+
+  // don't hide popup if mouse is hovering over it
+  $("#profile-popup").hover( function() {
+    popup_hover = true
+  }, function() {
+    popup_hover = false;
+    setTimeout( function() {
+      $("#profile-popup").hide();
+    }, 300);
+  });
 });
 
 function showPopup()

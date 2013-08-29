@@ -7,6 +7,7 @@ if defined?(AssetSync)
     config.aws_access_key_id = ENV['S3_ACCESS']
     config.aws_secret_access_key = ENV['S3_SECRET']
     config.fog_directory = ENV['S3_BUCKET']
+    config.gzip_compression = true
 
     # Fail silently.  Useful for environments such as Heroku
     config.fail_silently = false
