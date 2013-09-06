@@ -1,4 +1,6 @@
 class InfoController < ApplicationController
+  #TODO what is this?
+  
   def events
     @gcal_params = "orderby=starttime&futureevents=true"
     @title = "Events"

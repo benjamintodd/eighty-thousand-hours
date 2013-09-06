@@ -66,10 +66,6 @@ module PagesHelper
     result += "
     </ul>
 
-    <form class='navbar-search pull-right' action='/search' method='get'>
-      <input class='search-query span2' name='q' placeholder='search...' type='text' />
-      <!--<input class='search-query-icon' type='image' src='/assets/icons/search.png' name='search button' value='search' />-->
-    </form>
     </div>
     </div>
     </div>"
