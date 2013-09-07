@@ -2,4 +2,171 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  endorsements:
+    - author: Prof. Lord Richard Layard
+      body: 80,000 Hours' way of thinking about how you can contribute to creating the
+        most happiness and least misery in the world is a great way to approach all your
+        career and life choices.
+      created_at: "2012-12-17T16:00:57+00:00"
+      endorsement_page: true
+      header: true
+      id: 20
+      position: 'Economist and author of Happiness: Lessons from a New Science'
+      updated_at: "2012-12-17T16:21:35+00:00"
+      weight: 3
+    - author: Nick Cooney
+      body: The best people I know for helping you to have more impact with your career.
+        I've signed up, and I hope you'll join me here!
+      created_at: "2012-11-05T14:58:19+00:00"
+      endorsement_page: true
+      header: true
+      id: 19
+      position: Founder and Director of The Humane League, Author, Member of 80,000 Hours
+      updated_at: "2012-11-05T14:58:30+00:00"
+      weight: 2
+    - author: Ryan Rollins
+      body: With my new found beliefs in altruism, I think that the sky is the limit!
+        I truly believe I can do anything with a career!
+      created_at: "2012-11-05T14:51:12+00:00"
+      endorsement_page: true
+      header: true
+      id: 18
+      position: 80,000 Hours member
+      updated_at: "2012-11-05T14:51:12+00:00"
+      weight: 1
+    - author: Joshua Pearce
+      body: "We all have the responsibility to make the best use of our time on\r\nearth
+        and 80,000 Hours helps you carefully consider your career trajectory to\r\nmeet
+        that responsibility."
+      created_at: "2012-11-05T14:31:12+00:00"
+      endorsement_page: true
+      header: true
+      id: 17
+      position: Professor, Michigan Technical University
+      updated_at: "2012-11-12T12:45:04+00:00"
+      weight: 1
+    - author: Toby Ord
+      body: '80,000 hours is a really interesting idea: helping people think clearly about
+        how best to use their lives to make the world a better place. I''m in.'
+      created_at: "2012-08-28T13:44:35+01:00"
+      endorsement_page: true
+      header: true
+      id: 15
+      position: Research Fellow in Philosophy, University of Oxford
+      updated_at: "2012-12-17T16:03:05+00:00"
+      weight: 2
+    - author: Rob Mather
+      body: What a great initiative!
+      created_at: "2012-05-04T03:28:16+01:00"
+      endorsement_page: true
+      header: true
+      id: 14
+      position: Director and Founder of Against Malaria Foundation
+      updated_at: "2012-11-12T12:46:02+00:00"
+      weight: 2
+    - author: Patrick Brinich-Langlois
+      body: While I haven't yet achieved my dreams, I believe that the advice provided
+        80,000 Hours will help me become a more effective altruist.
+      created_at: "2012-04-15T13:45:05+01:00"
+      endorsement_page: false
+      header: true
+      id: 13
+      position: 80,000 Hours member, Alaska
+      updated_at: "2012-08-28T11:32:14+01:00"
+      weight: 1
+    - author: Patrick Brinich-Langlois
+      body: After I left college I knew I wanted to make the world a better place but
+        I didn't know how best to do it. [The lecture that started it all](http://www.youtube.com/watch?v=lAnh2FApskM&feature=results_main&playnext=1&list=PLADC8E1234F2A2FB6)
+        helped me think more clearly about the factors involved in career choice. The
+        80,000 Hours careers adviser recommended that I study programming and computer
+        science, and that's what I've been doing. While I haven't yet achieved my dreams,
+        I believe that the advice provided 80,000 Hours will help me become a more effective
+        altruist.
+      created_at: "2012-04-15T13:44:34+01:00"
+      endorsement_page: true
+      header: false
+      id: 12
+      position: 80,000 Hours member, Yukon-Kuskokwim Health Corporation, Alaska
+      updated_at: "2013-02-11T09:09:44+00:00"
+      weight: 1
+    - author: Jacy Anthis
+      body: "80,000 Hours is a realistic landing for all the dreaming of saving the world
+        we had as a child.\r\n"
+      created_at: "2012-04-15T13:43:57+01:00"
+      endorsement_page: true
+      header: true
+      id: 11
+      position: 80,000 Hours member, Brown University
+      updated_at: "2012-04-15T16:03:40+01:00"
+      weight: 1
+    - author: Boris Yakubchik
+      body: "80,000 Hours shares a clear-headed approach to making the biggest positive
+        difference in the world\r\n"
+      created_at: "2012-04-15T13:43:30+01:00"
+      endorsement_page: true
+      header: true
+      id: 10
+      position: 80,000 Hours member, Bolder Giving, Maths Teacher
+      updated_at: "2012-04-15T13:43:30+01:00"
+      weight: 1
+    - author: Prof. Avner Offer
+      body: 'Economics assumes that individuals will take as much as they can. 80,000
+        Hours, and Giving What We Can, ask us to *give* as much as we can. The reason
+        is regard for others, but it may also be efficient, not in dollars but in well-being.
+        Selfishness has brought our societies to the brink of disaster. We are quite generous
+        to others through the tax system, which assures us that others will do their bit
+        as well. It is time to try unilateral generosity: not everyone will go all the
+        way, but some people have already done so (more than twenty a year donate kidneys
+        anonymously, to take one heroic example), and they send a credible signal that
+        generosity can light up our lives, and that it is a more attractive inspiration
+        than the extremes of self-regard.  '
+      created_at: "2011-11-22T10:46:50+00:00"
+      endorsement_page: true
+      header: false
+      id: 6
+      position: Emeritus Chichele Professor of Economic History, University of Oxford
+      updated_at: "2013-01-09T13:59:56+00:00"
+      weight: 2
+    - author: Prof. Tim Palmer
+      body: 'We all want fulfilment from our careers. However, it''s easy to be lazy when
+        choosing careers and simply use salary as the sole guiding metric of expected
+        career fulfilment.  This trap may be hard to escape from in later life - 80,000
+        Hours is a great new concept to help prevent people falling into the trap early
+        in their careers. '
+      created_at: "2012-03-04T17:47:55+00:00"
+      endorsement_page: true
+      header: true
+      id: 5
+      position: Royal Society Research Professor in Climate Physics. Oxford University
+      updated_at: "2012-12-17T16:21:59+00:00"
+      weight: 2
+    - author: Prof. Peter Singer
+      body: Few choices can be more important than what we will do with 80,000 hours of
+        our time.  I'm delighted that 80,000 Hours is encouraging us to consider the ethics
+        of career choice.
+      created_at: "2012-02-18T17:37:58+00:00"
+      endorsement_page: true
+      header: true
+      id: 4
+      position: Professor of Bioethics at Princeton University
+      updated_at: "2012-12-17T16:23:02+00:00"
+      weight: 3
+    - author: Eliezer Yudkowsky
+      body: This is the kind of thinking that all charity would start with on day one,
+        if the world were sane.
+      created_at: "2012-02-11T03:02:58+00:00"
+      endorsement_page: true
+      header: true
+      id: 2
+      position: Research Fellow, Singularity Institute for Artificial Intelligence
+      updated_at: "2012-04-15T13:42:11+01:00"
+      weight: 2
+    - author: Prof. Nick Bostrom
+      body: The idea could have been explained on Sesame Street, and it probably should.
+      created_at: "2012-02-11T03:02:37+00:00"
+      endorsement_page: true
+      header: true
+      id: 1
+      position: Director, Future of Humanity Institute, University of Oxford
+      updated_at: "2012-12-17T16:22:15+00:00"
+      weight: 2

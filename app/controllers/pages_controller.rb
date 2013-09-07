@@ -97,4 +97,10 @@ class PagesController < ApplicationController
                     "Which Careers Make The Most Difference?",
                     "Which Career Should You Take?"][@video_no]
   end
+
+  def endorsements
+    @endorsements = t 'endorsements'
+    @menu_current = 'Endorsements'
+    @menu_root = 'About Us'
+  end
 end

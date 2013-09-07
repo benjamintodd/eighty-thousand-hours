@@ -78,7 +78,6 @@ EightyThousandHours::Application.routes.draw do
   #temporary page for particular event
   resources :event_booking_requests, only: [:new,:create]
 
-  resources :endorsements, :only =>[:index]
   resources :videos, :only =>[:index]
 
   match '/members/all'  => 'etkh_profiles#index'
@@ -123,6 +122,7 @@ EightyThousandHours::Application.routes.draw do
   # converted to pure Markdown
   match 'events'             => 'info#events'
   match 'events/past-events' => 'info#past_events'
+  match 'endorsements' => 'pages#endorsements'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'
