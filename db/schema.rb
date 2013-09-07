@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825114828) do
+ActiveRecord::Schema.define(:version => 20130907160906) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -175,17 +175,6 @@ ActiveRecord::Schema.define(:version => 20130825114828) do
 
   add_index "educations", ["etkh_profile_id"], :name => "index_educations_on_etkh_profile_id"
   add_index "educations", ["member_info_id"], :name => "index_educations_on_member_info_id"
-
-  create_table "endorsements", :force => true do |t|
-    t.string   "author"
-    t.string   "position"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "header",           :default => false
-    t.boolean  "endorsement_page", :default => true
-    t.integer  "weight",           :default => 1
-  end
 
   create_table "etkh_profiles", :force => true do |t|
     t.datetime "created_at"
