@@ -1,18 +1,5 @@
 class InfoController < ApplicationController
   #TODO what is this?
-  
-  def events
-    @gcal_params = "orderby=starttime&futureevents=true"
-    @title = "Events"
-  end
-
-  def past_events
-    # we don't specify a 'start-min' as it defaults to Unix epoch
-    # we set start-max to tomorrow to make sure we catch everything
-    @gcal_params = 'orderby=starttime&start-max=' + Date.tomorrow.rfc3339 
-    @title = "Past events"
-    render :events
-  end
 
   def what_you_can_do
     @title = "What you can do"

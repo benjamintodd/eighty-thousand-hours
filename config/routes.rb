@@ -120,8 +120,6 @@ EightyThousandHours::Application.routes.draw do
 
   # pages which don't live in the database as they can't be
   # converted to pure Markdown
-  match 'events'             => 'info#events'
-  match 'events/past-events' => 'info#past_events'
   match 'endorsements' => 'pages#endorsements'
  
   # pages from old HIC site
