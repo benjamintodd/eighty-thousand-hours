@@ -43,12 +43,6 @@ class Ability
       can :manage, Page, :slug => "career-research"
     end
 
-    # a BlogAdmin can manage all blog posts
-    if user.has_role? :endorsement_admin
-      can :access, :admin
-      can :manage, Endorsement
-    end
-
     # a DonationAdmin manages donations and causes
     if user.has_role? :donation_admin
       can :access, :admin
