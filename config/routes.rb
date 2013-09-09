@@ -109,7 +109,6 @@ EightyThousandHours::Application.routes.draw do
   match 'ethical-career'                => 'info#banker_vs_aid_worker'
   match 'old-ethical-career'            => 'info#ethical_career'
   match 'what-you-can-do'               => 'info#what_you_can_do'
-  match 'what-you-can-do/my-donations'  => 'info#my_donations'
   match 'what-we-do'                    => 'info#what_we_do'
 
   # pages kept in views/pages

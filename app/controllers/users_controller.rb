@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @donations = @user.donations.confirmed
 
     @menu_root = "Our community"
     @menu_current = "Our members"

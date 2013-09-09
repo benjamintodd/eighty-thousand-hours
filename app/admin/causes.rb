@@ -4,9 +4,6 @@ ActiveAdmin.register Cause do
   index do
     column :name
     column :created_at
-    column :donations do |cause|
-      cause.donations.size
-    end
     default_actions
   end
 end

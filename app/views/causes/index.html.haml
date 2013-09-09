@@ -1,9 +1,5 @@
 .row
-  .span2
-    .box.sidebar
-      = render :partial => "/shared/cause_donation_member_sidebar"
-
-  .span10
+  .span12
     .box.left-border
       .page-header
         %h1 Causes
@@ -25,8 +21,6 @@
         research. For a few ideas, see #{link_to 'here', 'http://80000hours.org/blog/6-the-best-causes-updated'}
 
       %p
-        To make a donation visit the 
-        = link_to "donations page", donations_path
       %hr
       - if @causes
         %ul

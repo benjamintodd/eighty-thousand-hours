@@ -77,9 +77,6 @@ class User < ActiveRecord::Base
   # a User can have a TeamRole (e.g. Events, Communications)
   belongs_to :team_role
 
-  # a User can create lots of donations
-  has_many :donations
-
   scope :alphabetical, order("name ASC")
   scope :newest, order("created_at DESC")
   
@@ -117,7 +114,7 @@ class User < ActiveRecord::Base
   end
 
   def total_confirmed_donations
-    donations.confirmed.sum(:amount)
+    0
   end
 
   def self.to_csv(options = {})

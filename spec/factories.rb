@@ -11,12 +11,6 @@ FactoryGirl.define do
     description "Roaming the high seas for great good."
   end
 
-  factory :donation do
-    amount "9.99"
-    cause
-    user
-  end
-
   factory :etkh_application do
     pledge true
   end
@@ -41,7 +35,7 @@ FactoryGirl.define do
     id 1
   end
 
-  %w[admin member_admin donation_admin web_admin blog_admin].each do |role|
+  %w[admin member_admin web_admin blog_admin].each do |role|
     factory role, :class => Role do
       name role.to_s.camelize
     end
@@ -53,15 +47,7 @@ FactoryGirl.define do
     password 'please'
     password_confirmation 'please'
     after_build { |user| user.confirm! }
-    
-    factory :donation_manager do
-      roles {|roles| [roles.association(:donation_admin)] }
-    end
+
   end
 
-  factory :comment do
-    user
-    post
-    body "comment body"
-  end
 end

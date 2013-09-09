@@ -43,13 +43,6 @@ class Ability
       can :manage, Page, :slug => "career-research"
     end
 
-    # a DonationAdmin manages donations and causes
-    if user.has_role? :donation_admin
-      can :access, :admin
-      can :manage, Donation
-      can :manage, Cause
-    end
-
     # a WebAdmin can edit and create site content pages
     if user.has_role? :web_admin
       can :access, :admin

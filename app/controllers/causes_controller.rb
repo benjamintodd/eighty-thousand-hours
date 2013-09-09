@@ -18,8 +18,7 @@ class CausesController < ApplicationController
     @cause = Cause.new(params[:cause])
 
     if @cause.save
-      flash[:"alert-success"] = "Successfully added #{@cause.name}. Go ahead and make your donation!"
-      redirect_to new_donation_path 
+      flash[:"alert-success"] = "Successfully added #{@cause.name}."
     else
       render :new
     end

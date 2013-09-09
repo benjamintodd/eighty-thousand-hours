@@ -29,13 +29,6 @@ $(document).ready( function() {
   // Truncate lists
   var fadeInTime = 800;
 
-  // truncate causes
-  $("#causes-list").children("li:gt(7)").hide();
-  $("#see-more-causes").click( function(){
-    $("#causes-list").children("li:gt(7)").fadeIn(fadeInTime);
-    $("#see-more-causes").hide();
-  });
-
   // truncate activities
   $("#activities-list").children("li:gt(7)").hide();
   $("#see-more-activities").click( function(){
@@ -55,13 +48,6 @@ $(document).ready( function() {
   $("#see-more-educations").click( function() {
     $("#educations").children(".education:gt(2)").fadeIn(fadeInTime);
     $("#see-more-educations").hide();
-  });
-
-  // truncate donations
-  $(".donations").children("ul").children("li:gt(7)").hide();
-  $("#see-more-donations").click( function() {
-    $(".donations").children("ul").children("li:gt(7)").fadeIn(fadeInTime);
-    $("#see-more-donations").hide();
   });
 
 

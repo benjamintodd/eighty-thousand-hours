@@ -9,10 +9,6 @@ class InfoController < ApplicationController
     @title = "Ethical career?"
   end
 
-  def my_donations
-    @title = "My donations"
-  end
-
   def my_career
     @title = "My career"
   end

@@ -73,20 +73,6 @@
             :markdown
               Check out our volunteering opportunities in <a href="/volunteer#communications" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#communications']);">communications</a>, <a href="/volunteer#research" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#research']);">research</a>, <a href="/volunteer#website" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer#website']);">web design and development</a>, and <a href="/volunteer" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Volunteer', '/volunteer']);">many other roles</a>
               
-        %h1 Track your impact
-        .row.user-activity-block
-          .span3
-            %h2 Track donations
-            =image_tag('/assets/dashboard/track_donations.png', :class => 'dashboard_icon')
-          .span4.next-to-h2
-            :markdown
-              Track your donations <a href="/donations" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Donations tracking', '/donations']);">here</a> so that we know that our members are having impact and so we can get some friendly competition going between members.
-              ###Latest 80,000 Hours donations:
-              <br />
-            - Donation.confirmed.slice(0, 4).each do |donation|
-              %p
-                = render donation
-
     .span1
       %p &nbsp;
     .span4.dashboard.blog.box.sidebar.blog-sidebar

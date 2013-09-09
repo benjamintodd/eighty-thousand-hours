@@ -1,3 +1,5 @@
+//TODO WHAT IS THIS?
+
 $(document).ready( function() {
   if($('#donation-calculator').length) {
     var chart1; // globally available

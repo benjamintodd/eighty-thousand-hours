@@ -1,3 +1,5 @@
+#TODO Is this now defunct?
+
 class ChatRequestMailer < ActionMailer::Base
   default :from => "admin@80000hours.org"
  

@@ -44,9 +44,8 @@ class EtkhProfilesController < ApplicationController
   end
 
   def show
-    @user = User.includes(:etkh_profile, :donations, :blog_posts).find(params[:id])
+    @user = User.includes(:etkh_profile, :blog_posts).find(params[:id])
     @title = @user.name
-    @donations = @user.donations.confirmed
     @profile = @user.etkh_profile
 
     if @user && !@profile
