@@ -65,7 +65,6 @@ class Ability
     if user.confirmed?
       can :update, User, :id => user.id
       can :create, EtkhProfile
-      can :manage, Comment, :user_id => user.id
       can :manage, BlogPost, :user_id => user.id
     end
     
@@ -81,6 +80,5 @@ class Ability
     # anyone can read posts or view pages
     can :read, BlogPost, :published => true
     can :read, Page
-    can :create, Comment
   end
 end

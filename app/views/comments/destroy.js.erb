@@ -1,8 +1,0 @@
-<%- if @comment.destroyed? %>
-	$('#comment-<%= @comment.id %>').fadeOut('fast');
-<%- else %>
-	//reload partial of deleted comment
-	var render_partial_html = "<%= escape_javascript(render :partial => 'comments/comment', :collection => @comment.commentable.comments.order('created_at ASC')) %>";
-	var comment_id = "<%= j @comment_id.to_s %>"
-	$('#comment-' + comment_id).parent().html(render_partial_html);
-<%- end %>

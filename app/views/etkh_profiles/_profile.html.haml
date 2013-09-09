@@ -20,17 +20,11 @@
                     %p Position
                     %p Organisation
                     %p Industry
-                    %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}Karma score
-                    - if current_user && current_user.eighty_thousand_hours_member? && profile.display_email
-                      %p Email
                   .entries
                     %p= truncate(profile.current_position, length: 40)
                     %p= truncate(profile.organisation, length: 40)
                     %p= truncate(profile.career_sector, length: 40)
-                    %p.karma{ title: "Karma scores show your contribution to the online community through blog posts, forum posts and comments"}
-                      = user.get_karma_score
-                    - if current_user && current_user.eighty_thousand_hours_member? && profile.display_email
-                      %p= truncate(user.email, length: 40)
+                    %p= truncate(user.email, length: 40)
               .buttons
                 #contact
                   = link_to "Contact", {controller: 'users', action: 'initalise_contact_user', user_id: user.id}, :remote => true, class: "btn btn-new", id: "contact-btn"
@@ -171,17 +165,6 @@
                 - user.blog_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
                 = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}, class: "user-activity-link"
-            
-            - if activity_count < 3
-              - if user.comments.any?
-                - activity_count += 1
-                .comments
-                  %h3 Comments made on posts
-                  - user.comments.order("created_at DESC").limit(3).each do |comment|
-                    = link_to comment.get_post.title, comment.get_post, class: "activity-link"
-                  = link_to "See all comments", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}, class: "user-activity-link"
-            
-        .section#other-members{ style: "display: none;" }
           %h3.title
             Other members
           %hr
@@ -191,5 +174,3 @@
               %div{ id: "batch-#{i+1}", style: "display: none" }
                 - batch.each do |member|
                   = render partial: 'profile_condensed_2', locals: { profile: member.etkh_profile }
-        
-        #profile-popup

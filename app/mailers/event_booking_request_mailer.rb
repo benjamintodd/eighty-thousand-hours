@@ -1,4 +1,5 @@
 class EventBookingRequestMailer < ActionMailer::Base
+  #TODO Why do we have this?  What does it do?
 	default :from => "admin@80000hours.org"
 	
 	def event_booking_request_email(name,email,current_role,desired_information,amf_donation,mailing_list)

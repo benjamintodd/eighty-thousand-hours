@@ -16,6 +16,4 @@
       %span.date
         on
         = format_date( post.created_at )
-    %h4
-      %span.comments-link= link_to pluralize(post.comments.size, 'comment'), blog_post_path(post) + "#comments"
   .clearfix

@@ -54,9 +54,6 @@ class BlogPost < ActiveRecord::Base
     (authors + users).sort
   end
 
-  # comments on posts
-  has_many :comments, :as => :commentable, :dependent => :destroy
-
   # a User wrote this post
   belongs_to :user
 

@@ -1,7 +1,0 @@
-var elem = $('#comments').children('#new-comment').find('.errors');
-var html = "<h1>Sorry! Something went wrong.</h1>";
-<%- if @comment.errors.any? %>
-  html += "<%= escape_javascript render 'errors' %>";  
-<%- end %>
-elem.html(html);
-elem.show();

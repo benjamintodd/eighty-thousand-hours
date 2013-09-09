@@ -12,19 +12,6 @@
 
       %input{ name: 'display_email', type: 'checkbox', checked: current_user.etkh_profile.display_email, style: 'margin-left: 100px;'} &nbsp; Display email address on profile to other members
 
-      .email-notifications
-        %h2 Email notifications
-        %hr
-
-        %input{ name: 'new_notifications_on_forum_posts', type: 'checkbox', checked: current_user.notifications_on_forum_posts ? true : nil } &nbsp; Receive notifications for comments on forum posts I create
-
-        %br
-        %br
-
-        %input{ name: 'new_notifications_on_comments', type: 'checkbox', checked: current_user.notifications_on_comments ? true : nil } &nbsp; Receive notifications for comments on posts I comment on
-
-      %br
-
       .authentications
         %h2 Authentications
         %hr

@@ -8,9 +8,7 @@
  *= require active_admin
  *= require authentications
  *= require blog
- *= require forum
  *= require eightythousand 
- *= require donations
  *= require etk_applications
  *= require profile_general
  *= require profile_view
@@ -20,11 +18,8 @@
  *= require footer
  *= require header
  *= require header
- *= require surveys
- *= require videos
  *= require jquery-ui-1.8.17.custom
  *= require datepicker
- *= require comments
  *= require dashboard
  *= require_tree ./shared
  *= require modals
