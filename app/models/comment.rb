@@ -1,11 +1,11 @@
-# a comment can either belong to a blog post, a discussion post or 
+# a comment can either belong to a blog post or
 # another comment. These are each of type commentable.
 
 class Comment < ActiveRecord::Base
   validates_presence_of :body,    message: "can't be blank"
 
-  # should check we have either blog_post_id *OR* discussion_post_id
-  #validates_presence_of :post_id
+  # should check we have either blog_post_id 
+  # #validates_presence_of :post_id
 
   attr_accessor :email_confirmation
 
@@ -41,7 +41,7 @@ class Comment < ActiveRecord::Base
 
   ## methods related to nested comments
 
-  # finds the blog or discussion post under which the comment has been posted
+  # finds the blog post under which the comment has been posted
   def get_post
     if self.commentable_type == "BlogPost" || self.commentable_type == "DiscussionPost"
       self.commentable

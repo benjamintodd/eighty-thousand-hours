@@ -12,8 +12,6 @@ class CommentMailer < ActionMailer::Base
         #get title and url of post the comment is on
         if post.instance_of?(BlogPost)
         	@comment_post_url = blog_post_url(post)
-        elsif post.instance_of?(DiscussionPost)
-        	@comment_post_url = discussion_post_url(post)
         end
 
         @edit_account_path = '80000hours.org/accounts/edit'

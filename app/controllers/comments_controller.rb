@@ -2,14 +2,14 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    # parent could be a blog post, discussion post or comment
+    # parent could be a blog post or comment
     parent = get_parent
 
     @comment = parent.comments.build(params[:comment])
     @comment.user = current_user if current_user
     
     if @comment.save
-      # get the blog or discussion post the comment has been posted on
+      # get the blog post the comment has been posted on
       post = @comment.get_post
 
       # mailer is currently not fully working
@@ -17,9 +17,6 @@ class CommentsController < ApplicationController
         # mail creator of post
         if post.instance_of?(BlogPost) && @comment.user != post.user
           BlogPostMailer.new_comment(@comment).deliver!
-        elsif post.instance_of?(DiscussionPost) && @comment.user != post.user
-          # check user notification settings
-          DiscussionPostMailer.new_comment(@comment).deliver! if post.user.notifications_on_forum_posts
         end
 
         #email anyone who already made a comment
@@ -39,7 +36,7 @@ class CommentsController < ApplicationController
 
           # loop through parents and add their id to array
           # stop when the next parent is not a comment
-          while parent_temp.commentable_type != "BlogPost" && parent_temp.commentable_type != "DiscussionPost"
+          while parent_temp.commentable_type != "BlogPost"
             parent_temp = Comment.find_by_id(parent_temp.commentable_id)
             @comment_hierarchy_ids << parent_temp.id
           end
@@ -117,8 +114,6 @@ class CommentsController < ApplicationController
   def get_parent
     if params[:comment][:commentable_type] == "BlogPost"
       return BlogPost.find_by_id(params[:comment][:commentable_id])
-    elsif params[:comment][:commentable_type] == "DiscussionPost"
-      return DiscussionPost.find_by_id(params[:comment][:commentable_id])
     elsif params[:comment][:commentable_type] == "Comment"
       return Comment.find_by_id(params[:comment][:commentable_id])
     end

@@ -172,14 +172,6 @@
                   = link_to post.title, post, class: "activity-link"
                 = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}, class: "user-activity-link"
             
-            - if user.discussion_posts.any?
-              - activity_count += 1
-              .discussion-posts
-                %h3 Forum posts created
-                - user.discussion_posts.published.limit(3).each do |post|
-                  = link_to post.title, post, class: "activity-link"
-                = link_to "See all forum posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "ForumPosts"}, class: "user-activity-link"
-            
             - if activity_count < 3
               - if user.comments.any?
                 - activity_count += 1

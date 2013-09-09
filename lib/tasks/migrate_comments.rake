@@ -6,12 +6,7 @@ task :migrate_comments => :environment do
 				comment.commentable_id = comment.blog_post_id
 				comment.commentable_type = "BlogPost"
 				puts "Comment #{comment.id} successfully migrated"
-			elsif !comment.discussion_post_id.nil?
-				comment.commentable_id = comment.discussion_post_id
-				comment.commentable_type = "DiscussionPost"
-				puts "Comment #{comment.id} successfully migrated"
 			end
-
 			comment.save
 		rescue
 			puts "Error migrating comment: #{comment.id}"
