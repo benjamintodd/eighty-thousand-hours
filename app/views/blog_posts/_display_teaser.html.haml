@@ -1,6 +1,5 @@
 .entry
   .heading
-    = render :partial => 'shared/voting', :locals => { :post => post, :post_type => "BlogPost" }
     %h2
       %a{:href => blog_post_path(post)}
         = post.title

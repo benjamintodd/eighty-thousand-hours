@@ -6,38 +6,3 @@
     #{@user.name} is an 80,000 Hours member. #{link_to 'View their profile here', (etkh_profile_path @user)}.
 
   %hr
-
-  - if @user.blog_posts.any?
-    .page-header
-      %h2 Blog posts
-    
-    - sorted_posts = @user.blog_posts.by_votes
-    - sorted_posts.each do |post|
-      - if !post.draft || post.user == current_user
-        .blog
-          = render :partial => 'blog_posts/display_heading',
-                   :locals => { :post => post }
-    %hr
-
-  - if @user.discussion_posts.any?
-    .page-header
-      %h2 Discussion posts
-
-    - @user.discussion_posts.each do |post|
-      - if !post.draft || post.user == current_user
-        .blog
-          = render :partial => 'discussion_posts/display_heading',
-                   :locals => { :post => post }
-    %hr
-
-  - if @user.comments.any?
-    .page-header
-      %h2 Comments
-    
-    .blog
-      #comments
-        #body
-          .display-comments
-            - @user.comments.each do |comment|
-              %h4 Posted a comment in #{link_to comment.get_post.title, comment.get_post}:
-              = render comment

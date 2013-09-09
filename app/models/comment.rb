@@ -15,7 +15,6 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
   has_many :comments, :as => :commentable
-  has_many :votes, :as => :post, :dependent => :destroy
 
   scope :blog, where(:blog_post_id != nil)
 
@@ -39,11 +38,6 @@ class Comment < ActiveRecord::Base
       nil
     end
   end
-
-  def net_votes
-    self.votes.upvotes.size - self.votes.downvotes.size
-  end
-
 
   ## methods related to nested comments
 

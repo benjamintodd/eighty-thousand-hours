@@ -24,11 +24,7 @@ class BlogPostsController < ApplicationController
       @posts = BlogPost.by_popularity
       @condensed = true
       @heading = "Most popular posts"
-    when 'votes'
-      @posts = BlogPost.by_votes
-      @condensed = true
-      @heading = "Highest voted posts"
-    when 'date'
+     when 'date'
       @posts = BlogPost.published
       @condensed = true
       @heading = "All posts by date"
@@ -73,18 +69,6 @@ class BlogPostsController < ApplicationController
     @condensed = true
 
     render 'index'
-  end
-
-  def vote
-    post = BlogPost.find( params[:id] )
-    user = current_user
-    
-    if !user
-      flash[:"alert-warn"] = "You need to sign in or sign up to vote!"
-    else
-      post.vote!( user, (params[:up] == 'true') ? true : false )
-    end
-    render 'index' 
   end
 
   def tag
@@ -150,8 +134,4 @@ class BlogPostsController < ApplicationController
     #expire_fragment("bpost-#{@post.id}")
   end
 
-  private
-  def can_vote_on_post? (user, post )
-    !user.nil?
-  end
 end

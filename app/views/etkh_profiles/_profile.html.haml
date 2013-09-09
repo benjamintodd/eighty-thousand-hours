@@ -189,14 +189,6 @@
                     = link_to comment.get_post.title, comment.get_post, class: "activity-link"
                   = link_to "See all comments", {controller: "users", action: "user_activity", id: user.id, activity_type: "Comments"}, class: "user-activity-link"
             
-            - if activity_count < 3
-              - if user.votes.upvotes.any?
-                .upvotes
-                  %h3 Blog posts liked
-                  - user.votes.upvotes.belongs_to_blog_post.recent.each do |vote|
-                    -#%p Liked blog post
-                    = link_to vote.post.title, blog_post_path(vote.post), class: "activity-link"
-        
         .section#other-members{ style: "display: none;" }
           %h3.title
             Other members

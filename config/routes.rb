@@ -43,7 +43,6 @@ EightyThousandHours::Application.routes.draw do
       get 'drafts'
       get :tag
       get :author
-      get :vote
       get :sorted
     end
   end
@@ -62,8 +61,6 @@ EightyThousandHours::Application.routes.draw do
 
   resources :causes, :only => [:new,:create,:show,:index], :path => 'donations/causes'
   resources :donations, :only => [:new,:create,:update,:show,:index,:edit]
-
-  resources :votes, :only => [:new,:create,:delete]
 
   resources :supporters, :only => [:new, :create], :path => 'show-your-support'
   match 'show-your-support' => 'supporters#new'

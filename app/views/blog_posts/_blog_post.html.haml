@@ -10,7 +10,6 @@
     -# NOTE cache key does not contain string 'blog' because it would become confused with blog pages
     - cache "bpost-#{blog_post.id}" do
       .heading
-        = render :partial => 'shared/voting', :locals => { :post => blog_post, :post_type => "BlogPost" }
         %h1
           = blog_post.title
           - if blog_post.draft

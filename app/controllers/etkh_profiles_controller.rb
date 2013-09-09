@@ -44,7 +44,8 @@ class EtkhProfilesController < ApplicationController
   end
 
   def show
-    @user = User.includes(:etkh_profile, :donations, :blog_posts, :discussion_posts, {:comments => :votes}, :votes).find(params[:id])
+    #@user = User.includes(:etkh_profile, :donations, :blog_posts, :discussion_posts, {:comments => :votes}, :votes).find(params[:id])
+    @user = User.includes(:etkh_profile, :donations, :blog_posts, :discussion_posts).find(params[:id])
     @title = @user.name
     @donations = @user.donations.confirmed
     @profile = @user.etkh_profile
