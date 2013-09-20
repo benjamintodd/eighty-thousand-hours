@@ -157,7 +157,6 @@ a {
 	-o-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
-	text-align: center;
 	padding: 10px;	
 }
 
@@ -180,19 +179,6 @@ a {
 	-o-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
-}
-
-.box:hover {
-	background: #40bcd1;
-	color: #fff;
-}
-
-.box:hover i {
-	color: #fff;
-}
-
-.box:hover h3 {
-	color: #fff;
 }
 
 .contact {
@@ -621,18 +607,8 @@ html[xmlns] .slides {display: block;}
 	padding: 20px 10px 10px 10px;
 }
 
-.icons-box:hover {
-	background: #40bcd1;
-	color: #fff;
-}
-
 .icons-box h3 {
 	margin: 20px auto 10px auto;
-}
-
-.icons-box:hover h3 {
-	color: #fff;
-	text-shadow: none;
 }
 
 .icons-box p {

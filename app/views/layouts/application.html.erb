@@ -1,192 +1,183 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#">
-  <head>
-    <%= page_title %>
+<head>
+<%= page_title %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" href="/favicon.ico" type="image/ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.ico" type="image/ico" />
 
-    <%= render :partial => "/shared/opengraph" %>
+<%= render :partial => "/shared/opengraph" %>
 
-    <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+<%= csrf_meta_tag %>
+<%= stylesheet_link_tag "application" %>
 
-    <%= javascript_include_tag "application" %>
-    <%= yield :javascript_includes %>
+<%= javascript_include_tag "application" %>
+<%= yield :javascript_includes %>
 
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <%= javascript_include_tag "html5" %>
     <![endif]-->
 
-    <%# display Atom feed link %>
-    <%= auto_discovery_link_tag(:atom, "http://80000hours.org/blog/feed.atom") %>
+<%# display Atom feed link %>
+<%= auto_discovery_link_tag(:atom, "http://80000hours.org/blog/feed.atom") %>
 
-    <%= render :partial => "/shared/google_analytics" %>
-    <%= render :partial => "/shared/uservoice.html" %>
-    <%= render :partial => "/shared/google_fonts.html" %>
-  </head>
+<%= render :partial => "/shared/google_analytics" %>
+<%= render :partial => "/shared/uservoice.html" %>
+<%= render :partial => "/shared/google_fonts.html" %>
+</head>
 
-  <body>
-    <header>
-      <%# static bootstrap nav bar %>
-      <% #render :partial => "/shared/user_nav"%>
-      <% #draw_menu( Page.top_level_menu, @page ) %>
+<body>
 
-      <div class="container">
-        <div class="row">
-        <div class="logo span3">
-          <%= link_to image_tag('/assets/header/80k-logo-small.png'), '/', id: 'header-logo' %>
-        </div>
-				<!--start: Navigation -->
-				<div class="span9">
-					
-					<div class="navbar navbar-inverse">
-			    		<div class="navbar-inner">
-			          		<div class="nav-collapse collapse">
-			            		<ul class="nav">
-                        <li><a href="coaching">Coaching</a></li>
-                        <li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Research<b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="social-icons.html">Social Icons</a></li>
-                                <li><a href="icons.html">Standard Icons</a></li>
-                                <li><a href="icons_set2.html">Font Awesome Icons</a></li>
-                                <li><a href="typography.html">Typography</a></li>
-                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                                <li><a href="list-styles.html">List Styles</a></li>
-			                			</ul>
-			              			</li>
-                      <li class="dropdown" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supporters<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="faq">FAQ</a></li>
-                          <li><a href="portfolio4.html">Mission and History</a></li>
-                          <li><a href="portfolio4.html">Endorsements</a></li>
-                          <li><a href="portfolio4.html">Meet the Team</a></li>
-                          <li><a href="portfolio4.html">Contact Us</a></li>
-                          <li><a href="portfolio4.html">Media and History</a></li>
-                          <li><a href="portfolio4.html">Recruitement and History</a></li>
-                        </ul>
-                      </li>			
-                      <li class="dropdown" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="faq">FAQ</a></li>
-                          <li><a href="portfolio4.html">Mission and History</a></li>
-                          <li><a href="portfolio4.html">Endorsements</a></li>
-                          <li><a href="portfolio4.html">Meet the Team</a></li>
-                          <li><a href="portfolio4.html">Contact Us</a></li>
-                          <li><a href="portfolio4.html">Media and History</a></li>
-                          <li><a href="portfolio4.html">Recruitement and History</a></li>
-                        </ul>
-                      </li>									
-                      <li ><a href="blog">Blog</a></li>
-                      <li ><a href="donate">Donate</a></li>
-			            		</ul>
-			          		</div>
-			        	</div>
-			      	</div>
-            </div>
-				</div>	
+<header class="navbar navbar-normal" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <div class="logo">
+        <%= link_to image_tag('/assets/header/80k-logo-small.png'), '/', id: 'header-logo' %>
       </div>
-    </header>
-
-    <div class="container">
-      <div class="modal flash-modal" id="flash-modal">
-        <div class="modal-body alert" id="flash-message"></div>
-        <div class="modal-footer">
-          <a class="btn" data-dismiss="modal">Ok</a>
-        </div>
-      </div>
-      <script type="text/javascript">
-        Flash.transferFromCookies();
-        Flash.writeDataTo('error', $('#flash-message'));
-        Flash.writeDataTo('notice', $('#flash-message'));
-        if ($("#flash-message").text().length > 0)
-        {
-          $(".flash-modal").modal('show');
-        }
-        else
-        {
-          $(".flash-modal").hide();
-        }
-      </script>
-
-
-      <section id="content">
-        <div class="row">
-          <div class="span12">
-            <%= yield %>
-          </div>
-        </div>
-      </section>
     </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav nav-pills pull-right">
+        <li class="active"><a href="coaching">Coaching</a></li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Research<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="social-icons.html">Social Icons</a></li>
+          <li><a href="icons.html">Standard Icons</a></li>
+          <li><a href="icons_set2.html">Font Awesome Icons</a></li>
+          <li><a href="typography.html">Typography</a></li>
+          <li><a href="shortcodes.html">Shortcodes</a></li>
+          <li><a href="list-styles.html">List Styles</a></li>
+        </ul>
+        </li>
+        <li class="dropdown" class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supporters<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="faq">FAQ</a></li>
+          <li><a href="portfolio4.html">Mission and History</a></li>
+          <li><a href="portfolio4.html">Endorsements</a></li>
+          <li><a href="portfolio4.html">Meet the Team</a></li>
+          <li><a href="portfolio4.html">Contact Us</a></li>
+          <li><a href="portfolio4.html">Media and History</a></li>
+          <li><a href="portfolio4.html">Recruitement and History</a></li>
+        </ul>
+        </li> 
+        <li class="dropdown" class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="faq">FAQ</a></li>
+          <li><a href="portfolio4.html">Mission and History</a></li>
+          <li><a href="portfolio4.html">Endorsements</a></li>
+          <li><a href="portfolio4.html">Meet the Team</a></li>
+          <li><a href="portfolio4.html">Contact Us</a></li>
+          <li><a href="portfolio4.html">Media and History</a></li>
+          <li><a href="portfolio4.html">Recruitement and History</a></li>
+        </ul>
+        </li> 
+        <li ><a href="blog">Blog</a></li>
+        <li ><a href="donate">Donate</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
 
-    <footer>
-      <div class="footer-noise">
-      <div class="container ">
-        <div class="row">
-          <div class="span8 social">
-            <%= render :partial => "/shared/social_media" %>
-          </div>
-          <div class="span4 social">
-            Contact: <a href="mailto:info@80000hours.org">info@80000hours.org</a>
-          </div>
+
+
+<div class="container">
+  <div class="modal flash-modal" id="flash-modal">
+    <div class="modal-body alert" id="flash-message"></div>
+    <div class="modal-footer">
+      <a class="btn" data-dismiss="modal">Ok</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+Flash.transferFromCookies();
+Flash.writeDataTo('error', $('#flash-message'));
+Flash.writeDataTo('notice', $('#flash-message'));
+if ($("#flash-message").text().length > 0)
+  {
+    $(".flash-modal").modal('show');
+  }
+  else
+    {
+      $(".flash-modal").hide();
+    }
+  </script>
+
+
+  <section id="content">
+    <div class="row">
+      <div class="span12">
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-noise">
+    <div class="container ">
+      <div class="row">
+        <div class="span8 social">
+          <%= render :partial => "/shared/social_media" %>
         </div>
-        <div class="row">
-          <div class="span12 menu">
-            <%= draw_footer_menu %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span12 disclaimer">
-            <p>
-              We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. <strong>We can't take responsibility for the outcomes of your choices.</strong> Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span12 charity">
-            <p>
-              80,000 Hours is part of the Centre for Effective Altruism, a registered charity in England and Wales, Registered Charity Number 1149828
-            </p>
-            <p>
-              Centre for Effective Altruism, Oxford Uehiro Centre for Practical Ethics, Littlegate House, St Ebbes Street, Oxford OX1 1PT, UK
-            </p>
-          </div>
+        <div class="span4 social">
+          Contact: <a href="mailto:info@80000hours.org">info@80000hours.org</a>
         </div>
       </div>
+      <div class="row">
+        <div class="span12 menu">
+          <%= draw_footer_menu %>
+        </div>
       </div>
-    </footer>
-    
-    <!-- Quantcast Tag -->
-    <script type="text/javascript">
-    var _qevents = _qevents || [];
+      <div class="row">
+        <div class="span12 disclaimer">
+          <p>
+          We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. <strong>We can't take responsibility for the outcomes of your choices.</strong> Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span12 charity">
+          <p>
+          80,000 Hours is part of the Centre for Effective Altruism, a registered charity in England and Wales, Registered Charity Number 1149828
+          </p>
+          <p>
+          Centre for Effective Altruism, Oxford Uehiro Centre for Practical Ethics, Littlegate House, St Ebbes Street, Oxford OX1 1PT, UK
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    (function() {
-    var elem = document.createElement('script');
-    elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-    elem.async = true;
-    elem.type = "text/javascript";
-    var scpt = document.getElementsByTagName('script')[0];
-    scpt.parentNode.insertBefore(elem, scpt);
-    })();
+<!-- Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
 
-    _qevents.push({
-    qacct:"p-1J6MBer_R0ywy"
-    });
-    </script>
+(function() {
+  var elem = document.createElement('script');
+  elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+  elem.async = true;
+  elem.type = "text/javascript";
+  var scpt = document.getElementsByTagName('script')[0];
+  scpt.parentNode.insertBefore(elem, scpt);
+})();
 
-    <noscript>
-    <div style="display:none;">
+_qevents.push({
+  qacct:"p-1J6MBer_R0ywy"
+});
+</script>
+
+<noscript>
+  <div style="display:none;">
     <img src="//pixel.quantserve.com/pixel/p-1J6MBer_R0ywy.gif" border="0" height="1" width="1" alt="Quantcast"/>
-    </div>
-    </noscript>
-    <!-- End Quantcast tag -->
-  </body>
+  </div>
+</noscript>
+<!-- End Quantcast tag -->
+</body>
 
-  <%# hidden image which will be displayed on facebook posts if no other image present %>
-  <%= image_tag '/assets/images/opengraph/logo.png', class: 'hidden-opengraph-image' %>
+<%# hidden image which will be displayed on facebook posts if no other image present %>
+<%= image_tag '/assets/images/opengraph/logo.png', class: 'hidden-opengraph-image' %>
 </html>
 

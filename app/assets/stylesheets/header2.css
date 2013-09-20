@@ -1,0 +1,40 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+header .logo img {
+  max-width: 180px; }
+header ul.nav {
+  margin-top: 25px; }
+  header ul.nav > li {
+    margin-left: 30px; }
+    header ul.nav > li > a {
+      padding: 5px 10px;
+      font-size: 16px;
+      color: #666; }
+      header ul.nav > li > a:hover {
+        background-color: #40bcd1;
+        color: white; }
+  header ul.nav .caret {
+    border-top-color: #666;
+    border-bottom-color: #666; }
+  header ul.nav .open > a:hover {
+    background-color: #40bcd1;
+    color: white; }
+
+header.navbar {
+  background: #eee;
+  padding: 20px 0 20px 0; }
