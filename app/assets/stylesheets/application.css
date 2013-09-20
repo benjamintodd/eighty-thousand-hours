@@ -5,6 +5,7 @@
  *= require_self
  *= require bootstrap
  *= require active_admin
+ *= require header
  *= require authentications
  *= require etk_applications
  *= require jquery-ui-1.8.17.custom
