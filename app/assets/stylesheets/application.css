@@ -3,25 +3,25 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require reset
  *= require bootstrap
  *= require active_admin
  *= require authentications
- *= require blog
- *= require eightythousand 
  *= require etk_applications
- *= require profile_general
- *= require profile_view
- *= require profile_edit
- *= require profile_condensed
- *= require fonts
- *= require footer
- *= require header
- *= require header
  *= require jquery-ui-1.8.17.custom
  *= require datepicker
  *= require dashboard
- *= require_tree ./shared
- *= require modals
+ *= require template
 */
 
+// require header
+// require fonts
+// require eightythousand
+// require reset
+// require profile_general
+// require profile_view
+//  require profile_edit
+// require profile_condensed
+// require blog
+// require footer
+// require_tree ./shared
+// require modals
