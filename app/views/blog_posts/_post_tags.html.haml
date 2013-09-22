@@ -1,5 +1,5 @@
 .tags
-  = div_title
+  Keywords:
   - if post.tag_counts_on(:tags).size > 0
-    - post.tag_counts_on(:tags).each do |tag|
-      =link_to( tag.name, { :action => :tag, :id => tag.name }) + ", ".html_safe
+    - tags = post.tag_counts_on(:tags).map{|tag| link_to( tag.name.titleize, { :action => :tag, :id => tag.name })}
+    = raw(tags.join(", "))
