@@ -9,9 +9,9 @@
  *= require jquery-ui-1.8.17.custom
  *= require datepicker
  *= require dashboard
- *= require template
  *= require bootstrap3
  *= require header2
+ *= require blog
 */
 
 // require header
@@ -26,3 +26,5 @@
 // require footer
 // require_tree ./shared
 // require modals
+
+// require template

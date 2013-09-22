@@ -1,22 +1,22 @@
 .blog
   .row
-    .span7
-      .box
-        - @posts.each do |post|
-          - if @condensed
-            = render :partial => 'display_heading',
-                     :locals => { :post => post }
-          - else
-            = render :partial => 'display_teaser',
-                     :locals => { :post => post }
-
-        - if (@sort == nil) && (will_paginate @posts)
-          .box.tight
-            .center
-              = page_navigation_links @posts
-    .span1
-      &nbsp;
-    .span4
+    .col-md-9
+      - @posts.each do |post|
+        .row
+          .col-md-3
+          .col-md-9
+            - if @condensed
+              = render :partial => 'display_heading',
+                       :locals => { :post => post }
+            - else
+              = render :partial => 'display_teaser',
+                       :locals => { :post => post }
+      .row
+        .col-lg-3
+        .col-lg-6
+          - if (@sort == nil) && (will_paginate @posts)
+            = page_navigation_links @posts
+    .col-lg-3
       .box.sidebar.blog-sidebar
         %p
           .fblike
