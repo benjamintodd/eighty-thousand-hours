@@ -21,47 +21,53 @@
     margin-top: 8px;
     font-weight: normal;
     font-size: 20px; }
-.blog .index .entry .heading {
-  margin-bottom: 20px; }
-  .blog .index .entry .heading h2 a {
-    color: #000;
-    font-size: 1.5em; }
-  .blog .index .entry .heading h4, .blog .index .entry .heading h4 a {
-    color: #999;
-    font-size: 1em; }
-.blog .index .entry .content {
-  color: #666; }
-.blog .entry {
+.blog .index .entry {
+  margin-top: 0em;
+  margin-bottom: 1.5em; }
+  .blog .index .entry .heading {
+    margin-bottom: 20px; }
+    .blog .index .entry .heading h2 {
+      font-size: 1.3em;
+      color: #333; }
+    .blog .index .entry .heading h2 a {
+      color: #333;
+      font-size: 1.5em; }
+    .blog .index .entry .heading h4, .blog .index .entry .heading h4 a {
+      color: #999;
+      font-size: 1em; }
+  .blog .index .entry .content {
+    color: #666; }
+  .blog .index .entry img {
+    max-width: 100%; }
+.blog .show .entry {
   margin-top: 1.5em; }
-  .blog .entry .heading {
+  .blog .show .entry .heading {
     margin-bottom: 30px; }
-    .blog .entry .heading .metadata {
+    .blog .show .entry .heading .header-img img {
+      width: 100%; }
+    .blog .show .entry .heading .category {
+      float: right;
+      background: #40bcd1;
+      color: white;
+      margin-right: 6px;
+      padding: 2px 11px 4px 8px;
+      border-radius: 0 0 5px 5px; }
+    .blog .show .entry .heading h1 {
+      font-size: 1.8em;
+      margin-top: 37px; }
+    .blog .show .entry .heading .metadata {
       color: #999; }
-      .blog .entry .heading .metadata a {
+      .blog .show .entry .heading .metadata a {
         color: #999; }
-  .blog .entry h1 {
-    font-size: 2em;
-    line-height: 1em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em; }
-  .blog .entry h2 {
-    font-size: 112.5%;
-    margin-top: 0;
-    margin-bottom: 0; }
-  .blog .entry h4 {
-    font-family: "MuseoSans-700", helvetica, arial, sans-serif; }
-  .blog .entry .content {
-    padding-top: 0em;
-    padding-bottom: 0em; }
-  .blog .entry .tags {
-    padding-top: 5px;
-    padding-bottom: 5px; }
-  .blog .entry blockquote p {
-    padding-top: 5px;
-    padding-bottom: 5px; }
-  .blog .entry pre code {
-    font-size: 0.8em; }
-  .blog .entry .image {
+  .blog .show .entry .content h1, .blog .show .entry .content h2, .blog .show .entry .content h3, .blog .show .entry .content h4 {
+    color: #555; }
+  .blog .show .entry .content h1 {
+    font-size: 1.8em; }
+  .blog .show .entry .content h2 {
+    font-size: 1.6em; }
+  .blog .show .entry .content h3 {
+    font-size: 1.3em; }
+  .blog .show .entry .image {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
@@ -76,10 +82,10 @@
     -o-border-radius: 3px 3px;
     border-radius: 3px 3px;
     border: 1px #cccccc solid; }
-    .blog .entry .image:hover {
+    .blog .show .entry .image:hover {
       -o-box-shadow: 0px 0px 8px #cccccc;
       -webkit-box-shadow: 0px 0px 8px #cccccc;
       -moz-box-shadow: 0px 0px 8px #cccccc;
       box-shadow: 0px 0px 8px #cccccc; }
-    .blog .entry .image .caption {
+    .blog .show .entry .image .caption {
       font-size: 0.9em; }

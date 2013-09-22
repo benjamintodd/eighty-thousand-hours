@@ -18,10 +18,16 @@
       }
     }
     .entry{
+      margin-top: 0em;
+      margin-bottom:1.5em;
       .heading{
         margin-bottom:20px;
+        h2{
+          font-size:1.3em;
+          color: #333;
+        }
         h2 a{
-          color: #000;
+          color: #333;
           font-size: 1.5em;
         }
         h4, h4 a{
@@ -32,84 +38,74 @@
       .content{
         color:#666;
       }
+      img{
+        max-width:100%;
+      }
     }
   }
 
-  .entry {
-    margin-top: 1.5em;
+  .show{
 
+    .entry {
+      margin-top: 1.5em;
 
-    .heading{
-      margin-bottom:30px;
-      .metadata{
-        color: #999;
-        a{
+      .heading{
+        .header-img img{
+          width:100%;
+        }
+        .category{
+          float:right;
+          background: #40bcd1;
+          color:white;
+          margin-right:6px;
+          padding:2px 11px 4px 8px;
+          border-radius: 0 0 5px 5px;
+        }
+        h1{
+          font-size: 1.8em;
+          margin-top: 37px;
+        }
+        margin-bottom:30px;
+        .metadata{
           color: #999;
+          a{
+            color: #999;
+          }
         }
       }
-    }
-
-
-
-    h1,h2,h3,h4,h5,h6 {
-    }
-
-
-    h1 {
-      font-size: 2em;
-      line-height: 1em;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-    }
-
-    h2 {
-      font-size: 112.5%;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    h4 {
-      font-family: $museo_sans_700;
-    }
-    .content {
-      padding-top: 0em;
-      padding-bottom: 0em;
-    }
-
-    .tags {
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-
-    blockquote {
-      p { 
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-
-    pre {
-      code {
-        font-size: 0.8em;
-      }
-    }
-
-    .image {
-      margin-top: 10px;
-      margin-bottom: 10px;
-
-      width: 100%;
-
-      border: 1px solid #ccc;
-      @include box_shadow(#ccc, 0px, 0px, 2px);
-      @include rounded_borders(#ccc, 1px, 3px);
-
-      &:hover {
-        @include box_shadow(#ccc, 0px, 0px, 8px);
+      .content{
+        h1,h2,h3,h4{
+          color: #555;
+        }
+        h1{
+          font-size:1.8em;
+        }
+        h2{
+          font-size: 1.6em;
+        }
+        h3{
+          font-size: 1.3em;
+        }
       }
 
-      .caption {
-        font-size: 0.9em;
+
+      .image {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        width: 100%;
+
+        border: 1px solid #ccc;
+        @include box_shadow(#ccc, 0px, 0px, 2px);
+        @include rounded_borders(#ccc, 1px, 3px);
+
+        &:hover {
+          @include box_shadow(#ccc, 0px, 0px, 8px);
+        }
+
+        .caption {
+          font-size: 0.9em;
+        }
       }
     }
   }

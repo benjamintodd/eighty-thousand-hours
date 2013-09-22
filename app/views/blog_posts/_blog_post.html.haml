@@ -8,28 +8,25 @@
           = link_to 'Delete post', blog_post_path, :confirm => "Are you sure you want to delete the post '#{blog_post.title}'?", :method => :delete, :class => 'btn btn-mini btn-danger'
 
     .heading
+      .header-img
+        = image_tag("blog/delete_this_soon_small.png")
+        .category
+          Case Study
       %h1
         = blog_post.title
         - if blog_post.draft
           %span.label.label-warning Draft post (not publicly visible)
       .metadata
         = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.created_at)}")
+        </br>
         = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
 
     .content
       = markdown blog_post.body
-    -#.attribution= markdown (blog_post.attribution.blank? ? (blog_post.user ? blog_post.user.name : blog_post.author ) : blog_post.attribution )
     %hr
     %p
       %em
         = blog_post.attribution
-    %p
-    %p
-      = link_to '<i class="icon-list"></i> Take me back to the blog'.html_safe, blog_posts_path
-    %p
-      = link_to '<i class="icon-home"></i> Take me to the homepage'.html_safe, '/'
-    %p
-      = render :partial => "subscribe"
     %p
       .fblike
         <fb:like href="#{blog_post_url(blog_post)}" send="false" width="450" show_faces="false"></fb:like>
