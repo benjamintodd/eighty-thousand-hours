@@ -1,0 +1,61 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+.blog .entry {
+  margin-top: 1.5em; }
+  .blog .entry .metadata {
+    color: #999; }
+    .blog .entry .metadata a {
+      color: #999; }
+  .blog .entry h1 {
+    font-size: 2em;
+    line-height: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em; }
+  .blog .entry h2 {
+    font-size: 112.5%;
+    margin-top: 0;
+    margin-bottom: 0; }
+  .blog .entry h4 {
+    font-family: "MuseoSans-700", helvetica, arial, sans-serif; }
+  .blog .entry .content {
+    padding-top: 0em;
+    padding-bottom: 0em; }
+  .blog .entry .tags {
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .blog .entry blockquote p {
+    padding-top: 5px;
+    padding-bottom: 5px; }
+  .blog .entry pre code {
+    font-size: 0.8em; }
+  .blog .entry .image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    -o-box-shadow: 0px 0px 2px #cccccc;
+    -webkit-box-shadow: 0px 0px 2px #cccccc;
+    -moz-box-shadow: 0px 0px 2px #cccccc;
+    box-shadow: 0px 0px 2px #cccccc;
+    -moz-border-radius: 3px 3px;
+    -webkit-border-radius: 3px 3px;
+    -khtml-border-radius: 3px 3px;
+    -o-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+    border: 1px #cccccc solid; }
+    .blog .entry .image:hover {
+      -o-box-shadow: 0px 0px 8px #cccccc;
+      -webkit-box-shadow: 0px 0px 8px #cccccc;
+      -moz-box-shadow: 0px 0px 8px #cccccc;
+      box-shadow: 0px 0px 8px #cccccc; }
+    .blog .entry .image .caption {
+      font-size: 0.9em; }

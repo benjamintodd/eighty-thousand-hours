@@ -1,0 +1,267 @@
+@import "shared/partials";
+
+.blog {
+  .voting {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 20px;
+    float: left;
+    text-align: center;
+
+    .arrow {
+      margin-left: auto;
+      margin-right: auto;
+
+      &:hover{
+        @include rounded_borders($magenta_3, 1px, 5px);
+      }
+    }
+
+    .votes {
+      font-size: 0.875em;
+    }
+
+    .notvoted {
+      background: #ffffff;
+      @include rounded_borders(#fff, 1px, 5px);
+    }
+    .voted { 
+      @include rounded_borders($magenta_3, 1px, 5px);
+    }
+  }
+
+  .heading {
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #efefef; */
+  }
+
+  .entry {
+    margin-top: 1.5em;
+
+    h1,h2,h3,h4,h5,h6 {
+      font-weight: normal;
+      font-family: $museo_slab_700;
+      /*margin-bottom: 5px;*/
+
+      a {
+        color: $text_color !important;
+
+        &:hover {
+          color: $magenta_2 !important;
+        }
+      }
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      .date {
+        color: #999;
+      }
+    }
+
+    h1 {
+      font-size: 150%;
+      line-height: 1em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+    
+    h2 {
+      font-size: 112.5%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    
+    h4 {
+      font-family: $museo_sans_700;
+    }
+    
+    .heading {
+      /* clearfix */
+      overflow:hidden;
+      width:100%;
+      float: left;
+      /* Display-inline to stop overlapping between title and attribution */
+      h3 {
+      display: inline;
+      }
+    }
+ 
+    .content {
+      padding-top: 0em;
+      padding-bottom: 0em;
+    }
+
+    .tags {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .comments {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .fblike {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .attribution {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      font-style: italic;
+
+      p {
+        padding:0px;
+        margin:0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    }
+
+    .comments-link {
+      a {
+        font-weight: 300;
+        color: #777 !important;
+      }
+    }
+  }
+
+  .rss {
+    img
+    {
+      padding:0px;
+      padding-top: 5px;
+      margin:0px;
+      padding-right: 5px;
+      margin-bottom: -3px;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .tag_size1 { font-size: 0.8em; }
+  .tag_size2 { font-size: 1.0em; }
+  .tag_size3 { font-size: 1.2em; }
+  .tag_size4 { font-size: 1.4em; }
+
+  blockquote {
+    p { 
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+
+  pre {
+    code {
+      font-size: 0.8em;
+    }
+  }
+
+  .image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    width: 100%;
+
+    border: 1px solid #ccc;
+    @include box_shadow(#ccc, 0px, 0px, 2px);
+    @include rounded_borders(#ccc, 1px, 3px);
+
+    &:hover {
+      @include box_shadow(#ccc, 0px, 0px, 8px);
+    }
+
+    .caption {
+      font-size: 0.9em;
+    }
+  }
+
+  .controls {
+    .sort {
+      float:right;
+      @include rounded_borders(#ccc, 1px, 5px);
+      font-size: 0.9em;
+      padding: 5px;
+    }
+    width: 100%;
+    float:left;
+    clear:both;
+    padding: 5px;
+
+    .user {
+      float:left;
+      padding: 5px;
+    }
+  }
+}
+
+.attached-images {
+  padding-top: 10px;
+  .attached-image-thumb {
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+
+    .image {
+    }
+    .copy-paste {
+      padding: 10px;
+      font-size: 0.8em;
+    }
+  }
+}
+
+/*#content {*/
+ .box {
+    /* padding-top: 20px; */
+    /* padding-bottom: 20px; */
+
+    // for spanning links
+    position:relative;
+
+    &.left-border {
+      border-left: 1px solid #efefef;
+      padding-left: 20px;
+    }
+    &.right-border {
+      border-right: 1px solid #efefef;
+      padding-right: 20px;
+    }
+
+    &.tight {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    }
+/*  }*/
+
+.blog {
+  .blog-sidebar {
+    margin-top: 1.5em;
+  }
+  .sidebar-item {
+    font-size: 87.5%;
+    margin-top: 1.7143em;
+    margin-bottom: 1.7143em;
+  }
+}
+
+.subscribe {
+  h3 {
+    margin-bottom: 1.333em;
+  }
+  .subscribe-option {
+    margin-top: 1em;
+    .social-btn-rss {
+      margin: 0;
+      margin-right:20px;
+    }
+    .subscribe-text {
+      padding-top: 5px;
+    }
+  }
+}
+
