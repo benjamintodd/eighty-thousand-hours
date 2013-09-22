@@ -1,15 +1,54 @@
 @import "shared/partials";
 
 .blog {
+
+  .index{
+    .header-bar{
+      height:39px;
+      border-radius:3px;
+      background: #40bcd1;
+      width:100%;
+      padding: 1px 0 0 2.5%;
+      margin: 10px 0 12px 10px;
+      h4{
+        color:white;
+        margin-top:8px;
+        font-weight:normal;
+        font-size:20px;
+      }
+    }
+    .entry{
+      .heading{
+        margin-bottom:20px;
+        h2 a{
+          color: #000;
+          font-size: 1.5em;
+        }
+        h4, h4 a{
+          color: #999;
+          font-size:1em;
+        }
+      }
+      .content{
+        color:#666;
+      }
+    }
+  }
+
   .entry {
     margin-top: 1.5em;
 
-    .metadata{
-      color: #999;
-      a{
+
+    .heading{
+      margin-bottom:30px;
+      .metadata{
         color: #999;
+        a{
+          color: #999;
+        }
       }
     }
+
 
 
     h1,h2,h3,h4,h5,h6 {

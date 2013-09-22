@@ -1,8 +1,14 @@
 .blog
-  .row
+  .row.index
+    .col-md-2
+    .col-md-10
+      .header-bar
+        %h4
+          Case Studies
+  .row.index
     .col-md-9
       - @posts.each do |post|
-        .row
+        .row.entry
           .col-md-3
           .col-md-9
             - if @condensed

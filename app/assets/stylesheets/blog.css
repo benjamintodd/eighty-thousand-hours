@@ -9,12 +9,36 @@
   src: url("243719_0_0.eot");
   src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
 
+.blog .index .header-bar {
+  height: 39px;
+  border-radius: 3px;
+  background: #40bcd1;
+  width: 100%;
+  padding: 1px 0 0 2.5%;
+  margin: 10px 0 12px 10px; }
+  .blog .index .header-bar h4 {
+    color: white;
+    margin-top: 8px;
+    font-weight: normal;
+    font-size: 20px; }
+.blog .index .entry .heading {
+  margin-bottom: 20px; }
+  .blog .index .entry .heading h2 a {
+    color: #000;
+    font-size: 1.5em; }
+  .blog .index .entry .heading h4, .blog .index .entry .heading h4 a {
+    color: #999;
+    font-size: 1em; }
+.blog .index .entry .content {
+  color: #666; }
 .blog .entry {
   margin-top: 1.5em; }
-  .blog .entry .metadata {
-    color: #999; }
-    .blog .entry .metadata a {
+  .blog .entry .heading {
+    margin-bottom: 30px; }
+    .blog .entry .heading .metadata {
       color: #999; }
+      .blog .entry .heading .metadata a {
+        color: #999; }
   .blog .entry h1 {
     font-size: 2em;
     line-height: 1em;

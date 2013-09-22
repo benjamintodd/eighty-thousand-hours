@@ -12,13 +12,8 @@
         = blog_post.title
         - if blog_post.draft
           %span.label.label-warning Draft post (not publicly visible)
-      %h4
-        %span.date
-          by
-          = link_to_blog_post_author( blog_post )
-        %span.date
-          on
-          = format_date( blog_post.created_at )
+      .metadata
+        = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.created_at)}")
 
     .content
       = markdown blog_post.body
