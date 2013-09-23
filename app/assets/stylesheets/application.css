@@ -10,10 +10,11 @@
  *= require datepicker
  *= require dashboard
  *= require bootstrap3
+ *= require layout
  *= require header2
  *= require blog
  *= require footer
- *= require layout
+ *= require home
 */
 
 // require header

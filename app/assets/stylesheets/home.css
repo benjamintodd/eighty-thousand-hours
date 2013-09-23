@@ -1,0 +1,20 @@
+.home .cta-section .cta {
+  font-size: 27px; }
+.home .people-say {
+  background: #ddd; }
+.home .core-concepts {
+  padding: 38px 0 56px 0; }
+  .home .core-concepts h1 {
+    margin-bottom: 58px; }
+.home .affiliations {
+  background: #eee;
+  padding: 65px 0 55px 0; }
+  .home .affiliations hr {
+    border-top: 2px solid #999; }
+  .home .affiliations .organizations img {
+    width: 130px; }
+  .home .affiliations .organizations hr.dashed {
+    border-top: 2px dashed #999; }
+  .home .affiliations .media img {
+    max-height: 36px;
+    margin: 0 11px; }
