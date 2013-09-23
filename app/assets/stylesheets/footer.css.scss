@@ -11,9 +11,17 @@ footer {
   margin-left: auto;
   margin-right: auto;
 
+  p{
+    font-size:0.8em;
+  }
+
   .menu {
     padding-bottom: 10px;
-    margin-bottom: 10px;
+  }
+
+  hr{
+    border-color:#555 ;
+    margin-bottom:10px;
   }
 
   .logo { 
@@ -72,9 +80,7 @@ footer {
     background:#373f41;
     color: #7b8181;
     padding:14px;
-    p{
-      font-size:10px;
-    }
+
     img{
       width:130px;
     }
