@@ -1,0 +1,72 @@
+/*$pf: #f62000;*/
+/*$pf: #008080; // Teal*/
+/*$pf: #a50021; // purpley-red*/
+/*$pf: #ff2400; // scarlet*/
+/*$pf: #ffaa00; // gold*/
+/*$magenta_2: #e30068;*/
+@font-face {
+  font-family: 'MuseoSans-700Italic';
+  src: url("243719_0_0.eot");
+  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
+
+footer {
+  background: #444c4e;
+  border-top: 8px solid #40bcd1;
+  color: #fff;
+  padding-top: 1.5em;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto; }
+  footer .menu {
+    border-top: 1px solid #555555;
+    border-bottom: 1px solid #555555;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  footer .logo {
+    float: left;
+    clear: none;
+    padding: 5px;
+    padding-right: 10px;
+    height: 40px; }
+  footer a {
+    color: #cccccc; }
+  footer a:hover {
+    color: #40bcd1;
+    text-decoration: none; }
+  footer ul {
+    float: left;
+    width: 13%;
+    padding-top: 10px;
+    list-style-type: none; }
+    footer ul li.heading {
+      font-size: 1.2em;
+      padding-bottom: 10px; }
+      footer ul li.heading a {
+        color: #dbe1e1; }
+    footer ul li {
+      font-size: 0.8em; }
+      footer ul li a {
+        color: #7b7f80; }
+  footer .disclaimer {
+    font-size: 0.8em;
+    color: #ccc; }
+  footer .charity {
+    margin-top: 10px;
+    margin-bottom: 30px; }
+    footer .charity p {
+      font-size: 0.8em;
+      color: #ccc;
+      margin: 0px; }
+    footer .charity a {
+      color: #d4346f; }
+    footer .charity a:hover {
+      color: #c52a63; }
+
+.footer-link {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px; }
+  .footer-link a:hover {
+    color: #40bcd1; }
