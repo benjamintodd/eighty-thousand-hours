@@ -48,6 +48,8 @@ footer {
       padding-bottom: 10px; }
       footer ul li.heading a {
         color: #dbe1e1; }
+      footer ul li.heading a:hover {
+        color: #40bcd1; }
     footer ul li {
       font-size: 0.8em; }
       footer ul li a {
