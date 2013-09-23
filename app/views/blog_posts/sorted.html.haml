@@ -1,6 +1,6 @@
 .blog
   .row
-    .span7
+    .col-md-7
       .box
         - @posts.each do |post|
           - if @condensed
@@ -14,9 +14,9 @@
           .box.tight
             .center
               = page_navigation_links @posts
-    .span1
+    .col-md-1
       &nbsp;
-    .span4
+    .col-md-4
       .box.sidebar.blog-sidebar
         %p
           .fblike

@@ -1,27 +1,26 @@
 .row
-  .span12
+  .col-md-4
     = render :partial => 'admin_box'
-- cache do
-  .row
-    .span7
-      %div{ :class => @page.show_box ? 'box' : nil }
-        = markdown @page.body
-      .span1
-        &nbsp;
-
-    .span1
+.row
+  .col-md-7
+    %div{ :class => @page.show_box ? 'box' : nil }
+      = markdown @page.body
+    .col-md-1
       &nbsp;
 
-    .span4
-      .box.sidebar.page-sidebar
-        - if @page.sidebar?
-          - top_level = @page.root
-          %ul.nav.nav-pills.nav-stacked
-            %li.heading
-            - top_level.children.display_in_menu.each do |c|
-              - if c == @page
-                %li.active
-                  = c.get_menu_link
-              - else
-                %li
-                  = c.get_menu_link
+  .col-md-1
+    &nbsp;
+
+  .col-md-4
+    .box.sidebar.page-sidebar
+      - if @page.sidebar?
+        - top_level = @page.root
+        %ul.nav.nav-pills.nav-stacked
+          %li.heading
+          - top_level.children.display_in_menu.each do |c|
+            - if c == @page
+              %li.active
+                = c.get_menu_link
+            - else
+              %li
+                = c.get_menu_link
