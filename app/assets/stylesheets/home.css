@@ -1,7 +1,21 @@
-.home .cta-section .cta {
-  font-size: 27px; }
+.home .cta-section {
+  background: #40bcd1; }
+  .home .cta-section .cta {
+    font-size: 27px; }
 .home .people-say {
-  background: #ddd; }
+  background: #eee;
+  padding: 28px 0 34px 0; }
+  .home .people-say .profile {
+    padding: 0 26px; }
+    .home .people-say .profile p {
+      color: #333;
+      font-size: 18px; }
+    .home .people-say .profile h4 {
+      font-size: 14px;
+      color: #000; }
+    .home .people-say .profile img {
+      width: 180px;
+      margin-bottom: 18px; }
 .home .core-concepts {
   padding: 38px 0 56px 0; }
   .home .core-concepts h1 {
