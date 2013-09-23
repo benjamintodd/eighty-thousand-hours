@@ -3,19 +3,16 @@
 footer {
   background:#444c4e;
   border-top: 8px solid #40bcd1;
-  color: #fff;
-  padding-top: 1.5em;
+  color: #7b7f80;
+  padding-top: 40px;
+  margin-top: 40px;
 
   text-align: left;
   margin-left: auto;
   margin-right: auto;
 
   .menu {
-    border-top: 1px solid #555555;
-    border-bottom: 1px solid #555555;
-    padding-top: 10px;
     padding-bottom: 10px;
-    margin-top: 10px;
     margin-bottom: 10px;
   }
 
@@ -35,11 +32,13 @@ footer {
   }
   ul {
     float:left;
-    width: 13%;
-    padding-top: 10px;
     list-style-type: none;
+    padding-right: 20px;
+    padding-left:0px;
+    min-width:8%;
+    max-width:16%;
     li.heading {
-      font-size: 1.2em;
+      font-size: 1.1em;
       padding-bottom: 10px;
       a {
         color: #dbe1e1;
@@ -51,11 +50,6 @@ footer {
         color: #7b7f80;
       }
     }
-  }
-
-  .disclaimer {
-    font-size: 0.8em;
-    color: #ccc;
   }
 
   .charity {
@@ -71,6 +65,18 @@ footer {
     }
     a:hover {
       color: $link_hover_color;
+    }
+  }
+
+  .logo-line{
+    background:#373f41;
+    color: #7b8181;
+    padding:14px;
+    p{
+      font-size:10px;
+    }
+    img{
+      width:130px;
     }
   }
 }

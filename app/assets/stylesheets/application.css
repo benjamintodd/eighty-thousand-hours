@@ -13,6 +13,7 @@
  *= require header2
  *= require blog
  *= require footer
+ *= require layout
 */
 
 // require header
