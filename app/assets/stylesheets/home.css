@@ -1,7 +1,39 @@
 .home .cta-section {
-  background: #40bcd1; }
-  .home .cta-section .cta {
-    font-size: 27px; }
+  background: #306975;
+  /* Old browsers */
+  background: -moz-linear-gradient(45deg, #306975 0%, #9fdce8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #306975), color-stop(100%, #9fdce8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #306975 0%, #9fdce8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #306975 0%, #9fdce8 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #306975 0%, #9fdce8 100%);
+  /* IE10+ */
+  background: linear-gradient(45deg, #306975 0%, #9fdce8 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#306975', endColorstr='#9fdce8',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  padding: 30px 0 50px 0; }
+  .home .cta-section h1 {
+    font-size: 74px;
+    margin-bottom: 70px;
+    color: white;
+    text-shadow: 4px 4px 1px #666; }
+  .home .cta-section h2 {
+    color: black;
+    font-size: 32px; }
+  .home .cta-section .buttons {
+    margin-top: 40px; }
+    .home .cta-section .buttons .cta {
+      font-size: 29px;
+      padding: 19px;
+      font-weight: 500px;
+      background: white;
+      box-shadow: 5px 5px 1px #666; }
+      .home .cta-section .buttons .cta:hover {
+        background: #aaa; }
 .home .people-say {
   background: #eee;
   padding: 28px 0 34px 0; }

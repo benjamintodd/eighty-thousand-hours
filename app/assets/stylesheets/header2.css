@@ -16,18 +16,27 @@
 /*$pf: #ffaa00; // gold*/
 /*$magenta_2: #e30068;*/
 header .logo img {
-  max-width: 150px; }
+  max-width: 170px; }
 header ul.nav {
   margin-top: 17px; }
+  header ul.nav .active {
+    box-shadow: 4px 4px 0px #999;
+    border-radius: 3px; }
   header ul.nav > li {
     margin-left: 30px; }
     header ul.nav > li > a {
       padding: 5px 10px;
-      font-size: 14px;
-      color: #666; }
+      font-size: 18px;
+      color: #666;
+      border-radius: 3px; }
       header ul.nav > li > a:hover {
         background-color: #40bcd1;
-        color: white; }
+        color: white;
+        box-shadow: 4px 4px 0px #999; }
+    header ul.nav > li .dropdown-menu {
+      box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
+      border: 1px solid #999;
+      border-radius: 2px; }
   header ul.nav .caret {
     border-top-color: #666;
     border-bottom-color: #666; }
@@ -37,4 +46,5 @@ header ul.nav {
 
 header.navbar {
   background: #eee;
-  padding: 20px 0 20px 0; }
+  padding: 20px 0 20px 0;
+  margin-bottom: 0px; }
