@@ -47,11 +47,28 @@
       color: #000; }
     .home .people-say .profile img {
       width: 180px;
-      margin-bottom: 18px; }
+      margin-bottom: 18px;
+      -webkit-filter: drop-shadow(4px 4px 1px #666666);
+      filter: drop-shadow(4px 4px 1px #666666); }
 .home .core-concepts {
-  padding: 38px 0 56px 0; }
+  padding: 0 0 56px 0; }
   .home .core-concepts h1 {
-    margin-bottom: 58px; }
+    margin-bottom: 35px;
+    margin-top: 59px;
+    color: #222;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 15px; }
+  .home .core-concepts .item {
+    padding: 0 62px;
+    text-align: center; }
+    .home .core-concepts .item h2 {
+      font-size: 23px;
+      color: #444; }
+    .home .core-concepts .item img {
+      height: 110px; }
+    .home .core-concepts .item p {
+      text-align: justify;
+      color: #666; }
 .home .affiliations {
   background: #eee;
   padding: 65px 0 55px 0; }
