@@ -1,27 +1,12 @@
 .blog
   .row.index
-    .col-md-2
-    .col-md-10
+    .col-md-3
+    .col-md-9
       .header-bar
         %h4
           Case Studies
+
   .row.index
-    .col-md-9
-      - @posts.each do |post|
-        .row.entry
-          .col-md-3
-          .col-md-9
-            - if @condensed
-              = render :partial => 'display_heading',
-                       :locals => { :post => post }
-            - else
-              = render :partial => 'display_teaser',
-                       :locals => { :post => post }
-      .row
-        .col-lg-3
-        .col-lg-6
-          - if (@sort == nil) && (will_paginate @posts)
-            = page_navigation_links @posts
     .col-lg-3
       .box.sidebar.blog-sidebar
         %p
@@ -32,7 +17,19 @@
         %hr
         = render :partial => "popular_posts"
         %hr
-        = render :partial => "tag_cloud"
-        %hr
 
+    .col-md-9
+      - @posts.each do |post|
+        - if @condensed
+          = render :partial => 'display_heading',
+                   :locals => { :post => post }
+        - else
+          = render :partial => 'display_teaser',
+                   :locals => { :post => post }
+      .row
+        .col-lg-3
+        .col-lg-6
+          - if (@sort == nil) && (will_paginate @posts)
+            = page_navigation_links @posts
+    
         

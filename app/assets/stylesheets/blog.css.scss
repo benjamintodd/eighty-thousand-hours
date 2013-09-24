@@ -4,22 +4,24 @@
 
   .index{
     .header-bar{
-      height:39px;
+      height:50px;
       border-radius:3px;
       background: #40bcd1;
       width:100%;
       padding: 1px 0 0 2.5%;
       margin: 10px 0 12px 10px;
+      box-shadow: 5px 5px 1px #999;
       h4{
         color:white;
         margin-top:8px;
-        font-weight:normal;
-        font-size:20px;
+        font-weight:600;
+        font-size:28px;
       }
     }
     .entry{
       margin-top: 0em;
       margin-bottom:1.5em;
+      padding-left: 34px;
       .heading{
         margin-bottom:20px;
         h2{
@@ -37,10 +39,15 @@
       }
       .content{
         color:#666;
+        border-bottom: 2px dashed #ccc;
+        padding-bottom:14px;
       }
       img{
         max-width:100%;
       }
+    }
+    .sidebar{
+      padding-right: 25px;
     }
   }
 
@@ -58,16 +65,19 @@
           background: #40bcd1;
           color:white;
           margin-right:6px;
-          padding:2px 11px 4px 8px;
+          padding:4px 14px 6px 12px;
           border-radius: 0 0 5px 5px;
+          font-size:16px;
         }
         h1{
-          font-size: 1.8em;
-          margin-top: 37px;
+          font-size: 2.2em;
+          margin-top: 15px;
+          margin-bottom:9px;
         }
         margin-bottom:30px;
         .metadata{
           color: #999;
+          line-height:1.3em;
           a{
             color: #999;
           }

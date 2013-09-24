@@ -16,7 +16,7 @@
       text-shadow: 4px 4px 1px #666;
     }
     h2{
-      color:black;
+      color:#333;
       font-size:32px;
     }
     .buttons{
@@ -27,6 +27,7 @@
         font-weight: 500px;
         background: white;
         box-shadow: 5px 5px 1px #666;
+        color: #333;
         &:hover{
           background: #aaa;
         }
