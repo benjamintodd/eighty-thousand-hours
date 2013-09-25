@@ -98,3 +98,10 @@
       box-shadow: 0px 0px 8px #cccccc; }
     .blog .show .entry .image .caption {
       font-size: 0.9em; }
+.blog .categories .category {
+  margin-bottom: 26px; }
+  .blog .categories .category a {
+    padding: 10px;
+    border-radius: 2px;
+    background-color: #40bcd1;
+    color: white; }

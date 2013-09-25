@@ -119,4 +119,16 @@
       }
     }
   }
+
+  .categories{
+    .category{
+      margin-bottom: 26px;
+      a{
+        padding: 10px;
+        border-radius: 2px;
+        background-color: #40bcd1;
+        color:white;
+      }
+    }
+  }
 }
