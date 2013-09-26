@@ -20,7 +20,7 @@ header{
   max-width: 170px; }
 
   ul.nav{
-    margin-top:17px;
+    margin-top:22px;
 
     .a1 a:hover{
         color:#00b5aa;
@@ -48,13 +48,14 @@ header{
     }
 
     > li{
-      margin-left:30px;
+      margin-left:24px;
       > a{
       border: 1px solid rgba(0,0,0,0);
         padding:5px 10px;
-        font-size:18px;
-        color: #666;
+        font-size:22px;
+        color: #777;
         border-radius:3px;
+        font-weight: 300;
         .a2:hover{
           background:red;
         }

@@ -2,14 +2,17 @@
   background: linear-gradient(45deg, #2290af, #10cba5 100%);
   /* W3C */ }
 .home .cta-section {
-  padding: 30px 0 50px 0; }
+  padding: 45px 0 61px 0; }
   .home .cta-section h1 {
     font-size: 74px;
-    margin-bottom: 70px;
-    color: white; }
+    margin-bottom: 74px;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
   .home .cta-section h2 {
-    color: #333;
-    font-size: 32px; }
+    color: #222;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 56px; }
   .home .cta-section .buttons {
     margin-top: 40px; }
     .home .cta-section .buttons .cta {
