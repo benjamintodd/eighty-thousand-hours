@@ -20,50 +20,39 @@ header{
   max-width: 170px; }
 
   ul.nav{
-    margin-top:22px;
+    margin-top:16px;
 
     .a1 a:hover{
         color:#00b5aa;
-        border: 1px solid #00b5aa;
     }
     .a2 a:hover{
         color:#00b8a9;
-        border: 1px solid #00b8a9;
     }
     .a3 a:hover{
         color:#00bba8;
-        border: 1px solid #00bba8;
     }
     .a4 a:hover{
         color:#00bea7;
-        border: 1px solid #00bea7;
     }
     .a5 a:hover{
         color:#00c2a7;
-        border: 1px solid #00c2a7;
     }
     .a6 a:hover{
         color:#00c3a6;
-        border: 1px solid #00c3a6;
     }
 
     > li{
       margin-left:24px;
+      font-family: 'Muli', sans-serif;
+      font-weight: 200;
       > a{
       border: 1px solid rgba(0,0,0,0);
         padding:5px 10px;
         font-size:22px;
         color: #777;
         border-radius:3px;
-        font-weight: 300;
-        .a2:hover{
-          background:red;
-        }
         &:hover{
-          .a2, .a3, a5{
-            background-color: #f00;
-          }
-         color: white;
+          background:none;
         }
       }
       .dropdown-menu{
@@ -85,8 +74,9 @@ header{
   }
 }
 header.navbar{
-  background: #eee;
+  background: #f6f6f6;
   padding:20px 0 20px 0;
   margin-bottom: 0px;
+  box-shadow: 0 2px 1px rgba(50,50,50,0.1);
 }
 
