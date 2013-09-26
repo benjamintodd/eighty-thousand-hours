@@ -20,7 +20,6 @@ header .logo img {
 header ul.nav {
   margin-top: 17px; }
   header ul.nav .active {
-    box-shadow: 4px 4px 0px #999;
     border-radius: 3px; }
   header ul.nav > li {
     margin-left: 30px; }
@@ -31,8 +30,7 @@ header ul.nav {
       border-radius: 3px; }
       header ul.nav > li > a:hover {
         background-color: #40bcd1;
-        color: white;
-        box-shadow: 4px 4px 0px #999; }
+        color: white; }
     header ul.nav > li .dropdown-menu {
       box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
       border: 1px solid #999;

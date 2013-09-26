@@ -1,19 +1,16 @@
 .home{
+  .background{
+    background: linear-gradient(45deg, #2290af,#10cba5 100%); /* W3C */
+  }
+
   .cta-section{
-    background: #306975; /* Old browsers */
-    background: -moz-linear-gradient(45deg, #306975 0%, #9fdce8 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#306975), color-stop(100%,#9fdce8)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(45deg, #306975 0%,#9fdce8 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(45deg, #306975 0%,#9fdce8 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(45deg, #306975 0%,#9fdce8 100%); /* IE10+ */
-    background: linear-gradient(45deg, #306975 0%,#9fdce8 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#306975', endColorstr='#9fdce8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    //background: #306975; /* Old browsers */
+    //background-image: url("/assets/front_page/patterns/test-10-large.png");
     padding:30px 0 50px 0;
     h1{
       font-size:74px;
       margin-bottom:70px;
       color:white;
-      text-shadow: 4px 4px 1px #666;
     }
     h2{
       color:#333;
@@ -24,19 +21,18 @@
       .cta{
         font-size:29px;
         padding:19px;
-        font-weight: 500px;
-        background: white;
-        box-shadow: 5px 5px 1px #666;
-        color: #333;
+        font-weight: 400;
+        background: rgba(255,255,255,0.85);
+        color: #044;
         &:hover{
-          background: #aaa;
+          background: rgba(50,200,200,0.5);
         }
       }
     }
   }
   .people-say{
-    background: #eee;
     padding: 28px 0 34px 0;
+    background: rgba(255,255,255,0.85);
     .profile{
       padding: 0 26px;
       p{
@@ -48,16 +44,15 @@
         color:#000;
       }
       img{
-        width:180px;
+        width:210px;
         margin-bottom:18px;
-        -webkit-filter: drop-shadow(4px 4px 1px #666);
-        filter: drop-shadow(4px 4px 1px #666);
       }
     }
   }
 
   .core-concepts{
     padding: 0 0 56px 0;
+    background-image: url("/assets/front_page/patterns/project_papper_24.png");
     h1{
       margin-bottom: 35px;
       margin-top:59px;
