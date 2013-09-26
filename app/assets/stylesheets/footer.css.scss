@@ -1,8 +1,12 @@
 @import "shared/partials";
 
+.pre-footer{
+    background: linear-gradient(45deg, #2290af,#10cba5 100%); /* W3C */
+    height:8px;
+  }
+
 footer {
   background:#444c4e;
-  border-top: 8px solid #40bcd1;
   color: #7b7f80;
   padding-top: 40px;
 
