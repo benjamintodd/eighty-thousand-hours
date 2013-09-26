@@ -21,19 +21,47 @@ header{
 
   ul.nav{
     margin-top:17px;
-    .active{
-      border-radius:3px;
+
+    .a1 a:hover{
+        color:#00b5aa;
+        border: 1px solid #00b5aa;
+    }
+    .a2 a:hover{
+        color:#00b8a9;
+        border: 1px solid #00b8a9;
+    }
+    .a3 a:hover{
+        color:#00bba8;
+        border: 1px solid #00bba8;
+    }
+    .a4 a:hover{
+        color:#00bea7;
+        border: 1px solid #00bea7;
+    }
+    .a5 a:hover{
+        color:#00c2a7;
+        border: 1px solid #00c2a7;
+    }
+    .a6 a:hover{
+        color:#00c3a6;
+        border: 1px solid #00c3a6;
     }
 
     > li{
       margin-left:30px;
       > a{
+      border: 1px solid rgba(0,0,0,0);
         padding:5px 10px;
         font-size:18px;
         color: #666;
         border-radius:3px;
+        .a2:hover{
+          background:red;
+        }
         &:hover{
-         background-color:#40bcd1;
+          .a2, .a3, a5{
+            background-color: #f00;
+          }
          color: white;
         }
       }

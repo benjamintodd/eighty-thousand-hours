@@ -19,18 +19,38 @@ header .logo img {
   max-width: 170px; }
 header ul.nav {
   margin-top: 17px; }
-  header ul.nav .active {
-    border-radius: 3px; }
+  header ul.nav .a1 a:hover {
+    color: #00b5aa;
+    border: 1px solid #00b5aa; }
+  header ul.nav .a2 a:hover {
+    color: #00b8a9;
+    border: 1px solid #00b8a9; }
+  header ul.nav .a3 a:hover {
+    color: #00bba8;
+    border: 1px solid #00bba8; }
+  header ul.nav .a4 a:hover {
+    color: #00bea7;
+    border: 1px solid #00bea7; }
+  header ul.nav .a5 a:hover {
+    color: #00c2a7;
+    border: 1px solid #00c2a7; }
+  header ul.nav .a6 a:hover {
+    color: #00c3a6;
+    border: 1px solid #00c3a6; }
   header ul.nav > li {
     margin-left: 30px; }
     header ul.nav > li > a {
+      border: 1px solid rgba(0, 0, 0, 0);
       padding: 5px 10px;
       font-size: 18px;
       color: #666;
       border-radius: 3px; }
+      header ul.nav > li > a .a2:hover {
+        background: red; }
       header ul.nav > li > a:hover {
-        background-color: #40bcd1;
         color: white; }
+        header ul.nav > li > a:hover .a2, header ul.nav > li > a:hover .a3, header ul.nav > li > a:hover a5 {
+          background-color: #f00; }
     header ul.nav > li .dropdown-menu {
       box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
       border: 1px solid #999;
