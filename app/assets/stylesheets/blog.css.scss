@@ -1,7 +1,6 @@
 @import "shared/partials";
 
 .blog {
-
   .index{
     margin-top:10px;
     .entry{
@@ -48,7 +47,11 @@
   .show{
 
     .entry {
-      margin-top: 1.5em;
+      background:white;
+      padding:25px 20px 20px 20px;
+      border-radius: 2px;
+      margin-bottom:10px;
+      border:1px solid #e8e8e8;
 
       .heading{
         .header-img img{
@@ -87,8 +90,6 @@
           border-radius:3px;
         }
       }
-
-
       .image {
         max-width: 100%;
         .caption {

@@ -42,7 +42,11 @@
   .blog .index .sidebar {
     padding-right: 25px; }
 .blog .show .entry {
-  margin-top: 1.5em; }
+  background: white;
+  padding: 25px 20px 20px 20px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  border: 1px solid #e8e8e8; }
   .blog .show .entry .heading {
     margin-bottom: 30px; }
     .blog .show .entry .heading .header-img img {
