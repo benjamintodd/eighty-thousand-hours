@@ -17,39 +17,38 @@ src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.w
 /*$magenta_2: #e30068;*/
 header{
   .logo img {
-  max-width: 170px; }
+  max-width: 155px; }
 
   ul.nav{
     margin-top:16px;
 
     .a1 a:hover{
-        color:#00b5aa;
+      color:#00b5aa;
     }
     .a2 a:hover{
-        color:#00b8a9;
+      color:#00b8a9;
     }
     .a3 a:hover{
-        color:#00bba8;
+      color:#00bba8;
     }
     .a4 a:hover{
-        color:#00bea7;
+      color:#00bea7;
     }
     .a5 a:hover{
-        color:#00c2a7;
+      color:#00c2a7;
     }
     .a6 a:hover{
-        color:#00c3a6;
+      color:#00c3a6;
     }
 
     > li{
-      margin-left:24px;
       font-family: 'Muli', sans-serif;
-      font-weight: 200;
+      font-weight:200;
       > a{
-      border: 1px solid rgba(0,0,0,0);
-        padding:5px 10px;
-        font-size:22px;
-        color: #777;
+        border: 1px solid rgba(0,0,0,0);
+        padding: 5px 14px;
+        font-size:18px;
+        color: #788;
         border-radius:3px;
         &:hover{
           background:none;
@@ -64,19 +63,61 @@ header{
     .caret{
       border-top-color: #666;
       border-bottom-color: #666;
-     }
-     .open > a{
-       &:hover{
-         background-color:#40bcd1;
-         color: white;
-       }
-     }
+    }
+    .open > a{
+      &:hover{
+        background-color:#40bcd1;
+        color: white;
+      }
+    }
   }
 }
 header.navbar{
   background: #f6f6f6;
-  padding:20px 0 20px 0;
+  padding:12px 0 14px 0;
   margin-bottom: 0px;
   box-shadow: 0 2px 1px rgba(50,50,50,0.1);
+
+
+
 }
 
+.sub-header{
+  background: linear-gradient(45deg, rgba(34,144,175,0.9), rgba(16,203,165,0.9));
+  min-height: 4px;
+  h1{
+    font-family: 'Muli', sans-serif;
+    color: rgba(255,255,255,0.85);
+    font-weight: 200;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-size:32px;
+  }
+  form{
+    margin-top:17px;
+  }
+  input{
+    border: none;
+    font-size: 18px;
+    padding: 7px 7px 5px 13px;
+    color: white;
+    font-family: 'Muli', sans-serif;
+    font-weight: 100;
+  }
+  .submit{
+    background: none;
+  }
+  .search-query{
+    background-color: rgba(0, 0, 0, 0.15);
+    /* min-height: 45px; */
+    border-radius: 2px;
+    width:312px;
+    &:focus{
+      background-color:rgba(0,0,0,0.21);
+      outline: none;
+    }
+  }
+  .search-query::-webkit-input-placeholder {
+    color:rgba(255,255,255,0.7);
+  }
+}

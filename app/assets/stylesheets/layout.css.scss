@@ -9,3 +9,32 @@ a:hover{
 #content{
   padding-top:20px;
 }
+
+h1,h2{
+  font-family: 'Muli', sans-serif;
+}
+h1{
+  font-size:2.2em;
+  margin-top:41px;
+  margin-bottom:15px;
+  padding-bottom: 5px;
+  color:#222;
+}
+h2{ 
+  font-size:1.7em;
+  font-weight:200;
+  margin-top:32px;
+  margin-bottom:17px;
+}
+h3{
+  font-size:1.3em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+p{
+  font-size:16px;
+  line-height:22px;
+}
+
+img{
+  max-width:100%;
+}

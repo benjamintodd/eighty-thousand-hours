@@ -1,25 +1,6 @@
 .blog
   .row.index
-    .col-md-3
-    .col-md-9
-      .header-bar
-        %h4
-          Case Studies
-
-  .row.index
-    .col-lg-3
-      .box.sidebar.blog-sidebar
-        %p
-          .fblike
-            <fb:like href="#{blog_posts_path}" send="false" width="450" show_faces="false"></fb:like>
-
-        = render :partial => "categories"
-        %hr
-        = render :partial => "subscribe"
-        %hr
-        = render :partial => "popular_posts"
-
-    .col-md-9
+    .col-md-8
       - @posts.each do |post|
         - if @condensed
           = render :partial => 'display_heading',
@@ -28,9 +9,19 @@
           = render :partial => 'display_teaser',
                    :locals => { :post => post }
       .row
-        .col-lg-3
         .col-lg-6
           - if (@sort == nil) && (will_paginate @posts)
             = page_navigation_links @posts
     
-        
+    .col-md-1
+    .col-md-3
+      .box.sidebar.blog-sidebar
+        %p
+          .fblike
+            <fb:like href="#{blog_posts_path}" send="false" width="450" show_faces="false"></fb:like>
+
+        = render :partial => "subscribe"
+        %hr
+        = render :partial => "popular_posts"
+
+

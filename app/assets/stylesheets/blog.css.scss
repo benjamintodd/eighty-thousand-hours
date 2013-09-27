@@ -3,44 +3,38 @@
 .blog {
 
   .index{
-    .header-bar{
-      height:50px;
-      border-radius:3px;
-      background: #40bcd1;
-      width:100%;
-      padding: 1px 0 0 2.5%;
-      margin: 10px 0 12px 10px;
-      box-shadow: 5px 5px 1px #999;
-      h4{
-        color:white;
-        margin-top:8px;
-        font-weight:600;
-        font-size:28px;
-      }
-    }
+    margin-top:10px;
     .entry{
       margin-top: 0em;
-      margin-bottom:1.5em;
-      padding-left: 34px;
+      margin-bottom:2em;
+      img{
+        max-height:350px;
+        display: none;
+        margin: 0 auto;
+      }
       .heading{
         margin-bottom:20px;
-        h2{
-          font-size:1.3em;
-          color: #333;
+        h1{
+          margin-top:5px;
+          font-size:1.8em;
+          margin: 0;
+          padding:0;
         }
-        h2 a{
-          color: #333;
-          font-size: 1.5em;
+        h1 a{
+          margin-top:5px;
+          color:#2fa2b8;
         }
         h4, h4 a{
           color: #999;
-          font-size:1em;
+          font-size:1.1em;
+          font-weight:200;
+          font-family: 'Muli', sans-sefif;
+          margin-top:4px;
         }
       }
       .content{
         color:#666;
-        border-bottom: 2px dashed #ccc;
-        padding-bottom:14px;
+        border-bottom: 1px dashed #ddd;
       }
       img{
         max-width:100%;
@@ -70,7 +64,6 @@
           font-size:16px;
         }
         h1{
-          font-size: 2.2em;
           margin-top: 15px;
           margin-bottom:9px;
         }
@@ -84,35 +77,20 @@
         }
       }
       .content{
-        h1,h2,h3,h4{
-          color: #555;
-        }
         h1{
-          font-size:1.8em;
+          font-size:2em;
         }
-        h2{
-          font-size: 1.6em;
-        }
-        h3{
-          font-size: 1.3em;
+        img{
+          display: block;
+          margin: 0 auto 15px auto;
+          max-height:450px;
+          border-radius:3px;
         }
       }
 
 
       .image {
-        margin-top: 10px;
-        margin-bottom: 10px;
-
-        width: 100%;
-
-        border: 1px solid #ccc;
-        @include box_shadow(#ccc, 0px, 0px, 2px);
-        @include rounded_borders(#ccc, 1px, 3px);
-
-        &:hover {
-          @include box_shadow(#ccc, 0px, 0px, 8px);
-        }
-
+        max-width: 100%;
         .caption {
           font-size: 0.9em;
         }
