@@ -1,17 +1,10 @@
 .row
-  .col-md-4
+  .col-md-9
     = render :partial => 'admin_box'
 .row
-  .col-md-7
-    %div{ :class => @page.show_box ? 'box' : nil }
-      = markdown @page.body
-    .col-md-1
-      &nbsp;
-
-  .col-md-1
-    &nbsp;
-
-  .col-md-4
+  .col-md-9
+    = markdown @page.body
+  .col-md-3
     .box.sidebar.page-sidebar
       - if @page.sidebar?
         - top_level = @page.root

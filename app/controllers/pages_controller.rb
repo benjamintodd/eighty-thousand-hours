@@ -24,11 +24,6 @@ class PagesController < ApplicationController
 
   def home
     layout = "open"
-    if user_signed_in?
-      redirect_to dashboard_path
-    else
-      @total_members = EtkhProfile.all.size
-    end
   end
 
   def edit
@@ -102,6 +97,7 @@ class PagesController < ApplicationController
   end
 
   def endorsements
+    @title = 'Endorsements for 80,000 Hours'
     @endorsements = t 'endorsements'
     @menu_current = 'Endorsements'
     @menu_root = 'About Us'

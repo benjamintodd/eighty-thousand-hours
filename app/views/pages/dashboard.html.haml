@@ -1,14 +1,14 @@
 .dashboard 
   .row
-    .span7
+    .col-md-7
       - cache do
         .user-need-block
           %h1 Get advice
           .row.user-activity-block
-            .span3
+            .col-md-3
               %h2 Read articles
               =image_tag('/assets/dashboard/read_articles.png', :class => 'dashboard_icon')
-            .span4.next-to-h2
+            .col-md-4.next-to-h2
               :markdown
                 <p><a href="/getting-started" onClick="_gaq.push(['_trackEvent', 'Dashboard', 'Read_articles', '/getting-started']);">Getting started with career planning</a></p>
               
