@@ -104,6 +104,7 @@ EightyThousandHours::Application.routes.draw do
   # pages which don't live in the database as they can't be
   # converted to pure Markdown
   match 'endorsements' => 'pages#endorsements'
+  match 'meet_the_team' => 'pages#meet_the_team'
  
   # pages from old HIC site
   match 'ethical-career'                => 'info#banker_vs_aid_worker'

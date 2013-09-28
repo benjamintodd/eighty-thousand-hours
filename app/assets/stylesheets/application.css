@@ -15,6 +15,7 @@
  *= require blog
  *= require footer
  *= require home
+ *= require pages
 */
 
 // require header

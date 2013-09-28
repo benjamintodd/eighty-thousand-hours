@@ -102,4 +102,8 @@ class PagesController < ApplicationController
     @menu_current = 'Endorsements'
     @menu_root = 'About Us'
   end
+
+  def meet_the_team
+    @title = "Our Team"
+  end
 end
