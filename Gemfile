@@ -32,7 +32,7 @@ gem 'thin'
 gem 'exception_notification', "2.6.1"
 
 # sweet templating language
-gem "haml"
+gem "haml", '~> 3.1.3'
 
 # tranlations and localisations
 gem 'rails-i18n'
