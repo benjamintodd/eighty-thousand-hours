@@ -1,18 +1,18 @@
 .blog
   .row.index
-    .col-md-8
-      - @posts.each do |post|
-        - if @condensed
-          = render :partial => 'display_heading',
-                   :locals => { :post => post }
-        - else
-          = render :partial => 'display_teaser',
-                   :locals => { :post => post }
+    .col-md-7
       .row
-        .col-lg-6
+        .col-md-12
+          - @posts.each do |post|
+            - if @condensed
+              = render :partial => 'display_heading',
+                       :locals => { :post => post }
+            - else
+              = render :partial => 'display_teaser',
+                       :locals => { :post => post }
+        .col-lg-12
           - if (@sort == nil) && (will_paginate @posts)
             = page_navigation_links @posts
-    
     .col-md-1
     .col-md-3
       .box.sidebar.blog-sidebar
