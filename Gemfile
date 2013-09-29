@@ -61,6 +61,9 @@ gem 'simple_form'
 # twitter bootstrap for Rails 3.x
 # gem "twitter-bootstrap-rails"
 
+#Will Paginate Link Renderer Styles for Bootstrap
+gem 'will_paginate-bootstrap'
+
 # 3rd party authentication
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

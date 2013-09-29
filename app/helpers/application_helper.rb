@@ -52,7 +52,7 @@ module ApplicationHelper
 
   # To render will_paginate links with twitter bootstrap
   def page_navigation_links(pages)
-    will_paginate(pages, :class => 'pagination', :inner_window => 2, :outer_window => 0, :renderer => BootstrapLinkRenderer, :previous_label => '&larr;'.html_safe, :next_label => '&rarr;'.html_safe)
+    will_paginate pages, renderer: BootstrapPagination::Rails, bootstrap: 3
   end
 
 end
