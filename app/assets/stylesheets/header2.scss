@@ -40,7 +40,6 @@ header{
     .a6 a:hover{
       color:#00c3a6;
     }
-
     > li{
       font-family: 'Muli', sans-serif;
       font-weight:200;
@@ -66,8 +65,7 @@ header{
     }
     .open > a{
       &:hover{
-        background-color:#40bcd1;
-        color: white;
+        background-color:black;
       }
     }
   }
