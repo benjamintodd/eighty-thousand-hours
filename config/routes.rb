@@ -131,7 +131,6 @@ EightyThousandHours::Application.routes.draw do
   match 'getting-started--2', to: redirect('/getting-started')
   match 'pages/getting-started--2', to: redirect('/getting-started')
 
-  resources :pages
   root :to => 'pages#show', id: "home"
   match 'dashboard'          => 'pages#dashboard'
   match 'search'        => 'pages#search'
@@ -143,8 +142,6 @@ EightyThousandHours::Application.routes.draw do
   match 'how-we-are-different', to: redirect('/our-features')
 
   
-  resources :pages
-  resources :pages, :path => '/', :only => [:show]
   get 'video/:id', to: 'pages#video'
   root :to => 'pages#home'
 end
