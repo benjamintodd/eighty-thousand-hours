@@ -3,7 +3,7 @@ module BlogPostsHelper
 
   def link_to_blog_post_author(post)
     if post.user && post.user.etkh_profile
-      (link_to post.user.name, "/members/#{post.user.slug}")
+      post.user.name
     else
       post.author
     end

@@ -14,13 +14,13 @@
       .metadata
         = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.created_at)}")
         </br>
-        = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
 
     .content
       = markdown blog_post.body
     %hr
     %p
       %em
+        = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
         = blog_post.attribution
     %p
       .fblike

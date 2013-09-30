@@ -11,6 +11,7 @@ class BlogPostsController < ApplicationController
 
     @title = "Blog"
     @menu_root = "Blog"
+    @subheader_search = true
   end
 
   def drafts
@@ -20,6 +21,7 @@ class BlogPostsController < ApplicationController
   end
 
   def sorted
+    @subheader_search = true
     @sort = params[:order]
     case @sort
     when 'popularity'
@@ -55,12 +57,13 @@ class BlogPostsController < ApplicationController
         end
       end
 
+      @subheader_search = true
       @og_url = blog_post_url( @post )
       @og_desc = @post.get_teaser
       @og_type = "article"
-      @title = "Blog: " + @post.title
       @tags = @post.tag_list
 
+      @title = "Blog"
       @menu_root = "Blog"
     end
   end
@@ -69,6 +72,7 @@ class BlogPostsController < ApplicationController
     @heading = "BlogPosts by #{params[:id]}"
     @posts = BlogPost.by_author(params[:id],params[:page])
     @condensed = true
+    @subheader_search = true
 
     render 'index'
   end
@@ -77,6 +81,8 @@ class BlogPostsController < ApplicationController
     @heading = "BlogPosts tagged with '#{params[:id]}'"
     @posts = BlogPost.published.tagged_with(params[:id]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @condensed = true
+    @subheader_search = true
+    @title = "Blog: '#{params[:id]}' "
 
     render 'index'
   end

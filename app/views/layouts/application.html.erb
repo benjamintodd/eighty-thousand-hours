@@ -30,18 +30,7 @@
 <body>
 
 <%= render :partial => "/layouts/header" %>
-
-<% if @title %>
-<div class="sub-header">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <h1> <%= @title %> </h1>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
+<%= render :partial => "layouts/subheader" %>
 
 <div class="container">
   <div class="modal flash-modal" id="flash-modal">
