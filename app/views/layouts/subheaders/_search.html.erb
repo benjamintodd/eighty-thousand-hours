@@ -1,0 +1,11 @@
+<div class="col-md-7">
+  <h1> <%= @title %> </h1>
+</div>
+<% if @subheader_search == true %>
+  <div class="col-md-5">
+  <form class='navbar-search pull-right' action='/search' method='get'>
+    <input class='search-query' name='q' placeholder='Find Research' type='text' />
+    <input type="submit" value="Submit" class="submit">
+  </form>
+</div>
+<% end %>

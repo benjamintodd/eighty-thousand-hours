@@ -136,6 +136,10 @@ EightyThousandHours::Application.routes.draw do
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
+  match '/coaching/overview' => 'pages#coaching_overview'
+  match '/coaching/information' => 'pages#coaching_information'
+  match '/coaching/application' => 'pages#coaching_application'
+
 
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')

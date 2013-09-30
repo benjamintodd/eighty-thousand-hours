@@ -106,4 +106,20 @@ class PagesController < ApplicationController
   def meet_the_team
     @title = "Our Team"
   end
+
+  def coaching_overview
+    @title = "Our Team"
+    @subheader = "Coaching"
+  end
+
+  def coaching_information
+    @title = "Our Team"
+    @subheader = "Coaching"
+  end
+
+  def coaching_application
+    @title = "Our Team"
+    @subheader = "Coaching"
+  end
+
 end
