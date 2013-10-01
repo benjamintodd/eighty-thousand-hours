@@ -19,7 +19,7 @@
 }
 
 .coaching-navigation{
-  padding-right:41px;
+  padding-right:22px;
 
   h1 a{
     color:white;
@@ -93,4 +93,18 @@
     }
   }
   
+}
+
+.coaching-info-page{
+  .sidebar-image img{
+    margin-top:36px;
+  }
+  .btn-primary{
+        font-family: 'Muli', sans-serif;
+        font-weight:500;
+        font-size:22px;
+        padding:8px 17px;
+        border:none;
+        margin: 32px 17px 18px;
+  }
 }
