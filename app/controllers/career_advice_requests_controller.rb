@@ -1,6 +1,9 @@
 class CareerAdviceRequestsController < ApplicationController
+  layout "application"
+
   def new
     @career_advice_request = CareerAdviceRequest.new
+    @title = "Social Impact Consulting Application"
   end
 
   def create

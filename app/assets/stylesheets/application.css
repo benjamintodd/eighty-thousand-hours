@@ -16,6 +16,7 @@
  *= require footer
  *= require home
  *= require pages
+ *= require coaching_requests
 */
 
 // require header
