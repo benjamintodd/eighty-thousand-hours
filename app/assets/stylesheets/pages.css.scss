@@ -17,3 +17,80 @@
     padding-bottom:0px;
   }
 }
+
+.coaching-navigation{
+  padding-right:41px;
+
+  h1 a{
+    color:white;
+  }
+  h2{
+    float:right;
+    margin-left:50px;
+    margin-top:25px;
+    font-size:1.5em;
+    a{
+      color: rgba(255,255,255,0.6);
+      &:hover{
+        color:white;
+        text-decoration:none;
+      }
+    }
+  }
+}
+
+.coaching-page{
+  .back-large{
+    padding:38px 0 32px 0;
+    background: linear-gradient(45deg, rgba(54, 174, 205, 0.4), rgba(40, 233, 165, 0.4));
+    .img{
+      width: 97%;
+      text-align:center;
+      margin-top:10px;
+    }
+    .summary{
+      padding: 5px 20px;
+      h2{
+        font-weight:400;
+        font-size:1.35em;
+        margin-top:14px;
+        color:#222;
+        line-height: 1.3em;
+      }
+      .buttons{
+        text-align:center;
+      }
+      .btn-default{
+        font-family: 'Muli', sans-serif;
+        font-weight:500;
+        font-size:22px;
+        color:#345;
+        padding:8px 17px;
+        min-width:125px;
+        border:none;
+        margin: 20px 17px 0;
+      }
+    }
+  }
+  .items{
+    padding: 30px 0 30px 0;
+    background: url("/assets/front_page/patterns/project_papper_24.png");
+    box-shadow: -1px -1px 1px rgba(50,50,50,0.1);
+  }
+  .item{
+    padding: 20px 24px;
+    img{
+      height:85px;
+    }
+    h2{
+      font-size:1.4em;
+      color: #333;
+    }
+    p{
+      font-size:14px;
+      line-height: 20px;
+      color: #66;
+    }
+  }
+  
+}

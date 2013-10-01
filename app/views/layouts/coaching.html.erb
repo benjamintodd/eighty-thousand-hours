@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+<%= page_title %>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.ico" type="image/ico" />
+
+<%= render :partial => "/shared/opengraph" %>
+
+<%= csrf_meta_tag %>
+<%= stylesheet_link_tag "application" %>
+
+<%= javascript_include_tag "application" %>
+<%= yield :javascript_includes %>
+
+<!--[if lt IE 9]>
+    <%= javascript_include_tag "html5" %>
+    <![endif]-->
+
+<%# display Atom feed link %>
+<%= auto_discovery_link_tag(:atom, "http://80000hours.org/blog/feed.atom") %>
+
+<%= render :partial => "/shared/google_analytics" %>
+<%= render :partial => "/shared/uservoice.html" %>
+<%= render :partial => "/shared/google_fonts.html" %>
+</head>
+
+<body>
+
+<%= render :partial => "/layouts/header" %>
+<%= render :partial => "layouts/subheader" %>
+
+<div class="container">
+  <div class="modal flash-modal" id="flash-modal">
+    <div class="modal-body alert" id="flash-message"></div>
+    <div class="modal-footer">
+      <a class="btn" data-dismiss="modal">Ok</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+Flash.transferFromCookies();
+Flash.writeDataTo('error', $('#flash-message'));
+Flash.writeDataTo('notice', $('#flash-message'));
+if ($("#flash-message").text().length > 0)
+  {
+    $(".flash-modal").modal('show');
+  }
+  else
+    {
+      $(".flash-modal").hide();
+    }
+  </script>
+
+  <section id="content">
+    <h1> OMG WHAT IS THIS?!? </h1>
+    <%= yield %>
+  </section>
+</div>
+
+<%= render :partial => "/layouts/footer" %>
+
+<%= render :partial => "/shared/quantcast" %>
+
+</body>
+
+</html>
+
+

@@ -19,7 +19,7 @@ header .logo img {
   max-width: 155px; }
 header ul.nav {
   margin-top: 16px; }
-  header ul.nav .a1 a:hover{
+  header ul.nav .a1 a:hover {
     color: #00b5aa; }
   header ul.nav .a2 a:hover {
     color: #00b8a9; }
@@ -35,35 +35,23 @@ header ul.nav {
     font-family: 'Muli', sans-serif;
     font-weight: 200; }
     header ul.nav > li > a {
+      border: 1px solid rgba(0, 0, 0, 0);
       padding: 5px 14px;
       font-size: 18px;
       color: #788;
       border-radius: 3px; }
       header ul.nav > li > a:hover {
         background: none; }
+    header ul.nav > li .dropdown-menu {
+      box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
+      border: 1px solid #999;
+      border-radius: 2px; }
   header ul.nav .caret {
     border-top-color: #666;
     border-bottom-color: #666; }
   header ul.nav .open > a:hover {
-    background-color: rgba(50,50,50,0);
-    border: none }
-  header ul.nav .open > a:focus {
-    background-color: rgba(50,50,50,0);
-    border:none;
-  }
-  header ul.nav .dropdown-menu > li > a:hover{
-    color: black;
-    background: rgba(0, 190, 167, 0.3);
-  }
-  header .dropdown-toggle{
-    color:white;
-  }
-  header .dropdown-menu{
-    border-color: rgba(40,150,120,0.5);
-    border-radius:2px;
-    background-color: #f6f6f6;
-    box-shadow: none;
-  }
+    background-color: black; }
+
 header.navbar {
   background: #f6f6f6;
   padding: 12px 0 14px 0;

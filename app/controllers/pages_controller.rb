@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
-  layout "application", :except => [:home]
-  layout "open", :only => [:home]
+  layout "application", :except => [:home, :coaching_overview]
+  layout "open", :only => [:home, :coaching_overview]
  
   def index
     @pages = Page.all
