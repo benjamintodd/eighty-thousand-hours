@@ -2,5 +2,7 @@
   .row.show
     .col-md-9
       = render @post
-      = render :partial => "/shared/disqus"
+      .comments
+        = render :partial => "/shared/disqus"
     .col-md-3
+      = render :partial => "social_media"

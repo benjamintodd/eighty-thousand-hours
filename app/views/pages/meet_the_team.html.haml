@@ -4,7 +4,7 @@
     .col-md-4.member
       .row
         .col-md-12
-          %img{ alt: "Benjamin Todd", src: "http://m1.idanoe.com/BenForWeb1.jpg"}/
+          = image_tag("/assets/pages/team/BenjaminTodd.jpg")
       .row
         .col-md-12
           %h2.name Benjamin Todd – Co-founder and Executive Director
@@ -15,7 +15,7 @@
     .col-md-4.member
       .row
         .col-md-12
-          %img.image.small{ alt: "Will MacAskill", src: "http://m1.idanoe.com/WillForWeb1.jpg"}/
+          = image_tag("/assets/pages/team/WillMacAskill.jpg")
       .row
         .col-md-12
           %h2.name Will MacAskill – Co-founder and President
@@ -24,17 +24,7 @@
     .col-md-4.member
       .row
         .col-md-12
-          %img{ alt: "Jess Whittlestone", src: "http://m1.idanoe.com/JessForWeb1.jpg"}/
-      .row
-        .col-md-12
-          %h2.name Jess Whittlestone – Director of Communications
-          %p Jess works on communicating our content to the world, as well as leading and coordinating our careers advice. She has also written many of our most popular blog posts. She recently graduated from Oxford University with a First in Maths and Philosophy, and will begin a PhD in Behavioural Science at Warwick Business School in October.
-          %a{href: "mailto:jess.whittlestone@80000hours.org"} jess.whittlestone@80000hours.org
-  .row
-    .col-md-4.member
-      .row
-        .col-md-12
-          %img{ alt: "Roman Duda", src: "http://m1.idanoe.com/RomanForWeb1.jpg"}/
+          = image_tag("/assets/pages/team/RomanDuda.jpg")
       .row
         .col-md-12
           %h2.name Roman Duda - Director of Content
@@ -42,24 +32,75 @@
           %p He leads the management of the content development team, as well as our impact evaluation.
           %a{href: "mailto:roman.duda@80000hours.org"} roman.duda@80000hours.org
 
+
+  .row
     .col-md-4.member
       .row
         .col-md-12
-          %img{ alt: "Tom Ash", src: "http://m1.idanoe.com/TomForWeb1.jpg"}/
+          = image_tag("/assets/pages/team/ThomasHendrey.jpg")
       .row
         .col-md-12
-          %h2.name Tom Ash – Director of Operations
+          %h2.name Thomas Henry - Researcher
+          %p Roman did a fully-funded Masters in Philosophy at Oxford, during which he also consulted for a top 30 FTSE company on their business strategy, whilst also studying Mandarin Chinese. With a strong interest in Quantified Self, he has worked at the start-ups Memrise and Self Spark.
+          %p He leads the management of the content development team, as well as our impact evaluation.
+          %a{href: "mailto:roman.duda@80000hours.org"} roman.duda@80000hours.org
+
+    .col-md-4.member
+      .row
+        .col-md-12
+          = image_tag("/assets/pages/team/Collin.jpg")
+      .row
+        .col-md-12
+          %h2.name Collin O'Rourke - Researcher
           %p Tom provides manages finances, legal and logistics shared 50% with Giving What We Can. After completing the BPhil in Philosophy at Oxford, he worked for 5 years as a professional web-developer at a variety of non-profits, including the New Internationalist.
 
     .col-md-4.member
       .row
         .col-md-12
-          %img{ alt: "Isaac Lewis", src: "http://m1.idanoe.com/IsaacForWeb1.jpg"}/
+          = image_tag("/assets/pages/team/OzzieGooen.jpg")
       .row
         .col-md-12
-          %h2.name Isaac Lewis - Lead Web Developer
+          %h2.name Ozzie Gooen - Web Developer
           %p Isaac recently graduated with a First in Computer Science from Warwick University. He works on improving our website and ensuring things run smoothly!
           %a{href: "mailto:isaac.lewis@80000hours.org"} isaac.lewis@80000hours.org
+  .row
+    .col-md-4.member
+      .row
+        .col-md-12
+          = image_tag("/assets/pages/team/TomAsh.jpg")
+      .row
+        .col-md-12
+          %h2.name Tom Ash – Director of Operations
+          %p Tom provides manages finances, legal and logistics shared 50% with Giving What We Can. After completing the BPhil in Philosophy at Oxford, he worked for 5 years as a professional web-developer at a variety of non-profits, including the New Internationalist.
+  <hr>
+  %h1#our_advisors Our Advisors
+  .row
+    .col-md-4.member
+      .row
+        .col-md-12
+          = image_tag("/assets/pages/team/TobyOrd.jpg")
+      .row
+        .col-md-12
+          %h2.name Niel Bowerman
+          %p Niel has six years of experience in climate advocacy, during which he was on Obama’s 2008 Environment Policy Team, adviser to the President of the Maldives, founder of Climatico and named a Young Global Shaper by the World Economic Forum.
+
+    .col-md-4.member
+      .row
+        .col-md-12
+          = image_tag("/assets/pages/team/TobyOrd.jpg")
+      .row
+        .col-md-12
+          %h2.name Dr Toby Ord
+          %p Toby is a Fellow of Oxford University’s Future of Humanity Institute, an expert in global prioritisation, and has been repeatedly covered in the international media for promoting cost-effective philanthropy.
+    .col-md-4.member
+      .row
+        .col-md-12
+          = image_tag("/assets/pages/team/TobyOrd.jpg")
+      .row
+        .col-md-12
+          %h2.name Paul Christiano
+          %p While a PhD candidate in Computer Science at Berkeley, Paul co-founded SPARC, which introduces the US’s top young mathematicians to how they can contribute to solving real world problems.
+
   <hr>
   %h1#community Community
   .row
@@ -76,14 +117,4 @@
       %em Head of the Princeton Chapter
       %p Max is a philosophy student at Princeton University and director of the Princeton chapter of 80,000 Hours. He is interested in metaethics and wants to answer questions about value and practical reason that will help us to rank the most important global causes and the most effective interventions. He plans to pursue a career as a high-impact philosopher.
   %hr
-  %h1#our_advisors Our Advisors
-  .row
-    .col-md-4
-      %h2.name Niel Bowerman
-      %p Niel has six years of experience in climate advocacy, during which he was on Obama’s 2008 Environment Policy Team, adviser to the President of the Maldives, founder of Climatico and named a Young Global Shaper by the World Economic Forum.
-    .col-md-4
-      %h2.name Dr Toby Ord
-      %p Toby is a Fellow of Oxford University’s Future of Humanity Institute, an expert in global prioritisation, and has been repeatedly covered in the international media for promoting cost-effective philanthropy.
-    .col-md-4
-      %h2.name Paul Christiano
-      %p While a PhD candidate in Computer Science at Berkeley, Paul co-founded SPARC, which introduces the US’s top young mathematicians to how they can contribute to solving real world problems.
+
