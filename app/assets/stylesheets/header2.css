@@ -35,7 +35,7 @@ header ul.nav {
     font-family: 'Muli', sans-serif;
     font-weight: 200; }
     header ul.nav > li > a {
-      border: 1px solid rgba(0, 0, 0, 0);
+      border: none;
       padding: 5px 14px;
       font-size: 18px;
       color: #788;
@@ -43,14 +43,27 @@ header ul.nav {
       header ul.nav > li > a:hover {
         background: none; }
     header ul.nav > li .dropdown-menu {
-      box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
-      border: 1px solid #999;
-      border-radius: 2px; }
+      border-color: rgba(100, 100, 100, 0.3);
+      border-radius: 2px;
+      background-color: #f6f6f6;
+      box-shadow: none; }
+      header ul.nav > li .dropdown-menu > li > a {
+        color: #666; }
+        header ul.nav > li .dropdown-menu > li > a:hover {
+          color: black;
+          background: rgba(0, 190, 167, 0.3); }
+  header ul.nav .open > a:focus {
+    background-color: rgba(50, 50, 50, 0);
+    border: none; }
   header ul.nav .caret {
     border-top-color: #666;
     border-bottom-color: #666; }
   header ul.nav .open > a:hover {
-    background-color: black; }
+    background-color: rgba(50, 50, 50, 0);
+    border: none; }
+  header ul.nav .open > a:focus {
+    background-color: rgba(50, 50, 50, 0);
+    border: none; }
 
 header.navbar {
   background: #f6f6f6;
