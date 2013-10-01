@@ -43,9 +43,9 @@
     padding-right: 25px; }
 .blog .show .entry {
   background: white;
-  padding: 35px 30px 35px 30px;
+  padding: 35px 35px 20px 35px;
   border-radius: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   border: 1px solid #e8e8e8; }
   .blog .show .entry .heading {
     margin-bottom: 30px; }

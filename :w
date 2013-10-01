@@ -1,0 +1,26 @@
+- if can? :manage, blog_post
+  .controls
+    .user
+      = link_to "Edit post", edit_blog_post_path, :class => 'btn btn-mini btn-warning'
+      = link_to 'Delete post', blog_post_path, :confirm => "Are you sure you want to delete the post '#{blog_post.title}'?", :method => :delete, :class => 'btn btn-mini btn-danger'
+.entry
+  .box
+
+    .heading
+      %h1
+        = blog_post.title
+        - if blog_post.draft
+          %span.label.label-warning Draft post (not publicly visible)
+      .metadata
+        = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.created_at)}")
+        </br>
+
+    .content
+      = markdown blog_post.body
+    %hr
+    %p
+      %em
+        = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
+        = blog_post.attribution
+    %p
+      .fblike
