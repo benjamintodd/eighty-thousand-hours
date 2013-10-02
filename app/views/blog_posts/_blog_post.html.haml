@@ -5,7 +5,6 @@
       = link_to 'Delete post', blog_post_path, :confirm => "Are you sure you want to delete the post '#{blog_post.title}'?", :method => :delete, :class => 'btn btn-mini btn-danger'
 .entry
   .box
-
     .heading
       %h1
         = blog_post.title
@@ -17,10 +16,4 @@
 
     .content
       = markdown blog_post.body
-    %hr
-    %p
-      %em
-        = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
-        = blog_post.attribution
-    %p
-      .fblike
+    = render :partial => "post_tags", :locals => { :post => blog_post, :div_title => "tags:" }
