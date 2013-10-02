@@ -114,5 +114,22 @@
   .comments{
     padding: 0 10px 20px;
   }
+
+
+  .blog-sidebar{
+    background: #333;
+    .comments{
+      img{
+        width:40px;
+        opacity:0.5em;
+      }
+      a{
+        color:pink;
+      }
+    }
+    .social-media-buttons{
+      background:green;
+    }
+  }
 }
 
