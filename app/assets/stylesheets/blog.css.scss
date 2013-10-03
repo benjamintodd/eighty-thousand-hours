@@ -40,17 +40,29 @@
       }
     }
     .sidebar{
-      padding-right: 25px;
+      .sidebar-item{
+        margin-bottom:10px;
+        a{
+          color: #2fa2b8;
+          font-family: 'Muli', sans-sefif;
+          font-weight: 500;
+          font-size:1.2em;
+
+        }
+        .attribution{
+          color: #999;
+          font-family: 'Muli', sans-sefif;
+          font-weight:100;
+        }
+      }
     }
   }
-
   .show{
-
     .entry {
       background:white;
       padding:35px 35px 20px 35px;
       border-radius: 2px;
-      margin-bottom:50px;
+      margin-bottom:10px;
       border:1px solid #e8e8e8;
 
       .heading{
@@ -97,6 +109,70 @@
         }
       }
     }
+
+
+    .blog-sidebar{
+      margin-top:55px;
+      .comment-count{
+        img{
+          width:15px;
+          opacity:0.5em;
+          top: -1px;
+          position:relative;
+          opacity:0.2;
+        }
+        a{
+          color: #888;
+          font-family: 'Muli', sans-serif;
+          margin-left: 5px;
+          font-size:0.95em;
+        }
+      }
+      .social-media-buttons{
+        padding: 8px;
+        background: #e6e6e6;
+        width: 110px;
+        border-radius:3px;
+        margin-top:28px;
+
+        .fb-like{
+          margin-bottom:8px;
+
+        }
+        .twitter-share-button{
+          margin-bottom:8px;
+
+        }
+      }
+    }
+    .social-media-buttons-horizontal{
+      background: #e6e6e6;
+      padding: 7px 7px 5px;
+      border-radius:3px;
+      float:left;
+      width:320px;
+      margin-top:2px;
+      margin-left: 0px;
+      margin-bottom:34px;
+
+      .fb-like{  
+        float:left;
+        width: 100px;
+        height:21px;
+
+      }
+      .twitter{
+        float:left;
+        width: 100px;
+        height:21px;
+
+      }
+      .linkedin-share-button{  
+        float:left;
+        width: 100px;
+        height:21px;
+      }
+    }
   }
 
   .categories{
@@ -116,20 +192,5 @@
   }
 
 
-  .blog-sidebar{
-    background: #333;
-    .comments{
-      img{
-        width:40px;
-        opacity:0.5em;
-      }
-      a{
-        color:pink;
-      }
-    }
-    .social-media-buttons{
-      background:green;
-    }
-  }
 }
 
