@@ -3,7 +3,7 @@
 - posts.each do |post|
   = render partial: 'shared/sidebar_item',
            locals: { date: post.created_at,
-                     content: "<span class='votes'>#{post.net_votes}</span><i class='icon-arrow-up'></i>#{link_to post.title, blog_post_path( post )}".html_safe,
+                     content: "#{link_to post.title, blog_post_path( post )}".html_safe,
                      attribution: link_to_blog_post_author( post ) }
 
 -#= link_to "View posts ordered by popularity <i class='icon-circle-arrow-right'></i>".html_safe, "/blog?order=popularity"
