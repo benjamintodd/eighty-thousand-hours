@@ -1,11 +1,7 @@
 .subscribe
-  %h3 Subscribe
-  .subscribe-option
-    .subscribe-text
-      %a{:href => '/blog/feed.atom'} Subscribe via RSS
-
 
   %h3 Subscribe To Our Newsletter
   .subscribe-option
     = render partial: "./shared/mailing_list", locals: { text: "" }
-  = image_tag("/assets/pages/coaching/collin-coaching.png")
+
+

@@ -1,22 +1,23 @@
 <div class='mail-list-signup'>
-	<p class='join-txt'><%= text %></p>
 
-	<input class='email-address-input' placeholder='Enter your email address' type='text'>
+  <div class="input-group">
+    <input class='form-control email-address-input' placeholder='Enter your email address' type='text'>
 
-	<div class='submit' >
-		<a class='btn btn-primary' href='http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true'>Submit</a>
-	</div>
+    <div class='submit input-group-btn' >
+      <a class='btn btn-primary' href='http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true'>Subscribe</a>
+    </div>
+  </div>
 </div>
 
 
 <script>
 $(document).ready( function() {
-	$("input.email-address-input").keyup( function() {
-		email = $(this).val();
+  $("input.email-address-input").keyup( function() {
+    email = $(this).val();
 
-		html = "<a class='btn btn-primary' href='http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true&MERGE0=" + email + "'>Submit</a>";
+    html = "<a class='btn btn-primary' href='http://80000hours.us2.list-manage.com/subscribe?u=aba12f58bbe8075560abdc5b7&id=43bc1ae55c&group[1][1]=true&MERGE0=" + email + "'>Submit</a>";
 
-		$("div.submit").html(html);
-	});
+    $("div.submit").html(html);
+  });
 });
 </script>

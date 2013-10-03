@@ -16,8 +16,9 @@
     .col-md-1
     .col-md-4
       .box.sidebar.blog-sidebar
-        = image_tag("/assets/pages/coaching/collin-coaching.png")
-        = render :partial => "popular_posts"
-        = render :partial => "subscribe"
-
+        = image_tag("/assets/blog/writing-example.jpg")
+        .section
+          = render :partial => "subscribe"
+        .section
+          = render :partial => "popular_posts"
 
