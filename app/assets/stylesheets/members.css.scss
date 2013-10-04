@@ -1,0 +1,86 @@
+.overview{
+  .background{
+    background-image: url('/assets/community/overview/members-row.png');
+    background: linear-gradient(45deg, #2290af,#10cba5 100%); /* W3C */
+
+    .members-row-top{
+      height:50px;
+      background-image: url('/assets/community/overview/members-50-top.png');
+    }
+    .members-row-bottom{
+      height:50px;
+      background-image: url('/assets/community/overview/members-50-bottom.png');
+    }
+    .sliver{
+      height:2px;
+    }
+  }
+  .cta-section{
+    background: linear-gradient(45deg, #2290af,#10cba5 100%); /* W3C */
+    //background: #306975; /* Old browsers */
+    //background-image: url("/assets/front_page/patterns/test-10-large.png");
+    padding:45px 0 61px 0;
+    h1{
+      font-size:65px;
+      margin-bottom:74px;
+      color:white;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      .dark{
+        color:black;
+      }
+    }
+    h2{
+      color:#222;
+      font-size:32px;
+      font-weight:400;
+      margin-bottom:56px;
+    }
+    .buttons{
+      margin-top:40px;
+      .cta{
+        font-family: 'Muli', sans-serif;
+        font-size:29px;
+        padding:19px;
+        font-weight: 400;
+        width:300px;
+      }
+      .cta.secondary{
+        color:rgba(255,255,255,0.7);
+        padding: 17px;
+        border: 2px solid rgba(255,255,255,0.5);
+        background:none;
+        &:hover{
+          background: rgba(250, 250, 250, 0.2);
+        }
+      }
+      .cta.primary{
+        background: rgba(255,255,255,0.9);
+        color: #377;
+        &:hover{
+          background: rgba(250, 250, 250, 0.5);
+        }
+      }
+    }
+  }
+
+  .testimonial{
+    padding: 52px 0 33px 0;
+    background: rgba(255,255,255,0.7);
+    box-shadow: inset 0 -2px 1px rgba(50,50,50,0.1);
+    .quote{
+      padding:12px 22px 6px 50px;
+      background: url("/assets/icons/220-ws.png") left top no-repeat, url("/assets/icons/220-bws.png") bottom right no-repeat;
+    }
+    h2{
+      font-size:1.4em;
+      margin-top:27px;
+      margin-left:50px;
+      line-height:1.4em;
+      color: #666;
+    }
+    img{
+      margin-top:10px;
+      float:right;
+    }
+  }
+}

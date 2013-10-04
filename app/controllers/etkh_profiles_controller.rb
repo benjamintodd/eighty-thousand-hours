@@ -1,6 +1,8 @@
 LIST_LENGTH = 10
 class EtkhProfilesController < ApplicationController
   load_and_authorize_resource :only => [:new,:create,:edit,:update,:destroy]
+  layout "open", :only => [:overview]
+ 
 
   def new     #this is not triggered when a new member signs up
     if current_user.nil?
