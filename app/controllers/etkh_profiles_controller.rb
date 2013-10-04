@@ -268,4 +268,12 @@ class EtkhProfilesController < ApplicationController
     @pos_top = params[:top_pos]
     @page = params[:page]
   end
+
+  def overview
+
+  end
+
+  def landing_page
+
+  end
 end

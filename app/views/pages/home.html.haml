@@ -16,34 +16,34 @@
     .section.people-say
       .container
         .row
-          .col-md-3.profile
+          .col-sm-3.col-xs-6.profile
             .text-center
-              = image_tag("/assets/front_page/people/1.png")
+              = image_tag("/assets/front_page/people/jen.png")
             %p
-              "80,000 Hours really helped me to do such-and-such with my time.  Thank god!"
+              "I will totally have a quote here as soon as it's sent to Ozzie!"
             %h4
               Mia George, Analyst
-          .col-md-3.profile
+          .col-sm-3.col-xs-6.profile
             .text-center
-              = image_tag("/assets/front_page/people/3.png")
+              = image_tag("/assets/front_page/people/jen.png")
             %p
-              "80,000 Hours really helped me to do such-and-such with my time.  Thank god!"
+              "I will also totally have a quote here as soon as it's sent to Ozzie!"
             %h4
               Mia George, Analyst
-          .col-md-3.profile
+          .col-sm-3.col-xs-6.profile
             .text-center
-              = image_tag("/assets/front_page/people/2.png")
+              = image_tag("/assets/front_page/people/jen.png")
             %p
-              "80,000 Hours really helped me to do such-and-such with my time.  Thank god!"
+              "I am the third person to have a quote here as soon as it's sent to Ozzie!"
             %h4
               Mia George, Analyst
-          .col-md-3.profile
+          .col-sm-3.col-xs-6.profile
             .text-center
-              = image_tag("/assets/front_page/people/4.png")
+              = image_tag("/assets/front_page/people/Haydn.png")
             %p
-              "80,000 Hours really helped me to do such-and-such with my time.  Thank god!"
+              "I think I have a quote, but Ozzie doesn't know where it is.  It should be sent to Ozzie!"
             %h4
-              Mia George, Analyst
+              Haydn Belfield, Development Officer
 
 
   .section.core-concepts
@@ -107,22 +107,20 @@
           .row.organizations
             .col-md-7
               .row
-                .col-md-4
-                  = image_tag("/assets/front_page/orgs/oxford-fb.jpg")
-                .col-md-4
-                  = image_tag("/assets/front_page/orgs/fhisquare.png")
-                .col-md-4
-                  = image_tag("/assets/front_page/orgs/ethics.png")
+                .col-md-4.col-xs-6
+                  = link_to image_tag("/assets/front_page/orgs/oxford-fb.jpg"), 'http://www.ox.ac.uk/'
+                .col-md-4.col-xs-6
+                  = link_to image_tag("/assets/front_page/orgs/fhisquare.png"), 'http://www.fhi.ox.ac.uk/'
+                .col-md-4.col-xs-6
+                  = link_to image_tag("/assets/front_page/orgs/ethics2.png"), 'http://www.practicalethics.ox.ac.uk/'
               %hr.dashed
               Our research is done with academics at the University of Oxford and 80,000 Hours is affiliated with the University of Oxford Uehiro Centre for Practical Ethics.
             .col-md-5
               .row
                 .col-md-6
-                  = image_tag("/assets/front_page/orgs/fhisquare.png")
-                .col-md-6
-                  = image_tag("/assets/front_page/orgs/oxford-fb.jpg")
+                  = link_to image_tag("/assets/front_page/orgs/gwwc.png"), 'http://www.givingwhatwecan.org/'
               %hr.dashed
-              80,000 Hours is part of the Centre for Effective Altruism, where it works closely with other CEA charity Giving What we Can.
+              80,000 Hours is part of the Centre for Effective Altruism, where it works closely with the charity Giving What we Can.
           <hr>
           .row.media
             = link_to "http://www.washingtonpost.com/blogs/wonkblog/wp/2013/05/31/join-wall-street-save-the-world/" do
@@ -130,9 +128,9 @@
             = link_to "http://www.bbc.co.uk/news/education-15820786" do
               = image_tag("/assets/press/bbc.png", alt: "BBC logo")
             = link_to "http://www.ted.com/talks/peter_singer_the_why_and_how_of_effective_altruism.html" do
-              = image_tag("/assets/press/ted_logo.png", alt: "TED logo")
+              = image_tag("/assets/front_page/media/ted.png", alt: "TED logo")
             = link_to "http://www.thetakeaway.org/2013/feb/28/want-give-back-get-job-wall-street/" do
-              = image_tag("/assets/press/npr.png", alt: "NPR logo")
+              = image_tag("/assets/front_page/media/npr_b.png", alt: "NPR logo")
         .col-md-2
 
 

@@ -3,12 +3,12 @@
 .eighty-thousand-hours-profile
   .heading
     .row-fluid
-      .span3
+      .col-sm-3
         .avatar
           = link_to image_tag(user.avatar(:medium)), user.avatar.url
-      .span9
+      .col-sm-9
         .row-fluid
-          .span8
+          .col-sm-8
             .header-main
               .info
                 %h1.name
@@ -35,7 +35,7 @@
                   #linkedin-add
                     = link_to "Add connection on LinkedIn", {controller: 'users', action: 'initialise_invite_linkedin_connection', email: user.linkedin_email, user_id: user.id}, remote: false, class: "btn btn-new"
 
-          .span4
+          .col-sm-4
             .right-block
               - if user == current_user && current_user.etkh_profile
                 .completeness
@@ -56,7 +56,7 @@
                         = link_to image_tag("/assets/social/facebook.png") + " Facebook".html_safe, user.external_facebook
   #contact-modal
   .row
-    .span8
+    .col-sm-8
       .content
         - if profile.background?
           .section
@@ -134,7 +134,7 @@
                 %h2 Skills and knowledge I would like to learn from other members
                 %p= profile.skills_knowledge_learn
 
-    .span4
+    .col-sm-4
       .sidebar
         .section#recent-activity
           %h3.title
@@ -149,12 +149,4 @@
                 - user.blog_posts.published.limit(3).each do |post|
                   = link_to post.title, post, class: "activity-link"
                 = link_to "See all blog posts", {controller: "users", action: "user_activity", id: user.id, activity_type: "BlogPosts"}, class: "user-activity-link"
-          %h3.title
-            Other members
-          %hr
-          .body
-            - members = EtkhProfile.generate_users(15, [current_user, user])
-            - members.each_slice(5).with_index do |batch,i|
-              %div{ id: "batch-#{i+1}", style: "display: none" }
-                - batch.each do |member|
-                  = render partial: 'profile_condensed_2', locals: { profile: member.etkh_profile }
+ 

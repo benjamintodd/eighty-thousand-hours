@@ -63,6 +63,8 @@ EightyThousandHours::Application.routes.draw do
 
   resources :videos, :only =>[:index]
 
+  match '/members/landing' => 'etkh_profiles#landing_page'
+  match '/members/overview' => 'etkh_profiles#overview'
   match '/members/all'  => 'etkh_profiles#index'
   match '/members'      => 'etkh_profiles#our_members'
   match '/members/get_more_members' =>'etkh_profiles#get_more_members'
@@ -81,6 +83,8 @@ EightyThousandHours::Application.routes.draw do
     resources :etkh_profiles 
     collection do
       get 'all'
+      get 'landing_page'
+      get 'overview'
       get 'email_list'
       put 'contact_user'
       get 'user_activity'
