@@ -276,6 +276,6 @@ class EtkhProfilesController < ApplicationController
   end
 
   def landing_page
-
+    @title = "Membership"
   end
 end
