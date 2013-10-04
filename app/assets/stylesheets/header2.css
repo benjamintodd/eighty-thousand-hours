@@ -16,7 +16,8 @@
 /*$pf: #ffaa00; // gold*/
 /*$magenta_2: #e30068;*/
 header .logo img {
-  max-width: 155px; }
+  max-width: 155px;
+  height: 72px; }
 header ul.nav {
   margin-top: 16px; }
   header ul.nav .a1 a:hover {

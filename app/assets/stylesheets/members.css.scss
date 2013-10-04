@@ -1,15 +1,15 @@
 .overview{
   .background{
     background-image: url('/assets/community/overview/members-row.png');
-    background: linear-gradient(60deg, #1260cf,#50dbff 100%); /* W3C */
+    background: linear-gradient(60deg, #2270af, #50dbff 100%); /* W3C */
 
     .members-row-top{
       height:50px;
-      background-image: url('/assets/community/overview/members-50-top.png');
+      background-image: url('/assets/community/overview/members-50-bottom.png');
     }
     .members-row-bottom{
       height:50px;
-      background-image: url('/assets/community/overview/members-50-bottom.png');
+      background-image: url('/assets/community/overview/members-50-top.png');
     }
     .sliver{
       height:2px;

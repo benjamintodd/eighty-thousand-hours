@@ -1,13 +1,13 @@
 .overview .background {
   background-image: url("/assets/community/overview/members-row.png");
-  background: linear-gradient(60deg, #1260cf, #50dbff 100%);
+  background: linear-gradient(60deg, #2270af, #50dbff 100%);
   /* W3C */ }
   .overview .background .members-row-top {
     height: 50px;
-    background-image: url("/assets/community/overview/members-50-top.png"); }
+    background-image: url("/assets/community/overview/members-50-bottom.png"); }
   .overview .background .members-row-bottom {
     height: 50px;
-    background-image: url("/assets/community/overview/members-50-bottom.png"); }
+    background-image: url("/assets/community/overview/members-50-top.png"); }
   .overview .background .sliver {
     height: 2px; }
 .overview .cta-section {
