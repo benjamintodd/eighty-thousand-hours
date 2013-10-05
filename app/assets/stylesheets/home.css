@@ -19,14 +19,22 @@
       font-family: 'Muli', sans-serif;
       font-size: 29px;
       padding: 19px;
-      font-weight: 400;
-      background: rgba(255, 255, 255, 0.8);
-      color: #377; }
-      .home .cta-section .buttons .cta:hover {
+      font-weight: 400; }
+    .home .cta-section .buttons .cta.secondary {
+      color: rgba(255, 255, 255, 0.7);
+      padding: 17px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: none; }
+      .home .cta-section .buttons .cta.secondary:hover {
+        background: rgba(250, 250, 250, 0.2); }
+    .home .cta-section .buttons .cta.primary {
+      background: rgba(255, 255, 255, 0.9);
+      color: #055; }
+      .home .cta-section .buttons .cta.primary:hover {
         background: rgba(250, 250, 250, 0.5); }
 .home .people-say {
   padding: 38px 0 41px 0;
-  background: rgba(190, 240, 255, 0.7);
+  background: rgba(190, 254, 255, 0.7);
   box-shadow: inset 0 -2px 1px rgba(50, 50, 50, 0.1); }
   .home .people-say .profile {
     padding: 0 26px; }

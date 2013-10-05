@@ -26,9 +26,19 @@
         font-size:29px;
         padding:19px;
         font-weight: 400;
-        background: rgba(255,255,255,0.8);
-
-        color: #377;
+      }
+      .cta.secondary{
+        color:rgba(255,255,255,0.7);
+        padding: 17px;
+        border: 2px solid rgba(255,255,255,0.5);
+        background:none;
+        &:hover{
+          background: rgba(250, 250, 250, 0.2);
+        }
+      }
+      .cta.primary{
+        background: rgba(255,255,255,0.9);
+        color: #055;
         &:hover{
           background: rgba(250, 250, 250, 0.5);
         }
@@ -37,7 +47,7 @@
   }
   .people-say{
     padding: 38px 0 41px 0;
-    background: rgba(190,240,255,0.7);
+    background: rgba(190,254,255,0.7);
     box-shadow: inset 0 -2px 1px rgba(50,50,50,0.1);
     .profile{
       padding: 0 26px;

@@ -7,14 +7,12 @@
         .row
           .col-sm-12
             %h1.text-center
-              1,003+ individuals <span class="dark">are using their careers for strategic good.</span>
+              1,003+ individuals <span class="dark">are using their careers for effective impact.</span>
           .row.buttons
             .col-md-4.col-md-offset-2
-              %button.btn.btn-large.secondary.cta{href: "/"}
-                Learn More
+              = link_to 'Learn More', '/members/landing', class: "btn btn-large secondary cta"
             .col-md-3
-              %button.btn.btn-large.primary.cta{href: "/"}
-                Join
+              = link_to 'Join', '/members/landing', class: "btn btn-large primary cta"
     .members-row-bottom
     .sliver
     .section.people-say

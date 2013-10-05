@@ -8,11 +8,9 @@
           Don't let them go to waste. Our free coaching and research helps you find the causes and careers in which you can make the biggest impact.
         .row.buttons
           .col-md-4.col-md-offset-2
-            %button.btn.btn-large.cta{href: "/"}
-              Read Our Research
+            = link_to 'Get Career Coaching', '/coaching/overview', class: "btn btn-large secondary cta"
           .col-md-3
-            %button.btn.btn-large.cta{href: "/"}
-              Get Career Coaching
+            = link_to 'Read Our Research', '/our-findings', class: "btn btn-large primary cta"
     .section.people-say
       .container
         .row
