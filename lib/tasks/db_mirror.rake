@@ -9,7 +9,7 @@ namespace :db do
   app = "eighty-thousand-hours"
   task :mirror do
     system(%Q{
-      heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ONYX_URL --app #{app} && \
+      heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ORANGE_URL --app #{app} && \
       curl -o /tmp/hic-db.dump $(heroku pgbackups:url --app #{app}) && \
       pg_restore --verbose --clean --no-acl --no-owner -d #{local_db} /tmp/hic-db.dump
     })

@@ -97,6 +97,9 @@ gem 'cacheable_flash' # used to deal with flash messages when caching pages
 # automatically create links within a body of text
 gem 'rails_autolink'
 
+#Deals with importing tables
+gem 'taps'
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
   gem 'heroku_san'
