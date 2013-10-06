@@ -2,9 +2,14 @@
   .member{
     margin:28px 0 10px 0;
     img{
-      width:285px;
+      max-width:300px;
+      max-height:253px;
       margin:auto;
       display:block;
+    }
+    .empty-picture{
+      height: 253px;
+      width: 200px;
     }
   }
   .name{
