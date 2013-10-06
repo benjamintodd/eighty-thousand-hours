@@ -1,14 +1,3 @@
-/*$pf: #f62000;*/
-/*$pf: #008080; // Teal*/
-/*$pf: #a50021; // purpley-red*/
-/*$pf: #ff2400; // scarlet*/
-/*$pf: #ffaa00; // gold*/
-/*$magenta_2: #e30068;*/
-@font-face {
-  font-family: 'MuseoSans-700Italic';
-  src: url("243719_0_0.eot");
-  src: url("243719_0_0.eot?#iefix") format("embedded-opentype"), url("243719_0_0.woff") format("woff"), url("243719_0_0.ttf") format("truetype"); }
-
 .blog .index {
   margin-top: 35px; }
   .blog .index .entry {

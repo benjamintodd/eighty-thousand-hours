@@ -1,14 +1,13 @@
 .team .member {
   margin: 28px 0 10px 0; }
   .team .member img {
-    max-width:300px;
-    max-height:253px;
+    max-width: 300px;
+    max-height: 253px;
     margin: auto;
     display: block; }
-  .team .member .empty-picture{
-      height: 253px;
-      width: 200px;
-    }
+  .team .member .empty-picture {
+    height: 253px;
+    width: 200px; }
 .team .name {
   color: #45b4b3; }
 .team h1 {
