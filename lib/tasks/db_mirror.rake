@@ -20,7 +20,7 @@ namespace :db do
   devapp = "eighty-thousand-hours-new-dev"
   task :mirror_to_dev_site do
     system(%Q{
-      heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ONYX_URL --app #{mainapp}
+      heroku pgbackups:capture --expire HEROKU_POSTGRESQL_ORANGE_URL --app #{mainapp}
       heroku pgbackups:restore DATABASE $(heroku pgbackups:url --app #{mainapp}) --app #{devapp}
     })
   end
