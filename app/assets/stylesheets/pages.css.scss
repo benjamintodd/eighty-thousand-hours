@@ -18,6 +18,51 @@
   }
 }
 
+.endorsements{
+  blockquote {
+    margin-left: 30px;
+    margin: 0 0 14px 30px;
+    background: url("/assets/pages/testimonials/220-16.png") left top no-repeat, url("/assets/pages/testimonials/220-16r.png") bottom right no-repeat;
+    border-left: none;
+  }
+  blockquote p {
+    font-family: 'Muli', sans serif;
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 170%;
+    padding: 8px 20px;
+  }
+
+  .position { 
+    font-family: 'Muli', sans serif;
+    font-size: 1.1em; 
+    color: #999;
+  }
+
+  .author {
+    font-family: 'Muli', sans serif;
+    font-size: 1.7em; 
+  }
+
+  .endorsement {
+    padding: 35px 0px;
+  }
+
+  img {
+    float: left;
+    margin-right: 12px;
+    width: 52px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    opacity:0.5;
+    margin-left: 7px;
+  }
+  hr{
+    border-top: 1px dotted #eee;
+  }
+
+}
 .coaching-navigation{
   padding-right:22px;
 
@@ -30,7 +75,7 @@
     margin-top:25px;
     font-size:1.5em;
     a{
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.8);
       &:hover{
         color:white;
         text-decoration:none;
@@ -42,7 +87,7 @@
 .coaching-page{
   .back-large{
     padding:38px 0 32px 0;
-    background: linear-gradient(45deg, rgba(54, 174, 205, 0.4), rgba(40, 233, 165, 0.4));
+    background: linear-gradient(45deg, rgba(34,144,175,0.3), rgba(91, 198, 207, 0.3));
     .img{
       width: 97%;
       text-align:center;
@@ -55,7 +100,8 @@
         font-size:1.35em;
         margin-top:14px;
         color:#222;
-        line-height: 1.3em;
+        line-height: 160%;
+        color: #316B7E;
       }
       .buttons{
         text-align:center;
@@ -92,7 +138,7 @@
       color: #66;
     }
   }
-  
+
 }
 
 .coaching-info-page{
@@ -100,11 +146,11 @@
     margin-top:36px;
   }
   .btn-primary{
-        font-family: 'Muli', sans-serif;
-        font-weight:500;
-        font-size:22px;
-        padding:8px 17px;
-        border:none;
-        margin: 32px 17px 18px;
+    font-family: 'Muli', sans-serif;
+    font-weight:500;
+    font-size:22px;
+    padding:8px 17px;
+    border:none;
+    margin: 32px 17px 18px;
   }
 }

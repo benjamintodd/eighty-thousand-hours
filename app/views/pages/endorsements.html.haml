@@ -1,13 +1,22 @@
-.row
-  - @endorsements.each do |e|
-    .col-md-6
-      .endorsement
-        %blockquote<
-          = markdown e["body"]
-        .attribution
-          .author
-            = e["author"]
-          - if !e["position"].nil?
-            .position
-              = e["position"]
+.endorsements
+  - @endorsements.each_slice(2) do |e1, e2|
+    .endorsement
+      .row
+        - [e1, e2].each do |e|
+          - if !e.nil?
+            .col-md-6
+              %blockquote<
+                = markdown e["body"]
+      .row
+        - [e1, e2].each do |e|
+          - if !e.nil?
+            .col-md-6
+              .attribution
+                .author
+                  = image_tag '/assets/pages/testimonials/business-icon.png'
+                  = e["author"]
+                - if !e["position"].nil?
+                  .position
+                    = e["position"]
+    <hr>
 

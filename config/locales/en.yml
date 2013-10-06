@@ -24,6 +24,15 @@ en:
       position: Founder and Director of The Humane League, Author, Member of 80,000 Hours
       updated_at: "2012-11-05T14:58:30+00:00"
       weight: 2
+    - author: Prof. Nick Bostrom
+      body: The idea could have been explained on Sesame Street, and it probably should.
+      created_at: "2012-02-11T03:02:37+00:00"
+      endorsement_page: true
+      header: true
+      id: 1
+      position: Director, Future of Humanity Institute, University of Oxford
+      updated_at: "2012-12-17T16:22:15+00:00"
+      weight: 2
     - author: Ryan Rollins
       body: With my new found beliefs in altruism, I think that the sky is the limit!
         I truly believe I can do anything with a career!
@@ -74,21 +83,7 @@ en:
       position: 80,000 Hours member, Alaska
       updated_at: "2012-08-28T11:32:14+01:00"
       weight: 1
-    - author: Patrick Brinich-Langlois
-      body: After I left college I knew I wanted to make the world a better place but
-        I didn't know how best to do it. [The lecture that started it all](http://www.youtube.com/watch?v=lAnh2FApskM&feature=results_main&playnext=1&list=PLADC8E1234F2A2FB6)
-        helped me think more clearly about the factors involved in career choice. The
-        80,000 Hours careers adviser recommended that I study programming and computer
-        science, and that's what I've been doing. While I haven't yet achieved my dreams,
-        I believe that the advice provided 80,000 Hours will help me become a more effective
-        altruist.
-      created_at: "2012-04-15T13:44:34+01:00"
-      endorsement_page: true
-      header: false
-      id: 12
-      position: 80,000 Hours member, Yukon-Kuskokwim Health Corporation, Alaska
-      updated_at: "2013-02-11T09:09:44+00:00"
-      weight: 1
+
     - author: Jacy Anthis
       body: "80,000 Hours is a realistic landing for all the dreaming of saving the world
         we had as a child.\r\n"
@@ -108,6 +103,21 @@ en:
       id: 10
       position: 80,000 Hours member, Bolder Giving, Maths Teacher
       updated_at: "2012-04-15T13:43:30+01:00"
+      weight: 1
+    - author: Patrick Brinich-Langlois
+      body: After I left college I knew I wanted to make the world a better place but
+        I didn't know how best to do it. [The lecture that started it all](http://www.youtube.com/watch?v=lAnh2FApskM&feature=results_main&playnext=1&list=PLADC8E1234F2A2FB6)
+        helped me think more clearly about the factors involved in career choice. The
+        80,000 Hours careers adviser recommended that I study programming and computer
+        science, and that's what I've been doing. While I haven't yet achieved my dreams,
+        I believe that the advice provided 80,000 Hours will help me become a more effective
+        altruist.
+      created_at: "2012-04-15T13:44:34+01:00"
+      endorsement_page: true
+      header: false
+      id: 12
+      position: 80,000 Hours member, Yukon-Kuskokwim Health Corporation, Alaska
+      updated_at: "2013-02-11T09:09:44+00:00"
       weight: 1
     - author: Prof. Avner Offer
       body: 'Economics assumes that individuals will take as much as they can. 80,000
@@ -161,12 +171,4 @@ en:
       position: Research Fellow, Singularity Institute for Artificial Intelligence
       updated_at: "2012-04-15T13:42:11+01:00"
       weight: 2
-    - author: Prof. Nick Bostrom
-      body: The idea could have been explained on Sesame Street, and it probably should.
-      created_at: "2012-02-11T03:02:37+00:00"
-      endorsement_page: true
-      header: true
-      id: 1
-      position: Director, Future of Humanity Institute, University of Oxford
-      updated_at: "2012-12-17T16:22:15+00:00"
-      weight: 2
+

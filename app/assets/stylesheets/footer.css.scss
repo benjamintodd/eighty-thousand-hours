@@ -16,6 +16,7 @@ footer {
 
   p{
     font-size:0.8em;
+    line-height:130%;
   }
 
   .menu {
@@ -23,7 +24,7 @@ footer {
   }
 
   hr{
-    border-color:#555 ;
+    border-top: 3px solid #3E6666;
     margin-bottom:10px;
   }
 
@@ -44,13 +45,16 @@ footer {
   ul {
     float:left;
     list-style-type: none;
-    padding-right: 20px;
+    padding-right: 40px;
     padding-left:0px;
     min-width:8%;
-    max-width:16%;
+    max-width:25%;
     li.heading {
-      font-size: 1.1em;
+      font-family: 'Muli', sans serif;
+      font-size: 1.3em;
+      font-weight: 200;
       padding-bottom: 10px;
+      color: #D3D3D3;
       a {
         color: #dbe1e1;
       }
@@ -59,11 +63,14 @@ footer {
       }
     }
     li {
-      font-size: 0.8em;
       a{
         color: #7b7f80;
       }
     }
+  }
+
+  .disclaimer {
+    padding: 15px 0;
   }
 
   .charity {
