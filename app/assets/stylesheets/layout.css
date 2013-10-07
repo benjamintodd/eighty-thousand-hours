@@ -4,6 +4,10 @@ a {
 a:hover {
   color: #003399; }
 
+body {
+  color: #555;
+  font-size: 16px; }
+
 #content {
   padding-top: 20px;
   padding-bottom: 22px;
@@ -32,9 +36,6 @@ h3 {
 p {
   font-size: 16px;
   line-height: 22px; }
-li {
-  font-size: 16px;
-  line-height: 22px;
-}
+
 img {
   max-width: 100%; }
