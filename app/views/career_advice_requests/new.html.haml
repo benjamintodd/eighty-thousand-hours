@@ -2,9 +2,12 @@
   .col-md-9
     %p 
       :markdown
-        If you’re interested in having a big impact with your life, we’d like to help you! Use the form below to ask to speak to one of our advisers.
-        Please also note that our advice service is currently in a trial phase. One thing this means is that we sometimes run out of capacity, and we won’t always be able to give you a session. We apologise in advance if this is the case.
-      
+        Please use the form below to apply for in-depth coaching from 80,000 Hours.
+
+        If you’d like to find out more about what we look for, see our [application information](LINK). If you’d like to find out more about how the process works, see our [coaching information pages.](LINK)
+
+        Note that demand for our coaching far exceeds capacity, so we can only talk to less than 10% of applicants.
+
 
     = simple_form_for @career_advice_request, :url => { :action => "create" }, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|
 
@@ -21,17 +24,17 @@
         = f.input :questions, :as => :text, label: 'What questions do you have for our advisor?'
         = f.input :upload_cv, :as => :file, label: 'If you have a CV (even an old one) it would be helpful for us to have a look so that we can tailor our advice to you.'
         = f.input :mailing_list, :as => :boolean, :input_html => { :checked => true }, label: 'Would you like to receive our emails summarising our latest advice content?'
+      <hr>
       .form-actions
-        %p
-          :markdown
-            We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
-              **We can't take responsibility for the outcomes of your choices.**
-            Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+        %p.some{ :style => "font-size: 12px; color: #777"}
+          We can give you information about your career options that we hope is useful. But, at the end of the day, how you choose to use this information is up to you. 
+          We can't take responsibility for the outcomes of your choices.
+          Our advisors are not professionally qualified career counsellors or advisors. We recommend you use our advice alongside someone professionally qualified.
+        
+          Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
 
-            The contents of guidance sessions are kept between you and the 80,000 Hours careers advice team. This allows us to most effectively improve our service. On request, we’re happy to make the session confidential between you and the person you speak to.
 
-            Please note that though we take reasonable precautions to keep the information private, we do not take responsibility for damages caused by data that is leaked or stolen.
-
+        <hr>
         = f.button :submit, "Request session", :"data-loading-text" => "Please wait..."
       
   .col-md-3
