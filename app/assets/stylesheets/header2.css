@@ -38,7 +38,6 @@ header ul.nav {
     header ul.nav > li > a {
       border: none;
       padding: 5px 14px;
-      font-size: 18px;
       color: #788;
       border-radius: 3px; }
       header ul.nav > li > a:hover {
@@ -49,7 +48,8 @@ header ul.nav {
       background-color: #f6f6f6;
       box-shadow: none; }
       header ul.nav > li .dropdown-menu > li > a {
-        color: #666; }
+        color: #666;
+        font-size: 14px; }
         header ul.nav > li .dropdown-menu > li > a:hover {
           color: black;
           background: rgba(0, 190, 167, 0.3); }

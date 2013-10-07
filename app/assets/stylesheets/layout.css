@@ -32,6 +32,9 @@ h3 {
 p {
   font-size: 16px;
   line-height: 22px; }
-
+li {
+  font-size: 16px;
+  line-height: 22px;
+}
 img {
   max-width: 100%; }
