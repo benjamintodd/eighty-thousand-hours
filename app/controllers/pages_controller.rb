@@ -108,18 +108,31 @@ class PagesController < ApplicationController
   end
 
   def coaching_overview
-    @title = "Our Team"
+    @title = "Social Impact Coaching"
     @subheader = "Coaching"
   end
 
   def coaching_information
-    @title = "Our Team"
+    @title = "Social Impact Coaching"
     @subheader = "Coaching"
   end
 
   def coaching_application
-    @title = "Our Team"
+    @title = "Social Impact Coaching"
     @subheader = "Coaching"
   end
 
+  def coaching_application_form
+    @title = "Social Impact Coaching"
+    @subheader = "Coaching"
+  end
+
+  def coaching_confirmation
+    if 1 == 1
+      flash[:"alert-success"] = "Thanks! We've received your information and we'll be in touch soon!"
+      flash[:"alert-success"] = "Updated your account details"
+      @title = "Social Impact Coaching"
+      @subheader = "Coaching Confirmation"
+    end
+  end
 end
