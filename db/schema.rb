@@ -176,6 +176,17 @@ ActiveRecord::Schema.define(:version => 20130907183345) do
   add_index "educations", ["etkh_profile_id"], :name => "index_educations_on_etkh_profile_id"
   add_index "educations", ["member_info_id"], :name => "index_educations_on_member_info_id"
 
+  create_table "endorsements", :force => true do |t|
+    t.string   "author"
+    t.string   "position"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "header",           :default => false
+    t.boolean  "endorsement_page", :default => true
+    t.integer  "weight",           :default => 1
+  end
+
   create_table "etkh_profiles", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -242,6 +253,18 @@ ActiveRecord::Schema.define(:version => 20130907183345) do
     t.integer  "number_users_tracking_donations"
     t.float    "total_donations"
   end
+
+  create_table "page_feedbacks", :force => true do |t|
+    t.string   "rating"
+    t.text     "comments"
+    t.integer  "page_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "video_id"
+    t.integer  "user_id"
+  end
+
+  add_index "page_feedbacks", ["page_id"], :name => "index_page_feedbacks_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.string   "title"

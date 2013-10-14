@@ -1,13 +1,17 @@
 class BlogPost < ActiveRecord::Base
+  TYPES = %w(Case\ Studies Interviews How\ To Discussion Research\ Findings Updates)
+  CATEGORIES = %w(Entrepreneurship Medecine Research Finance Software Engineering Law Consulting)
+
   include Rails.application.routes.url_helpers
   extend FriendlyId
   friendly_id :title, :use => :slugged
 
   # for versioning with paper_trail
-  has_paper_trail
+  has_paper_trail  #depreciated?
 
   # Alias for <tt>acts_as_taggable_on :tags</tt>:
   acts_as_taggable
+  acts_as_taggable_on :types, :categories
 
   scope :draft,     where(:draft => true).order("created_at DESC")
   scope :published, where(:draft => false).order("created_at DESC")
@@ -15,6 +19,14 @@ class BlogPost < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
   validates_presence_of :teaser
+
+  def self.get_types
+    TYPES
+  end
+
+  def self.get_categories
+    CATEGORIES
+  end
 
   def self.by_votes( n = BlogPost.all.size )
     n = 1 if n < 1
@@ -59,7 +71,7 @@ class BlogPost < ActiveRecord::Base
 
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
-  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :author, :attribution, :created_at
+  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
   # override to_param to specify format of URL
@@ -118,10 +130,10 @@ class BlogPost < ActiveRecord::Base
 
   def self.http_get(domain,path,params)
     path = unless params.empty?
-      path + "?" + params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
-    else
-      path
-    end
+             path + "?" + params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+           else
+             path
+           end
     request = Net::HTTP.get(domain, path)
   end
 
