@@ -110,6 +110,9 @@ class PagesController < ApplicationController
   def coaching_overview
     @title = "Social Impact Coaching"
     @subheader = "Coaching"
+    if params[:completed] == "true"
+      @confirmation = true
+    end
   end
 
   def coaching_information
@@ -127,10 +130,4 @@ class PagesController < ApplicationController
     @subheader = "Coaching"
   end
 
-  def coaching_confirmation
-    redirect_to '/coaching/overview', :flash => { :error => "WHATSUP"}
-    flash[:"alert-success"] = "Thanks! We've received your information and we'll be in touch soon!"
-    @title = "Social Impact Coaching"
-    @subheader = "Coaching Confirmation"
-  end
 end

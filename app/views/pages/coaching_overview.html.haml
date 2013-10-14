@@ -1,6 +1,10 @@
 .coaching-page
   .back-large
     .container
+      - if @confirmation == true
+        .confirmation
+          %h1 Your Application has Been Submitted Successfully!
+          %p You should get an email promptly confirming that we have your correct application. We reply to all applications within a month.
       = render 'layouts/messages'
       .row
         .col-sm-6

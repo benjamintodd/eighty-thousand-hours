@@ -88,8 +88,13 @@
     }
   }
 }
-
+.confirmation{
+  background: #aaa;
+}
 .coaching-page{
+  .confirmation{
+    background: #aaa;
+  }
   .back-large{
     padding:38px 0 32px 0;
     background: linear-gradient(45deg, rgba(34,144,175,0.3), rgba(91, 198, 207, 0.3));
