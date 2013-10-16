@@ -45,7 +45,7 @@ ActiveAdmin.register BlogPost do
       f.input :draft
       f.input :tag_list
       f.input :type_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
-      f.input :category_list,  :multiple => true, :collection => BlogPost.get_categories, :as => :check_boxes
+      f.input :category_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
     end
     f.buttons
   end

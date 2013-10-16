@@ -1,3 +1,6 @@
 .request_application textarea.text {
   width: 100%;
   height: 200px; }
+.request_application .disclaimer p {
+  font-size: 12px;
+  font-style: italic; }
