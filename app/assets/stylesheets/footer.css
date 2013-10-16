@@ -61,6 +61,9 @@ footer {
       color: #7b7f80; }
   footer .disclaimer {
     padding: 15px 0; }
+    footer .disclaimer a {
+      color: #7b7f80;
+      text-decoration: underline; }
   footer .charity {
     margin-top: 10px;
     margin-bottom: 30px; }
