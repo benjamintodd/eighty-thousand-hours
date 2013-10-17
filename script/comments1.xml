@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dsq="http://www.disqus.com/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.0/">
+  <channel>
+    <item>
+      <title>Let's stop building schools</title>
+      <link>http://eighty-thousand-hours-new-dev.herokuapp.com/blog/100-let-s-stop-building-schools</link>
+      <content:encoded>
+<![CDATA[</br>
+
+<center><a href='http://s3.amazonaws.com/eightythousand.org/posts/images/39/original/Gulahuayco1.jpg?1348961906'><img alt="Gulahuayco1" class="image large" src="http://s3.amazonaws.com/eightythousand.org/posts/images/39/medium/Gulahuayco1.jpg?1348961906" /></a></center>
+
+</br>
+
+I recently came across Taylor Conroy, who’s using a new fundraising technique to let ordinary people raise $8,500 to build a school with just [an evening’s work](http://www.youtube.com/watch?v=aC02SmuOxYI). The method has been expanded to include [water pumps and libraries](http://www.thechangeheroes.com/sign-up/#.UGSEz03A_Sg).
+
+The fundraising is amazing, but I can’t help slightly regretting the goal towards which Taylor has directed his considerable talents. Building a school is a motivating, tangible project, which seems to *obviously* be a good thing. They can send you pictures of it after it’s built. According to [Change Heros](http://www.thechangeheroes.com/sign-up/#.UGSEz03A_Sg):
+
+*"Each of these projects are incredibly needed and will change the world for the better."*
+
+School building seems like one of the most popular projects in charity. There’s a whole range of organisations that let you do it. Change Heros uses [Free to Children](http://www.freethechildren.com/get-involved/campaigns/brick-by-brick/), but there’s also [Asante](http://www.asanteafrica.org/ourwork/places.php?gclid=CIz65eer2LICFaTKtAodalEAdQ), [Build a School](http://buildaschool.org.uk/), [Build Africa](http://www.build-africa.org/pages/help-us-build-a-school.html?gclid=CNzuluar2LICFQfKtAodRgsAGg), and not to mention all those [gap year](http://www.gapyear.com/volunteering/community-projects) volunteer programs that let you travel to Africa to help out with the construction.
+
+But is this really where we should be directing our efforts? Here's an alternative case.
+
+---
+
+1) **The most obvious benefit of building schools is to increase attendance, but it’s unclear they even do that**
+
+Studies in Africa found that providing better quality, closer schools could increase average attendance by about 2 years, but were plagued by problems in the methodology [^2].
+
+The best study on the topic showed that a major program of school construction in Indonesia led to 0.12-0.19 extra years in school per school per 1000 kids. The study, however, considers several methods. And the method favoured by [Givewell](http://www.givewell.org/international/education/detail#footnote15_mbczlw7), which best allows us to isolate the impact of school construction, found a figure at the bottom of this range, which was too small to be statistically significant[^1].
+
+This makes sense when you consider that the existing schools have already been put in the best locations. Extra schools tend to be in remote areas where it wasn’t worth building a school before.
+
+&nbsp;
+
+2) **Even if you get kids into well-built schools in the developing world, there may be no benefits**
+
+Some studies have shown that an extra year of school attendance boosts income by 10%[^3]. These studies normally suffer with serious problems [demonstrating causation](http://givewell.org/international/education/detail#Beyondtestscores), though there has been some promising progress more recently. Moreover, several large scale studies show no or very small effects on countrywide GDP due to recent improvements in education[^4]. This suggests that the economic benefits of education are mainly at the expense of other people in the country. In other words, it only changes who gets the skilled jobs, not how many skilled jobs there are in the first place.
+
+Perhaps education has value in itself, independent of economic benefits? Well there doesn’t seem to be any correlation between years in education and happiness either, once you've controlled for other factors[^5]. Education seems to primarily have value as a means to an end, unlike health and wealth, which do relate to happiness.
+
+These results sound incredible. How could education not make people more productive and happy? One problem is that education in the develooping world is often [extremely poor](http://blog.givewell.org/2009/09/28/developing-world-scholarships-and-school-building/). Teachers are absent all the time. The materials are poor. The lessons are aimed at the top student, who they hope will go to university. Building schools without guaranteeing quality seems likely to have little impact. Unfortunately we know little about how to guarantee quality teaching.  Good teachers tend to have similar backgrounds to bad teachers. And methods that have worked in one area often fail in another[^10].
+
+Another likely factor is that extra education only has benefits when combined with other changes in the economy. If no jobs are being created that make use of the better educated students, then it makes sense that the economy won’t grow. It could be that most developing world countries are currently not constrained by having enough educated workers, but something else[^11]. During certain special periods in the past, like the Green Revolution, increasing education *has* increased average wages[^11].
+
+This is not to say that we shouldn't try to improve education in the developing world. Rather, we need to do more research into the interventions that actually have benefits, and we shouldn’t expect merely building schools without these other changes to help. Some of the charities listed do seek to provide an [entire package](http://www.freethechildren.com/international-programming/our-model/) of development improvements in a small area, though they can't change government policy or create opportunities for better educated kids in the cities. These holistic approaches make more sense, but suffer from a lack of quality impact data. We can't assess what would have happened without the intervention, or separate causation from correlation. They also involve considerable additional costs.
+
+One bright spot is that there is evidence that getting kids in school, especially women, improves health. In particular, it can cause a significant reduction in infant mortality[^6]. But we don’t have evidence that it improves health more effectively than [providing malaria nets and deworming](http://www.givewell.org/charities/top-charities).
+
+&nbsp;
+
+3) **If you want to get kids into school, there are much better ways to do it**
+
+It’s less sexy, but one study showed that simply telling parents about the benefits of education can get an extra kid into school for a year only $5[^7]. That figure is likely an underestimate of what it would actually cost to implement such a program, but if it’s roughly right it means that $8,500 would be enough to ensure that 350 children receive full primary school educations. I’m still waiting for details from [Free the Children]((http://www.freethechildren.com/get-involved/campaigns/brick-by-brick/) about how many children would be affected by this much money spent on school building.
+
+Four studies have shown that providing deworming medicine can cause a child to spend an extra year in school for an average of only $7[^8]. Deworming is definitely not sexy, but it’s also an extremely effective health intervention with large room for funding that’s well worth doing anyway. Givewell’s second highest recommended charity [distributes deworming medicine](http://www.givewell.org/international/top-charities/schistosomiasis-control-initiative)
+
+It might be that just providing free breakfasts at existing schools could raise attendance about 30%[^9].
+
+The Copenhagen Consensus makes a strong case that encouraging more demand for schooling is currently a much better intervention than increasing supply by building schools[^10]. First, the demand-side interventions just mentioned are cheap, effective and proven. But there are other reason to expect them to work better. One factor is that if demand is strong, then in some cases the local government will step in and supply the school. But more importantly:
+
+* Building a school involves a large up-front cost, with a long payback, and if teacher quality is low or the students don’t come, then years down the line we’ll find that the money has been wasted. Demand-side interventions take effect immediately, so can be adjusted if not working. Some methods, like free breakfasts or scholarships, are only paid out if the student attends.
+
+* The benefits of education are much smaller if the student doesn’t learn to read and write, which normally takes about five years. Drop outs part way through education are common. Demand-side interventions can be targeted at areas where kids are already in school and help them to stay the course. Helping kids to get an extra year or two of education could often make all the difference.
+
+
+Of course, demand-side interventions are only going to work if there’s enough schools around in the first place. But the positive results of these trials shows that there are currently plenty of areas in which there are. In the future, we might need to switch back to building schools. If we keep monitoring our impact, we’ll know when then needs to be.
+
+---
+
+Taylor’s new ways to inspire people to give in a fulfilling way have huge potential to make people in the developing world better off. But rather than send the money to programs that might do no good at all, let’s focus on those where we have evidence they work. And let’s do much more research, getting a clear idea of the benefits of education, and how we can best bring them about. The challenge for fundraisers like Taylor is to get people excited about the unsexy and less tangible projects that often make the most difference.
+
+---
+
+*You might also enjoy*:
+
+* [Social interventions gone wrong](http://80000hours.org/blog/66-social-interventions-gone-wrong)
+
+* [Our page on effective philanthropy](/donating)
+
+* [Dead children currency](http://80000hours.org/blog/51-dead-children-currency--51)
+
+* [Is there such a thing as a bad charity?](http://80000hours.org/blog/73-is-there-such-thing-as-a-bad-charity)
+
+* [Health vs Education](http://80000hours.org/blog/11-health-vs-education)
+
+---
+
+*References*
+
+[^1]: See pp 797-799 of
+Duflo, Esther. 2001. *Schooling and labor market consequences of school construction in Indonesia: Evidence from an unusual policy experiment* .American Economic Review 91: 795-813
+http://www.givewell.org/files/DWDA%202009/Interventions/Duflo01.pdf
+
+[^2]: See: http://www.givewell.org/international/education/detail#footnoteref13_2j8ip8s
+
+[^3]: See the Copenhagen Consensus Challenge paper on Education by Peter F. Orazem et al
+http://www.copenhagenconsensus.com/Default.aspx?ID=1326
+Also note that the study in (1) found that school building increased wages 2.6%.
+
+[^4]: For instance, see: *“Trade globalization, economic development and the importance of education-as-knowledge”*, Journal of Sociology March 2010 46: 45-61, November 20, 2009, and *Where Has All the Education Gone?* World Bank Econ Rev (2001) 15(3): 367-391
+
+[^5]: *“How's Life? Combining Individual and National Variables to Explain Subjective Well-Being”, John F. Helliwell, NBER Working Paper No. 9065, Issued in July 2002 
+http://www.nber.org/papers/w9065
+
+
+
+[^6]: A study cited in the DCP2 suggested that 5 years of extra education reduced infant mortality by an impressive 40%:
+http://www.dcp2.org/pubs/DCP
+
+[^7]:*“Information, Role Models and Perceived Returns to Education:
+Experimental Evidence from Madagascar”*, Trang Nguyen, Massachusetts Institute of Technology, January 23, 2008
+http://jpal.podconsulting.net/sites/default/files/documents/Nguyen%202008.pdf
+
+[^8]: *“Worms at Work: Long-run Impacts of Child Health Gains”*, JPAL, Oct 2011
+http://www.povertyactionlab.org/publication/worms-work-long-run-impacts-child-health-gains
+Three more papers are here:
+http://www.povertyactionlab.org/publication/worms-identifying-impacts-education-and-health-presence-treatment-externalities
+
+[^9]: This is based on one small study, so is not reliable, but looks worth following up.
+http://www.givewell.org/international/education/detail#footnote32_t11az6y
+Glewwe, Paul and Michael Kremer. 2006. Schools, teachers, and education outcomes in developing countries (PDF). In Handbook of the economics of education, volume 2, eds. Eric Hanushek and Finis Welch, 946-1012. Amsterdam: Elsevier.
+
+[^10]: *“The Challenge of Education”*, Peter F. Orazem, Paul Glewwe, Harry Patrinos, Copenhagen Consensus 2008
+.com/Default.aspx?ID=1326
+
+[^11]: This is supported by the finding that growth in education enrollment has been much higher than growth in wage employment in many African countries:
+*Where Has All the Education Gone?*; Lant Pritchett, 2001; The World Bank Economic Review VOL.15 NO.3 367–391; p. 385;
+http://wber.oxfordjournals.org/content/15/3/367.full.pdf]]>      </content:encoded>
+      <dsq:thread_identifier>
+100      </dsq:thread_identifier>
+      <wp:post_date_gmt>
+2012-10-03 12:36:00      </wp:post_date_gmt>
+      <wp:comment_status>
+open      </wp:comment_status>
+      <wp:comment>
+        <wp:comment_id>
+566        </wp:comment_id>
+        <wp:comment_author>
+Richard Batty        </wp:comment_author>
+        <wp:comment_author_email>
+rjlbatty@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/richard-batty        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-03 13:41:11        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[This is awesome - I'd known for a while that this kind of intervention wasn't very cost effective but didn't know the details.]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+567        </wp:comment_id>
+        <wp:comment_author>
+Sally Murray        </wp:comment_author>
+        <wp:comment_author_email>
+sallybethm@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/sally-murray        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-03 18:16:00        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[I'm not sure the Helliwell article finds what you are claiming, but I'm not entirely sure now what you're trying to claim. It finds a strong link between education (individual and national levels) and well-being, but finds that this causation operates through education causing other factors that themselves promote well-being ("participation, health, perceived trust, and higher incomes" on the individual level and "national norms and networks variables" on the national). Don't you think? (p24 of the article)]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+568        </wp:comment_id>
+        <wp:comment_author>
+Sally Murray        </wp:comment_author>
+        <wp:comment_author_email>
+sallybethm@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/sally-murray        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-03 18:23:45        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[(PS. I do also echo Richard's comments on the awesomeness of this article, though. Thank you!)]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+569        </wp:comment_id>
+        <wp:comment_author>
+Benjamin Todd        </wp:comment_author>
+        <wp:comment_author_email>
+benjamin.john.todd@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/benjamin-todd        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-03 18:47:22        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[Thanks! I was trying to argue that education's main benefits come from promoting other factors (like wealth and health), rather than being an end in itself. One common response to saying that education can have a muted impact is that it's intrinsically good to educate people. I might have been overstating the case though. Although education's impact on wellbeing is indirect, it seems like 'perceived trust' and the like might be difficult to promote any other way and have significant benefits.]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+630        </wp:comment_id>
+        <wp:comment_author>
+Sam Hilton        </wp:comment_author>
+        <wp:comment_author_email>
+weeatquince@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/sam-hilton        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-18 01:02:26        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[The New Copenhagen Consensus 2012 is out!!! See: http://www.copenhagenconsensus.com/Default.aspx?ID=1632. It is well worth the read for anyone interested in this topic. 
+At points it differs slightly with some of the stuff in the article above - but it certainly does not recommend building schools. In fact it says that to achieve economic benefits from schooling, it is much more important to improve quality of schools than to increase attendance.]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+633        </wp:comment_id>
+        <wp:comment_author>
+Benjamin Todd        </wp:comment_author>
+        <wp:comment_author_email>
+benjamin.john.todd@gmail.com        </wp:comment_author_email>
+        <wp:comment_author_url>
+http://eighty-thousand-hours-new-dev.herokuapp.com/members/benjamin-todd        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2012-10-18 10:28:49        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[What kind of quality? Building new schools is one way to improve quality. Does the supply-side vs demand-side distinction still hold? Seemed like it did from reading the overall conclusions, but I haven't read the new education section.]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+      <wp:comment>
+        <wp:comment_id>
+1356        </wp:comment_id>
+        <wp:comment_author>
+Cat        </wp:comment_author>
+        <wp:comment_author_email>
+cat-9@live.co.uk        </wp:comment_author_email>
+        <wp:comment_author_url>
+        </wp:comment_author_url>
+        <wp:comment_author_IP>
+255.255.255.255        </wp:comment_author_IP>
+        <wp:comment_date_gmt>
+2013-10-02 02:38:42        </wp:comment_date_gmt>
+        <wp:comment_content>
+<![CDATA[Interesting reference to the Green Revolution - I wonder overall how much this truly improved quality of life for most people in the countries concerned, even if it did make some very rich and of course increase food production massively. One of the many undesirable effects was of turning former smallholders into labourers, at great social cost. Then there are the numerous long term health and climate impacts given the pollution and carbon intensity of industrialised agriculture. Not suggesting any 'answer' to this but it's something I grapple with regularly when wondering what charitable organisations are best, and think it's very interesting that most of the time the aspiration of educational charities is to help people into jobs within a capitalist system that does not take account of 'true costs' of financially lucrative activities, particularly the environmental, health and cultural externalities. Am always hoping the 'developing' countries will take a smarter path and not follow the mistakes of the industrialised nations who have become rich at great cost to the planet (not to mention people's mental health). Brilliant site btw - so helpful to have this level of depth and analysis applied to the problem of how we can individually channel our own resources to make a difference. Would be very interested in thoughts or further reading suggestions on the conundrum where 'development as freedom' is pitted against the - surely necessary - aim of genuine global one planet living.]]>        </wp:comment_content>
+        <wp:comment_approved>
+1        </wp:comment_approved>
+        <wp:comment_parent>
+0        </wp:comment_parent>
+      </wp:comment>
+    </item>
+  </channel>
+</rss>

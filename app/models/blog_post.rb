@@ -69,6 +69,9 @@ class BlogPost < ActiveRecord::Base
   # a User wrote this post
   belongs_to :user
 
+ # comments on posts
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
   attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at
@@ -126,6 +129,10 @@ class BlogPost < ActiveRecord::Base
     admin_post_path(self)
   end
 
+  def url
+    "http://eighty-thousand-hours-new-dev.herokuapp.com/blog/#{id}-#{slug}"
+  end
+
   private
 
   def self.http_get(domain,path,params)
@@ -148,4 +155,5 @@ class BlogPost < ActiveRecord::Base
     share_count = JSON.parse(http)[0]["share_count"]
     result = like_count + share_count
   end
+
 end

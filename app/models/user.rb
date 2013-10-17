@@ -369,6 +369,15 @@ class User < ActiveRecord::Base
     return response.code == "200"
   end
 
+
+  def url
+    if slug
+      "http://eighty-thousand-hours-new-dev.herokuapp.com/members/#{slug}"
+    else
+      ""
+    end
+  end
+
   private
   def build_default_profile
     # build default profile instance. Will use default params.
