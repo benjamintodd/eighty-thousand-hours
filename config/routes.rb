@@ -52,14 +52,14 @@ EightyThousandHours::Application.routes.draw do
   resources :supporters, :only => [:new, :create], :path => 'show-your-support'
   match 'show-your-support' => 'supporters#new'
 
-  resources :chat_requests, :only => [:new,:create], :path => 'chat-to-us'
-  match 'chat-to-us' => 'chat_requests#new'
+  #resources :chat_requests, :only => [:new,:create], :path => 'chat-to-us'
+  #match 'chat-to-us' => 'chat_requests#new'
 
-  resources :career_advice_requests, :only => [:new,:create], :path => 'request-a-career-advice-session'
-  match 'request-a-career-advice-session' => 'career_advice_requests#new'
+  #resources :career_advice_requests, :only => [:new,:create], :path => 'request-a-career-advice-session'
+  #match 'request-a-career-advice-session' => 'career_advice_requests#new'
 
   #temporary page for particular event
-  resources :event_booking_requests, only: [:new,:create]
+  #resources :event_booking_requests, only: [:new,:create]
 
   resources :videos, :only =>[:index]
 
@@ -146,6 +146,7 @@ EightyThousandHours::Application.routes.draw do
   match '/coaching/confirmation' => 'pages#coaching_confirmation'
   match '/coaching/application_form' => 'pages#coaching_application_form'
 
+  match 'request-a-career-advice-session' => 'pages#coaching_application_form'
 
   # redirects
   match 'high-impact-careers', to: redirect('/types-of-career')
