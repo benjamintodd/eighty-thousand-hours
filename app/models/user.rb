@@ -372,7 +372,7 @@ class User < ActiveRecord::Base
 
   def url
     if slug
-      "http://eighty-thousand-hours-new-dev.herokuapp.com/members/#{slug}"
+      "http://80000hours.org/members/#{slug}"
     else
       ""
     end

@@ -93,7 +93,14 @@
 }
 .coaching-page{
   .confirmation{
-    background: #aaa;
+    background: rgba(255,255,255,0.7);
+    padding: 0.1em 2em 1em 2em;
+    border-radius: 3px;
+    margin-bottom: 1.5em;
+    h1{
+      font-size:30px;
+      margin-top:30px;
+    }
   }
   .back-large{
     padding:38px 0 32px 0;

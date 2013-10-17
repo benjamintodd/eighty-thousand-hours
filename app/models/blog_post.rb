@@ -130,7 +130,7 @@ class BlogPost < ActiveRecord::Base
   end
 
   def url
-    "http://eighty-thousand-hours-new-dev.herokuapp.com/blog/#{id}-#{slug}"
+    "http://80000hours.org/blog/#{id}-#{slug}"
   end
 
   private
