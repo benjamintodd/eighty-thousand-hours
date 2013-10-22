@@ -49,11 +49,6 @@ class Ability
       can :manage, Page
     end
 
-    # a SurveyAdmin can edit and create GoogleDoc surveys
-    if user.has_role? :survey_admin
-      can :access, :admin
-      can :manage, Survey
-    end
 
     if user.confirmed?
       can :update, User, :id => user.id
@@ -62,12 +57,7 @@ class Ability
     end
     
     if user.eighty_thousand_hours_member?
-      can :read, Donation
-      can :manage, Donation, :user_id => user.id
-      can :read, Cause
-      can :create, Cause
-      can :manage, EtkhProfile, :user_id => user.id
-      can :read, Survey
+     can :manage, EtkhProfile, :user_id => user.id
     end
 
     # anyone can read posts or view pages

@@ -1,5 +1,6 @@
 EightyThousandHours::Application.routes.draw do
 
+
   get "coaching_requests/new"
 
   get "coaching_requests/create"
@@ -38,6 +39,7 @@ EightyThousandHours::Application.routes.draw do
 
   match '/blog/feed.atom' => 'blog_posts#feed', :as => :feed, :defaults => { :format => 'atom' }
   resources :blog_posts, :path => 'blog' do
+    resources :ratings, :controller => "blog_posts/ratings"
     collection do
       get 'drafts'
       get :tag

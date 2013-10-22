@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   # omniauth authentication
   has_many :authentications, :dependent => :destroy
 
+  #rates blog posts
+  has_many :ratings, :dependent => :destroy
+
   # dependent means 80k profile gets destroyed when user is destroyed
   has_one :etkh_profile, :dependent => :destroy
   accepts_nested_attributes_for :etkh_profile

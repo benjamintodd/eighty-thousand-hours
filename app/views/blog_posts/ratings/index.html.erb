@@ -1,0 +1,24 @@
+<h1>Listing ratings</h1>
+
+<table>
+  <tr>
+    <th>Overall</th>
+    <th>User</th>
+    <th>Blogpost</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ratings.each do |rating| %>
+  <tr>
+    <td><%= rating.overall %></td>
+    <td><%= rating.user.id if rating.user %></td>
+    <td><%= link_to rating.blog_post.id, rating.blog_post if rating.blog_post%></td>
+    </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article rating', new_blog_post_rating_path(@post) %>

@@ -44,6 +44,7 @@ class BlogPostsController < ApplicationController
 
   def show
     @post = BlogPost.find_by_id(params[:id])
+    @rating = Rating.new
     if @post.nil?
       flash[:"alert-error"] = "Sorry! You've followed a bad link, please <a href='contact-us'>contact support</a> and report the following:<br/> #{params[:controller]} => '#{params[:id]}'".html_safe
       redirect_to :action => 'index'

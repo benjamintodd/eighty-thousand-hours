@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Overall:</b>
+  <%= @rating.overall %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @rating.user %>
+</p>
+
+<p>
+  <b>Blogpost:</b>
+  <%= @rating.blog_post %>
+</p>
+
+
+<%= link_to 'Edit', edit_blog_post_rating_path(@rating) %> |
+<%= link_to 'Back', blog_post_ratings_path(@blog_post) %>

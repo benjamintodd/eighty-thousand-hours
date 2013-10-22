@@ -69,9 +69,9 @@ class BlogPost < ActiveRecord::Base
   # a User wrote this post
   belongs_to :user
 
- # comments on posts
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  
+  #can have ratings
+  has_many :ratings, :dependent => :destroy
+  #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
   attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at
