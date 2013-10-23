@@ -71,11 +71,14 @@ class BlogPost < ActiveRecord::Base
 
   #can have ratings
   has_many :ratings, :dependent => :destroy
+  has_many :raters, through: :ratings, uniq: true, :source => :user
   #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
   attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
+
+
 
   # override to_param to specify format of URL
   # now we can call post_path(@post) and get

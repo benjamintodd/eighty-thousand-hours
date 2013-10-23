@@ -30,35 +30,36 @@ class BlogPosts::RatingsController < ApplicationController
     @post = BlogPost.find(params[:blog_post_id])
     @rating = Rating.new
   end
-  
+
   def create
     @post = BlogPost.find(params[:blog_post_id])
     @user = current_user
     @rating = Rating.new(params[:rating])
     @rating.blog_post = @post
     @rating.user = @user
-     
+
     if @rating.save
-      flash[:"alert-success"] = 'Rating was successfully created'
-      redirect_to(blog_post_ratings_path(@post, @rating))
-    else
-      render :action => "new"
-    end
-
-  end
-
-  def destroy
-    @post = BlogPost.find(params[:blog_post_id])
-    if can? :manage, rating
-      @rating = rating.find(params[:id])
-      begin
-        @rating.destroy
-        flash[:"alert-success"] = 'rating successfully destroyed'
-      rescue
-        flash[:"alert-error"] = 'Failed to destroy rating'
+      respond_to do |format|
+        format.html { redirect_to blog_post_ratings_path(@post, @rating), notice: "Successfully Created"}
+        format.js 
       end
-      redirect_to :action => 'index'
+      else
+        render :action => "new"
+      end
     end
-  end
 
-end
+    def destroy
+      @post = BlogPost.find(params[:blog_post_id])
+      if can? :manage, rating
+        @rating = rating.find(params[:id])
+        begin
+          @rating.destroy
+          flash[:"alert-success"] = 'rating successfully destroyed'
+        rescue
+          flash[:"alert-error"] = 'Failed to destroy rating'
+        end
+        redirect_to :action => 'index'
+      end
+    end
+
+  end

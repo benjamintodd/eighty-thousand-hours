@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
 
   #rates blog posts
   has_many :ratings, :dependent => :destroy
+  has_many :rated_posts, through: :ratings, uniq:true, :source => :blog_post
 
   # dependent means 80k profile gets destroyed when user is destroyed
   has_one :etkh_profile, :dependent => :destroy
