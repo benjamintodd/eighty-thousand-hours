@@ -1,22 +1,61 @@
-<%= form_for([@post, @rating], :remote => true) do |f| %>
-  <% if @rating.errors.any? %>
+<div class="rubric">
+  <div class="row">
+    <div class="col-md-8">
+      <h2> Article Rubric </h2>
+    </div>
+    <div class="col-md-4">
+      <p> Please rate the following 0-10. </p>
+    </div>
+  </div>
+  <%= form_for([@post, @rating], :remote => true) do |f| %>
+    <% if @rating.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+    <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @rating.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :overall %><br />
-    <%= f.text_field :overall %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <% end %>
+    </ul>
   </div>
 <% end %>
+
+  <div class="row">
+    <div class="field">
+      <%= f.label :overall %><br />
+      <%= f.text_field :overall, :class => "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :original %><br />
+      <%= f.text_field :original, :class => "form-control"%>
+    </div> 
+
+    <div class="field">
+      <%= f.label :practical %><br />
+      <%= f.text_field :practical, :class => "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :persuasive %><br />
+      <%= f.text_field :persuasive, :class => "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :transparent %><br />
+      <%= f.text_field :transparent, :class => "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :accessible %><br />
+      <%= f.text_field :accessible, :class => "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :engaging %><br />
+      <%= f.text_field :engaging, :class => "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary" %>
+    </div>
+  </div>
+
+<% end %>
+</div>  

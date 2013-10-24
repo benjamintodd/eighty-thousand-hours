@@ -310,6 +310,12 @@ ActiveRecord::Schema.define(:version => 20131022090055) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "overall"
+    t.integer  "original"
+    t.integer  "practical"
+    t.integer  "persuasive"
+    t.integer  "transparent"
+    t.integer  "accessible"
+    t.integer  "engaging"
     t.integer  "user_id"
     t.integer  "blog_post_id"
     t.datetime "created_at",   :null => false
