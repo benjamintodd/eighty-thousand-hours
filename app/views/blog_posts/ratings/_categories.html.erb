@@ -12,5 +12,8 @@
   <% if total == true %>
     <th> <span id="total"  data-toggle="popover" data-placement="bottom" data-title="The Total" >Total</span> </th>
 <% end %>
+  <% if defined?(comment) and comment == true %>
+    <th> <span id="comment"  data-toggle="popover" data-placement="bottom" data-title="Comment" >Comment</span> </th>
+<% end %>
 </tr>
 

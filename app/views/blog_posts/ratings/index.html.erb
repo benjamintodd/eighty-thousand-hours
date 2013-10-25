@@ -1,8 +1,8 @@
 <h2> Ratings for <%= link_to @post.title, @post %> </h2>
 <br>
-<table class="table table-bordered">
+<table class="table table-bordered table-hover table-striped">
   <thead>
-    <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true } %>
+    <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true, :comment => true } %>
   </thead>
   <tbody>
   <tr>
@@ -15,7 +15,7 @@
   </tr>
   <% @ratings.each do |rating| %>
     <tr>
-    <td> <%= link_to rating.user.name, rating.user%> </td>
+      <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
     <td> <%= rating.overall %> </td>
     <td> <%= rating.original %> </td>
     <td> <%= rating.practical %> </td>
@@ -24,7 +24,7 @@
     <td> <%= rating.accessible %> </td>
     <td> <%= rating.engaging %> </td>
     <td> <%= rating.total %> </td>
-    <td> <%= rating.comment %> </td>
+    <td style="min-width:230px"> <%= rating.comment %> </td>
   </tr>
 <% end %>
 
