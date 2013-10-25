@@ -1,41 +1,23 @@
-<div class="rubric">
-  <div class="row">
-    <div class="col-md-8">
-      <h2> Rubric </h2>
-    </div>
-    <div class="col-md-4">
-      <p> The following are rated 1-5 </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-9">
-      <table class="table">
-        <thead>
-            <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => false, :total => true } %>
-        </thead>
-        <tbody>
-        <tr>
-          <% Rating::CATEGORIES.each do |category| %>
-            <td> <%= @post.average_rating(category) %> </td>
-        <% end %>
-          <td> <%= @post.total_rating %> </td>
-        </tr>
-
-        <% if @user_rating %>
-          <td> <%= @user_rating.overall %> </td>
-          <td> <%= @user_rating.original %> </td>
-          <td> <%= @user_rating.practical %> </td>
-          <td> <%= @user_rating.persuasive %> </td>
-          <td> <%= @user_rating.transparent %> </td>
-          <td> <%= @user_rating.accessible %> </td>
-          <td> <%= @user_rating.engaging %> </td>
-          <td> <%= @user_rating.total %> </td>
-        </tr>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => false, :total => true } %>
+      </thead>
+      <tbody>
+      <tr>
+        <% Rating::CATEGORIES.each do |category| %>
+          <td> <%= @post.average_rating(category) %> </td>
       <% end %>
-        </tbody>
-      </table>
-    </div>
+        <td> <%= @post.total_rating %> </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+
 </div>
+    <%= link_to 'Complete Rubric', blog_post_ratings_path(@post)  %>
+    <br>
+    <br>
 <%= render :partial => '/blog_posts/ratings/category_descriptions' %>
 

@@ -1,6 +1,6 @@
 <h2> Ratings for <%= link_to @post.title, @post %> </h2>
 <br>
-<table class="table">
+<table class="table table-bordered">
   <thead>
     <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true } %>
   </thead>
@@ -11,6 +11,7 @@
       <td> <%= @post.average_rating(category) %> </td>
   <% end %>
     <td> <%= @post.total_rating %> </td>
+    <td></td>
   </tr>
   <% @ratings.each do |rating| %>
     <tr>
