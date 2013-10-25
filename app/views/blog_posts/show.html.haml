@@ -4,8 +4,12 @@
       = render @post
       .social-media-horizontal
         .row
-          .col-md-12.ratings
-            = render :partial => "/blog_posts/ratings/form"
+          - if current_user and current_user.has_role? :admin
+            .col-md-12.ratings
+              - if @user_rating.nil?
+                = render :partial => "/blog_posts/ratings/form"
+              - else
+                = render :partial => "/blog_posts/ratings/summary"
         .row
           .col-md-12
             = render :partial => "social_media_horizontal"

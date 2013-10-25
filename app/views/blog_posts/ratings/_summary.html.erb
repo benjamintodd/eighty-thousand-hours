@@ -1,60 +1,41 @@
 <div class="rubric">
-    <div class="row">
+  <div class="row">
     <div class="col-md-8">
-      <h2> Quality Rubric </h2>
+      <h2> Rubric </h2>
     </div>
     <div class="col-md-4">
-      <p> The following are rated 1-10. </p>
+      <p> The following are rated 1-5 </p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-9">
       <table class="table">
         <thead>
-          <tr>
-            <th> Raters </th>
-            <th> Overall </th>
-            <th> Insightful </th>
-            <th> Practical </th>
-            <th> Convincing </th>
-            <th> Transparent </th>
-            <th> Accessible </th>
-            <th> Total </th>
-          </tr>
+            <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => false, :total => true } %>
         </thead>
         <tbody>
         <tr>
-          <td> Reviewers </td>
-          <td> 5.6 </td>
-          <td> 4.5 </td>
-          <td> 3.6 </td>
-          <td> 2.7 </td>
-          <td> 6.3 </td>
-          <td> 4.7 </td>
-          <td> 4.7 </td>
-        <tr>
-          <td> Community </td>
-          <td> 5.6 </td>
-          <td> 4.5 </td>
-          <td> 3.6 </td>
-          <td> 2.7 </td>
-          <td> 6.3 </td>
-          <td> 4.7 </td>
-          <td> 4.7 </td>
+          <% Rating::CATEGORIES.each do |category| %>
+            <td> <%= @post.average_rating(category) %> </td>
+        <% end %>
+          <td> <%= @post.total_rating %> </td>
         </tr>
-        <tr>
-          <td> You </td>
-          <td> 5.6 </td>
-          <td> 4.5 </td>
-          <td> 3.6 </td>
-          <td> 6.3 </td>
-          <td> 6.3 </td>
-          <td> 4.7 </td>
-          <td> 4.7 </td>
+
+        <% if @user_rating %>
+          <td> <%= @user_rating.overall %> </td>
+          <td> <%= @user_rating.original %> </td>
+          <td> <%= @user_rating.practical %> </td>
+          <td> <%= @user_rating.persuasive %> </td>
+          <td> <%= @user_rating.transparent %> </td>
+          <td> <%= @user_rating.accessible %> </td>
+          <td> <%= @user_rating.engaging %> </td>
+          <td> <%= @user_rating.total %> </td>
         </tr>
+      <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<%= render :partial => '/blog_posts/ratings/category_descriptions' %>
 

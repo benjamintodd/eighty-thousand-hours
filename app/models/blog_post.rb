@@ -79,6 +79,15 @@ class BlogPost < ActiveRecord::Base
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
 
+  #for rating average
+  def average_rating(attribute)
+    ratings.average(attribute).to_f.round(1)
+  end
+
+  def total_rating
+    total = %w(original practical persuasive transparent accessible engaging).inject(0){|result, element| result + average_rating(element)}
+    total.round(1)
+  end
 
   # override to_param to specify format of URL
   # now we can call post_path(@post) and get

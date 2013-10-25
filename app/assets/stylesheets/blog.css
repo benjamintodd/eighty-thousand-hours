@@ -162,18 +162,23 @@
     margin-top: 7px;
     margin-bottom: 0;
     font-weight: 200; }
-  .rubric .field {
-    display: inline;
-    max-width: 75;
-    min-width: 60px;
-    float: left;
-    margin: 10px;
-    text-align: center; }
-    .rubric .field label {
-      font-size: 14px; }
-    .rubric .field input {
-      width: 55px;
-      display: inline; }
+  .rubric textarea {
+    margin-left: 13px;
+    width: 580px; }
+  .rubric .field input {
+    width: 70px;
+    font-size: 16px; }
   .rubric .btn {
     margin-top: 36px;
     margin-left: 23px; }
+
+.hover-rubric {
+  width: 350px; }
+  .hover-rubric p {
+    font-size: 14px;
+    width: 250px;
+    color: #666; }
+  .hover-rubric .table {
+    width: 250px;
+    font-size: 14px;
+    font-weight: 300; }

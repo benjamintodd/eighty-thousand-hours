@@ -1,24 +1,33 @@
-<h1>Listing ratings</h1>
-
-<table>
+<h2> Ratings for <%= link_to @post.title, @post %> </h2>
+<br>
+<table class="table">
+  <thead>
+    <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true } %>
+  </thead>
+  <tbody>
   <tr>
-    <th>Overall</th>
-    <th>User</th>
-    <th>Blogpost</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td> Average </td>
+    <% Rating::CATEGORIES.each do |category| %>
+      <td> <%= @post.average_rating(category) %> </td>
+  <% end %>
+    <td> <%= @post.total_rating %> </td>
   </tr>
-
-<% @ratings.each do |rating| %>
-  <tr>
-    <td><%= rating.overall %></td>
-    <td><%= rating.user.id if rating.user %></td>
-    <td><%= link_to rating.blog_post.id, rating.blog_post if rating.blog_post%></td>
-    </tr>
+  <% @ratings.each do |rating| %>
+    <tr>
+    <td> <%= link_to rating.user.name, rating.user%> </td>
+    <td> <%= rating.overall %> </td>
+    <td> <%= rating.original %> </td>
+    <td> <%= rating.practical %> </td>
+    <td> <%= rating.persuasive %> </td>
+    <td> <%= rating.transparent %> </td>
+    <td> <%= rating.accessible %> </td>
+    <td> <%= rating.engaging %> </td>
+    <td> <%= rating.total %> </td>
+    <td> <%= rating.comment %> </td>
+  </tr>
 <% end %>
+
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Article rating', new_blog_post_rating_path(@post) %>
+<%= render :partial => '/blog_posts/ratings/category_descriptions' %>

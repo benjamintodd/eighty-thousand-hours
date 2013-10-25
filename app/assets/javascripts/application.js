@@ -6,3 +6,4 @@
 //= require bootstrap
 //= require flash
 //= require jquery.cookie
+//= require blog-post
