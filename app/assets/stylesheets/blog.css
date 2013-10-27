@@ -169,15 +169,21 @@
     width: 70px;
     font-size: 16px; }
   .rubric .btn {
-    margin-top: 36px;
-    margin-left: 23px; }
+    margin-top: 71px;
+    margin-left: 9px; }
 
 .hover-rubric {
   width: 350px; }
   .hover-rubric p {
     font-size: 14px;
     width: 250px;
-    color: #666; }
+    color: #666;
+    font-weight: 200; }
+  .hover-rubric ul {
+    width: 250px; }
+  .hover-rubric li {
+    font-size: 14px;
+    font-weight: 200; }
   .hover-rubric .table {
     width: 250px;
     font-size: 14px;

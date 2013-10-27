@@ -29,14 +29,46 @@
           </thead>
           <tbody>
           <tr>
-            <% Rating::CATEGORIES.each do |category| %>
             <td>
               <div class="field">
-                <%= f.number_field category.to_sym, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :overall, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
               </div>
             </td>
-          <% end %>
-         
+            <td>
+              <div class="field">
+                <%= f.number_field :original, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>         
+
+            <td>
+              <div class="field">
+                <%= f.number_field :practical, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>
+
+            <td>
+              <div class="field">
+                <%= f.number_field :persuasive, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>
+
+            <td>
+              <div class="field">
+                <%= f.number_field :transparent, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>
+
+            <td>
+              <div class="field">
+                <%= f.number_field :accessible, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>
+
+            <td>
+              <div class="field">
+                <%= f.number_field :engaging, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
