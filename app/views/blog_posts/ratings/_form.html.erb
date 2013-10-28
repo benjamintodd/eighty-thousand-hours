@@ -21,7 +21,6 @@
 <% end %>
 
   <div class="row">
-    <div class="col-md-10">
       <div class="row">
         <table class="table">
           <thead>
@@ -31,42 +30,42 @@
           <tr>
             <td>
               <div class="field">
-                <%= f.number_field :overall, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :overall, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
             <td>
               <div class="field">
-                <%= f.number_field :original, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :original, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>         
 
             <td>
               <div class="field">
-                <%= f.number_field :practical, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :practical, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
 
             <td>
               <div class="field">
-                <%= f.number_field :persuasive, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :persuasive, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
 
             <td>
               <div class="field">
-                <%= f.number_field :transparent, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :transparent, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
 
             <td>
               <div class="field">
-                <%= f.number_field :accessible, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :accessible, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
 
             <td>
               <div class="field">
-                <%= f.number_field :engaging, in: 1...6, :autocomplete => 'off', :class => "form-control", :value => 3 %>
+                <%= f.number_field :engaging, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
               </div>
             </td>
           </tr>
@@ -74,14 +73,15 @@
         </table>
       </div>
       <div class="row">
-        <%= f.text_area :comment, :class => "form-control", :placeholder => "Optional comment here", :rows => 4%>
+        <%= f.text_area :comment, :class => "form-control", :placeholder => "Article Feedback", :rows => 4%>
       </div>
-    </div>
-    <div class="col-md-2">
+      <br>
+      <div class="row">
+        <%= f.text_area :rubric_comment, :class => "form-control", :placeholder => "Rubric Feedback", :rows => 4%>
+      </div>
       <div class="actions">
         <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary" %>
       </div>
-    </div>
   </div>
 
 <% end %>

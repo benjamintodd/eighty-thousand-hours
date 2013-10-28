@@ -10,7 +10,7 @@
     <% Rating::CATEGORIES.each do |category| %>
       <td> <%= @post.average_rating(category) %> </td>
   <% end %>
-    <td> <%= @post.total_rating %> </td>
+    <td> <%= @post.total_average_rating %> </td>
     <td></td>
   </tr>
   <% @ratings.each do |rating| %>
@@ -23,8 +23,8 @@
     <td> <%= rating.transparent %> </td>
     <td> <%= rating.accessible %> </td>
     <td> <%= rating.engaging %> </td>
-    <td> <%= rating.total %> </td>
-    <td style="min-width:230px"> <%= rating.comment %> </td>
+    <td> <%= rating.average %> </td>
+    <td style="min-width:500px"><h4> Article </h4> <%= simple_format(rating.comment)  %><h4> Rubric</h4><%= simple_format(rating.comment)  %> </td>
   </tr>
 <% end %>
 

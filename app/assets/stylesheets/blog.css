@@ -164,13 +164,13 @@
     font-weight: 200; }
   .rubric textarea {
     margin-left: 13px;
-    width: 580px; }
+    width: 94%;
+    height: 200px; }
   .rubric .field input {
     width: 70px;
     font-size: 16px; }
   .rubric .btn {
-    margin-top: 71px;
-    margin-left: 9px; }
+    margin-top: 13px; }
 
 .hover-rubric {
   width: 350px; }

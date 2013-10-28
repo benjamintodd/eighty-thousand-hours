@@ -9,7 +9,7 @@
         <% Rating::CATEGORIES.each do |category| %>
           <td> <%= @post.average_rating(category) %> </td>
       <% end %>
-        <td> <%= @post.total_rating %> </td>
+        <td> <%= @post.total_average_rating %> </td>
       </tr>
       </tbody>
     </table>
