@@ -150,3 +150,6 @@ group :test do
   gem 'database_cleaner'
   gem 'spork', '~> 0.9.0.rc'
 end
+
+
+gem 'bcrypt-ruby'
