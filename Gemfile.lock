@@ -425,7 +425,6 @@ DEPENDENCIES
   asset_sync
   aws-s3
   aws-sdk
-  bcrypt-ruby
   better_errors
   binding_of_caller
   cacheable_flash
