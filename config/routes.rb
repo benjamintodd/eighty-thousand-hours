@@ -120,9 +120,7 @@ EightyThousandHours::Application.routes.draw do
 
   # pages kept in views/pages
   root :to => 'pages#home'
-  match 'dashboard'          => 'pages#dashboard'
-
-  match 'dashboard'     => 'pages#dashboard'
+  #match 'dashboard'     => 'pages#dashboard'
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
@@ -138,7 +136,7 @@ EightyThousandHours::Application.routes.draw do
   match 'pages/getting-started--2', to: redirect('/getting-started')
 
   root :to => 'pages#show', id: "home"
-  match 'dashboard'          => 'pages#dashboard'
+  #match 'dashboard'          => 'pages#dashboard'
   match 'search'        => 'pages#search'
   match 'sitemap'       => 'pages#sitemap'
   match 'survey_test'   => 'pages#survey_test'
@@ -160,4 +158,8 @@ EightyThousandHours::Application.routes.draw do
   resources :pages, :path => '/', :only => [:show]
   get 'video/:id', to: 'pages#video'
   root :to => 'pages#home'
+
+
+    match 'dashboards/research' => 'dashboards#research'
+    root to: "dashboards#research"
 end
