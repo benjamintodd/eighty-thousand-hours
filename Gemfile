@@ -100,9 +100,6 @@ gem 'rails_autolink'
 #Deals with importing tables
 gem 'taps'
 
-#Deals with descriptive statistics, used for ratings
-gem 'descriptive_statistics'
-
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
   gem 'heroku_san'

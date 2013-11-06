@@ -49,6 +49,10 @@ class Ability
       can :manage, Page
     end
 
+    if user.has_role? :rater
+      can :access, Rating
+      can :manage, Rating
+    end
 
     if user.confirmed?
       can :update, User, :id => user.id

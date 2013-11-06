@@ -84,6 +84,10 @@ class BlogPost < ActiveRecord::Base
     ratings.average(attribute).to_f.round(1)
   end
 
+  def show_average(attribute)
+    ratings.map{|rating| rating.send(attribute.to_sym)}.variance
+  end
+
   def total_average_rating
     total = %w(original practical persuasive transparent accessible engaging).inject(0){|result, element| result + average_rating(element)}
     (total / 6).round(1)

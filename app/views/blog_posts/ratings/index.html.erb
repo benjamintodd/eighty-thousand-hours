@@ -1,3 +1,5 @@
+<%= current_user and can? :access, Rating %>
+
 <h2> Ratings for <%= link_to @post.title, @post %> </h2>
 <br>
 <table class="table table-bordered table-hover table-striped">

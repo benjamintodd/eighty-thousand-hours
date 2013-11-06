@@ -45,7 +45,7 @@ class BlogPostsController < ApplicationController
   def show
     @post = BlogPost.find_by_id(params[:id])
 
-    if current_user and current_user.has_role? :admin
+    if current_user and can? :access, Rating
       @rating = Rating.new
       if current_user and @post.raters.include?(current_user)
         @user_rating = @post.ratings.where(user_id:current_user.id)[0]
