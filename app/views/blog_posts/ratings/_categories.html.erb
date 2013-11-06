@@ -2,18 +2,16 @@
   <% if empty == true %>
     <th></th>
 <% end %>
+  <% if total == true %>
+    <th> <span id="total"  data-toggle="popover" data-placement="bottom" data-title="The Average"  >Average</span> </th>
+<% end %>
   <th> <span id="overall"  data-toggle="popover" data-placement="bottom" data-title="Intuitively, how high quality is this research?" >Overall</span> </th>
   <th> <span id="practical"  data-toggle="popover" data-placement="bottom" data-title="How valuable is the information in this research to our typical users?">Audience VOI</span> </th>
   <th> <span id="original"  data-toggle="popover" data-placement="bottom" data-title="How valuable is the information in this research to experts in our community?" >Expert VOI</span> </th>
   <th> <span id="transparent"  data-toggle="popover" data-placement="bottom" data-title="Can you follow the research process?" >Process Transparency</span> </th>
-  <th> <span id="persuasive"  data-toggle="popover" data-placement="bottom" data-title="Are the conclusions likely to be correct?" >Precess Reliability</span> </th>
+  <th> <span id="persuasive"  data-toggle="popover" data-placement="bottom" data-title="Are the conclusions likely to be correct?" >Process Reliability</span> </th>
   <th> <span id="accessible"  data-toggle="popover" data-placement="bottom" data-title="Is the message of this research quick and easy to understand?">Clarity</span> </th>
   <th> <span id="engaging"  data-toggle="popover" data-placement="bottom" data-title="Is this research enjoyable to read?" >Engaging</span> </th>
-  <% if total == true %>
-    <th> <span id="total"  data-toggle="popover" data-placement="bottom" data-title="The Average"  >Average</span> </th>
-<% end %>
-  <% if defined?(comment) and comment == true %>
-    <th> <span id="comment"  data-toggle="popover" data-placement="bottom" data-title="Comment" >Comment</span> </th>
-<% end %>
+
 </tr>
 

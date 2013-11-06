@@ -1,90 +1,85 @@
 <div class="rubric">
   <div class="row header">
-    <div class="col-md-5">
+    <div class="col-md-7">
       <h2> Article Feedback </h2>
     </div>
-    <div class="col-md-7">
-      <p> Please rate the following 1-5.  Refer to our <a href="https://docs.google.com/document/d/1fsENXnt8w0EhQ4PbfZPMxejCOTzsxUOJ2QBj0BYHt28/edit?usp=sharing">Guidlines</a> for explanation.  </p>
+    <div class="col-md-5">
+      <p> Please rate the following 1-5.  </br>Refer to our <a href="https://docs.google.com/document/d/1fsENXnt8w0EhQ4PbfZPMxejCOTzsxUOJ2QBj0BYHt28/edit?usp=sharing">Guidelines</a> for explanation.  </p>
     </div>
   </div>
-  <%= form_for([@post, @rating]) do |f| %>
-    <% if @rating.errors.any? %>
-    <div id="error_explanation">
-    <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
-
-    <ul>
-      <% @rating.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
   <div class="row">
-      <div class="row">
-        <table class="table">
-          <thead>
-            <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => false, :total => false } %>
-          </thead>
-          <tbody>
-          <tr>
-            <td>
-              <div class="field">
-                <%= f.number_field :overall, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
-            <td>
-              <div class="field">
-                <%= f.number_field :original, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>         
+    <%= form_for([@post, @rating]) do |f| %>
+      <% if @rating.errors.any? %>
+      <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
-            <td>
-              <div class="field">
-                <%= f.number_field :practical, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
+      <ul>
+        <% @rating.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-            <td>
-              <div class="field">
-                <%= f.number_field :persuasive, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
+    <table class="table">
+      <thead>
+        <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => false, :total => false } %>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <%= f.number_field :overall, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= f.number_field :original, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>         
 
-            <td>
-              <div class="field">
-                <%= f.number_field :transparent, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
+        <td>
+          <div class="field">
+            <%= f.number_field :practical, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
 
-            <td>
-              <div class="field">
-                <%= f.number_field :accessible, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
+        <td>
+          <div class="field">
+            <%= f.number_field :persuasive, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
 
-            <td>
-              <div class="field">
-                <%= f.number_field :engaging, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row">
-        <%= f.text_area :comment, :class => "form-control", :placeholder => "Article Feedback", :rows => 4%>
-      </div>
-      <br>
-      <div class="row">
-        <%= f.text_area :rubric_comment, :class => "form-control", :placeholder => "Rubric Feedback", :rows => 4%>
-      </div>
-      <div class="actions">
-        <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary" %>
-      </div>
+        <td>
+          <div class="field">
+            <%= f.number_field :transparent, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
+
+        <td>
+          <div class="field">
+            <%= f.number_field :accessible, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
+
+        <td>
+          <div class="field">
+            <%= f.number_field :engaging, in: 1...6, :autocomplete => 'off', :class => "form-control"%>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      <%= f.text_area :comment, :class => "form-control", :placeholder => "Article Feedback", :rows => 10%>
+    <br>
+      <%= f.text_area :rubric_comment, :class => "form-control", :placeholder => "Rubric Feedback", :rows => 4%>
+    <div class="actions">
+      <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary" %>
+    </div>
+
+  <% end %>
   </div>
 
-<% end %>
 </div>  
 
 <%= render :partial => '/blog_posts/ratings/category_descriptions' %>

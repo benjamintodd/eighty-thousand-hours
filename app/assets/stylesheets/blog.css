@@ -153,23 +153,27 @@
   border: 1px solid #e8e8e8;
   margin: 0.3em 0 1em 0;
   padding: 1.5em 2em 1em 2em; }
-  .rubric h2 {
-    margin-top: 0px;
-    margin-bottom: 16px; }
-  .rubric p {
-    color: #999;
-    margin-top: 7px;
-    margin-bottom: 0;
-    font-weight: 200; }
+  .rubric th {
+    width: 15%; }
+  .rubric .header {
+    margin-bottom: 30px; }
+    .rubric .header h2 {
+      margin-top: 5px;
+      margin-bottom: 16px; }
+    .rubric .header p {
+      color: #999;
+      margin-top: 5px;
+      margin-bottom: 0;
+      font-weight: 200; }
   .rubric textarea {
-    margin-left: 13px;
-    width: 94%;
-    height: 200px; }
+    margin-left: 8px;
+    width: 98%; }
   .rubric .field input {
     width: 70px;
     font-size: 16px; }
   .rubric .btn {
-    margin-top: 13px; }
+    margin-top: 13px;
+    margin-left: 8px; }
 
 .hover-rubric {
   width: 350px; }

@@ -221,20 +221,26 @@
   border: 1px solid #e8e8e8;
   margin: 0.3em 0 1em 0;
   padding: 1.5em 2em 1em 2em;
-  h2{
-    margin-top:0px;
-    margin-bottom:16px;
+  th{
+    width:15%;
   }
-  p{
-    color:#999;
-    margin-top:7px;
-    margin-bottom:0;
-    font-weight:200;
+  .header{
+    margin-bottom:30px;
+    h2{
+      margin-top:5px;
+      margin-bottom:16px;
+    }
+    p{
+      color:#999;
+      margin-top:5px;
+      margin-bottom:0;
+      font-weight:200;
+    }
   }
   textarea{
-    margin-left:13px;
-    width: 94%;
-    height: 200px;
+    margin-left:8px;
+    width: 98%;
+
   }
 
   .field{
@@ -245,6 +251,7 @@
   }
   .btn{ 
     margin-top:13px;
+    margin-left:8px;
   }
 }
 

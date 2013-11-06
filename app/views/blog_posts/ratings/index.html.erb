@@ -2,7 +2,7 @@
 <br>
 <table class="table table-bordered table-hover table-striped">
   <thead>
-    <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true, :comment => true } %>
+    <%= render :partial => '/blog_posts/ratings/categories', :locals => { :empty => true, :total => true, :comment => false } %>
   </thead>
   <tbody>
   <tr>
@@ -11,11 +11,11 @@
       <td> <%= @post.average_rating(category) %> </td>
   <% end %>
     <td> <%= @post.total_average_rating %> </td>
-    <td></td>
   </tr>
   <% @ratings.each do |rating| %>
     <tr>
       <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
+    <td> <%= rating.average %> </td>
     <td> <%= rating.overall %> </td>
     <td> <%= rating.original %> </td>
     <td> <%= rating.practical %> </td>
@@ -23,8 +23,23 @@
     <td> <%= rating.transparent %> </td>
     <td> <%= rating.accessible %> </td>
     <td> <%= rating.engaging %> </td>
-    <td> <%= rating.average %> </td>
-    <td style="min-width:500px"><h4> Article </h4> <%= simple_format(rating.comment)  %><h4> Rubric</h4><%= simple_format(rating.comment)  %> </td>
+  </tr>
+<% end %>
+
+  </tbody>
+</table>
+
+<table class="table table-bordered table-hover table-striped">
+  <tr>
+    <th style="width:160px"> </th>
+    <th> Comment </th>
+  <thead>
+  </thead>
+  <tbody>
+    <% @ratings.each do |rating| %>
+    <tr>
+      <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
+    <td style="min-width:500px"><h4> Article </h4> <%= simple_format(rating.comment)  %><h4> Rubric</h4><%= simple_format(rating.rubric_comment)  %> </td>
   </tr>
 <% end %>
 
