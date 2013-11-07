@@ -50,14 +50,13 @@ class Ability
     end
 
     if user.has_role? :rater
-      can :access, Rating
-      can :manage, Rating
+      can :read, Rating
+      can :access, :admin
     end
 
     if user.confirmed?
       can :update, User, :id => user.id
       can :create, EtkhProfile
-      can :manage, BlogPost, :user_id => user.id
     end
     
     if user.eighty_thousand_hours_member?

@@ -4,7 +4,7 @@
       = render @post
       .social-media-horizontal
         .row
-          - if current_user and can? :access, Rating
+          - if current_user and can? :read, Rating
             .col-md-12.ratings
               - if @user_rating.nil?
                 = render :partial => "/blog_posts/ratings/form"

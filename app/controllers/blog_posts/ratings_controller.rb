@@ -1,5 +1,5 @@
 class BlogPosts::RatingsController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
   def index
     @post = BlogPost.find(params[:blog_post_id])

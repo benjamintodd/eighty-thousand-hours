@@ -1,5 +1,3 @@
-<%= current_user and can? :access, Rating %>
-
 <h2> Ratings for <%= link_to @post.title, @post %> </h2>
 <br>
 <table class="table table-bordered table-hover table-striped">
@@ -9,20 +7,20 @@
   <tbody>
   <tr>
     <td> Average </td>
+    <td> <%= @post.total_average_rating %> </td>
     <% Rating::CATEGORIES.each do |category| %>
       <td> <%= @post.average_rating(category) %> </td>
   <% end %>
-    <td> <%= @post.total_average_rating %> </td>
   </tr>
   <% @ratings.each do |rating| %>
     <tr>
       <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
     <td> <%= rating.average %> </td>
     <td> <%= rating.overall %> </td>
-    <td> <%= rating.original %> </td>
     <td> <%= rating.practical %> </td>
-    <td> <%= rating.persuasive %> </td>
+    <td> <%= rating.original %> </td>
     <td> <%= rating.transparent %> </td>
+    <td> <%= rating.persuasive %> </td>
     <td> <%= rating.accessible %> </td>
     <td> <%= rating.engaging %> </td>
   </tr>

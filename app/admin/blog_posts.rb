@@ -1,5 +1,5 @@
 ActiveAdmin.register BlogPost do
-  menu :if => proc{ can?(:manage, BlogPost) }
+  menu :if => proc{ can?(:read, BlogPost) }
 
   controller.authorize_resource
   

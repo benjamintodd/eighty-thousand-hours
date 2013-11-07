@@ -1,5 +1,5 @@
 ActiveAdmin.register Rating do
-  menu :if => proc{ can?(:manage, Rating) }
+  menu :if => proc{ can?(:read, Rating) }
   controller.authorize_resource
 
   index do
