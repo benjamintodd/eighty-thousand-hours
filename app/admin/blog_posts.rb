@@ -11,6 +11,9 @@ ActiveAdmin.register BlogPost do
     column :title
     column :author
     column :user
+    column 'writing time (hours)', :sortable => true do |p|
+      p.writing_time
+    end
     Rating::CATEGORIES.each do |rating|
       column rating do |p| 
         p.average_rating(rating)
@@ -30,6 +33,7 @@ ActiveAdmin.register BlogPost do
       row :user
       row :attribution
       row :created_at
+      row :writing_time
       row :draft do
         post.draft? ? "<span class='status warn'>draft</span>".html_safe : "false"
       end
@@ -42,13 +46,14 @@ ActiveAdmin.register BlogPost do
   form do |f|
     f.inputs "Details" do
       f.input :title
-      f.input :body
-      f.input :teaser
+      f.input :body, :input_html => { :rows => 40 }
+      f.input :teaser, :input_html => { :rows => 20 }
       f.input :author
       f.input :user, :collection => User.order("name ASC")
       f.input :attribution
       f.input :created_at
       f.input :draft
+      f.input :writing_time, :label => "Writing Time (hours)"
       f.input :tag_list
       f.input :type_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
       f.input :category_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
@@ -82,6 +87,7 @@ ActiveAdmin.register BlogPost do
     end
     column :facebook_likes
     column :category
+    column :writing_time
 
   end
 

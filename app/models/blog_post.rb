@@ -75,7 +75,7 @@ class BlogPost < ActiveRecord::Base
   #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
-  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at
+  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at, :writing_time
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
 

@@ -1,13 +1,5 @@
-.alert.alert-info
-  All fields can be formatted with Markdown
-
 = simple_form_for @post, :defaults => { :input_html => { :class => 'span12' } }, :html => { :multipart => true } do |f|
   .form-inputs
-    = f.input :title,  :placeholder => "Title of the post..."
-    = f.input :body,   :placeholder => "Post body..."
-    = f.input :teaser, :placeholder => 'Usually just the first paragraph from the post...', :input_html => { :style => 'height:100px' }
-    = f.input :draft,  :label => "Draft post?"
-
     = field_set_tag 'Attached images' do
       .attached-images
         = f.simple_fields_for :attached_images do |asset|
