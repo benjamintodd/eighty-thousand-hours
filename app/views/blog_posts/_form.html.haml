@@ -1,5 +1,6 @@
 = simple_form_for @post, :defaults => { :input_html => { :class => 'span12' } }, :html => { :multipart => true } do |f|
   .form-inputs
+    
     = field_set_tag 'Attached images' do
       .attached-images
         = f.simple_fields_for :attached_images do |asset|
@@ -24,6 +25,9 @@
               %strong large:
               .copy-paste
                 = h "<a href='#{asset.object.image.url(:original)}'>#{image_tag asset.object.image.url(:large), :class => 'image large'}</a>"
+
+    %hr
+    = f.input :image_attribution, :label => "Image Attribution Text", :input_html => { :class => "col-md-12", :rows => 3 }
     %hr
 
   .form-actions

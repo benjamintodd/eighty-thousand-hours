@@ -100,6 +100,9 @@ gem 'rails_autolink'
 #Deals with importing tables
 gem 'taps'
 
+#Font awesome to get icons
+gem "font-awesome-rails"
+
 group :development do
   gem 'heroku' #included for rake db:mirror system calls
   gem 'heroku_san'

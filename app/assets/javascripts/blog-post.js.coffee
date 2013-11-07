@@ -1,4 +1,6 @@
 $(document).ready ->
+  $("#feedback-privacy" ).popover
+    trigger: "hover"
   item = "accessible"
   categories = ["overall", "original", "practical", "persuasive", "transparent", "accessible", "engaging", "total"]
   for item in categories

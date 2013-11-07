@@ -14,7 +14,9 @@
   </tr>
   <% @ratings.each do |rating| %>
     <tr>
-      <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
+    <td style="min-width:160px" > 
+      <%= rating.privacy? ? 'Anonymous' : (link_to rating.user.name, rating.user)%>
+    </td>
     <td> <%= rating.average %> </td>
     <td> <%= rating.overall %> </td>
     <td> <%= rating.practical %> </td>
@@ -33,17 +35,26 @@
   <tr>
     <th style="width:160px"> </th>
     <th> Comment </th>
-  <thead>
-  </thead>
-  <tbody>
+    <thead>
+    </thead>
+    <tbody>
     <% @ratings.each do |rating| %>
-    <tr>
-      <td style="min-width:160px" > <%= link_to rating.user.name, rating.user%> </td>
-    <td style="min-width:500px"><h4> Article </h4> <%= simple_format(rating.comment)  %><h4> Rubric</h4><%= simple_format(rating.rubric_comment)  %> </td>
-  </tr>
-<% end %>
+      <tr>
+      <td style="min-width:160px" >
+        <%= rating.privacy? ? 'Anonymous' : (link_to rating.user.name, rating.user) %>
+      </td>
+      <td style="min-width:500px">
+        <% unless rating.comment.empty? %>
+          <h4> Article </h4> <%= simple_format(rating.comment)  %>
+    <% end %>
+        <% unless rating.rubric_comment.empty? %>
+          <h4> Rubric</h4><%= simple_format(rating.rubric_comment)  %> </td>
+    <% end %>
 
-  </tbody>
-</table>
+    </tr>
+  <% end %>
 
-<%= render :partial => '/blog_posts/ratings/category_descriptions' %>
+    </tbody>
+  </table>
+
+  <%= render :partial => '/blog_posts/ratings/category_descriptions' %>

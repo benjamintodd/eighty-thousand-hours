@@ -70,11 +70,21 @@
       </tr>
       </tbody>
     </table>
-      <%= f.text_area :comment, :class => "form-control", :placeholder => "Article Feedback", :rows => 10%>
+    <%= f.text_area :comment, :class => "form-control", :placeholder => "Article Feedback", :rows => 10%>
     <br>
-      <%= f.text_area :rubric_comment, :class => "form-control", :placeholder => "Rubric Feedback", :rows => 4%>
+    <%= f.text_area :rubric_comment, :class => "form-control", :placeholder => "Rubric Feedback", :rows => 4%>
+    <div class="row anonymous-feedback">
+
+      <div class="col-md-4">
+        Make Feedback Anonymous <i class="fa fa-info-circle" id="feedback-privacy" data-toggle="popover" data-placement="top" data-title="Feedback Anonymity" data-content="All feedback is available for all website viewers.  However, selecting this box will mean that viewers will not be able to see your name along with your feedback.  Website admins will still be able to see it."></i>
+      </div>
+      <div class="col-md-1">
+        <%= f.check_box :privacy %>
+      </div>
+    </div>
+
     <div class="actions">
-      <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary" %>
+      <%= f.submit 'Submit Score', :class => "cta btn btn-large btn-primary"   %>
     </div>
 
   <% end %>

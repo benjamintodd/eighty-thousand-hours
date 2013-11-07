@@ -55,6 +55,7 @@ ActiveAdmin.register BlogPost do
       f.input :draft
       f.input :writing_time, :label => "Writing Time (hours)"
       f.input :tag_list
+      f.input :image_attribution, :input_html => { :rows => 4 }
       f.input :type_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
       f.input :category_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
     end
