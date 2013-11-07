@@ -25,7 +25,7 @@
           %th
             = post.category_list.join(', ')
           %th
-            = post.total_average_rating
+            = post.total_average_rating if (post.total_average_rating != 0.0)
           %th
             = 2 + rand(10)
           %th

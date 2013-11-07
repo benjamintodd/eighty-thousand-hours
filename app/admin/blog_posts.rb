@@ -2,7 +2,7 @@ ActiveAdmin.register BlogPost do
   menu :if => proc{ can?(:read, BlogPost) }
 
   controller.authorize_resource
-  
+
   scope :draft
   scope :published
 
@@ -11,6 +11,12 @@ ActiveAdmin.register BlogPost do
     column :title
     column :author
     column :user
+    Rating::CATEGORIES.each do |rating|
+      column rating do |p| 
+        p.average_rating(rating)
+      end
+    end
+    column :total_average_rating, :sortable => false
     column :draft do |p|
       p.draft? ? "<span class='status warn'>draft</span>".html_safe : ""
     end
@@ -32,7 +38,7 @@ ActiveAdmin.register BlogPost do
       end
     end
   end
-  
+
   form do |f|
     f.inputs "Details" do
       f.input :title
@@ -50,13 +56,42 @@ ActiveAdmin.register BlogPost do
     f.buttons
   end
 
+  csv do 
+    column :title
+    column :url
+    column :author
+    column :user do |p|
+      p.user.name if !p.user.nil?
+    end
+    column :attribution
+    column :created_at
+    column :word_count do |p|
+      p.body.split.size
+    end
+    column :tag_list
+    column :category_list
+    column :type_list
+    column :ratings do |p|
+      p.ratings.count
+    end
+    column :total_average_rating
+    Rating::CATEGORIES.each do |rating|
+      column rating do |p| 
+        p.average_rating(rating)
+      end
+    end
+    column :facebook_likes
+    column :category
+
+  end
+
   # for History sidebar in show view
   controller do
     def show
-        @post = BlogPost.find(params[:id])
-        @versions = @post.versions 
-        @post = @post.versions[params[:version].to_i].reify if params[:version]
-        show! #it seems to need this
+      @post = BlogPost.find(params[:id])
+      @versions = @post.versions 
+      @post = @post.versions[params[:version].to_i].reify if params[:version]
+      show! #it seems to need this
     end
   end
   sidebar :versions, :partial => "admin/version_sidebar", :only => :show
