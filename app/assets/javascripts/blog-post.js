@@ -2,7 +2,9 @@
 (function() {
   $(document).ready(function() {
     var categories, item, _i, _len, _results;
-
+    $("#feedback-privacy").popover({
+      trigger: "hover"
+    });
     item = "accessible";
     categories = ["overall", "original", "practical", "persuasive", "transparent", "accessible", "engaging", "total"];
     _results = [];
@@ -21,5 +23,4 @@
     }
     return _results;
   });
-
 }).call(this);
