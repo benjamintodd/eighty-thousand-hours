@@ -34,6 +34,9 @@ ActiveAdmin.register BlogPost do
       row :attribution
       row :created_at
       row :writing_time
+      row :type_list
+      row :tag_list
+      row :category_list
       row :draft do
         post.draft? ? "<span class='status warn'>draft</span>".html_safe : "false"
       end
@@ -56,10 +59,10 @@ ActiveAdmin.register BlogPost do
       f.input :writing_time, :label => "Writing Time (hours)"
       f.input :tag_list
       f.input :image_attribution, :input_html => { :rows => 4 }
-      f.input :type_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
-      f.input :category_list,  :multiple => true, :collection => BlogPost.get_types, :as => :check_boxes
+      f.input :type_list,  :multiple => true, :collection => BlogPost::TYPES, :as => :check_boxes
+      f.input :category_list, :multiple => true, :collection => (t 'tags.all_careers'), :as => :check_boxes
     end
-    f.buttons
+    f.actions
   end
 
   csv do 

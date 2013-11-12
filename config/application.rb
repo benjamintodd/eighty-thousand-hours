@@ -84,5 +84,8 @@ module EightyThousandHours
 
     # needed for logging to work under unicorn
     config.logger = Logger.new(STDOUT)
+
+    ActsAsTaggableOn.force_lowercase = true
+
   end
 end

@@ -98,6 +98,7 @@ class PagesController < ApplicationController
 
   def endorsements
     @title = 'Endorsements for 80,000 Hours'
+    binding.pry
     @endorsements = t 'endorsements'
     @menu_current = 'Endorsements'
     @menu_root = 'About Us'

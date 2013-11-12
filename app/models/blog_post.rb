@@ -1,5 +1,5 @@
 class BlogPost < ActiveRecord::Base
-  TYPES = %w(Case\ Studies Interviews How\ To Discussion Research\ Findings Updates)
+  TYPES = %w(case\ study interview discussion research updates)
   CATEGORIES = %w(Entrepreneurship Medecine Research Finance Software Engineering Law Consulting)
 
   include Rails.application.routes.url_helpers
@@ -11,9 +11,9 @@ class BlogPost < ActiveRecord::Base
 
   # Alias for <tt>acts_as_taggable_on :tags</tt>:
   acts_as_taggable
-  acts_as_taggable_on :types, :categories
+  acts_as_taggable_on :types, :top_causes
 
-  scope :draft,     where(:draft => true).order("created_at DESC")
+  scope :draft,     where(:draft => true).order("reated_at DESC")
   scope :published, where(:draft => false).order("created_at DESC")
 
   validates_presence_of :title
@@ -75,7 +75,7 @@ class BlogPost < ActiveRecord::Base
   #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
-  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at, :writing_time
+  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at, :writing_time, :image_attribution
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
 

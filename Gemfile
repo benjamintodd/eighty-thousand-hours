@@ -50,7 +50,7 @@ gem 'paper_trail', '~> 2'
 gem 'will_paginate', '~> 3.0'
 
 # tags for blog posts
-gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'acts-as-taggable-on', git: 'git://github.com/mbleigh/acts-as-taggable-on.git'
 
 # embed latest tweets
 gem 'twitter'
