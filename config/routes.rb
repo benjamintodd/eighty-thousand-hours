@@ -145,6 +145,8 @@ EightyThousandHours::Application.routes.draw do
   match '/coaching/application' => 'pages#coaching_application'
   match '/coaching/confirmation' => 'pages#coaching_confirmation'
   match '/coaching/application_form' => 'pages#coaching_application_form'
+  match '/research/overview' => 'pages#research'
+  match '/research' => 'pages#research'
 
   match 'request-a-career-advice-session' => 'pages#coaching_application_form'
 

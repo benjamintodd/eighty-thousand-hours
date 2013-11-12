@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
-  layout "application", :except => [:home, :coaching_overview]
-  layout "open", :only => [:home, :coaching_overview]
+  layout "application", :except => [:home, :coaching_overview, :research]
+  layout "open", :only => [:home, :coaching_overview, :research]
  
   def index
     @pages = Page.all
@@ -128,6 +128,10 @@ class PagesController < ApplicationController
   def coaching_application_form
     @title = "Social Impact Coaching"
     @subheader = "Coaching"
+  end
+
+  def research
+    @title = "Research"
   end
 
 end

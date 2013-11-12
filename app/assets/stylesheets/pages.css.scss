@@ -171,3 +171,27 @@
     margin: 32px 17px 18px;
   }
 }
+
+.research-page{
+  .items{
+    padding: 30px 0 30px 0;
+    background: url("/assets/front_page/patterns/project_papper_24.png");
+    box-shadow: -1px -1px 1px rgba(50,50,50,0.1);
+  }
+  .item{
+    padding: 20px 24px;
+    img{
+      height:85px;
+    }
+    h2{
+      font-size:1.4em;
+      color: #333;
+    }
+    p{
+      font-size:14px;
+      line-height: 20px;
+      color: #66;
+    }
+  }
+
+}
