@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107110159) do
+ActiveRecord::Schema.define(:version => 20131113110159) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20131107110159) do
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.boolean  "draft",             :default => false
+    t.boolean  "draft",             :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attribution"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20131107110159) do
     t.string   "category",          :default => "discussion"
     t.integer  "writing_time"
     t.text     "image_attribution"
+    t.date     "published_at"
   end
 
   add_index "blog_posts", ["created_at"], :name => "index_blog_posts_on_created_at"

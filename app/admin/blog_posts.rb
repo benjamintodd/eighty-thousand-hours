@@ -9,8 +9,8 @@ ActiveAdmin.register BlogPost do
   index do
     column :created_at
     column :title
-    column :author
     column :user
+    column :author
     column 'writing time (hours)', :sortable => true do |p|
       p.writing_time
     end
@@ -55,12 +55,12 @@ ActiveAdmin.register BlogPost do
   form do |f|
     f.inputs "Details" do
       f.input :title
-      f.input :body, :input_html => { :rows => 40 }
+      f.input :body, :input_html => { :rows => 50 }
       f.input :teaser, :input_html => { :rows => 20 }
-      f.input :author
-      f.input :user, :collection => User.order("name ASC")
-      f.input :attribution
-      f.input :created_at
+      f.input :user, :collection => User.order("name ASC"), :label => 'Author'
+      f.input :author, :label => "Author (if user isn't in database)"
+      f.input :attribution, :label => "Attibution (a blurb about the author, specifically for external authors)"
+      f.input :published_at
       f.input :draft
       f.input :writing_time, :label => "Writing Time (hours)"
       f.input :image_attribution, :input_html => { :rows => 4 }
@@ -84,6 +84,8 @@ ActiveAdmin.register BlogPost do
     end
     column :attribution
     column :created_at
+    column :updated_at
+    column :published_at
     column :word_count do |p|
       p.body.split.size
     end
