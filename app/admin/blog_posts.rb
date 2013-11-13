@@ -46,7 +46,9 @@ ActiveAdmin.register BlogPost do
       row :all_cause_list
       row :all_career_list
       row :topic_list
-      row :tag_list
+      row 'Other Tags' do 
+        post.tag_list
+      end
     end
   end
 
@@ -66,9 +68,9 @@ ActiveAdmin.register BlogPost do
       f.input :top_cause_list, :multiple => true, :collection => (t 'tags.top_causes'), :as => :check_boxes
       f.input :top_career_list, :multiple => true, :collection => (t 'tags.top_careers'), :as => :check_boxes
       f.input :all_cause_list, :multiple => true, :collection => (t 'tags.all_causes'), :as => :check_boxes
-      f.input :all_career_list, :multiple => true, :collection => (t 'tags.top_careers'), :as => :check_boxes
+      f.input :all_career_list, :multiple => true, :collection => (t 'tags.all_careers'), :as => :check_boxes
       f.input :topic_list, :multiple => true, :collection => (t 'tags.topics'), :as => :check_boxes
-      f.input :tag_list
+      f.input :tag_list, :label => 'Other Tags'
     end
     f.actions
   end
