@@ -11,7 +11,7 @@ class BlogPost < ActiveRecord::Base
 
   # Alias for <tt>acts_as_taggable_on :tags</tt>:
   acts_as_taggable
-  acts_as_taggable_on :types, :top_causes
+  acts_as_taggable_on :types, :top_causes, :top_careers, :all_causes, :all_careers, :topics
 
   scope :draft,     where(:draft => true).order("reated_at DESC")
   scope :published, where(:draft => false).order("created_at DESC")
@@ -75,7 +75,8 @@ class BlogPost < ActiveRecord::Base
   #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
-  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :tag_list, :type_list, :category_list, :author, :attribution, :created_at, :writing_time, :image_attribution
+  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :author, :attribution, :created_at, :writing_time, :image_attribution
+  attr_accessible :tag_list, :type_list, :top_cause_list, :top_career_list, :all_cause_list, :all_career_list, :topic_list
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
 

@@ -1,5 +1,11 @@
 en:
   tags:
+    types:
+      - case study
+      - interview
+      - discussion
+      - research
+      - updates
     top_causes:
       - prioritisation research
       - promoting effective altruism

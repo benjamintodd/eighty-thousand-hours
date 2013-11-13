@@ -34,15 +34,19 @@ ActiveAdmin.register BlogPost do
       row :attribution
       row :created_at
       row :writing_time
-      row :type_list
-      row :tag_list
-      row :category_list
       row :draft do
         post.draft? ? "<span class='status warn'>draft</span>".html_safe : "false"
       end
       row :body do
         markdown post.body
       end
+      row :type_list
+      row :top_cause_list
+      row :top_career_list
+      row :all_cause_list
+      row :all_career_list
+      row :topic_list
+      row :tag_list
     end
   end
 
@@ -57,10 +61,14 @@ ActiveAdmin.register BlogPost do
       f.input :created_at
       f.input :draft
       f.input :writing_time, :label => "Writing Time (hours)"
-      f.input :tag_list
       f.input :image_attribution, :input_html => { :rows => 4 }
-      f.input :type_list,  :multiple => true, :collection => BlogPost::TYPES, :as => :check_boxes
-      f.input :category_list, :multiple => true, :collection => (t 'tags.all_careers'), :as => :check_boxes
+      f.input :type_list,  :multiple => true, :collection => (t 'tags.types'), :as => :check_boxes
+      f.input :top_cause_list, :multiple => true, :collection => (t 'tags.top_causes'), :as => :check_boxes
+      f.input :top_career_list, :multiple => true, :collection => (t 'tags.top_careers'), :as => :check_boxes
+      f.input :all_cause_list, :multiple => true, :collection => (t 'tags.all_causes'), :as => :check_boxes
+      f.input :all_career_list, :multiple => true, :collection => (t 'tags.top_careers'), :as => :check_boxes
+      f.input :topic_list, :multiple => true, :collection => (t 'tags.topics'), :as => :check_boxes
+      f.input :tag_list
     end
     f.actions
   end
