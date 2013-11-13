@@ -41,10 +41,10 @@ ActiveAdmin.register BlogPost do
         markdown post.body
       end
       row :type_list
-      row :top_cause_list
       row :top_career_list
-      row :all_cause_list
       row :all_career_list
+      row :top_cause_list
+      row :all_cause_list
       row :topic_list
       row 'Other Tags' do 
         post.tag_list
@@ -65,10 +65,10 @@ ActiveAdmin.register BlogPost do
       f.input :writing_time, :label => "Writing Time (hours)"
       f.input :image_attribution, :input_html => { :rows => 4 }
       f.input :type_list,  :multiple => true, :collection => (t 'tags.types'), :as => :check_boxes
-      f.input :top_cause_list, :multiple => true, :collection => (t 'tags.top_causes'), :as => :check_boxes
       f.input :top_career_list, :multiple => true, :collection => (t 'tags.top_careers'), :as => :check_boxes
-      f.input :all_cause_list, :multiple => true, :collection => (t 'tags.all_causes'), :as => :check_boxes
       f.input :all_career_list, :multiple => true, :collection => (t 'tags.all_careers'), :as => :check_boxes
+      f.input :top_cause_list, :multiple => true, :collection => (t 'tags.top_causes'), :as => :check_boxes
+      f.input :all_cause_list, :multiple => true, :collection => (t 'tags.all_causes'), :as => :check_boxes
       f.input :topic_list, :multiple => true, :collection => (t 'tags.topics'), :as => :check_boxes
       f.input :tag_list, :label => 'Other Tags'
     end
