@@ -1,4 +1,4 @@
-- if post.tag_counts_on(:tags).size > 0
+- if @post.tag_counts_on(:tags).size > 0
   Keywords:
-  - tags = post.tag_counts_on(:tags).map{|tag| link_to( tag.name.titleize, { :action => :tag, :id => tag.name })}
+  - tags = @post.tag_counts_on(:tags).map{|tag| link_to( tag.name.titleize, { :action => :tag, :id => tag.name })}
   = raw(tags.join(", "))

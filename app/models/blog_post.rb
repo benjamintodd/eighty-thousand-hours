@@ -20,6 +20,8 @@ class BlogPost < ActiveRecord::Base
   validates_presence_of :body
   validates_presence_of :teaser
 
+  before_save :publish
+
   def self.get_types
     TYPES
   end
@@ -75,7 +77,7 @@ class BlogPost < ActiveRecord::Base
   #
   # can have many uploaded images
   has_many :attached_images, :dependent => :destroy
-  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :author, :attribution, :created_at, :writing_time, :image_attribution
+  attr_accessible :title, :body, :teaser, :user_id, :draft, :attached_images_attributes, :author, :attribution, :created_at, :writing_time, :image_attribution, :published_at
   attr_accessible :tag_list, :type_list, :top_cause_list, :top_career_list, :all_cause_list, :all_career_list, :topic_list
   accepts_nested_attributes_for :attached_images, :allow_destroy => true 
 
@@ -129,6 +131,12 @@ class BlogPost < ActiveRecord::Base
       sentences[0] + ". " + sentences[1] + "..."
     else
       return self.body
+    end
+  end
+
+  def publish
+    if self.draft_changed? and !self.draft
+      self.published_at = Time.now
     end
   end
 

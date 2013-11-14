@@ -44,10 +44,10 @@
         <%= rating.privacy? ? 'Anonymous' : (link_to rating.user.name, rating.user) %>
       </td>
       <td style="min-width:500px">
-        <% unless rating.comment.empty? %>
+        <% unless rating.comment.nil? or rating.comment.empty? %>
           <h4> Article </h4> <%= simple_format(rating.comment)  %>
     <% end %>
-        <% unless rating.rubric_comment.empty? %>
+        <% unless rating.rubric_comment.nil? or rating.rubric_comment.empty? %>
           <h4> Rubric</h4><%= simple_format(rating.rubric_comment)  %> </td>
     <% end %>
 

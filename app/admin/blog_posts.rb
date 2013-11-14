@@ -33,6 +33,7 @@ ActiveAdmin.register BlogPost do
       row :user
       row :attribution
       row :created_at
+      row :published_at
       row :writing_time
       row :draft do
         post.draft? ? "<span class='status warn'>draft</span>".html_safe : "false"
@@ -60,7 +61,7 @@ ActiveAdmin.register BlogPost do
       f.input :user, :collection => User.order("name ASC"), :label => 'Author'
       f.input :author, :label => "Author (if user isn't in database)"
       f.input :attribution, :label => "Attibution (a blurb about the author, specifically for external authors)"
-      f.input :published_at
+      f.input :published_at, :label => "Published at (automatically set when 'draft' is set to false)"
       f.input :draft
       f.input :writing_time, :label => "Writing Time (hours)"
       f.input :image_attribution, :input_html => { :rows => 4 }
