@@ -6,7 +6,7 @@
         - if blog_post.draft
           %span.label.label-warning Draft post (not publicly visible)
       .metadata
-        = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.created_at)}")
+        = raw("#{link_to_blog_post_author( blog_post )}, #{format_date(blog_post.published_at)}")
         </br>
 
     .content
