@@ -1,5 +1,6 @@
+- post.attached_images.each do |asset|
+  = image_tag(asset.image.url(:small))
 - if post.tag_counts_on(:tags).size > 0
   - tags = post.tag_counts_on(:tags).map{|tag| link_to( tag.name.titleize, { :action => :tag, :id => tag.name })}
   = raw(tags.join(", "))
-- post.attached_images.each do |asset|
-  = link_to( image_tag(asset.image.url(:small)), asset.image.url(:original), :class=>'thumbnail' )
+
