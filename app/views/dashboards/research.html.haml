@@ -6,9 +6,9 @@
         %th.some{:style => "width:400px"} Title
         %th.some{:style => "width:150px"} Author
         %th Types
-        %th Score
+        %th Ratings
+        %th Average Score
         %th Time to Write
-        %th Readership Hours
         %th Likes
     %tbody
       -@posts.each do |post|
@@ -21,12 +21,15 @@
           %th 
             = post.user.nil? ? (link_to post.author, post.author) : (link_to post.user.name, post.user)
           %th
-            = post.type_list.join(', ')
+            - tags = post.tag_counts_on(:tags).map{|tag| link_to( tag.name.titleize, { :action => :tag, :id => tag.name })}
+            - tags.append(post.type_list)
+            = raw(tags.join(", "))
+          %th
+            - if post.ratings.count > 0
+              = link_to post.ratings.count, blog_post_ratings_path(post)
           %th
             = post.total_average_rating if (post.total_average_rating != 0.0)
           %th
-            = 2 + rand(10)
-          %th
-            = rand(5000)
+            = post.writing_time
           %th 
             = post.facebook_likes
