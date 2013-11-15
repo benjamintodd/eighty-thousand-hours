@@ -6,7 +6,6 @@
         %th.some{:style => "width:400px"} Title
         %th.some{:style => "width:150px"} Author
         %th Types
-        %th Careers
         %th Score
         %th Time to Write
         %th Readership Hours
@@ -15,15 +14,14 @@
       -@posts.each do |post|
         %tr
           %th 
-            = post.created_at.strftime("%m/%d/%Y")
+            - if !post.published_at.nil?
+              = post.published_at.strftime("%m/%d/%Y")
           %th 
             = link_to post.title, post
           %th 
             = post.user.nil? ? (link_to post.author, post.author) : (link_to post.user.name, post.user)
           %th
             = post.type_list.join(', ')
-          %th
-            = post.category_list.join(', ')
           %th
             = post.total_average_rating if (post.total_average_rating != 0.0)
           %th
